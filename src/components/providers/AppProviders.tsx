@@ -1,13 +1,24 @@
 "use client";
 
 import type { ReactNode } from "react";
+import type { Language } from "@/data/translations";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { VerificationGate } from "@/components/verification/VerificationGate";
 
-export function AppProviders({ children }: { children: ReactNode }) {
+type AppProvidersProps = {
+  children: ReactNode;
+  initialVerified?: boolean;
+  initialLanguage?: Language;
+};
+
+export function AppProviders({
+  children,
+  initialVerified = false,
+  initialLanguage = "en",
+}: AppProvidersProps) {
   return (
-    <LanguageProvider>
-      <VerificationGate>{children}</VerificationGate>
+    <LanguageProvider initialLanguage={initialLanguage}>
+      <VerificationGate initialVerified={initialVerified}>{children}</VerificationGate>
     </LanguageProvider>
   );
 }

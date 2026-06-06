@@ -174,6 +174,8 @@ export function ReviewsFAQ() {
               <div className="ref-faq-list polish-faq-list final8-faq-list mt-8">
                 {FAQ_ITEMS.map((item, i) => {
                   const isOpen = openFaq === i;
+                  const panelId = `faq-panel-${i}`;
+                  const triggerId = `faq-trigger-${i}`;
                   return (
                     <div
                       key={item.question}
@@ -181,9 +183,11 @@ export function ReviewsFAQ() {
                     >
                       <button
                         type="button"
+                        id={triggerId}
                         className="ref-faq-trigger polish-faq-trigger"
                         onClick={() => setOpenFaq(isOpen ? null : i)}
                         aria-expanded={isOpen}
+                        aria-controls={panelId}
                       >
                         <span>{item.question}</span>
                         <ChevronRight
@@ -191,7 +195,12 @@ export function ReviewsFAQ() {
                           aria-hidden
                         />
                       </button>
-                      <div className={`polish-faq-answer-wrap ${isOpen ? "polish-faq-answer-open" : ""}`}>
+                      <div
+                        id={panelId}
+                        role="region"
+                        aria-labelledby={triggerId}
+                        className={`polish-faq-answer-wrap ${isOpen ? "polish-faq-answer-open" : ""}`}
+                      >
                         <p className="ref-faq-answer">{item.answer}</p>
                       </div>
                     </div>

@@ -1,12 +1,16 @@
 "use client";
 
-import Image from "next/image";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useEffect } from "react";
-import { getFeaturedProducts } from "@/data/products";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import Image from "next/image";
 import { BrandAtmosphere, DnaHelixAccent } from "@/components/ui/BrandMotifs";
 
-const PRODUCTS = getFeaturedProducts().slice(0, 3);
+/** Static paths — avoids bundling the full product catalog into the gate */
+const GATE_VIALS = [
+  { id: "left", src: "/products/glp-3-rt.png" },
+  { id: "center", src: "/products/bpc-157.png" },
+  { id: "right", src: "/products/glp-2-t.png" },
+] as const;
 
 const PRODUCT_LAYERS = [
   {
@@ -45,6 +49,10 @@ export function GateBackground() {
   const springY = useSpring(mouseY, { stiffness: 50, damping: 22 });
 
   useEffect(() => {
+    const coarse = window.matchMedia("(pointer: coarse)").matches;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (coarse || reduced) return;
+
     const handleMove = (e: MouseEvent) => {
       mouseX.set((e.clientX / window.innerWidth - 0.5) * 2);
       mouseY.set((e.clientY / window.innerHeight - 0.5) * 2);
@@ -62,10 +70,8 @@ export function GateBackground() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_55%_at_50%_-5%,rgba(45,212,191,0.11),transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_90%_70%,rgba(212,167,44,0.04),transparent_55%)]" />
 
-      {/* Soft teal light sweep */}
       <div className="gate-light-sweep absolute inset-0 opacity-[0.045]" />
 
-      {/* DNA + wave brand atmosphere */}
       <BrandAtmosphere
         dnaPositions={[
           { className: "left-[6%] top-[18%] h-36 w-10 text-teal-400/30 sm:h-44 sm:w-12", delay: 0 },
@@ -74,13 +80,13 @@ export function GateBackground() {
       />
       <DnaHelixAccent className="gate-dna-drift-reverse absolute left-[50%] top-[8%] h-16 w-4 -translate-x-1/2 text-gold-400/15" />
 
-      {PRODUCTS.map((product, i) => {
+      {GATE_VIALS.map((vial, i) => {
         const layer = PRODUCT_LAYERS[i];
         if (!layer) return null;
         return (
           <ParallaxProduct
-            key={product.id}
-            product={product}
+            key={vial.id}
+            src={vial.src}
             layer={layer}
             springX={springX}
             springY={springY}
@@ -92,12 +98,12 @@ export function GateBackground() {
 }
 
 function ParallaxProduct({
-  product,
+  src,
   layer,
   springX,
   springY,
 }: {
-  product: (typeof PRODUCTS)[number];
+  src: string;
   layer: (typeof PRODUCT_LAYERS)[number];
   springX: ReturnType<typeof useSpring>;
   springY: ReturnType<typeof useSpring>;
@@ -125,7 +131,7 @@ function ParallaxProduct({
         }}
       >
         <Image
-          src={product.image}
+          src={src}
           alt=""
           width={isCenter ? 180 : 140}
           height={isCenter ? 270 : 210}

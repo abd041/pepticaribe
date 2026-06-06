@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ShoppingBag, User } from "lucide-react";
 import Link from "next/link";
@@ -26,6 +26,25 @@ function isNavActive(pathname: string, href: string) {
 export function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+
+    closeButtonRef.current?.focus();
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
 
   return (
     <>
@@ -90,6 +109,9 @@ export function Header() {
               onClick={() => setOpen(false)}
             />
             <motion.aside
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation menu"
               className="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-gradient-to-b from-[var(--surface-dark)] to-[var(--deep-navy)] p-6 text-white lg:hidden"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
@@ -99,6 +121,7 @@ export function Header() {
               <div className="flex items-center justify-between">
                 <span className="premium-eyebrow-gold font-display">Menu</span>
                 <button
+                  ref={closeButtonRef}
                   type="button"
                   onClick={() => setOpen(false)}
                   className="rounded-full p-2 hover:bg-white/10"

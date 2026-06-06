@@ -1,42 +1,84 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import { Cinzel, Plus_Jakarta_Sans } from "next/font/google";
 import { AppProviders } from "@/components/providers/AppProviders";
+import {
+  LANGUAGE_COOKIE,
+  VERIFICATION_COOKIE,
+  parseLanguageCookie,
+} from "@/lib/storage";
 import "./globals.css";
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://pepticaribe.com";
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600", "700"],
+  display: "swap",
 });
 
 const cinzel = Cinzel({
   variable: "--font-syne",
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800", "900"],
+  weight: ["600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "PeptiCaribe | Premium Research-Grade Peptides",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "PeptiCaribe | Premium Research-Grade Peptides",
+    template: "%s | PeptiCaribe",
+  },
   description:
     "Research-grade peptides with Certificate of Analysis on every batch. 99%+ identity purity, ISO 17025 third-party tested. Research Use Only.",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "PeptiCaribe",
+    title: "PeptiCaribe | Premium Research-Grade Peptides",
+    description:
+      "Research-grade peptides with Certificate of Analysis on every batch. 99%+ identity purity, ISO 17025 third-party tested.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PeptiCaribe | Premium Research-Grade Peptides",
+    description:
+      "Research-grade peptides with Certificate of Analysis on every batch. 99%+ identity purity, ISO 17025 third-party tested.",
+  },
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: "/brand/pepticaribe-logo.png",
     apple: "/brand/pepticaribe-logo.png",
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const initialVerified = cookieStore.get(VERIFICATION_COOKIE)?.value === "1";
+  const initialLanguage = parseLanguageCookie(
+    cookieStore.get(LANGUAGE_COOKIE)?.value,
+  );
+
   return (
     <html
-      lang="en"
+      lang={initialLanguage}
       className={`${plusJakarta.variable} ${cinzel.variable} min-h-full antialiased`}
     >
       <body className="min-h-full">
-        <AppProviders>{children}</AppProviders>
+        <AppProviders
+          initialVerified={initialVerified}
+          initialLanguage={initialLanguage}
+        >
+          {children}
+        </AppProviders>
       </body>
     </html>
   );

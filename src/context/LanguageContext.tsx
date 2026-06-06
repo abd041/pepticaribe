@@ -9,12 +9,8 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import {
-  getTranslation,
-  type Language,
-  type TranslationKey,
-} from "@/data/translations";
-import { getStoredLanguage, setStoredLanguage } from "@/lib/storage";
+import { getTranslation, type Language, type TranslationKey } from "@/data/translations";
+import { setStoredLanguage } from "@/lib/storage";
 
 interface LanguageContextValue {
   language: Language;
@@ -24,12 +20,16 @@ interface LanguageContextValue {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("en");
+type LanguageProviderProps = {
+  children: ReactNode;
+  initialLanguage?: Language;
+};
 
-  useEffect(() => {
-    setLanguageState(getStoredLanguage());
-  }, []);
+export function LanguageProvider({
+  children,
+  initialLanguage = "en",
+}: LanguageProviderProps) {
+  const [language, setLanguageState] = useState<Language>(initialLanguage);
 
   const setLanguage = useCallback((next: Language) => {
     setLanguageState(next);

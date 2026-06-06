@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/types/product";
 import { getCompoundProfile } from "@/lib/productImagery";
@@ -54,7 +53,7 @@ export function ReferenceProductCard({ product, index, className = "" }: Referen
 
         <div className="ref-product-size-row">
           <span>{sizeLabel}</span>
-          <span>{sizeLabel}</span>
+          <span className="text-white/40">Research Grade</span>
         </div>
 
         <div className="ref-product-actions qa-product-actions">

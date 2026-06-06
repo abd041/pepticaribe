@@ -27,7 +27,7 @@ const VARIANT_CONFIG: Record<
   }
 > = {
   hero: {
-    particleCount: 18,
+    particleCount: 8,
     waveOpacity: "opacity-[0.07]",
     glowIntensity: "atmosphere-glow-hero",
     dna: [
@@ -36,7 +36,7 @@ const VARIANT_CONFIG: Record<
     ],
   },
   value: {
-    particleCount: 10,
+    particleCount: 6,
     waveOpacity: "opacity-[0.05]",
     glowIntensity: "atmosphere-glow-teal",
     dna: [
@@ -45,7 +45,7 @@ const VARIANT_CONFIG: Record<
     ],
   },
   products: {
-    particleCount: 12,
+    particleCount: 6,
     waveOpacity: "opacity-[0.06]",
     glowIntensity: "atmosphere-glow-ocean",
     dna: [

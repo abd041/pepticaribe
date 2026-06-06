@@ -31,8 +31,8 @@ type LayerConfig = {
 
 const LAYER_CONFIG: Record<DepthLayer, LayerConfig> = {
   back: {
-    count: 24,
-    countMobile: 11,
+    count: 12,
+    countMobile: 6,
     sizeMin: 1.5,
     sizeMax: 2.75,
     opacityMin: 0.22,
@@ -43,8 +43,8 @@ const LAYER_CONFIG: Record<DepthLayer, LayerConfig> = {
     durationMax: 52,
   },
   mid: {
-    count: 32,
-    countMobile: 16,
+    count: 16,
+    countMobile: 8,
     sizeMin: 2,
     sizeMax: 4.25,
     opacityMin: 0.34,
@@ -55,8 +55,8 @@ const LAYER_CONFIG: Record<DepthLayer, LayerConfig> = {
     durationMax: 34,
   },
   front: {
-    count: 18,
-    countMobile: 9,
+    count: 10,
+    countMobile: 5,
     sizeMin: 2.75,
     sizeMax: 6,
     opacityMin: 0.46,

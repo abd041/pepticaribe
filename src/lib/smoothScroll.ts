@@ -1,5 +1,3 @@
-import { ScrollSmoother } from "gsap/ScrollSmoother";
-
 export const SMOOTH_SCROLL_MIN_WIDTH = 768;
 export const SMOOTH_SCROLL_DURATION = 1.35;
 
@@ -13,10 +11,6 @@ export function isSmoothScrollActive(): boolean {
 
 export function getScrollTop(): number {
   if (typeof window === "undefined") return 0;
-  const smoother = ScrollSmoother.get();
-  if (smoother && isSmoothScrollActive()) {
-    return smoother.scrollTop();
-  }
   return window.scrollY;
 }
 

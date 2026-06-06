@@ -25,21 +25,49 @@ export function LuxuryMotion() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      gsap.set(".lux-hero-animate", { opacity: 0, y: 32 });
-      gsap.set(".lux-hero-product", { opacity: 0, y: 24, scale: 0.96 });
-      gsap.set(".lux-hero-glow", { opacity: 0, scale: 0.88 });
-      gsap.set(".lux-pp-volumetric", { opacity: 0.6, scale: 0.94 });
-
       const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
       heroTl
-        .to(".lux-hero-glow", { opacity: 1, scale: 1, duration: 1.5 })
-        .to(".lux-pp-volumetric", { opacity: 0.95, scale: 1, duration: 1.35 }, "-=1.35")
-        .to(".lux-hero-animate-eyebrow", { opacity: 1, y: 0, duration: 0.85 }, "-=1.1")
-        .to(".lux-hero-animate-headline", { opacity: 1, y: 0, duration: 1.05 }, "-=0.65")
-        .to(".lux-hero-animate-lead", { opacity: 1, y: 0, duration: 0.75 }, "-=0.55")
-        .to(".lux-hero-animate-cta", { opacity: 1, y: 0, duration: 0.7, stagger: 0.1 }, "-=0.45")
-        .to(".lux-hero-animate-badges", { opacity: 1, y: 0, duration: 0.65 }, "-=0.35")
-        .to(".lux-hero-product", { opacity: 1, y: 0, scale: 1, duration: 1.15 }, "-=1");
+        .from(".lux-hero-glow", {
+          opacity: 0,
+          scale: 0.88,
+          duration: 1.5,
+          immediateRender: false,
+        })
+        .from(
+          ".lux-pp-volumetric",
+          { opacity: 0.6, scale: 0.94, duration: 1.35, immediateRender: false },
+          "-=1.35",
+        )
+        .from(
+          ".lux-hero-animate-eyebrow",
+          { opacity: 0, y: 32, duration: 0.85, immediateRender: false },
+          "-=1.1",
+        )
+        .from(
+          ".lux-hero-animate-headline",
+          { opacity: 0, y: 32, duration: 1.05, immediateRender: false },
+          "-=0.65",
+        )
+        .from(
+          ".lux-hero-animate-lead",
+          { opacity: 0, y: 32, duration: 0.75, immediateRender: false },
+          "-=0.55",
+        )
+        .from(
+          ".lux-hero-animate-cta",
+          { opacity: 0, y: 32, duration: 0.7, stagger: 0.1, immediateRender: false },
+          "-=0.45",
+        )
+        .from(
+          ".lux-hero-animate-badges",
+          { opacity: 0, y: 32, duration: 0.65, immediateRender: false },
+          "-=0.35",
+        )
+        .from(
+          ".lux-hero-product",
+          { opacity: 0, y: 24, scale: 0.96, duration: 1.15, immediateRender: false },
+          "-=1",
+        );
 
       gsap.to(".lux-hero-float", {
         y: -10,

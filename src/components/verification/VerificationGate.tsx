@@ -16,16 +16,19 @@ import { GateBackground } from "./GateBackground";
 
 interface VerificationGateProps {
   children: ReactNode;
+  initialVerified?: boolean;
 }
 
 type CheckboxKey = "age" | "ruo" | "noHuman";
 
 const CHECKBOX_KEYS: CheckboxKey[] = ["age", "ruo", "noHuman"];
 
-export function VerificationGate({ children }: VerificationGateProps) {
+export function VerificationGate({
+  children,
+  initialVerified = false,
+}: VerificationGateProps) {
   const { language, setLanguage, t } = useLanguage();
-  const [mounted, setMounted] = useState(false);
-  const [verified, setVerifiedState] = useState(false);
+  const [verified, setVerifiedState] = useState(initialVerified);
   const [checks, setChecks] = useState<Record<CheckboxKey, boolean>>({
     age: false,
     ruo: false,
@@ -40,12 +43,17 @@ export function VerificationGate({ children }: VerificationGateProps) {
   const allChecked = checkedCount === 3;
 
   useEffect(() => {
-    setMounted(true);
-    setVerifiedState(isVerified());
-  }, []);
+    const storedVerified = isVerified();
+    if (storedVerified) {
+      setVerifiedState(true);
+    } else if (initialVerified) {
+      setVerified();
+      setVerifiedState(true);
+    }
+  }, [initialVerified]);
 
   useEffect(() => {
-    if (!mounted || verified) return;
+    if (verified) return;
     const prevOverflow = document.body.style.overflow;
     const prevBodyBg = document.body.style.backgroundColor;
     const prevHtmlBg = document.documentElement.style.backgroundColor;
@@ -57,12 +65,12 @@ export function VerificationGate({ children }: VerificationGateProps) {
       document.body.style.backgroundColor = prevBodyBg;
       document.documentElement.style.backgroundColor = prevHtmlBg;
     };
-  }, [mounted, verified]);
+  }, [verified]);
 
   useEffect(() => {
-    if (!mounted || verified) return;
+    if (verified) return;
     dialogRef.current?.focus();
-  }, [mounted, verified]);
+  }, [verified]);
 
   const toggleCheck = useCallback((key: CheckboxKey) => {
     setChecks((prev) => ({ ...prev, [key]: !prev[key] }));
@@ -92,20 +100,6 @@ export function VerificationGate({ children }: VerificationGateProps) {
     },
     [allChecked, handleEnter]
   );
-
-  if (!mounted) {
-    return (
-      <div className="flex h-dvh items-center justify-center bg-navy-950">
-        <motion.div
-          className="h-8 w-8 rounded-full border-2 border-teal-400 border-t-transparent"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-          role="status"
-          aria-label="Loading"
-        />
-      </div>
-    );
-  }
 
   if (verified) {
     return <>{children}</>;

@@ -3,7 +3,6 @@
 import {
   createContext,
   useContext,
-  useEffect,
   useLayoutEffect,
   useRef,
   useState,
@@ -11,9 +10,9 @@ import {
 } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
 import {
   SMOOTH_SCROLL_DURATION,
+  SMOOTH_SCROLL_ENABLED,
   SMOOTH_SCROLL_MIN_WIDTH,
   shouldUseSmoothScroll,
 } from "@/lib/smoothScroll";
@@ -41,12 +40,16 @@ type SmoothScrollProviderProps = {
   children: ReactNode;
 };
 
+type ScrollSmootherInstance = {
+  kill: () => void;
+};
+
 export function SmoothScrollProvider({ chrome, children }: SmoothScrollProviderProps) {
-  const [state, setState] = useState<SmoothScrollContextValue>({
-    ready: false,
+  const [state, setState] = useState<SmoothScrollContextValue>(() => ({
+    ready: !SMOOTH_SCROLL_ENABLED,
     enabled: false,
-  });
-  const smootherRef = useRef<ScrollSmoother | null>(null);
+  }));
+  const smootherRef = useRef<ScrollSmootherInstance | null>(null);
   const smoothModeRef = useRef(false);
 
   const clearSmoothClasses = () => {
@@ -68,12 +71,12 @@ export function SmoothScrollProvider({ chrome, children }: SmoothScrollProviderP
   };
 
   useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+    gsap.registerPlugin(ScrollTrigger);
 
     const reducedMq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const mobileMq = window.matchMedia(`(max-width: ${SMOOTH_SCROLL_MIN_WIDTH - 1}px)`);
 
-    const initSmoother = () => {
+    const initSmoother = async () => {
       if (!shouldUseSmoothScroll()) {
         enableNativeScroll();
         return;
@@ -89,6 +92,9 @@ export function SmoothScrollProvider({ chrome, children }: SmoothScrollProviderP
       killSmoother();
 
       try {
+        const { ScrollSmoother } = await import("gsap/ScrollSmoother");
+        gsap.registerPlugin(ScrollSmoother);
+
         smootherRef.current = ScrollSmoother.create({
           wrapper: "#smooth-wrapper",
           content: "#smooth-content",
@@ -115,7 +121,7 @@ export function SmoothScrollProvider({ chrome, children }: SmoothScrollProviderP
       }
     };
 
-    initSmoother();
+    void initSmoother();
 
     const onLoad = () => {
       if (smoothModeRef.current) {
@@ -125,7 +131,7 @@ export function SmoothScrollProvider({ chrome, children }: SmoothScrollProviderP
     window.addEventListener("load", onLoad);
 
     const onBreakpointChange = () => {
-      initSmoother();
+      void initSmoother();
     };
     reducedMq.addEventListener("change", onBreakpointChange);
     mobileMq.addEventListener("change", onBreakpointChange);
@@ -136,7 +142,7 @@ export function SmoothScrollProvider({ chrome, children }: SmoothScrollProviderP
         return;
       }
       if (shouldUseSmoothScroll()) {
-        initSmoother();
+        void initSmoother();
       }
     };
     window.addEventListener("resize", onResize);

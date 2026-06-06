@@ -5,7 +5,6 @@
 @import "./phase3-art-direction.css";
 @import "./phase4a-atmosphere.css";
 @import "./phase5-particle-system.css";
-@import "./atmosphere-debug.css";
 @import "./phase5a-atmosphere-architecture.css";
 @import "./phase5b-atmosphere-bugfix.css";
 @import "./phase5c-atmosphere-balance.css";
@@ -15,7 +14,6 @@
 @import "./phase7-particle-reference-visibility.css";
 @import "./phase6b-exhibit-cards.css";
 @import "./phase7-smooth-scroll.css";
-@import "./atmosphere-visibility-prototype.css";
 
 :root {
   /* ── PeptiCaribe brand palette ── */
@@ -113,7 +111,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
