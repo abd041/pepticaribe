@@ -1,0 +1,299 @@
+/**
+ * Trust / Value Props — Premium Authority showcase
+ * Visual-only; content and icons unchanged.
+ */
+
+.trust-authority-section {
+  position: relative;
+}
+
+/* Subtle section spotlight — cards are the focus */
+.trust-authority-section .trust-authority-spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 72% 58% at 50% 42%,
+      rgba(var(--ocean-rgb), 0.09) 0%,
+      rgba(var(--ocean-rgb), 0.02) 42%,
+      transparent 68%
+    ),
+    radial-gradient(
+      ellipse 48% 38% at 68% 55%,
+      rgba(var(--gold-rgb), 0.04) 0%,
+      transparent 62%
+    );
+}
+
+/* Reduce atmospheric noise inside trust section */
+.trust-authority-section .ocean-wave-layer,
+.trust-authority-section .caribe-current-layer,
+.trust-authority-section .brand-atmosphere-dna,
+.trust-authority-section .dna-helix-accent {
+  opacity: 0.1 !important;
+}
+
+.trust-authority-section .atmosphere-teal,
+.trust-authority-section .atmosphere-gold {
+  opacity: 0.45;
+}
+
+.trust-authority-section .ref-trust-frame {
+  position: relative;
+  z-index: 2;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+/* 3 × 2 grid — 1 col mobile, 2 tablet, 3 desktop */
+.trust-authority-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.25rem, 2.2vw, 1.75rem);
+}
+
+@media (min-width: 640px) {
+  .trust-authority-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .trust-authority-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.35rem, 2vw, 1.875rem);
+  }
+}
+
+/* ── Premium authority card ── */
+.trust-authority-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: clamp(240px, 28vw, 280px);
+  padding: clamp(2rem, 3.5vw, 2.5rem);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  text-align: left;
+  overflow: hidden;
+  transition:
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.12),
+    0 10px 36px rgba(0, 0, 0, 0.18);
+}
+
+.trust-authority-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    transparent 38%,
+    transparent 72%,
+    rgba(0, 0, 0, 0.04) 100%
+  );
+  opacity: 0.85;
+}
+
+.trust-authority-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.14) 50%,
+    transparent 100%
+  );
+}
+
+.trust-authority-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(var(--ocean-rgb), 0.22);
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 20px 52px rgba(0, 0, 0, 0.28),
+    0 0 40px rgba(var(--ocean-rgb), 0.08);
+}
+
+/* Featured — Certified U.S. Labs */
+.trust-authority-card--featured {
+  min-height: clamp(252px, 30vw, 296px);
+  border-color: rgba(212, 175, 55, 0.14);
+  background: rgba(255, 255, 255, 0.032);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    inset 0 0 0 1px rgba(212, 175, 55, 0.06),
+    0 14px 44px rgba(0, 0, 0, 0.22),
+    0 0 48px rgba(212, 175, 55, 0.05);
+}
+
+.trust-authority-card--featured::before {
+  background: linear-gradient(
+    145deg,
+    rgba(212, 175, 55, 0.07) 0%,
+    transparent 42%,
+    transparent 70%,
+    rgba(var(--ocean-rgb), 0.03) 100%
+  );
+}
+
+.trust-authority-card--featured:hover {
+  border-color: rgba(212, 175, 55, 0.28);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.11),
+    0 22px 56px rgba(0, 0, 0, 0.3),
+    0 0 56px rgba(212, 175, 55, 0.09),
+    0 0 32px rgba(var(--ocean-rgb), 0.06);
+}
+
+/* ── Icon — 72px layered rings ── */
+.trust-authority-icon {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin-bottom: clamp(1.25rem, 2.5vw, 1.625rem);
+  flex-shrink: 0;
+}
+
+.trust-authority-icon-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.trust-authority-icon-ring--outer {
+  inset: 0;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  background: radial-gradient(
+    circle at 50% 38%,
+    rgba(212, 175, 55, 0.06) 0%,
+    transparent 68%
+  );
+  box-shadow: 0 0 24px rgba(212, 175, 55, 0.06);
+}
+
+.trust-authority-icon-ring--inner {
+  inset: 10px;
+  border: 1px solid rgba(212, 175, 55, 0.08);
+  background: rgba(212, 175, 55, 0.04);
+}
+
+.trust-authority-icon-well {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--luxury-gold);
+  background: rgba(212, 175, 55, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.trust-authority-icon-svg {
+  width: 1.625rem;
+  height: 1.625rem;
+}
+
+.trust-authority-card:hover .trust-authority-icon-ring--outer {
+  border-color: rgba(212, 175, 55, 0.22);
+  box-shadow: 0 0 28px rgba(212, 175, 55, 0.1);
+}
+
+.trust-authority-card:hover .trust-authority-icon-well {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 6px 20px rgba(0, 0, 0, 0.24),
+    0 0 20px rgba(var(--ocean-rgb), 0.12);
+}
+
+/* ── Typography ── */
+.trust-authority-title {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-family: var(--font-cinzel), serif;
+  font-size: clamp(1.0625rem, 0.5vw + 0.95rem, 1.25rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+  color: var(--soft-ivory);
+}
+
+.trust-authority-card--featured .trust-authority-title {
+  font-size: clamp(1.125rem, 0.6vw + 1rem, 1.3125rem);
+}
+
+.trust-authority-desc {
+  position: relative;
+  z-index: 1;
+  margin: clamp(0.75rem, 1.5vw, 1rem) 0 0;
+  max-width: 28ch;
+  font-size: clamp(0.875rem, 0.25vw + 0.8rem, 0.9375rem);
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+  color: rgba(250, 247, 240, 0.58);
+}
+
+.trust-authority-card:hover .trust-authority-desc {
+  color: rgba(250, 247, 240, 0.68);
+}
+
+/* Reset legacy strip borders on authority cards */
+.trust-authority-section .trust-authority-card.ref-trust-card {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: none;
+  text-align: left;
+}
+
+@media (min-width: 640px) {
+  .trust-authority-section .trust-authority-card.ref-trust-card:nth-child(odd) {
+    border-right: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .trust-authority-section .trust-authority-card.ref-trust-card {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trust-authority-card,
+  .trust-authority-card:hover {
+    transform: none;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+}

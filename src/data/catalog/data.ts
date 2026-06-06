@@ -123,7 +123,7 @@ export const products: Product[] = [
     description: `GLP-2 T is a synthetic dual incretin receptor agonist peptide supplied exclusively for laboratory and scientific research. In experimental models, it is examined for its interactions with metabolic signaling cascades and receptor-mediated regulatory systems under controlled conditions. ${RUO}`,
     researchUseOnly: true,
     isPrivate: false,
-    featured: true,
+    featured: false,
     category: "peptide",
     image: "/products/glp-2-t-30mg.png",
     video: "/videos/glp-2-t.mp4",
@@ -331,7 +331,7 @@ export const products: Product[] = [
     description: `KPV is a synthetic tripeptide fragment of α-MSH supplied for laboratory research. It is investigated in experimental models for its interactions with inflammatory signaling cascades, melanocortin-associated regulatory mechanisms, and cellular immune modulation pathways. ${RUO}`,
     researchUseOnly: true,
     isPrivate: false,
-    featured: false,
+    featured: true,
     category: "peptide",
     image: "/products/kpv.png",
     variants: [

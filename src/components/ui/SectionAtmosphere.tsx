@@ -3,7 +3,6 @@
 import type { ReactNode } from "react";
 import {
   ArtDirectionLight,
-  BioluminescentParticles,
   BrandAtmosphere,
   CaribeCurrentLayer,
   OceanWaveLayer,
@@ -138,9 +137,6 @@ export function SectionAtmosphere({
 
       {/* Layer 4 — organic wave patterns */}
       <OceanWaveLayer className={config.waveOpacity} variant={variant} />
-
-      {/* Layer 5 — bioluminescent particles */}
-      <BioluminescentParticles count={config.particleCount} />
 
       {/* DNA + wave accents */}
       <BrandAtmosphere dnaPositions={config.dna} showWaves />

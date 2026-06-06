@@ -11,18 +11,15 @@ export interface TranslationSchema {
     backToHome: string;
   };
   gate: {
-    badge: string;
     title: string;
     subtitle: string;
     checkboxAge: string;
-    checkboxRuo: string;
-    checkboxNoHuman: string;
+    checkboxResearcher: string;
     enterButton: string;
+    exitPrompt: string;
     exitButton: string;
     exitConfirm: string;
     footerDisclaimer: string;
-    isoBadge: string;
-    secureBadge: string;
     allRequired: string;
   };
   nav: {
@@ -40,20 +37,14 @@ export interface TranslationSchema {
     closeMenu: string;
   };
   hero: {
-    eyebrow: string;
-    headlineResearch: string;
+    headlinePremium: string;
     headlinePeptides: string;
-    headlineYouCan: string;
-    headlineTrust: string;
+    headlineElevated: string;
     subcopy: string;
     ctaProducts: string;
-    ctaCoa: string;
-    badgePurityLabel: string;
-    badgePuritySub: string;
-    badgeShippingLabel: string;
-    badgeShippingSub: string;
-    badgeVerifiedLabel: string;
-    badgeVerifiedSub: string;
+    badgePurity: string;
+    badgeLabTested: string;
+    badgeControlled: string;
   };
   announcements: {
     shipping: string;
@@ -62,18 +53,79 @@ export interface TranslationSchema {
     regionLabel: string;
   };
   valueProps: {
-    qualityTitle: string;
-    qualityDesc: string;
     shippingTitle: string;
     shippingDesc: string;
-    testedTitle: string;
-    testedDesc: string;
-    trustedTitle: string;
-    trustedDesc: string;
+    paymentsTitle: string;
+    paymentsDesc: string;
+    pharmaTitle: string;
+    pharmaDesc: string;
+    labsTitle: string;
+    labsDesc: string;
+    supportTitle: string;
+    supportDesc: string;
+    guaranteeTitle: string;
+    guaranteeDesc: string;
   };
-  featured: {
+  precision: {
+    titleLine1: string;
+    titleLine2: string;
+    titleLine3: string;
+    synthesisTitle: string;
+    synthesisDesc: string;
+    testingTitle: string;
+    testingDesc: string;
+    coaTitle: string;
+    coaDesc: string;
+    storageTitle: string;
+    storageDesc: string;
+    complianceTitle: string;
+    complianceDesc: string;
+  };
+  qualityStats: {
+    title: string;
+    description: string;
+    purityValue: string;
+    purityLabel: string;
+    checksValue: string;
+    checksLabel: string;
+    verifiedValue: string;
+    verifiedLabel: string;
+    potencyTitle: string;
+    potencyDesc: string;
+    whyMatters: string;
+    freeCoa: string;
+  };
+  productCta: {
+    titleLine1: string;
+    titleLine2: string;
+    titleLine3: string;
+    description: string;
+    cta: string;
+  };
+  homeContact: {
     eyebrow: string;
     title: string;
+    description: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    message: string;
+    submit: string;
+    success: string;
+  };
+  newsletter: {
+    titleLine1: string;
+    titleLine2: string;
+    description: string;
+    emailPlaceholder: string;
+    subscribe: string;
+    success: string;
+  };
+  featured: {
+    titleLine1: string;
+    titleLine2: string;
+    description: string;
     viewAll: string;
     compoundEyebrow: string;
     compoundSubtitle: string;
@@ -113,18 +165,21 @@ export interface TranslationSchema {
     eyebrow: string;
     title: string;
     viewAll: string;
+    excellenceTitle: string;
+    excellenceIso17025: string;
+    excellenceCoa: string;
+    excellenceRuo: string;
+    excellenceSupport: string;
   };
   footer: {
     columnShop: string;
-    columnCompany: string;
+    columnResources: string;
     columnSupport: string;
     columnLegal: string;
     linkAllProducts: string;
     linkBestSellers: string;
-    linkNewArrivals: string;
+    linkCoa: string;
     linkAboutUs: string;
-    linkOurStory: string;
-    linkResearchStandards: string;
     linkShippingInfo: string;
     linkReturns: string;
     linkTrackOrder: string;

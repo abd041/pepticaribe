@@ -112,16 +112,16 @@ export function Header() {
 
   return (
     <>
-      <header className="concept-header premium-header ref-header lux-nav-shell">
-        <div className="ref-header-inner concept-header-inner mx-auto grid h-[4.5rem] max-w-[90rem] grid-cols-[1fr_auto_1fr] items-center gap-4 px-4 sm:px-6 lg:h-[5rem] lg:px-8">
+      <header className="concept-header premium-header ref-header lux-nav-shell lux-floating-nav">
+        <div className="ref-header-inner concept-header-inner mx-auto grid max-w-[90rem] grid-cols-[1fr_auto_1fr] items-center gap-3 sm:gap-4">
           <BrandLogo
             href="/"
-            size="xl"
+            size="lg"
             priority
             className="concept-header-logo ref-header-logo justify-self-start"
           />
 
-          <nav className="concept-nav ref-header-nav hidden items-center justify-center gap-8 xl:gap-10 lg:flex">
+          <nav className="concept-nav ref-header-nav hidden items-center justify-center gap-6 md:gap-8 xl:gap-10 md:flex">
             {navLinks.map((link) => {
               const active = isNavActive(pathname, link.href);
               return (
@@ -139,16 +139,16 @@ export function Header() {
             })}
           </nav>
 
-          <div className="flex items-center justify-self-end gap-1 sm:gap-2">
-            <LanguageToggle className="hidden sm:flex" />
+          <div className="lux-nav-actions flex items-center justify-self-end">
+            <LanguageToggle className="lux-lang-toggle hidden sm:flex" />
             <Link
               href="/cart"
-              className="concept-cart-btn nav-icon-btn relative"
+              className="lux-nav-cart-btn concept-cart-btn relative"
               aria-label={t("nav.cart")}
             >
-              <ShoppingBag className="h-[1.35rem] w-[1.35rem]" strokeWidth={1.5} />
+              <ShoppingBag className="h-[1.125rem] w-[1.125rem]" strokeWidth={1.5} />
               <span
-                className="concept-cart-badge cart-badge absolute -right-1 -top-1 flex h-[1.125rem] min-w-[1.125rem] items-center justify-center rounded-full px-0.5 text-[10px] font-extrabold leading-none"
+                className="concept-cart-badge cart-badge absolute flex items-center justify-center rounded-full leading-none"
                 aria-hidden={itemCount === 0}
               >
                 {itemCount}
@@ -156,11 +156,11 @@ export function Header() {
             </Link>
             <button
               type="button"
-              className="nav-icon-btn lg:hidden"
+              className="lux-nav-icon-btn md:hidden"
               onClick={() => setOpen(true)}
               aria-label={t("nav.openMenu")}
             >
-              <Menu className="h-5 w-5" />
+              <Menu className="h-[1.125rem] w-[1.125rem]" strokeWidth={1.5} />
             </button>
           </div>
         </div>
@@ -170,7 +170,7 @@ export function Header() {
         <>
           <div
             ref={backdropRef}
-            className="fixed inset-0 z-50 bg-navy-950/60 backdrop-blur-sm lg:hidden"
+            className="fixed inset-0 z-50 bg-navy-950/60 backdrop-blur-sm md:hidden"
             onClick={closeMenu}
             aria-hidden
           />
@@ -179,7 +179,7 @@ export function Header() {
             role="dialog"
             aria-modal="true"
             aria-label={t("nav.menu")}
-            className="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-gradient-to-b from-[var(--surface-dark)] to-[var(--deep-navy)] p-6 text-white lg:hidden"
+            className="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-gradient-to-b from-[var(--surface-dark)] to-[var(--deep-navy)] p-6 text-white md:hidden"
           >
             <div className="flex items-center justify-between">
               <span className="premium-eyebrow-gold">{t("nav.menu")}</span>

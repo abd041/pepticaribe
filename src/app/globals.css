@@ -1,5 +1,12 @@
 @import "tailwindcss";
 @import "./styles/site-bundle.css";
+@import "./no-particles.css";
+@import "./luxury-home.css";
+@import "./trust-authority.css";
+@import "./testimonial-trust.css";
+@import "./site-chrome-layout.css";
+@import "./faq-premium.css";
+@import "./luxury-nav.css";
 
 :root {
   /* ── PeptiCaribe brand palette ── */
@@ -6177,14 +6184,7 @@ header.text-center .editorial-header-accent {
    APPROVED HERO CONCEPT — Announcement, Header, Hero only
    ═══════════════════════════════════════════════════════════════════════════ */
 
-:root {
-  --concept-chrome-h: 7.25rem;
-}
-
-/* ── Site chrome overlay ── */
-.concept-site-chrome {
-  --concept-chrome-h: calc(2.75rem + 5rem);
-}
+/* Site chrome height tokens — see site-chrome-layout.css */
 
 .concept-announcement {
   background: #030b10;
@@ -6324,15 +6324,7 @@ header.text-center .editorial-header-accent {
   box-shadow: 0 2px 8px rgba(var(--gold-rgb), 0.35);
 }
 
-/* ── Hero shell — locked to viewport, chrome overlays ── */
-.concept-hero {
-  height: 100svh;
-  height: 100dvh;
-  max-height: 100dvh;
-  margin-top: calc(var(--concept-chrome-h) * -1);
-  padding-top: var(--concept-chrome-h);
-  overflow: hidden;
-}
+/* ── Hero shell — fills viewport below fixed chrome (site-chrome-layout.css) ── */
 
 .concept-hero-shell {
   display: flex;
@@ -6392,11 +6384,6 @@ header.text-center .editorial-header-accent {
   );
 }
 
-.concept-hero-bg,
-.ref-hero-bg {
-  top: calc(var(--concept-chrome-h) * -1);
-  height: calc(100% + var(--concept-chrome-h));
-}
 
 .ref-hero-photo {
   object-position: 55% center;
@@ -6605,20 +6592,6 @@ header.text-center .editorial-header-accent {
 }
 
 @media (max-width: 1023px) {
-  .concept-hero {
-    height: calc(100svh - var(--concept-chrome-h));
-    height: calc(100dvh - var(--concept-chrome-h));
-    max-height: calc(100dvh - var(--concept-chrome-h));
-    margin-top: 0;
-    padding-top: 0;
-  }
-
-  .concept-hero-bg,
-  .ref-hero-bg {
-    top: 0;
-    height: 100%;
-  }
-
   .ref-hero-showcase-wrap,
   .concept-hero-showcase-wrap {
     max-height: min(52dvh, 480px);

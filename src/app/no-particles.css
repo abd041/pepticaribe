@@ -1,0 +1,30 @@
+/* Global particle/star effect removal */
+
+.bio-particle,
+.lab-particle,
+.compound-exhibit-particle,
+.bio-atmosphere-particle,
+.bio-particle-system,
+.bio-particle-layer,
+.bio-atmosphere-particles,
+.bio-energy,
+.bio-energy-field,
+.bio-molecular-field,
+.polish-review-stars,
+.art-review-mark {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.bio-atmosphere,
+.bio-atmosphere--debug,
+.bio-atmosphere--visibility-prototype {
+  display: none !important;
+}
+
+.bio-particle,
+.lab-particle,
+.compound-exhibit-particle {
+  animation: none !important;
+}

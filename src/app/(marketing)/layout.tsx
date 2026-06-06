@@ -5,7 +5,7 @@ export default function MarketingLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div className="min-h-dvh bg-[var(--background)] text-[var(--foreground)]">
+    <div className="site-chrome-offset min-h-dvh bg-[var(--background)] text-[var(--foreground)]">
       <SiteChrome />
       <main>{children}</main>
       <Footer />

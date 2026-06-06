@@ -38,18 +38,22 @@ export function LuxuryMotion() {
         delay: 0.05,
       });
 
-      heroTl
-        .from(".lux-pp-volumetric", {
-          opacity: 0.72,
-          scale: 0.96,
-          duration: 1.1,
-          immediateRender: false,
-        })
-        .from(
+      heroTl.from(".lux-pp-volumetric", {
+        opacity: 0.72,
+        scale: 0.96,
+        duration: 1.1,
+        immediateRender: false,
+      });
+
+      if (document.querySelector(".lux-hero-animate-eyebrow")) {
+        heroTl.from(
           ".lux-hero-animate-eyebrow",
           { y: 20, duration: 0.65, immediateRender: false },
           "-=0.85",
-        )
+        );
+      }
+
+      heroTl
         .from(
           ".lux-hero-animate-headline",
           { y: 24, duration: 0.8, immediateRender: false },
@@ -79,8 +83,8 @@ export function LuxuryMotion() {
       const floatTarget = document.querySelector(".lux-hero-float");
       if (floatTarget) {
         gsap.to(floatTarget, {
-          y: -8,
-          duration: 5,
+          y: -10,
+          duration: 6.5,
           ease: "sine.inOut",
           yoyo: true,
           repeat: -1,
@@ -202,8 +206,34 @@ export function LuxuryMotion() {
         });
       }
 
+      /* Quality stats — subtle count-up on scroll */
+      const qualitySection = document.querySelector(".ref-quality-stats");
+      if (qualitySection) {
+        qualitySection.querySelectorAll<HTMLElement>(".lux-stat-counter").forEach((el) => {
+          const end = Number(el.dataset.end);
+          const numEl = el.querySelector(".lux-stat-counter-num");
+          if (!numEl || Number.isNaN(end)) return;
+
+          const counter = { val: 0 };
+          gsap.to(counter, {
+            val: end,
+            duration: 1.6,
+            ease: "power2.out",
+            snap: { val: 1 },
+            scrollTrigger: {
+              trigger: el,
+              start: MOTION.revealStart,
+              toggleActions: "play none none none",
+            },
+            onUpdate: () => {
+              numEl.textContent = String(Math.round(counter.val));
+            },
+          });
+        });
+      }
+
       gsap.utils.toArray<Element>(".lux-reveal").forEach((el) => {
-        bindLuxReveal(el);
+        bindLuxReveal(el, { y: MOTION.revealY, duration: MOTION.reveal });
       });
 
       bindLuxStaggerGroups();

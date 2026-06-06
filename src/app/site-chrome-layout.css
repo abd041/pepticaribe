@@ -1,0 +1,43 @@
+/**
+ * Fixed site chrome layout — measured --site-chrome-h from SiteChrome.
+ * Fallback --concept-chrome-h matches announcement + header structure.
+ */
+
+:root {
+  --concept-announcement-h: 2.75rem;
+  --concept-header-shell-h: calc(0.5rem + 0.625rem + 3.875rem);
+  --concept-chrome-h: calc(var(--concept-announcement-h) + var(--concept-header-shell-h));
+  --site-chrome-h: var(--concept-chrome-h);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --concept-announcement-h: 3rem;
+    --concept-header-shell-h: calc(0.75rem + 0.875rem + 4rem);
+  }
+}
+
+html {
+  scroll-padding-top: var(--site-chrome-h, var(--concept-chrome-h));
+}
+
+/* Push page content below fixed chrome */
+.site-chrome-offset {
+  padding-top: var(--site-chrome-h, var(--concept-chrome-h));
+}
+
+/* Hero fills viewport below chrome — no overlap */
+.concept-hero {
+  margin-top: 0;
+  padding-top: 0;
+  height: calc(100dvh - var(--site-chrome-h, var(--concept-chrome-h)));
+  min-height: calc(100dvh - var(--site-chrome-h, var(--concept-chrome-h)));
+  max-height: calc(100dvh - var(--site-chrome-h, var(--concept-chrome-h)));
+  overflow: hidden;
+}
+
+.concept-hero-bg,
+.ref-hero-bg {
+  top: 0;
+  height: 100%;
+}

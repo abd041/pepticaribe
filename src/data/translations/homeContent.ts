@@ -13,18 +13,28 @@ export const HOME_CONTENT: Record<Language, HomeContent> = {
     reviews: [
       {
         quote:
-          "Consistently high purity across multiple orders. COAs match every batch — exactly what our lab requires.",
-        author: "Verified Researcher",
+          "The product quality and consistency have been outstanding. Every batch arrives with complete documentation, giving our team confidence in the research process.",
+        author: "Dr. Michael Reynolds",
       },
       {
         quote:
-          "Fast fulfillment and discreet packaging. The documentation quality sets PeptiCaribe apart from other suppliers.",
-        author: "Verified Researcher",
+          "Fast shipping, excellent packaging, and clear COA access. Everything we need for reliable research materials is provided.",
+        author: "Sarah Thompson",
       },
       {
         quote:
-          "Third-party testing on every compound gives us confidence before any in-vitro protocol begins.",
-        author: "Verified Researcher",
+          "We've worked with several suppliers over the years, and the level of transparency and testing documentation here stands out.",
+        author: "James Carter",
+      },
+      {
+        quote:
+          "The ordering process is straightforward, delivery is quick, and the product quality has remained consistent across multiple orders.",
+        author: "Emily Parker",
+      },
+      {
+        quote:
+          "Third-party testing and detailed reporting make a real difference. It's reassuring to know exactly what we're receiving.",
+        author: "David Mitchell",
       },
     ],
     faqs: [
@@ -54,18 +64,28 @@ export const HOME_CONTENT: Record<Language, HomeContent> = {
     reviews: [
       {
         quote:
-          "Pureza consistentemente alta en múltiples pedidos. Los COA coinciden con cada lote — exactamente lo que nuestro laboratorio requiere.",
-        author: "Investigador Verificado",
+          "La calidad y consistencia del producto han sido excepcionales. Cada lote llega con documentación completa, dando a nuestro equipo confianza en el proceso de investigación.",
+        author: "Dr. Michael Reynolds",
       },
       {
         quote:
-          "Cumplimiento rápido y empaque discreto. La calidad de la documentación distingue a PeptiCaribe de otros proveedores.",
-        author: "Investigador Verificado",
+          "Envío rápido, excelente empaque y acceso claro a COA. Todo lo que necesitamos para materiales de investigación confiables está disponible.",
+        author: "Sarah Thompson",
       },
       {
         quote:
-          "Las pruebas de terceros en cada compuesto nos dan confianza antes de iniciar cualquier protocolo in vitro.",
-        author: "Investigador Verificado",
+          "Hemos trabajado con varios proveedores a lo largo de los años, y el nivel de transparencia y documentación de pruebas aquí destaca.",
+        author: "James Carter",
+      },
+      {
+        quote:
+          "El proceso de pedido es sencillo, la entrega es rápida y la calidad del producto se ha mantenido consistente en múltiples pedidos.",
+        author: "Emily Parker",
+      },
+      {
+        quote:
+          "Las pruebas de terceros y los informes detallados marcan una diferencia real. Es tranquilizador saber exactamente lo que recibimos.",
+        author: "David Mitchell",
       },
     ],
     faqs: [

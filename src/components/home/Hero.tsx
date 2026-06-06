@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, FlaskConical, ShieldCheck, Truck } from "lucide-react";
+import { ArrowRight, FlaskConical, Microscope, ShieldCheck } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { HeroBackground } from "./hero/HeroBackground";
 import { HeroShowcase } from "./hero/HeroShowcase";
@@ -10,21 +10,9 @@ export function Hero() {
   const { t } = useLanguage();
 
   const trustBadges = [
-    {
-      icon: FlaskConical,
-      label: t("hero.badgePurityLabel"),
-      sublabel: t("hero.badgePuritySub"),
-    },
-    {
-      icon: Truck,
-      label: t("hero.badgeShippingLabel"),
-      sublabel: t("hero.badgeShippingSub"),
-    },
-    {
-      icon: ShieldCheck,
-      label: t("hero.badgeVerifiedLabel"),
-      sublabel: t("hero.badgeVerifiedSub"),
-    },
+    { icon: FlaskConical, label: t("hero.badgePurity") },
+    { icon: Microscope, label: t("hero.badgeLabTested") },
+    { icon: ShieldCheck, label: t("hero.badgeControlled") },
   ] as const;
 
   return (
@@ -35,22 +23,15 @@ export function Hero() {
         <div className="ref-hero-layout concept-hero-grid ref-hero-grid relative z-[2] flex w-full min-h-0 flex-1 flex-col lg:flex-row lg:items-center">
           <div className="ref-hero-copy-col flex w-full min-w-0 justify-center px-4 py-4 sm:px-6 sm:py-5 lg:w-[50vw] lg:max-w-[50vw] lg:flex-[0_0_50vw] lg:justify-start lg:pl-8 lg:pr-6 lg:py-3 xl:pl-12">
             <div className="ref-hero-copy concept-hero-copy art-hero-copy relative flex w-full max-w-[24rem] flex-col items-center text-center lg:max-w-[28rem] lg:items-start lg:text-left">
-              <p className="ref-hero-eyebrow concept-hero-eyebrow premium-eyebrow-gold lux-hero-animate lux-hero-animate-eyebrow">
-                {t("hero.eyebrow")}
-              </p>
-
-              <h1 className="hero-headline font-display lux-hero-animate lux-hero-animate-headline mt-5 max-w-none">
-                <span className="hero-headline-primary block whitespace-nowrap">
-                  {t("hero.headlineResearch")}{" "}
-                  <span className="concept-hero-headline-accent text-[var(--ocean-blue)]">
-                    {t("hero.headlinePeptides")}
-                  </span>
+              <h1 className="hero-headline font-display lux-hero-animate lux-hero-animate-headline mt-0 max-w-none">
+                <span className="hero-headline-primary block whitespace-nowrap text-[var(--soft-ivory)]">
+                  {t("hero.headlinePremium")}
                 </span>
-                <span className="mt-1 block font-semibold text-[var(--soft-ivory)]">
-                  {t("hero.headlineYouCan")}
+                <span className="mt-1 block font-semibold text-[var(--ocean-blue)]">
+                  {t("hero.headlinePeptides")}
                 </span>
                 <span className="block font-semibold text-[var(--soft-ivory)]">
-                  {t("hero.headlineTrust")}
+                  {t("hero.headlineElevated")}
                 </span>
               </h1>
 
@@ -69,12 +50,6 @@ export function Hero() {
                     aria-hidden
                   />
                 </Link>
-                <Link
-                  href="/coa"
-                  className="ref-hero-cta-secondary concept-hero-cta-secondary btn-outline-gold group inline-flex min-h-[2.875rem] flex-1 items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-semibold tracking-[0.02em] sm:flex-none"
-                >
-                  {t("hero.ctaCoa")}
-                </Link>
               </div>
 
               <div className="ref-hero-badges concept-hero-badges ref-hero-badges lux-hero-animate lux-hero-animate-badges mt-8 flex flex-col items-center gap-4 sm:flex-row sm:flex-wrap sm:justify-center lg:mt-9 lg:flex-nowrap lg:items-start lg:justify-start lg:gap-x-10 lg:gap-y-0">
@@ -86,14 +61,9 @@ export function Hero() {
                     <div className="concept-trust-badge-icon ref-hero-trust-icon">
                       <badge.icon className="h-4 w-4" strokeWidth={1.5} aria-hidden />
                     </div>
-                    <div className="concept-trust-badge-copy text-left">
-                      <span className="concept-trust-badge-label block font-semibold text-[var(--soft-ivory)]">
-                        {badge.label}
-                      </span>
-                      <span className="concept-trust-badge-sublabel block text-xs text-[var(--text-muted)]">
-                        {badge.sublabel}
-                      </span>
-                    </div>
+                    <span className="concept-trust-badge-label text-sm font-semibold text-[var(--soft-ivory)]">
+                      {badge.label}
+                    </span>
                   </div>
                 ))}
               </div>

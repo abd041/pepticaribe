@@ -4,7 +4,7 @@ import { Footer } from "@/components/home/Footer";
 
 export default function NotFound() {
   return (
-    <div className="min-h-dvh bg-[var(--background)] text-[var(--foreground)]">
+    <div className="site-chrome-offset min-h-dvh bg-[var(--background)] text-[var(--foreground)]">
       <SiteChrome />
       <main className="mx-auto flex max-w-lg flex-col items-center px-4 py-24 text-center sm:py-32">
         <p className="premium-eyebrow-gold">404</p>

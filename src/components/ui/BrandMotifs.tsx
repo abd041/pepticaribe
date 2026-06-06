@@ -1,5 +1,3 @@
-import type { CSSProperties } from "react";
-
 /** Subtle DNA / wave decorative elements aligned with PeptiCaribe logo language */
 
 export function DnaHelixAccent({ className = "" }: { className?: string }) {
@@ -81,79 +79,14 @@ export function BrandSectionDivider({ className = "" }: { className?: string }) 
   );
 }
 
-/** Subtle laboratory particle field — CSS only, no canvas */
-export function LabParticles({ count = 8 }: { count?: number }) {
-  const particles = Array.from({ length: count }, (_, i) => ({
-    left: `${8 + (i * 11) % 84}%`,
-    top: `${12 + (i * 17) % 76}%`,
-    size: 1 + (i % 3),
-    delay: `${(i * 2.3) % 12}s`,
-    duration: `${14 + (i % 5) * 3}s`,
-    dx: `${-8 + (i % 7) * 4}px`,
-    dy: `${-30 - (i % 4) * 15}px`,
-  }));
-
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-      {particles.map((p, i) => (
-        <span
-          key={i}
-          className="lab-particle absolute rounded-full bg-white/30"
-          style={
-            {
-              left: p.left,
-              top: p.top,
-              width: p.size,
-              height: p.size,
-              "--delay": p.delay,
-              "--duration": p.duration,
-              "--dx": p.dx,
-              "--dy": p.dy,
-            } as CSSProperties
-          }
-        />
-      ))}
-    </div>
-  );
+/** Disabled — particle fields removed for minimalist UI */
+export function LabParticles(_props?: { count?: number }) {
+  return null;
 }
 
-/** Bioluminescent ocean particles — teal + gold glow, GPU-accelerated */
-export function BioluminescentParticles({ count = 10 }: { count?: number }) {
-  const particles = Array.from({ length: count }, (_, i) => ({
-    left: `${6 + (i * 13) % 88}%`,
-    top: `${10 + (i * 19) % 80}%`,
-    size: 2 + (i % 4),
-    delay: `${(i * 1.7) % 10}s`,
-    duration: `${16 + (i % 6) * 2.5}s`,
-    dx: `${-12 + (i % 9) * 3}px`,
-    dy: `${-36 - (i % 5) * 12}px`,
-    tone: i % 3 === 0 ? "gold" : "ocean",
-  }));
-
-  return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-      {particles.map((p, i) => (
-        <span
-          key={i}
-          className={`bio-particle absolute rounded-full ${
-            p.tone === "gold" ? "bio-particle-gold" : "bio-particle-ocean"
-          }`}
-          style={
-            {
-              left: p.left,
-              top: p.top,
-              width: p.size,
-              height: p.size,
-              "--delay": p.delay,
-              "--duration": p.duration,
-              "--dx": p.dx,
-              "--dy": p.dy,
-            } as CSSProperties
-          }
-        />
-      ))}
-    </div>
-  );
+/** Disabled — bioluminescent particles removed for minimalist UI */
+export function BioluminescentParticles(_props?: { count?: number }) {
+  return null;
 }
 
 /** Full-width organic wave pattern layer */

@@ -1,0 +1,652 @@
+/**
+ * Homepage luxury refinement pass — visual system only.
+ * Scoped to .homepage-luxury; no content or layout structure changes.
+ */
+
+.homepage-luxury {
+  --lux-section-m: clamp(5rem, 8.5vw, 6rem);
+  --lux-section-m-md: clamp(6rem, 9vw, 7rem);
+  --lux-section-l: clamp(7rem, 11vw, 8rem);
+  --lux-section-l-md: clamp(8rem, 12vw, 10rem);
+  --lux-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --lux-transition-slow: 0.65s var(--lux-ease);
+  --lux-transition-card: 0.6s var(--lux-ease);
+  --lux-transition-btn: 0.6s var(--lux-ease);
+  position: relative;
+}
+
+/* Cinematic vignette + deep navy atmosphere */
+.homepage-luxury::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 90% 70% at 50% 0%, rgba(var(--ocean-rgb), 0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 120% 90% at 50% 100%, rgba(0, 0, 0, 0.45) 0%, transparent 62%),
+    radial-gradient(ellipse 100% 80% at 50% 50%, transparent 35%, rgba(0, 0, 0, 0.28) 100%);
+}
+
+.homepage-luxury > *:not(.concept-site-chrome):not(.site-chrome) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Reduce atmospheric layer noise — focus through darkness */
+.homepage-luxury .ocean-wave-layer,
+.homepage-luxury .caribe-current-layer {
+  opacity: 0.25 !important;
+}
+
+.homepage-luxury .brand-atmosphere-dna,
+.homepage-luxury .dna-helix-accent {
+  opacity: 0.45 !important;
+}
+
+.homepage-luxury .atmosphere-teal,
+.homepage-luxury .atmosphere-gold {
+  opacity: 0.65;
+}
+
+.homepage-luxury .section-transition-top,
+.homepage-luxury .section-transition-bottom {
+  opacity: 0.7;
+}
+
+/* ── Spacing scale ── */
+.homepage-luxury .premium-section {
+  padding-top: var(--lux-section-m);
+  padding-bottom: var(--lux-section-m);
+}
+
+.homepage-luxury .premium-section-lg {
+  padding-top: var(--lux-section-l);
+  padding-bottom: var(--lux-section-l);
+}
+
+@media (min-width: 768px) {
+  .homepage-luxury .premium-section {
+    padding-top: var(--lux-section-m-md);
+    padding-bottom: var(--lux-section-m-md);
+  }
+
+  .homepage-luxury .premium-section-lg {
+    padding-top: var(--lux-section-l-md);
+    padding-bottom: var(--lux-section-l-md);
+  }
+}
+
+/* Hero height below fixed chrome — see site-chrome-layout.css */
+
+.concept-site-chrome {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  isolation: isolate;
+}
+
+/* Floating nav — see luxury-nav.css */
+
+.homepage-luxury .ref-trust-section .premium-section {
+  padding-top: clamp(5.5rem, 9vw, 6.5rem);
+  padding-bottom: clamp(5.5rem, 9vw, 6.5rem);
+}
+
+.homepage-luxury .ref-coa-promo-inner {
+  padding-top: clamp(3.5rem, 7vw, 4.5rem) !important;
+  padding-bottom: clamp(3.5rem, 7vw, 4.5rem) !important;
+}
+
+.homepage-luxury .polish-footer-top,
+.homepage-luxury .qa-footer-top {
+  padding-top: clamp(4.5rem, 8vw, 6rem) !important;
+  padding-bottom: clamp(4.5rem, 8vw, 6rem) !important;
+}
+
+/* Section internal rhythm */
+.homepage-luxury .qa-section-header {
+  margin-bottom: 0.5rem;
+}
+
+.homepage-luxury .ref-product-grid,
+.homepage-luxury .qa-product-grid {
+  margin-top: clamp(2.75rem, 5vw, 3.5rem) !important;
+  gap: clamp(1.5rem, 2.5vw, 2rem);
+}
+
+
+.homepage-luxury .ref-precision-section .grid,
+.homepage-luxury .ref-precision-section .lux-stagger-group {
+  gap: clamp(1.5rem, 2.5vw, 2rem);
+  margin-top: clamp(2.5rem, 5vw, 3.5rem) !important;
+}
+
+.homepage-luxury .ref-featured-grid {
+  gap: clamp(2.5rem, 5vw, 3.5rem) !important;
+}
+
+.homepage-luxury .concept-hero-copy {
+  padding-top: clamp(0.5rem, 2vw, 1.25rem);
+  padding-bottom: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+/* ── Typography luxury pass ── */
+.homepage-luxury .type-display-section,
+.homepage-luxury .polish-type-section-title,
+.homepage-luxury .ref-featured-title,
+.homepage-luxury .ref-coa-promo-title,
+.homepage-luxury .ref-contact-title,
+.homepage-luxury .ref-reviews-title {
+  font-weight: 600 !important;
+  letter-spacing: -0.018em;
+  line-height: 1.14;
+}
+
+.homepage-luxury .hero-headline {
+  font-weight: 600;
+  letter-spacing: -0.028em;
+  line-height: 1.08;
+}
+
+.homepage-luxury .hero-lead {
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  color: var(--text-secondary);
+}
+
+.homepage-luxury .premium-eyebrow-gold,
+.homepage-luxury .polish-type-eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+}
+
+.homepage-luxury .section-caption {
+  font-weight: 400;
+  line-height: 1.75;
+  max-width: 42rem;
+}
+
+.homepage-luxury .ref-trust-title,
+.homepage-luxury .polish-type-trust-card-title {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+}
+
+.homepage-luxury .ref-trust-desc,
+.homepage-luxury .polish-type-trust-card-desc {
+  line-height: 1.65;
+}
+
+/* ── Hero luxury stage ── */
+.homepage-luxury .ref-hero-showcase-wrap,
+.homepage-luxury .concept-hero-showcase-wrap {
+  align-items: flex-end !important;
+  justify-content: center;
+  padding-top: clamp(2.5rem, 5vh, 5rem);
+  padding-bottom: clamp(0.75rem, 2vh, 1.5rem);
+}
+
+.homepage-luxury .ref-hero-showcase,
+.homepage-luxury .concept-hero-showcase {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+}
+
+.homepage-luxury .ref-hero-showcase-reference-scene {
+  position: relative;
+  align-items: flex-end;
+  justify-content: start;
+}
+
+.homepage-luxury .ref-hero-showcase-reference-frame {
+  align-items: flex-end;
+  justify-content: start;
+}
+
+.homepage-luxury .lux-hero-product {
+  filter: drop-shadow(0 40px 80px rgba(0, 0, 0, 0.55));
+  width: 100%;
+}
+
+.homepage-luxury .lux-product-presentation--hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+}
+
+.homepage-luxury .lux-product-presentation--hero .lux-pp-stage {
+  align-items: flex-end;
+}
+
+.homepage-luxury .ref-hero-showcase-reference-scene::before {
+  content: "";
+  position: absolute;
+  inset: 22% 5% 0;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse 70% 55% at 50% 88%,
+    rgba(var(--ocean-rgb), 0.18) 0%,
+    rgba(var(--ocean-rgb), 0.04) 45%,
+    transparent 72%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (min-width: 1024px) {
+  .homepage-luxury .ref-hero-showcase-wrap,
+  .homepage-luxury .concept-hero-showcase-wrap {
+    padding-top: clamp(2.75rem, 4.5vh, 5rem);
+    padding-bottom: clamp(1rem, 2.5vh, 2rem);
+  }
+}
+
+@media (max-width: 1023px) {
+  .homepage-luxury .ref-hero-showcase-wrap,
+  .homepage-luxury .concept-hero-showcase-wrap {
+    padding-top: clamp(2.5rem, 6vw, 4rem);
+    padding-bottom: clamp(0.5rem, 2vw, 1rem);
+  }
+}
+
+.homepage-luxury .lux-pp-spotlight-core {
+  opacity: 0.85;
+}
+
+.homepage-luxury .ref-hero-cta-primary,
+.homepage-luxury .btn-primary {
+  transition:
+    transform var(--lux-transition-btn),
+    box-shadow var(--lux-transition-btn),
+    border-color var(--lux-transition-btn);
+}
+
+.homepage-luxury .ref-hero-cta-primary:hover,
+.homepage-luxury .btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    0 20px 56px rgba(var(--ocean-rgb), 0.36),
+    0 0 48px rgba(var(--ocean-rgb), 0.12);
+}
+
+.homepage-luxury .ref-hero-badges {
+  gap: clamp(1rem, 2vw, 2.5rem);
+}
+
+.homepage-luxury .ref-hero-trust-badge {
+  padding: 0.25rem 0;
+}
+
+/* Trust authority section — see trust-authority.css */
+
+/* Precision / verification enterprise cards */
+.homepage-luxury .ref-precision-section .ref-trust-card,
+.homepage-luxury .ref-quality-stats .ref-trust-card {
+  padding: clamp(2rem, 3vw, 2.5rem) clamp(1.75rem, 2.5vw, 2.25rem) !important;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 1rem;
+  backdrop-filter: blur(10px);
+  transition:
+    transform var(--lux-transition-card),
+    border-color var(--lux-transition-card),
+    box-shadow var(--lux-transition-card);
+}
+
+.homepage-luxury .ref-precision-section .ref-trust-card:hover,
+.homepage-luxury .ref-quality-stats .ref-trust-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* ── Product grid — flagship card treatment ── */
+.homepage-luxury .ref-product-card,
+.homepage-luxury .best-seller-card {
+  min-height: clamp(400px, 42vw, 460px);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  backdrop-filter: blur(10px);
+  transition:
+    transform var(--lux-transition-card),
+    border-color var(--lux-transition-card),
+    box-shadow var(--lux-transition-card);
+}
+
+.homepage-luxury .ref-product-image-wrap,
+.homepage-luxury .polish-product-stage {
+  height: clamp(260px, 32vw, 360px) !important;
+  background: linear-gradient(180deg, rgba(10, 18, 24, 0.9) 0%, rgba(4, 10, 14, 0.95) 100%);
+}
+
+.homepage-luxury .lux-product-presentation--card .lux-pp-stage {
+  transform: scale(1.12);
+  transform-origin: center bottom;
+}
+
+.homepage-luxury .lux-product-presentation--card .lux-pp-pedestal-glow {
+  opacity: 0.9;
+}
+
+.homepage-luxury .ref-product-card:hover .lux-product-presentation--card .lux-pp-stage {
+  transform: scale(1.14) translateY(-4px);
+  transition: transform 0.6s var(--lux-ease);
+}
+
+.homepage-luxury .ref-product-card:hover,
+.homepage-luxury .polish-product-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 28px 56px rgba(0, 0, 0, 0.42),
+    0 0 48px rgba(var(--ocean-rgb), 0.08);
+}
+
+.homepage-luxury .ref-product-info,
+.homepage-luxury .polish-product-info {
+  padding: 1.375rem 1.5rem 1.625rem;
+  background: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  flex: 1;
+}
+
+.homepage-luxury .ref-product-info-row {
+  gap: 1rem;
+}
+
+.homepage-luxury .ref-product-name,
+.homepage-luxury .polish-type-product-name {
+  font-weight: 600;
+  font-size: clamp(0.9375rem, 0.6vw + 0.8rem, 1.125rem);
+  letter-spacing: 0.01em;
+}
+
+.homepage-luxury .ref-product-size-row {
+  margin-top: 0.125rem;
+  gap: 0.75rem;
+}
+
+.homepage-luxury .ref-product-actions {
+  margin-top: auto;
+  padding-top: 0.5rem;
+  gap: 0.625rem;
+}
+
+.homepage-luxury .ref-product-btn-teal,
+.homepage-luxury .ref-product-btn-gold,
+.homepage-luxury .polish-product-cta {
+  transition:
+    transform 0.5s var(--lux-ease),
+    box-shadow 0.5s var(--lux-ease),
+    border-color 0.5s var(--lux-ease);
+}
+
+.homepage-luxury .ref-product-btn-teal:hover,
+.homepage-luxury .ref-product-btn-gold:hover {
+  transform: translateY(-2px);
+}
+
+/* ── Featured compound — flagship centerpiece ── */
+.homepage-luxury .ref-featured-vial-stage {
+  position: relative;
+}
+
+.homepage-luxury .ref-featured-vial-stage::before {
+  content: "";
+  position: absolute;
+  inset: 8% 12% 5%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse 75% 60% at 50% 70%,
+    rgba(var(--ocean-rgb), 0.22) 0%,
+    rgba(var(--ocean-rgb), 0.06) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.homepage-luxury .ref-featured-vial-stage::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  width: 72%;
+  height: 12%;
+  transform: translateX(-50%);
+  border-radius: 100%;
+  background: radial-gradient(
+    ellipse,
+    rgba(var(--ocean-rgb), 0.35) 0%,
+    rgba(var(--ocean-rgb), 0.08) 55%,
+    transparent 75%
+  );
+  filter: blur(4px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.homepage-luxury .lux-featured-vial {
+  position: relative;
+  z-index: 1;
+  filter:
+    drop-shadow(0 36px 64px rgba(0, 0, 0, 0.6))
+    drop-shadow(0 0 40px rgba(var(--ocean-rgb), 0.14));
+}
+
+.homepage-luxury .lux-featured-float {
+  animation: lux-featured-float 7s var(--lux-ease) infinite alternate;
+}
+
+@keyframes lux-featured-float {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+.homepage-luxury .ref-spec-panel,
+.homepage-luxury .polish-spec-panel {
+  padding: clamp(1.75rem, 3vw, 2.25rem);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+}
+
+.homepage-luxury .ref-featured-copy {
+  padding-right: clamp(0rem, 2vw, 1.5rem);
+}
+
+/* ── Quality stats — scientific authority ── */
+.homepage-luxury .ref-quality-stats .lux-stagger-group {
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  margin-top: clamp(2.5rem, 5vw, 3.5rem) !important;
+}
+
+.homepage-luxury .lux-stat-value {
+  font-size: clamp(3rem, 6vw, 4.5rem) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--ocean-blue);
+  font-variant-numeric: tabular-nums;
+}
+
+.homepage-luxury .ref-quality-stats .ref-trust-card p:last-child {
+  margin-top: 1rem;
+  letter-spacing: 0.14em;
+  font-weight: 500;
+}
+
+/* Testimonials — see testimonial-trust.css */
+
+/* ── COA certificate showcase ── */
+.homepage-luxury .ref-coa-promo {
+  position: relative;
+}
+
+.homepage-luxury .ref-coa-promo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 55% 80% at 15% 50%,
+    rgba(var(--gold-rgb), 0.08) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.homepage-luxury .art-coa-document-frame {
+  transform: scale(1.08);
+  transition: transform var(--lux-transition-slow);
+}
+
+.homepage-luxury .ref-coa-promo:hover .art-coa-document-frame {
+  transform: scale(1.1) translateY(-4px);
+}
+
+.homepage-luxury .lux-coa-cert-preview {
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.45),
+    0 0 32px rgba(var(--gold-rgb), 0.08);
+}
+
+/* ── Enterprise form inputs ── */
+.homepage-luxury .lux-enterprise-input,
+.homepage-luxury .lux-enterprise-textarea {
+  min-height: 3.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.875rem;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  transition:
+    border-color 0.5s var(--lux-ease),
+    box-shadow 0.5s var(--lux-ease),
+    background 0.5s var(--lux-ease);
+}
+
+.homepage-luxury .lux-enterprise-textarea {
+  min-height: 8rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.homepage-luxury .lux-enterprise-input:focus,
+.homepage-luxury .lux-enterprise-textarea:focus {
+  border-color: rgba(var(--ocean-rgb), 0.45);
+  box-shadow:
+    0 0 0 3px rgba(var(--ocean-rgb), 0.12),
+    0 0 32px rgba(var(--ocean-rgb), 0.08);
+  outline: none;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.homepage-luxury .ref-home-contact form {
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.homepage-luxury .ref-newsletter form {
+  margin-top: 2.25rem;
+  gap: 1rem;
+}
+
+.homepage-luxury .ref-newsletter input[type="email"] {
+  min-height: 3.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  transition:
+    border-color 0.5s var(--lux-ease),
+    box-shadow 0.5s var(--lux-ease);
+}
+
+.homepage-luxury .ref-newsletter input[type="email"]:focus {
+  border-color: rgba(var(--ocean-rgb), 0.45);
+  box-shadow:
+    0 0 0 3px rgba(var(--ocean-rgb), 0.12),
+    0 0 32px rgba(var(--ocean-rgb), 0.08);
+  outline: none;
+}
+
+/* ── Newsletter & product CTA ── */
+.homepage-luxury .ref-product-cta .lux-reveal,
+.homepage-luxury .ref-newsletter .lux-reveal {
+  padding-inline: clamp(1rem, 3vw, 2rem);
+}
+
+.homepage-luxury .ref-product-cta .btn-primary {
+  margin-top: 2.5rem !important;
+}
+
+/* ── Footer premium chapter ── */
+.homepage-luxury .ref-footer-grid {
+  gap: clamp(2.5rem, 5vw, 3.5rem) !important;
+}
+
+.homepage-luxury .footer-column-title {
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.homepage-luxury .ref-footer-link {
+  transition: color 0.4s var(--lux-ease);
+}
+
+.homepage-luxury .ref-footer-bottom {
+  padding-top: 2rem;
+  padding-bottom: 2.5rem;
+}
+
+/* ── Micro interactions ── */
+.homepage-luxury .interaction-lift {
+  transition: transform var(--lux-transition-btn);
+}
+
+.homepage-luxury .qa-cta-text {
+  transition:
+    color 0.5s var(--lux-ease),
+    gap 0.5s var(--lux-ease);
+}
+
+.homepage-luxury .btn-platinum {
+  transition:
+    transform var(--lux-transition-btn),
+    box-shadow var(--lux-transition-btn);
+}
+
+.homepage-luxury .btn-platinum:hover {
+  transform: translateY(-3px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .homepage-luxury .lux-featured-float {
+    animation: none;
+  }
+
+  .homepage-luxury .ref-product-card:hover,
+  .homepage-luxury .trust-authority-card:hover,
+  .homepage-luxury .testimonial-trust-card:hover {
+    transform: none;
+  }
+}

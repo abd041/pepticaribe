@@ -704,7 +704,10 @@
 }
 
 .luxury-experience > section,
-.luxury-experience > *:not(.lux-grain):not(.lux-atmosphere):not(.lux-vignette):not(.phase-g-ambient-field):not(.bio-atmosphere) {
+.luxury-experience
+  > *:not(.lux-grain):not(.lux-atmosphere):not(.lux-vignette):not(.phase-g-ambient-field):not(.bio-atmosphere):not(
+    .concept-site-chrome
+  ):not(.site-chrome) {
   position: relative;
   z-index: 1;
 }

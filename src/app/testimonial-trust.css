@@ -1,0 +1,190 @@
+/**
+ * Testimonials — Premium trust cards
+ * Visual-only; review copy and authors unchanged.
+ */
+
+.testimonial-trust-section .testimonial-trust-spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 68% 52% at 28% 38%,
+    rgba(var(--ocean-rgb), 0.07) 0%,
+    transparent 62%
+  );
+}
+
+.testimonial-trust-section .ocean-wave-layer,
+.testimonial-trust-section .caribe-current-layer,
+.testimonial-trust-section .brand-atmosphere-dna {
+  opacity: 0.1 !important;
+}
+
+.testimonial-trust-layout {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 6vw, 4.5rem);
+}
+
+.testimonial-trust-block {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 2.75rem);
+}
+
+/* 1 col mobile · 2 col tablet+ · 2×2 rhythm on desktop */
+.testimonial-trust-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.25rem, 2.2vw, 1.75rem);
+}
+
+@media (min-width: 640px) {
+  .testimonial-trust-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .testimonial-trust-grid {
+    gap: clamp(1.35rem, 1.8vw, 1.625rem);
+  }
+}
+
+/* ── Premium trust card ── */
+.testimonial-trust-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: clamp(2rem, 3.5vw, 2.5rem);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.028);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+  transition:
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1),
+    0 10px 32px rgba(0, 0, 0, 0.16);
+}
+
+.testimonial-trust-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    155deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    transparent 36%,
+    transparent 100%
+  );
+}
+
+.testimonial-trust-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(var(--ocean-rgb), 0.18);
+  background: rgba(255, 255, 255, 0.036);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    0 18px 44px rgba(0, 0, 0, 0.24),
+    0 0 36px rgba(var(--ocean-rgb), 0.06);
+}
+
+/* Large decorative quotation mark */
+.testimonial-trust-mark {
+  position: absolute;
+  top: clamp(1rem, 2vw, 1.35rem);
+  left: clamp(1.25rem, 2.5vw, 1.75rem);
+  z-index: 0;
+  font-family: var(--font-cinzel), Georgia, serif;
+  font-size: clamp(3.5rem, 5vw, 4.5rem);
+  font-weight: 600;
+  line-height: 1;
+  color: rgba(var(--ocean-rgb), 0.14);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ★★★★★ */
+.testimonial-trust-stars {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 clamp(1rem, 2vw, 1.25rem);
+  padding-left: clamp(0.25rem, 0.5vw, 0.5rem);
+  font-size: 0.8125rem;
+  letter-spacing: 0.2em;
+  line-height: 1;
+  color: rgba(212, 175, 55, 0.88);
+  text-shadow: 0 0 12px rgba(212, 175, 55, 0.15);
+}
+
+/* Quote — constrained width for readability */
+.testimonial-trust-quote {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding-top: 0.25rem;
+  max-width: 36ch;
+  font-family: var(--font-plus-jakarta), system-ui, sans-serif;
+  font-size: clamp(0.9375rem, 0.25vw + 0.85rem, 1rem);
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  color: rgba(250, 247, 240, 0.82);
+}
+
+.testimonial-trust-card:hover .testimonial-trust-quote {
+  color: rgba(250, 247, 240, 0.9);
+}
+
+/* Author */
+.testimonial-trust-footer {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  padding-top: clamp(1.25rem, 2.5vw, 1.625rem);
+}
+
+.testimonial-trust-author {
+  display: block;
+  font-family: var(--font-cinzel), serif;
+  font-size: clamp(0.875rem, 0.2vw + 0.8rem, 0.9375rem);
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.02em;
+  color: var(--soft-ivory);
+}
+
+/* FAQ premium section — see faq-premium.css */
+
+/* Reset legacy carousel / slider card sizing */
+.testimonial-trust-section .testimonial-trust-card.ref-review-card {
+  min-height: 0;
+  text-align: left;
+}
+
+.testimonial-trust-section .polish-review-quote::before,
+.testimonial-trust-section .testimonial-trust-quote::before {
+  content: none;
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-trust-card,
+  .testimonial-trust-card:hover {
+    transform: none;
+  }
+}

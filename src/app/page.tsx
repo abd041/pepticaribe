@@ -4,8 +4,13 @@ import { Hero } from "@/components/home/Hero";
 import { ValueProps } from "@/components/home/ValueProps";
 import { FeaturedProducts } from "@/components/home/FeaturedProducts";
 import { FeaturedCompound } from "@/components/home/FeaturedCompound";
-import { COAPromotionBar } from "@/components/home/COAPromotionBar";
+import { PrecisionVerification } from "@/components/home/PrecisionVerification";
 import { ReviewsFAQ } from "@/components/home/ReviewsFAQ";
+import { QualityVerification } from "@/components/home/QualityVerification";
+import { COAPromotionBar } from "@/components/home/COAPromotionBar";
+import { ProductExploreCta } from "@/components/home/ProductExploreCta";
+import { HomeContact } from "@/components/home/HomeContact";
+import { HomeNewsletter } from "@/components/home/HomeNewsletter";
 import { FDADisclaimer } from "@/components/home/FDADisclaimer";
 import { Footer } from "@/components/home/Footer";
 import { HomePageEffects, LuxuryMotion } from "@/components/home/HomePageEffects";
@@ -17,22 +22,21 @@ export default function HomePage() {
   return (
     <>
       <HomePageEffects />
-      <div className="homepage-narrative luxury-experience art-direction bio-atmosphere-host">
-        <SmoothScrollProvider
-          chrome={
-            <>
-              <LuxuryMotion />
-              <SiteChrome />
-            </>
-          }
-        >
+      <SiteChrome />
+      <div className="homepage-narrative homepage-luxury luxury-experience art-direction site-chrome-offset">
+        <SmoothScrollProvider chrome={<LuxuryMotion />}>
           <main>
             <Hero />
             <ValueProps />
             <FeaturedProducts />
             {featuredBpc ? <FeaturedCompound product={featuredBpc} /> : null}
-            <COAPromotionBar />
+            <PrecisionVerification />
             <ReviewsFAQ />
+            <QualityVerification />
+            <COAPromotionBar />
+            <ProductExploreCta />
+            <HomeContact />
+            <HomeNewsletter />
             <FDADisclaimer />
           </main>
           <Footer />

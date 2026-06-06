@@ -36,15 +36,12 @@ export function Footer() {
   const shopLinks = [
     { label: t("footer.linkAllProducts"), href: "/products" },
     { label: t("footer.linkBestSellers"), href: "/#best-sellers" },
-    { label: t("footer.linkNewArrivals"), href: "/products" },
     { label: t("nav.membership"), href: "/membership" },
   ];
 
-  const companyLinks = [
+  const resourcesLinks = [
+    { label: t("footer.linkCoa"), href: "/coa" },
     { label: t("footer.linkAboutUs"), href: "/about" },
-    { label: t("footer.linkOurStory"), href: "/about" },
-    { label: t("footer.linkResearchStandards"), href: "/coa" },
-    { label: t("nav.contact"), href: "/contact" },
   ];
 
   const supportLinks = [
@@ -100,7 +97,7 @@ export function Footer() {
             </div>
 
             <FooterLinkColumn title={t("footer.columnShop")} links={shopLinks} />
-            <FooterLinkColumn title={t("footer.columnCompany")} links={companyLinks} />
+            <FooterLinkColumn title={t("footer.columnResources")} links={resourcesLinks} />
             <FooterLinkColumn title={t("footer.columnSupport")} links={supportLinks} />
             <FooterLinkColumn title={t("footer.columnLegal")} links={legalLinks} />
           </div>

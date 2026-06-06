@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import gsap from "gsap";
-import { ArrowRight, Check, LogOut, Shield } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { useLanguage } from "@/context/LanguageContext";
 import { setVerificationCookie } from "@/app/actions/verification";
@@ -15,9 +15,9 @@ interface VerificationGateProps {
   initialVerified?: boolean;
 }
 
-type CheckboxKey = "age" | "ruo" | "noHuman";
+type CheckboxKey = "age" | "researcher";
 
-const CHECKBOX_KEYS: CheckboxKey[] = ["age", "ruo", "noHuman"];
+const CHECKBOX_KEYS: CheckboxKey[] = ["age", "researcher"];
 
 export function VerificationGate({
   children,
@@ -27,8 +27,7 @@ export function VerificationGate({
   const [verified, setVerifiedState] = useState(initialVerified);
   const [checks, setChecks] = useState<Record<CheckboxKey, boolean>>({
     age: false,
-    ruo: false,
-    noHuman: false,
+    researcher: false,
   });
   const [showError, setShowError] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -41,7 +40,7 @@ export function VerificationGate({
   const descId = useId();
 
   const checkedCount = CHECKBOX_KEYS.filter((k) => checks[k]).length;
-  const allChecked = checkedCount === 3;
+  const allChecked = checkedCount === 2;
 
   useEffect(() => {
     if (verified) return;
@@ -93,7 +92,7 @@ export function VerificationGate({
   useEffect(() => {
     if (!progressRef.current) return;
     gsap.to(progressRef.current, {
-      width: `${(checkedCount / 3) * 100}%`,
+      width: `${(checkedCount / 2) * 100}%`,
       duration: 0.45,
       ease: CINEMATIC_EASE,
     });
@@ -162,11 +161,10 @@ export function VerificationGate({
 
   const checkboxItems: { key: CheckboxKey; label: string }[] = [
     { key: "age", label: t("gate.checkboxAge") },
-    { key: "ruo", label: t("gate.checkboxRuo") },
-    { key: "noHuman", label: t("gate.checkboxNoHuman") },
+    { key: "researcher", label: t("gate.checkboxResearcher") },
   ];
 
-  const progressLabel = allChecked ? "✓ Ready" : `${checkedCount}/3 Complete`;
+  const progressLabel = allChecked ? "✓ Ready" : `${checkedCount}/2 Complete`;
 
   return (
     <div
@@ -222,21 +220,12 @@ export function VerificationGate({
                   <BrandLogo size="xs" className="relative" />
                 </div>
 
-                <span className="gate-enter-item brand-badge-premium mt-2 inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-teal-300">
-                  <Shield className="h-2 w-2" aria-hidden />
-                  {t("gate.badge")}
-                </span>
-
                 <h1
                   id={titleId}
                   className="gate-enter-item font-display mt-1.5 text-lg font-bold text-white sm:text-xl"
                 >
-                  {t("common.brandName")}
-                </h1>
-
-                <h2 className="gate-enter-item font-display mt-1 text-sm font-semibold text-teal-300">
                   {t("gate.title")}
-                </h2>
+                </h1>
 
                 <p
                   id={descId}
@@ -246,29 +235,12 @@ export function VerificationGate({
                 </p>
               </div>
 
-              <div className="gate-enter-item mt-2 flex flex-wrap justify-center gap-1">
-                {[t("gate.isoBadge"), t("gate.secureBadge"), t("common.researchUseOnly")].map(
-                  (badge, i) => (
-                    <span
-                      key={badge}
-                      className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${
-                        i === 2
-                          ? "bg-teal-500/8 text-teal-300"
-                          : "bg-white/4 text-white/65"
-                      }`}
-                    >
-                      {badge}
-                    </span>
-                  ),
-                )}
-              </div>
-
               <div
                 className="gate-enter-item mt-2"
                 role="progressbar"
                 aria-valuenow={checkedCount}
                 aria-valuemin={0}
-                aria-valuemax={3}
+                aria-valuemax={2}
                 aria-label={progressLabel}
               >
                 <div className="flex items-center justify-end">
@@ -342,8 +314,8 @@ export function VerificationGate({
                 </p>
               ) : null}
 
-              <div className="gate-enter-item mt-2 flex flex-col gap-1.5 sm:flex-row">
-                <div className="relative flex-1">
+              <div className="gate-enter-item mt-2">
+                <div className="relative">
                   {allChecked ? (
                     <span
                       ref={glowRef}
@@ -373,18 +345,21 @@ export function VerificationGate({
                     </span>
                   </button>
                 </div>
-                <button
-                  type="button"
-                  onClick={handleExit}
-                  className="flex flex-1 items-center justify-center gap-1.5 rounded-full border border-white/10 px-4 py-2.5 text-sm font-semibold text-white/70 transition-all duration-300 hover:scale-[1.01] hover:border-white/18 hover:bg-white/5 hover:text-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/35 active:scale-[0.99]"
-                >
-                  <LogOut className="h-3 w-3" aria-hidden />
-                  {t("gate.exitButton")}
-                </button>
               </div>
 
               <p className="gate-enter-item mt-3 text-center text-xs leading-relaxed text-white/58">
                 {t("gate.footerDisclaimer")}
+              </p>
+
+              <p className="gate-enter-item mt-3 text-center text-sm text-white/65">
+                {t("gate.exitPrompt")}{" "}
+                <button
+                  type="button"
+                  onClick={handleExit}
+                  className="font-semibold text-teal-300 underline-offset-2 transition-colors hover:text-teal-200 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400"
+                >
+                  {t("gate.exitButton")}
+                </button>
               </p>
             </div>
           </div>

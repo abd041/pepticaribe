@@ -96,14 +96,16 @@ export function FeaturedCompound({ product }: FeaturedCompoundProps) {
 
             <div className="ref-featured-showcase polish-featured-showcase art-featured-showcase relative mx-auto w-full">
               <div className="ref-featured-vial-stage relative mx-auto flex h-[clamp(380px,46vw,560px)] w-full max-w-[440px] items-center justify-center">
-                <OptimizedImage
-                  src={FEATURED_BPC_EXHIBIT.src}
-                  alt={`${product.displayName} research vial on illuminated pedestal`}
-                  width={FEATURED_BPC_EXHIBIT.width}
-                  height={FEATURED_BPC_EXHIBIT.height}
-                  sizes="(max-width: 1024px) 72vw, 440px"
-                  className="ref-featured-vial polish-featured-vial lux-featured-vial h-auto max-h-[94%] w-auto max-w-[92%] object-contain"
-                />
+                <div className="lux-featured-float flex h-full w-full items-center justify-center">
+                  <OptimizedImage
+                    src={FEATURED_BPC_EXHIBIT.src}
+                    alt={`${product.displayName} research vial on illuminated pedestal`}
+                    width={FEATURED_BPC_EXHIBIT.width}
+                    height={FEATURED_BPC_EXHIBIT.height}
+                    sizes="(max-width: 1024px) 72vw, 440px"
+                    className="ref-featured-vial polish-featured-vial lux-featured-vial h-auto max-h-[94%] w-auto max-w-[92%] object-contain"
+                  />
+                </div>
               </div>
             </div>
 

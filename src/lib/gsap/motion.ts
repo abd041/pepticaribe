@@ -6,11 +6,11 @@ export const SPRING_EASE = "back.out(1.4)";
 
 /** Shared homepage motion tokens — keep LuxuryMotion + atmosphere in sync */
 export const MOTION = {
-  heroEntrance: 0.95,
-  reveal: 0.75,
-  revealY: 24,
-  staggerItem: 0.07,
-  staggerMax: 0.28,
+  heroEntrance: 1.05,
+  reveal: 0.95,
+  revealY: 30,
+  staggerItem: 0.1,
+  staggerMax: 0.4,
   revealStart: "top 82%",
   staggerStart: "top 80%",
   featuredStart: "top 75%",
@@ -77,7 +77,7 @@ export function bindLuxStaggerGroups(selector = ".lux-stagger-group") {
             start: MOTION.staggerStart,
             toggleActions: "play none none none",
           },
-          y: 24,
+          y: MOTION.revealY,
           opacity: 0,
           duration: MOTION.reveal,
           delay,

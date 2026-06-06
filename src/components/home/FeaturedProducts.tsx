@@ -8,9 +8,10 @@ import { getServerT } from "@/lib/i18n-server";
 /** Server-rendered featured grid — catalog helpers stay on the server */
 export async function FeaturedProducts() {
   const featuredProducts = getFeaturedProducts();
-  const [eyebrow, title, viewAll] = await Promise.all([
-    getServerT("featured.eyebrow"),
-    getServerT("featured.title"),
+  const [titleLine1, titleLine2, description, viewAll] = await Promise.all([
+    getServerT("featured.titleLine1"),
+    getServerT("featured.titleLine2"),
+    getServerT("featured.description"),
     getServerT("featured.viewAll"),
   ]);
 
@@ -22,11 +23,14 @@ export async function FeaturedProducts() {
       <SectionAtmosphere variant="products" className="premium-section-lg">
         <div className="qa-client-container mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <div className="qa-section-header mx-auto max-w-2xl text-center lux-reveal">
-            <p className="premium-eyebrow-gold polish-type-eyebrow">{eyebrow}</p>
-            <h2 className="font-display type-display-section polish-type-section-title mt-3">
-              {title}
+            <h2 className="font-display type-display-section polish-type-section-title">
+              <span className="block text-[var(--soft-ivory)]">{titleLine1}</span>
+              <span className="mt-1 block text-[var(--ocean-blue)]">{titleLine2}</span>
             </h2>
-            <div className="gold-accent-line qa-section-divider mx-auto" aria-hidden />
+            <p className="section-caption mx-auto mt-5 max-w-xl text-[15px] leading-relaxed">
+              {description}
+            </p>
+            <div className="gold-accent-line qa-section-divider mx-auto mt-6" aria-hidden />
           </div>
 
           <div className="ref-product-grid qa-product-grid mt-10 sm:mt-12 lux-stagger-group">

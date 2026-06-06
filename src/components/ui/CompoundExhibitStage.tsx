@@ -14,17 +14,6 @@ type CompoundExhibitStageProps = {
   priority?: boolean;
 };
 
-const PARTICLE_OFFSETS = [
-  [12, 18],
-  [28, 42],
-  [72, 24],
-  [88, 58],
-  [18, 72],
-  [55, 12],
-  [44, 68],
-  [82, 38],
-] as const;
-
 export function CompoundExhibitStage({
   alt,
   exhibit,
@@ -48,17 +37,6 @@ export function CompoundExhibitStage({
 
       {/* Layer 3 — spotlight cone */}
       <div className="compound-exhibit-cone-beam pointer-events-none absolute inset-x-[14%] top-0 h-[58%]" aria-hidden />
-
-      {/* Layer 4 — subtle particle field */}
-      <div className="compound-exhibit-particles pointer-events-none absolute inset-0" aria-hidden>
-        {PARTICLE_OFFSETS.map(([left, top]) => (
-          <span
-            key={`${left}-${top}`}
-            className="compound-exhibit-particle absolute h-px w-px rounded-full"
-            style={{ left: `${left}%`, top: `${top}%` }}
-          />
-        ))}
-      </div>
 
       {/* Pedestal stack */}
       <div className="compound-exhibit-pedestal-stack pointer-events-none absolute inset-x-0 bottom-[6%] z-10" aria-hidden>

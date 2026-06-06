@@ -1,12 +1,17 @@
 "use client";
 
+import { useRef } from "react";
 import { AnnouncementBar } from "@/components/home/AnnouncementBar";
 import { Header } from "@/components/home/Header";
+import { useSiteChromeHeight } from "@/hooks/useSiteChromeHeight";
 
-/** Sticky announcement bar + header — overlays hero atmosphere on homepage */
+/** Fixed announcement bar + header — height published as --site-chrome-h */
 export function SiteChrome() {
+  const chromeRef = useRef<HTMLDivElement>(null);
+  useSiteChromeHeight(chromeRef);
+
   return (
-    <div className="concept-site-chrome site-chrome sticky top-0 z-50">
+    <div ref={chromeRef} className="concept-site-chrome site-chrome lux-floating-chrome">
       <AnnouncementBar />
       <Header />
     </div>
