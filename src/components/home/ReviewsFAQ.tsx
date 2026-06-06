@@ -61,6 +61,9 @@ export function ReviewsFAQ() {
                       {item.quote}
                     </blockquote>
                     <footer className="testimonial-trust-footer">
+                      <span className="testimonial-trust-verified" aria-hidden>
+                        <ShieldCheck className="h-3.5 w-3.5" strokeWidth={1.5} />
+                      </span>
                       <cite className="testimonial-trust-author polish-review-author art-review-byline not-italic">
                         {item.author}
                       </cite>

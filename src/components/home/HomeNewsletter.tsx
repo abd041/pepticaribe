@@ -52,7 +52,7 @@ export function HomeNewsletter() {
                 />
                 <button
                   type="submit"
-                  className="btn-primary polish-cta-primary inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold uppercase tracking-[0.08em]"
+                  className="btn-primary polish-cta-primary inline-flex w-full shrink-0 items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold uppercase tracking-[0.08em] sm:w-auto"
                 >
                   <Mail className="h-4 w-4" aria-hidden />
                   {t("newsletter.subscribe")}

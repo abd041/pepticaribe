@@ -52,6 +52,10 @@ export const en: TranslationSchema = {
     badgePurity: "99% verified purity",
     badgeLabTested: "Lab-Tested & Documented",
     badgeControlled: "Controlled Manufacturing",
+    mobileTrustIso: "ISO 17025 Tested",
+    mobileTrustCoa: "COA Verified",
+    mobileTrustRuo: "Research Use Only",
+    mobileTrustLabel: "Quality assurances",
   },
   announcements: {
     shipping: "Fast 2-Day Shipping — Free On Orders Over $175",

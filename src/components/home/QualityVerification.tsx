@@ -32,29 +32,29 @@ export function QualityVerification() {
             {stats.map((stat) => (
               <article
                 key={stat.label}
-                className="ref-trust-card polish-trust-card lux-stagger-item rounded-[var(--radius-premium)] p-8 text-center"
+                className="ref-trust-card polish-trust-card lux-stat-authority-card lux-stagger-item rounded-[var(--radius-premium)] p-8 text-center"
               >
-                <p className="font-display lux-stat-value">
+                <p className="font-display lux-stat-value lux-stat-metric">
                   <LuxuryStatValue value={stat.value} />
                 </p>
-                <p className="mt-3 text-sm font-semibold uppercase tracking-[0.12em] text-[var(--soft-ivory)]">
+                <p className="lux-stat-label mt-3 text-sm font-semibold uppercase tracking-[0.12em] text-[var(--soft-ivory)]">
                   {stat.label}
                 </p>
               </article>
             ))}
           </div>
 
-          <div className="mx-auto mt-10 max-w-2xl text-center lux-reveal">
-            <h3 className="font-display text-xl font-bold text-[var(--soft-ivory)]">
+          <div className="lux-stat-support mx-auto mt-10 max-w-2xl text-center lux-reveal">
+            <h3 className="lux-stat-support-title font-display text-xl font-bold text-[var(--soft-ivory)]">
               {t("qualityStats.potencyTitle")}
             </h3>
-            <p className="section-caption mt-4 text-[15px] leading-relaxed">
+            <p className="lux-stat-support-desc section-caption mt-4 text-[15px] leading-relaxed">
               {t("qualityStats.potencyDesc")}
             </p>
-            <p className="section-caption mt-5 text-sm leading-relaxed text-[var(--text-muted)]">
+            <p className="lux-stat-support-note section-caption mt-5 text-sm leading-relaxed text-[var(--text-muted)]">
               {t("qualityStats.whyMatters")}
             </p>
-            <p className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--luxury-gold)]">
+            <p className="lux-stat-support-coa mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--luxury-gold)]">
               <FileCheck2 className="h-4 w-4" aria-hidden />
               {t("qualityStats.freeCoa")}
             </p>

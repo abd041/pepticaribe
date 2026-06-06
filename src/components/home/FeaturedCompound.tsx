@@ -61,7 +61,7 @@ export function FeaturedCompound({ product }: FeaturedCompoundProps) {
     >
       <SectionAtmosphere variant="products" className="premium-section-lg">
         <div className="qa-client-container mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
-          <div className="ref-featured-grid polish-featured-grid art-featured-grid grid items-center gap-10 lg:grid-cols-[minmax(0,0.68fr)_minmax(0,1.62fr)_minmax(0,0.72fr)] lg:gap-8 xl:gap-10">
+          <div className="ref-featured-grid polish-featured-grid art-featured-grid grid items-start gap-8 sm:gap-10 lg:grid-cols-[minmax(0,0.68fr)_minmax(0,1.62fr)_minmax(0,0.72fr)] lg:items-center lg:gap-8 xl:gap-10">
             <div className="ref-featured-copy polish-featured-copy lux-featured-copy art-featured-copy text-legibility-column">
               <p className="premium-eyebrow-gold polish-type-eyebrow">
                 {t("featured.compoundEyebrow")}
@@ -95,15 +95,15 @@ export function FeaturedCompound({ product }: FeaturedCompoundProps) {
             </div>
 
             <div className="ref-featured-showcase polish-featured-showcase art-featured-showcase relative mx-auto w-full">
-              <div className="ref-featured-vial-stage relative mx-auto flex h-[clamp(380px,46vw,560px)] w-full max-w-[440px] items-center justify-center">
-                <div className="lux-featured-float flex h-full w-full items-center justify-center">
+              <div className="ref-featured-vial-stage relative mx-auto flex w-full max-w-[440px] items-end justify-center">
+                <div className="lux-featured-float flex h-full w-full items-end justify-center">
                   <OptimizedImage
                     src={FEATURED_BPC_EXHIBIT.src}
                     alt={`${product.displayName} research vial on illuminated pedestal`}
                     width={FEATURED_BPC_EXHIBIT.width}
                     height={FEATURED_BPC_EXHIBIT.height}
                     sizes="(max-width: 1024px) 72vw, 440px"
-                    className="ref-featured-vial polish-featured-vial lux-featured-vial h-auto max-h-[94%] w-auto max-w-[92%] object-contain"
+                    className="ref-featured-vial polish-featured-vial lux-featured-vial h-auto w-auto max-w-[88%] object-contain object-bottom sm:max-w-[92%]"
                   />
                 </div>
               </div>

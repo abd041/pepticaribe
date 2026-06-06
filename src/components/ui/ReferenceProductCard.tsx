@@ -33,11 +33,11 @@ export function ReferenceProductCard({ product, index, className = "" }: Referen
   return (
     <article
       data-slug={product.slug}
-      className={`best-seller-card ref-product-card polish-product-card qa-product-card art-product-card group overflow-hidden ${className}`}
+      className={`best-seller-card ref-product-card polish-product-card qa-product-card art-product-card group overflow-clip ${className}`}
     >
       <Link
         href={`/products/${product.slug}`}
-        className="ref-product-image-wrap polish-product-stage block overflow-hidden"
+        className="ref-product-image-wrap polish-product-stage block"
         aria-label={`View ${product.displayName}`}
       >
         <LuxuryProductPresentation

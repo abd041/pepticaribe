@@ -52,6 +52,10 @@ export const es: TranslationSchema = {
     badgePurity: "99% pureza verificada",
     badgeLabTested: "Probado y Documentado en Lab",
     badgeControlled: "Fabricación Controlada",
+    mobileTrustIso: "Probado ISO 17025",
+    mobileTrustCoa: "COA Verificado",
+    mobileTrustRuo: "Solo Uso en Investigación",
+    mobileTrustLabel: "Garantías de calidad",
   },
   announcements: {
     shipping: "Envío Rápido 2 Días — Gratis en Pedidos Mayores a $175",

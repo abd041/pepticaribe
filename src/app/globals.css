@@ -7,6 +7,10 @@
 @import "./site-chrome-layout.css";
 @import "./faq-premium.css";
 @import "./luxury-nav.css";
+@import "./final-luxury-polish.css";
+@import "./elite-polish.css";
+@import "./responsive-qa.css";
+@import "./mobile-premium.css";
 
 :root {
   /* ── PeptiCaribe brand palette ── */

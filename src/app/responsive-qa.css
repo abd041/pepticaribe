@@ -1,0 +1,433 @@
+/**
+ * Responsive QA pass — breakpoint fixes only.
+ * Scoped to .homepage-luxury; no design system changes.
+ */
+
+/* ── Prevent horizontal scroll ── */
+.homepage-luxury {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+.homepage-luxury .qa-client-container,
+.homepage-luxury .ref-header-inner {
+  min-width: 0;
+}
+
+/* Grid children must shrink inside fractional columns */
+.homepage-luxury .ref-product-grid > *,
+.homepage-luxury .testimonial-trust-grid > *,
+.homepage-luxury .trust-authority-grid > *,
+.homepage-luxury .ref-precision-section .lux-stagger-group > *,
+.homepage-luxury .ref-quality-stats .lux-stagger-group > * {
+  min-width: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1023px) {
+  .homepage-luxury .concept-hero {
+    height: auto;
+    min-height: calc(100dvh - var(--site-chrome-h, var(--concept-chrome-h)));
+    max-height: none;
+    overflow: visible;
+  }
+
+  .homepage-luxury .ref-hero-section {
+    overflow: visible;
+  }
+
+  .homepage-luxury .concept-hero-shell {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+
+  .homepage-luxury .ref-hero-layout {
+    flex: 1 1 auto;
+  }
+
+  /* Allow headline to wrap — prevents overflow on 320–414px */
+  .homepage-luxury .hero-headline-primary,
+  .art-direction .homepage-luxury .hero-headline-primary {
+    white-space: normal;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .homepage-luxury .hero-headline {
+    font-size: clamp(1.875rem, 8.5vw, 3rem);
+    line-height: 1.12;
+  }
+
+  .homepage-luxury .ref-hero-copy-col {
+    padding-bottom: clamp(1.25rem, 4vw, 2rem);
+  }
+}
+
+@media (max-width: 639px) {
+  .homepage-luxury .ref-hero-badges {
+    gap: 0.75rem;
+  }
+
+  .homepage-luxury .ref-hero-trust-badge {
+    max-width: 100%;
+  }
+
+  .homepage-luxury .concept-trust-badge-label {
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 1023px) and (max-height: 740px) {
+  .homepage-luxury .hero-lead {
+    margin-top: 1.25rem;
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
+
+  .homepage-luxury .ref-hero-ctas {
+    margin-top: 1.5rem;
+  }
+
+  .homepage-luxury .ref-hero-badges {
+    margin-top: 1.25rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .homepage-luxury .hero-headline-primary {
+    white-space: nowrap;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NAVBAR — touch targets (44px minimum)
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1023px) {
+  .concept-site-chrome .lux-nav-icon-btn,
+  .concept-site-chrome .lux-nav-cart-btn {
+    width: 2.75rem;
+    height: 2.75rem;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PRODUCT GRID
+   ═══════════════════════════════════════════════════════════════ */
+
+.homepage-luxury .ref-product-info-row {
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.homepage-luxury .ref-product-name,
+.homepage-luxury .polish-type-product-name {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: break-word;
+  line-height: 1.35;
+}
+
+.homepage-luxury .ref-product-price,
+.homepage-luxury .polish-type-product-price {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.homepage-luxury .ref-product-btn-teal,
+.homepage-luxury .ref-product-btn-gold,
+.homepage-luxury .polish-product-cta {
+  min-height: 2.75rem;
+  padding: 0.6875rem 0.625rem;
+  font-size: clamp(0.5625rem, 2vw, 0.625rem);
+}
+
+/* ── Product image clipping fix (featured grid) ── */
+.homepage-luxury .ref-best-sellers .compound-exhibit-stage {
+  overflow: visible !important;
+}
+
+@media (max-width: 1023px) {
+  .homepage-luxury .ref-best-sellers .lux-product-presentation--card,
+  .homepage-luxury .ref-best-sellers .lux-pp-stage {
+    overflow: visible !important;
+  }
+
+  .homepage-luxury .ref-best-sellers .art-product-card .compound-exhibit-vial-slot {
+    width: 42% !important;
+    height: 36% !important;
+    bottom: 24% !important;
+  }
+
+  .homepage-luxury .ref-best-sellers .lux-product-presentation--card .lux-pp-stage {
+    transform: scale(1) !important;
+    transform-origin: center bottom;
+  }
+
+  .homepage-luxury .ref-best-sellers .ref-product-card:hover .lux-product-presentation--card .lux-pp-stage {
+    transform: scale(1.02) translateY(-1px) !important;
+  }
+
+  .homepage-luxury .ref-best-sellers .ref-product-card:hover .compound-exhibit-vial-frame {
+    transform: translateY(calc(var(--vial-y, 0) * 1% - 1px)) scale(var(--vial-scale, 1)) !important;
+  }
+
+  .homepage-luxury .ref-best-sellers .ref-product-image-wrap,
+  .homepage-luxury .ref-best-sellers .polish-product-stage {
+    padding-top: clamp(2rem, 6vw, 2.75rem) !important;
+    padding-bottom: clamp(1.25rem, 4vw, 1.5rem) !important;
+    overflow: visible !important;
+    align-items: flex-end;
+  }
+}
+
+@media (max-width: 639px) {
+  .homepage-luxury .ref-product-card,
+  .homepage-luxury .best-seller-card {
+    min-height: auto;
+  }
+
+  .homepage-luxury .ref-best-sellers .ref-product-image-wrap,
+  .homepage-luxury .ref-best-sellers .polish-product-stage {
+    height: clamp(300px, 78vw, 400px) !important;
+    min-height: clamp(300px, 78vw, 400px) !important;
+  }
+
+  .homepage-luxury .ref-best-sellers .art-product-card .compound-exhibit-vial-slot {
+    width: 40% !important;
+    height: 34% !important;
+    bottom: 26% !important;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .homepage-luxury .ref-best-sellers .ref-product-image-wrap,
+  .homepage-luxury .ref-best-sellers .polish-product-stage {
+    height: clamp(300px, 44vw, 400px) !important;
+    min-height: clamp(300px, 44vw, 400px) !important;
+  }
+
+  .homepage-luxury .ref-best-sellers .art-product-card .compound-exhibit-vial-slot {
+    width: 44% !important;
+    height: 38% !important;
+    bottom: 22% !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FEATURED PRODUCT SHOWCASE (BPC-157)
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1023px) {
+  .homepage-luxury .ref-featured-compound {
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+
+  .homepage-luxury .ref-featured-grid,
+  .homepage-luxury .art-featured-grid {
+    align-items: start;
+    gap: clamp(2.5rem, 6vw, 3.5rem);
+  }
+
+  .homepage-luxury .ref-featured-showcase {
+    padding-bottom: clamp(1.5rem, 4vw, 2.5rem);
+    overflow: visible;
+  }
+
+  .homepage-luxury .ref-featured-vial-stage {
+    min-height: clamp(340px, 92vw, 480px) !important;
+    height: auto !important;
+    padding-bottom: clamp(1.25rem, 3vw, 2rem);
+    overflow: visible;
+  }
+
+  .homepage-luxury .lux-featured-float {
+    animation: none;
+    min-height: inherit;
+  }
+
+  .homepage-luxury .lux-featured-vial,
+  .homepage-luxury .ref-featured-vial {
+    max-height: min(72vw, 420px) !important;
+    transform: none !important;
+    scale: 1 !important;
+    object-position: bottom center;
+  }
+
+  .homepage-luxury .ref-featured-copy {
+    padding: clamp(1rem, 3vw, 1.5rem);
+    z-index: 1;
+  }
+
+  .homepage-luxury .ref-spec-panel,
+  .homepage-luxury .polish-spec-panel {
+    margin-top: 0;
+    z-index: 2;
+  }
+}
+
+@media (max-width: 639px) {
+  .homepage-luxury .ref-featured-vial-stage {
+    min-height: clamp(320px, 95vw, 440px) !important;
+  }
+
+  .homepage-luxury .lux-featured-vial,
+  .homepage-luxury .ref-featured-vial {
+    max-height: min(78vw, 380px) !important;
+    max-width: 84% !important;
+  }
+
+  .homepage-luxury .ref-featured-copy .polish-featured-cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .homepage-luxury .ref-featured-vial-stage {
+    height: clamp(420px, 50vw, 620px) !important;
+    min-height: clamp(420px, 50vw, 620px) !important;
+    align-items: center;
+  }
+
+  .homepage-luxury .lux-featured-float {
+    align-items: center;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STATS
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 639px) {
+  .homepage-luxury .lux-stat-metric,
+  .homepage-luxury .lux-stat-metric .lux-stat-counter {
+    font-size: clamp(3.25rem, 16vw, 4.5rem) !important;
+  }
+
+  .homepage-luxury .lux-stat-authority-card {
+    min-height: auto;
+    padding: clamp(2.25rem, 6vw, 3rem) clamp(1.25rem, 4vw, 1.75rem) !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TESTIMONIALS
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 639px) {
+  .homepage-luxury .testimonial-trust-card {
+    padding: clamp(2rem, 5vw, 2.5rem);
+  }
+
+  .homepage-luxury .testimonial-trust-mark {
+    font-size: clamp(3.5rem, 12vw, 4.5rem);
+  }
+
+  .homepage-luxury .testimonial-trust-quote {
+    max-width: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FAQ
+   ═══════════════════════════════════════════════════════════════ */
+
+.homepage-luxury .faq-premium-trigger {
+  min-height: 2.75rem;
+}
+
+.homepage-luxury .faq-premium-expand {
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+@media (max-width: 1023px) {
+  .homepage-luxury .faq-premium-section {
+    padding-top: clamp(2rem, 4vw, 2.5rem);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   COA · CTA · CONTACT · NEWSLETTER
+   ═══════════════════════════════════════════════════════════════ */
+
+.homepage-luxury .ref-coa-promo-inner .btn-platinum,
+.homepage-luxury .ref-coa-promo-inner .qa-coa-cta {
+  min-height: 2.75rem;
+}
+
+.homepage-luxury .ref-home-contact .btn-primary,
+.homepage-luxury .ref-newsletter .btn-primary {
+  min-height: 2.75rem;
+}
+
+.homepage-luxury .ref-newsletter form button[type="submit"] {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .homepage-luxury .ref-newsletter form button[type="submit"] {
+    width: auto;
+  }
+}
+
+.homepage-luxury .ref-newsletter form {
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════════ */
+
+.homepage-luxury .ref-footer-link {
+  display: inline-block;
+  padding-block: 0.375rem;
+  min-height: 2.75rem;
+  line-height: 1.75;
+}
+
+.homepage-luxury .ref-social-btn {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+}
+
+@media (max-width: 639px) {
+  .homepage-luxury .polish-footer-top,
+  .homepage-luxury .qa-footer-top {
+    padding-top: clamp(3.5rem, 8vw, 4.5rem) !important;
+    padding-bottom: clamp(3rem, 7vw, 4rem) !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TABLET FINE-TUNING (768–1023px)
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .homepage-luxury .ref-product-grid {
+    gap: clamp(1.25rem, 2vw, 1.5rem);
+  }
+
+  .homepage-luxury .ref-featured-grid {
+    gap: clamp(2rem, 4vw, 2.5rem) !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ULTRA-WIDE (1920px+)
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (min-width: 1920px) {
+  .homepage-luxury .qa-client-container {
+    padding-inline: clamp(2rem, 3vw, 4rem);
+  }
+}

@@ -1,0 +1,372 @@
+/**
+ * Mobile & tablet premium pass — max-width 1023px only.
+ * Desktop (1024px+) untouched.
+ */
+
+@media (max-width: 1023px) {
+  .homepage-luxury {
+    --lux-mobile-section: clamp(2.75rem, 7vw, 3.75rem);
+    --lux-mobile-section-lg: clamp(3.25rem, 8vw, 4.25rem);
+  }
+
+  /* ── 3. Mobile spacing system ── */
+  .homepage-luxury .premium-section {
+    padding-top: var(--lux-mobile-section) !important;
+    padding-bottom: var(--lux-mobile-section) !important;
+  }
+
+  .homepage-luxury .premium-section-lg {
+    padding-top: var(--lux-mobile-section-lg) !important;
+    padding-bottom: var(--lux-mobile-section-lg) !important;
+  }
+
+  .homepage-luxury .ref-trust-section .premium-section {
+    padding-top: clamp(3rem, 7vw, 4rem) !important;
+    padding-bottom: clamp(3rem, 7vw, 4rem) !important;
+  }
+
+  .homepage-luxury .ref-coa-promo-inner {
+    padding-top: clamp(2.5rem, 6vw, 3.25rem) !important;
+    padding-bottom: clamp(2.5rem, 6vw, 3.25rem) !important;
+  }
+
+  .homepage-luxury .qa-section-header {
+    margin-bottom: 0.25rem;
+  }
+
+  .homepage-luxury .ref-product-grid,
+  .homepage-luxury .qa-product-grid {
+    margin-top: clamp(2rem, 5vw, 2.5rem) !important;
+  }
+
+  /* ── 1. Mobile hero — compact first screen, no chrome overlap ── */
+  .homepage-luxury.site-chrome-offset {
+    padding-top: calc(var(--site-chrome-h, var(--concept-chrome-h)) + 0.5rem);
+  }
+
+  .homepage-luxury .concept-hero {
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .homepage-luxury .ref-hero-section {
+    overflow: visible !important;
+  }
+
+  .homepage-luxury .ref-hero-layout {
+    padding-top: 0.25rem;
+  }
+
+  .homepage-luxury .ref-hero-showcase-wrap,
+  .homepage-luxury .concept-hero-showcase-wrap {
+    max-height: none;
+    min-height: 0;
+    padding-top: clamp(1rem, 3vw, 1.5rem);
+    padding-bottom: clamp(0.5rem, 2vw, 0.75rem);
+    overflow: visible;
+  }
+
+  .homepage-luxury .ref-hero-showcase,
+  .homepage-luxury .concept-hero-showcase {
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: min(38dvh, 280px);
+  }
+
+  .homepage-luxury .ref-hero-showcase-reference,
+  .homepage-luxury .art-direction .ref-hero-showcase-reference {
+    scale: 1 !important;
+    transform: none !important;
+    transform-origin: center bottom !important;
+    max-height: min(36dvh, 260px) !important;
+    width: auto !important;
+    max-width: 92% !important;
+    margin-inline: auto;
+    object-fit: contain !important;
+    object-position: center bottom !important;
+  }
+
+  .homepage-luxury .ref-hero-showcase-reference-frame,
+  .homepage-luxury .ref-hero-showcase-reference-scene {
+    align-items: flex-end !important;
+    justify-content: center !important;
+    padding-bottom: 0 !important;
+    overflow: visible;
+  }
+
+  .homepage-luxury .lux-hero-float {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .homepage-luxury .ref-hero-copy-col {
+    padding-top: clamp(0.75rem, 2vw, 1rem);
+    padding-bottom: clamp(1rem, 3vw, 1.5rem);
+  }
+
+  .homepage-luxury .hero-headline {
+    font-size: clamp(1.75rem, 7.5vw, 2.5rem);
+    line-height: 1.1;
+  }
+
+  .homepage-luxury .hero-lead {
+    margin-top: clamp(1rem, 3vw, 1.25rem);
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
+
+  .homepage-luxury .ref-hero-ctas {
+    margin-top: clamp(1.25rem, 4vw, 1.5rem);
+  }
+
+  /* ── 8. Mobile trust bar ── */
+  .homepage-luxury .lux-mobile-trust-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 0.75rem;
+    margin-top: clamp(1rem, 3vw, 1.25rem);
+    width: 100%;
+    padding: 0;
+    list-style: none;
+  }
+
+  .homepage-luxury .lux-mobile-trust-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.4375rem 0.75rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.035);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(250, 247, 240, 0.78);
+    white-space: nowrap;
+  }
+
+  .homepage-luxury .lux-mobile-trust-check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(var(--ocean-rgb), 0.9);
+    font-size: 0.75rem;
+    line-height: 1;
+  }
+
+  /* ── 2. Product grid — 2-col scan layout ── */
+  .homepage-luxury .ref-product-grid,
+  .homepage-luxury .qa-product-grid {
+    gap: clamp(0.75rem, 2.5vw, 1rem);
+  }
+
+  .homepage-luxury .ref-product-card,
+  .homepage-luxury .best-seller-card {
+    min-height: auto !important;
+  }
+
+  .homepage-luxury .ref-best-sellers .ref-product-image-wrap,
+  .homepage-luxury .ref-best-sellers .polish-product-stage {
+    height: clamp(200px, 52vw, 260px) !important;
+    min-height: clamp(200px, 52vw, 260px) !important;
+    padding: clamp(0.875rem, 2.5vw, 1.125rem) clamp(0.625rem, 2vw, 0.875rem)
+      clamp(0.625rem, 1.5vw, 0.875rem) !important;
+  }
+
+  .homepage-luxury .ref-best-sellers .art-product-card .compound-exhibit-vial-slot {
+    width: 44% !important;
+    height: 40% !important;
+    bottom: 22% !important;
+  }
+
+  .homepage-luxury .ref-product-info,
+  .homepage-luxury .polish-product-info {
+    padding: 1rem 1rem 1.125rem !important;
+    gap: 0.75rem !important;
+  }
+
+  .homepage-luxury .ref-product-name,
+  .homepage-luxury .polish-type-product-name {
+    font-size: clamp(0.8125rem, 2.5vw, 0.9375rem) !important;
+  }
+
+  .homepage-luxury .ref-product-actions {
+    gap: 0.375rem !important;
+    padding-top: 0.125rem !important;
+  }
+
+  /* ── 4. Featured product — vial first on mobile ── */
+  .homepage-luxury .ref-featured-showcase {
+    order: 1;
+  }
+
+  .homepage-luxury .ref-featured-copy {
+    order: 2;
+  }
+
+  .homepage-luxury .ref-spec-panel {
+    order: 3;
+  }
+
+  .homepage-luxury .ref-featured-grid {
+    gap: clamp(2rem, 5vw, 2.5rem) !important;
+  }
+
+  .homepage-luxury .ref-featured-vial-stage {
+    min-height: clamp(280px, 75vw, 380px) !important;
+  }
+
+  .homepage-luxury .ref-featured-copy .section-caption {
+    margin-top: 1rem;
+  }
+
+  .homepage-luxury .ref-featured-copy .ref-featured-trust-list {
+    margin-top: 1.25rem;
+  }
+
+  .homepage-luxury .ref-featured-copy .polish-featured-cta {
+    margin-top: 1.5rem;
+  }
+
+  /* ── 5. Trust & verification — denser cards ── */
+  .homepage-luxury .trust-authority-grid {
+    gap: clamp(0.875rem, 2vw, 1.125rem);
+  }
+
+  .homepage-luxury .trust-authority-card {
+    min-height: auto !important;
+    padding: clamp(1.5rem, 4vw, 1.75rem) !important;
+  }
+
+  .homepage-luxury .ref-precision-section .lux-stagger-group {
+    gap: clamp(1rem, 2.5vw, 1.25rem) !important;
+    margin-top: clamp(2rem, 5vw, 2.5rem) !important;
+  }
+
+  .homepage-luxury .ref-precision-section .ref-trust-card {
+    padding: 1.25rem !important;
+  }
+
+  .homepage-luxury .lux-stat-authority-card {
+    min-height: auto !important;
+    padding: clamp(2rem, 5vw, 2.5rem) clamp(1.25rem, 3vw, 1.5rem) !important;
+  }
+
+  .homepage-luxury .ref-quality-stats .lux-stagger-group {
+    gap: clamp(1.25rem, 3vw, 1.5rem) !important;
+    margin-top: clamp(2.5rem, 6vw, 3rem) !important;
+  }
+
+  /* ── 6. Testimonials ── */
+  .homepage-luxury .testimonial-trust-grid {
+    gap: clamp(0.875rem, 2vw, 1.125rem);
+  }
+
+  .homepage-luxury .testimonial-trust-card {
+    padding: clamp(1.5rem, 4vw, 1.875rem) !important;
+  }
+
+  .homepage-luxury .testimonial-trust-mark {
+    font-size: clamp(3rem, 10vw, 3.75rem) !important;
+  }
+
+  .homepage-luxury .testimonial-trust-quote {
+    font-size: 0.9375rem;
+    line-height: 1.72;
+    padding-top: 0.375rem;
+  }
+
+  .homepage-luxury .testimonial-trust-footer {
+    padding-top: clamp(1rem, 2.5vw, 1.25rem) !important;
+    margin-top: 0.375rem;
+  }
+
+  .homepage-luxury .testimonial-trust-stars {
+    margin-bottom: 0.875rem;
+  }
+
+  /* ── 7. Touch targets ── */
+  .homepage-luxury .btn-primary,
+  .homepage-luxury .btn-platinum,
+  .homepage-luxury .ref-hero-cta-primary,
+  .homepage-luxury .ref-product-btn-teal,
+  .homepage-luxury .ref-product-btn-gold,
+  .homepage-luxury .faq-premium-trigger {
+    min-height: 2.75rem;
+  }
+}
+
+/* 2-column product grid from 375px */
+@media (min-width: 375px) and (max-width: 1023px) {
+  .homepage-luxury .ref-product-grid,
+  .homepage-luxury .qa-product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Single column below 375px */
+@media (max-width: 374px) {
+  .homepage-luxury .ref-product-grid,
+  .homepage-luxury .qa-product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Phone fine-tuning */
+@media (max-width: 639px) {
+  .homepage-luxury .ref-hero-showcase,
+  .homepage-luxury .concept-hero-showcase {
+    max-height: min(34dvh, 240px);
+  }
+
+  .homepage-luxury .ref-hero-showcase-reference,
+  .homepage-luxury .art-direction .ref-hero-showcase-reference {
+    max-height: min(32dvh, 220px) !important;
+    max-width: 88% !important;
+  }
+
+  .homepage-luxury .hero-lead {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .homepage-luxury .lux-mobile-trust-bar {
+    gap: 0.4375rem 0.5rem;
+  }
+
+  .homepage-luxury .lux-mobile-trust-item {
+    font-size: 0.625rem;
+    padding: 0.375rem 0.625rem;
+  }
+}
+
+/* Tablet 768px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .homepage-luxury .ref-hero-showcase,
+  .homepage-luxury .concept-hero-showcase {
+    max-height: min(40dvh, 300px);
+  }
+
+  .homepage-luxury .ref-hero-showcase-reference,
+  .homepage-luxury .art-direction .ref-hero-showcase-reference {
+    max-height: min(38dvh, 280px) !important;
+  }
+
+  .homepage-luxury .ref-best-sellers .ref-product-image-wrap,
+  .homepage-luxury .ref-best-sellers .polish-product-stage {
+    height: clamp(220px, 38vw, 280px) !important;
+    min-height: clamp(220px, 38vw, 280px) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .homepage-luxury .lux-mobile-trust-bar {
+    display: none;
+  }
+}

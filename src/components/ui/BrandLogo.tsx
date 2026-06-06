@@ -38,7 +38,7 @@ export function BrandLogo({
       height={LOGO_NATURAL.height}
       priority={priority}
       className={`h-auto w-auto object-contain ${className}`}
-      style={{ height: dims.height, width: "auto", maxWidth: dims.width }}
+      style={{ maxHeight: dims.height, height: "auto", width: "auto", maxWidth: dims.width }}
     />
   );
 

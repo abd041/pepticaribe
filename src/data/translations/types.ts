@@ -45,6 +45,10 @@ export interface TranslationSchema {
     badgePurity: string;
     badgeLabTested: string;
     badgeControlled: string;
+    mobileTrustIso: string;
+    mobileTrustCoa: string;
+    mobileTrustRuo: string;
+    mobileTrustLabel: string;
   };
   announcements: {
     shipping: string;

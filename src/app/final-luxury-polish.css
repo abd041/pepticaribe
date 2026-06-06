@@ -1,0 +1,468 @@
+/**
+ * Final luxury polish pass — refinement only.
+ * Scoped to .homepage-luxury; no layout or copy changes.
+ */
+
+.homepage-luxury {
+  --lux-radius-sm: 1rem;
+  --lux-radius-md: 1.25rem;
+  --lux-radius-lg: 1.5rem;
+  --lux-motion: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  --lux-shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.18);
+  --lux-shadow-lift: 0 20px 48px rgba(0, 0, 0, 0.26);
+}
+
+/* ── 9. Visual noise reduction ── */
+.homepage-luxury::before {
+  opacity: 0.85;
+}
+
+.homepage-luxury main > section {
+  border-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+.homepage-luxury .section-transition-top,
+.homepage-luxury .section-transition-bottom {
+  opacity: 0.45;
+}
+
+.homepage-luxury .ocean-wave-layer,
+.homepage-luxury .caribe-current-layer {
+  opacity: 0.15 !important;
+}
+
+/* ── 2. Section rhythm — light & depth separation ── */
+.homepage-luxury main > section {
+  position: relative;
+  isolation: isolate;
+}
+
+.homepage-luxury main > section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.homepage-luxury .ref-hero-section::before {
+  background: none;
+}
+
+.homepage-luxury .ref-trust-section::before {
+  background:
+    radial-gradient(ellipse 90% 55% at 50% 0%, rgba(var(--ocean-rgb), 0.05) 0%, transparent 68%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, transparent 100%);
+}
+
+.homepage-luxury .ref-best-sellers::before {
+  background: radial-gradient(ellipse 75% 50% at 50% 100%, rgba(var(--ocean-rgb), 0.04) 0%, transparent 70%);
+}
+
+.homepage-luxury .ref-featured-compound::before {
+  background:
+    radial-gradient(ellipse 70% 55% at 30% 50%, rgba(var(--gold-rgb), 0.04) 0%, transparent 65%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, transparent 55%);
+}
+
+.homepage-luxury .ref-precision-section::before {
+  background: radial-gradient(ellipse 80% 50% at 70% 0%, rgba(var(--ocean-rgb), 0.045) 0%, transparent 68%);
+}
+
+.homepage-luxury .ref-reviews-faq::before {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.06) 0%, transparent 45%);
+}
+
+.homepage-luxury .ref-quality-stats::before {
+  background:
+    radial-gradient(ellipse 85% 60% at 50% 50%, rgba(var(--ocean-rgb), 0.06) 0%, transparent 62%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, transparent 100%);
+}
+
+.homepage-luxury .ref-coa-promo::before {
+  background: radial-gradient(ellipse 60% 70% at 20% 50%, rgba(var(--gold-rgb), 0.06) 0%, transparent 58%) !important;
+}
+
+.homepage-luxury .ref-product-cta::before,
+.homepage-luxury .ref-home-contact::before {
+  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(var(--ocean-rgb), 0.035) 0%, transparent 70%);
+}
+
+.homepage-luxury .ref-newsletter::before {
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.08) 100%);
+}
+
+.homepage-luxury main > section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── 1. Product card master pass ── */
+.homepage-luxury .ref-product-card,
+.homepage-luxury .best-seller-card {
+  border-radius: var(--lux-radius-lg);
+  border-color: rgba(255, 255, 255, 0.05);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    var(--lux-shadow-soft);
+  transition:
+    transform var(--lux-motion),
+    border-color var(--lux-motion),
+    box-shadow var(--lux-motion),
+    background var(--lux-motion);
+}
+
+.homepage-luxury .ref-product-card,
+.homepage-luxury .best-seller-card {
+  min-height: clamp(440px, 46vw, 520px);
+}
+
+.homepage-luxury .ref-product-image-wrap,
+.homepage-luxury .polish-product-stage {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: clamp(320px, 40vw, 440px) !important;
+  min-height: clamp(320px, 40vw, 440px) !important;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem) clamp(1rem, 2vw, 1.25rem)
+    clamp(0.875rem, 1.5vw, 1.125rem);
+  overflow: visible !important;
+  background: linear-gradient(180deg, rgba(8, 16, 22, 0.95) 0%, rgba(3, 8, 12, 0.98) 100%) !important;
+  border-bottom: none;
+}
+
+.homepage-luxury .lux-product-presentation--card {
+  min-height: 100% !important;
+  height: 100%;
+  overflow: visible !important;
+}
+
+.homepage-luxury .art-product-card .compound-exhibit-vial-slot {
+  width: 46% !important;
+  height: 44% !important;
+  bottom: 18% !important;
+}
+
+.homepage-luxury .ref-product-image-wrap::after {
+  content: "";
+  position: absolute;
+  inset-inline: 8%;
+  bottom: 8%;
+  height: 55%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse 85% 70% at 50% 100%,
+    rgba(var(--ocean-rgb), 0.22) 0%,
+    rgba(var(--ocean-rgb), 0.06) 42%,
+    transparent 72%
+  );
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.85;
+  transition: opacity var(--lux-motion);
+}
+
+.homepage-luxury .ref-product-card:hover .ref-product-image-wrap::after {
+  opacity: 1;
+}
+
+.homepage-luxury .lux-product-presentation--card .lux-pp-spotlight-core {
+  opacity: 0.75;
+}
+
+.homepage-luxury .lux-product-presentation--card .lux-pp-stage {
+  transform: scale(1);
+  transform-origin: center bottom;
+  filter: contrast(1.04) brightness(1.02);
+  transition: transform var(--lux-motion), filter var(--lux-motion);
+}
+
+.homepage-luxury .ref-product-card:hover .lux-product-presentation--card .lux-pp-stage {
+  transform: scale(1.05) translateY(-2px);
+  filter: contrast(1.06) brightness(1.04);
+}
+
+.homepage-luxury .ref-product-card:hover .compound-exhibit-vial-frame {
+  transform: translateY(calc(var(--vial-y, 0) * 1% - 3px)) scale(var(--vial-scale, 1)) !important;
+}
+
+.homepage-luxury .ref-product-card:hover,
+.homepage-luxury .polish-product-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.09);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    var(--lux-shadow-lift),
+    0 0 32px rgba(var(--ocean-rgb), 0.05);
+}
+
+.homepage-luxury .ref-product-info,
+.homepage-luxury .polish-product-info {
+  padding: 1.5rem 1.625rem 1.75rem;
+  gap: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.homepage-luxury .ref-product-size-row {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.homepage-luxury .ref-product-actions {
+  gap: 0.5rem;
+  padding-top: 0.25rem;
+}
+
+/* ── 3. Testimonial luxury pass ── */
+.homepage-luxury .testimonial-trust-card {
+  padding: clamp(2.25rem, 4vw, 2.75rem);
+  border-radius: var(--lux-radius-lg);
+}
+
+.homepage-luxury .testimonial-trust-mark {
+  font-size: clamp(4.25rem, 8vw, 5.75rem);
+  color: rgba(var(--ocean-rgb), 0.12);
+  top: clamp(0.75rem, 1.5vw, 1.125rem);
+  left: clamp(1.125rem, 2vw, 1.625rem);
+}
+
+.homepage-luxury .testimonial-trust-stars {
+  margin-bottom: clamp(1.25rem, 2.5vw, 1.5rem);
+  text-shadow: none;
+  color: rgba(212, 175, 55, 0.75);
+}
+
+.homepage-luxury .testimonial-trust-quote {
+  font-size: clamp(1rem, 0.35vw + 0.9rem, 1.0625rem);
+  line-height: 1.8;
+  color: rgba(250, 247, 240, 0.86);
+  max-width: 34ch;
+  padding-top: 0.5rem;
+}
+
+.homepage-luxury .testimonial-trust-footer {
+  padding-top: clamp(1.5rem, 3vw, 2rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.homepage-luxury .testimonial-trust-author {
+  font-size: clamp(0.9375rem, 0.25vw + 0.85rem, 1rem);
+  letter-spacing: 0.03em;
+  color: rgba(250, 247, 240, 0.92);
+}
+
+.homepage-luxury .testimonial-trust-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    var(--lux-shadow-lift),
+    0 0 28px rgba(var(--ocean-rgb), 0.04);
+}
+
+/* ── 4. Stats authority pass ── */
+.homepage-luxury .ref-quality-stats .lux-stagger-group {
+  gap: clamp(2rem, 4vw, 3rem);
+  margin-top: clamp(3rem, 6vw, 4rem) !important;
+}
+
+.homepage-luxury .lux-stat-authority-card {
+  padding: clamp(2.5rem, 5vw, 3.25rem) clamp(1.5rem, 3vw, 2rem) !important;
+  border-radius: var(--lux-radius-lg) !important;
+  background: rgba(255, 255, 255, 0.035) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    var(--lux-shadow-soft);
+}
+
+.homepage-luxury .lux-stat-value,
+.homepage-luxury .lux-stat-value .lux-stat-counter {
+  font-size: clamp(3.75rem, 9vw, 5.5rem) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.04em !important;
+  line-height: 0.95 !important;
+  color: var(--soft-ivory) !important;
+  text-shadow: 0 2px 24px rgba(var(--ocean-rgb), 0.15);
+}
+
+.homepage-luxury .lux-stat-value .lux-stat-counter-num {
+  color: var(--ocean-blue);
+}
+
+.homepage-luxury .ref-quality-stats .lux-stat-authority-card p:last-child {
+  margin-top: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: rgba(250, 247, 240, 0.52);
+}
+
+.homepage-luxury .ref-quality-stats .ref-trust-card:hover {
+  transform: translateY(-3px);
+}
+
+/* ── 5. Footer premium pass ── */
+.homepage-luxury .ref-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.homepage-luxury .polish-footer-top,
+.homepage-luxury .qa-footer-top {
+  padding-top: clamp(5rem, 9vw, 6.5rem) !important;
+  padding-bottom: clamp(4rem, 7vw, 5.5rem) !important;
+}
+
+.homepage-luxury .ref-footer-grid {
+  gap: clamp(3rem, 5vw, 4rem) !important;
+}
+
+.homepage-luxury .footer-column-title,
+.homepage-luxury .polish-type-footer-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: rgba(250, 247, 240, 0.55);
+}
+
+.homepage-luxury .ref-footer-link {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: rgba(250, 247, 240, 0.62);
+  transition: color var(--lux-motion);
+}
+
+.homepage-luxury .ref-footer-link:hover {
+  color: rgba(250, 247, 240, 0.92);
+}
+
+.homepage-luxury .ref-social-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(250, 247, 240, 0.55);
+  transition:
+    color var(--lux-motion),
+    background var(--lux-motion),
+    border-color var(--lux-motion);
+}
+
+.homepage-luxury .ref-social-btn:hover {
+  color: var(--soft-ivory);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.homepage-luxury .ref-footer-bar,
+.homepage-luxury .polish-footer-bar {
+  border-color: rgba(255, 255, 255, 0.04) !important;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.homepage-luxury .ref-footer-bar {
+  padding-block: clamp(2rem, 4vw, 2.75rem);
+}
+
+.homepage-luxury .final8-footer-logo-well img {
+  opacity: 0.94;
+}
+
+/* ── 6 & 7. Micro-interactions + consistency ── */
+.homepage-luxury .btn-primary,
+.homepage-luxury .btn-platinum,
+.homepage-luxury .btn-outline-gold,
+.homepage-luxury .polish-cta-primary,
+.homepage-luxury .polish-cta-secondary,
+.homepage-luxury .ref-product-btn-teal,
+.homepage-luxury .ref-product-btn-gold,
+.homepage-luxury .polish-product-cta,
+.homepage-luxury .trust-authority-card,
+.homepage-luxury .faq-premium-card,
+.homepage-luxury .testimonial-trust-card,
+.homepage-luxury .ref-precision-section .ref-trust-card {
+  transition-duration: 0.6s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.homepage-luxury .btn-primary:hover,
+.homepage-luxury .polish-cta-primary:hover {
+  transition-duration: 0.65s;
+}
+
+.homepage-luxury .trust-authority-card,
+.homepage-luxury .faq-premium-card,
+.homepage-luxury .faq-premium-excellence,
+.homepage-luxury .ref-precision-section .ref-trust-card,
+.homepage-luxury .lux-stat-authority-card {
+  border-radius: var(--lux-radius-lg);
+}
+
+/* ── 8. Depth hierarchy on cards ── */
+.homepage-luxury .trust-authority-card,
+.homepage-luxury .faq-premium-excellence,
+.homepage-luxury .ref-spec-panel {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    var(--lux-shadow-soft);
+}
+
+/* Suppress aggressive luxury-experience / exhibit hover layers */
+.homepage-luxury.luxury-experience .ref-product-card {
+  border-color: rgba(255, 255, 255, 0.05) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    var(--lux-shadow-soft) !important;
+}
+
+.homepage-luxury.luxury-experience .ref-product-card:hover {
+  border-color: rgba(255, 255, 255, 0.09) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    var(--lux-shadow-lift),
+    0 0 32px rgba(var(--ocean-rgb), 0.05) !important;
+}
+
+.homepage-luxury.luxury-experience .ref-product-card:hover .polish-product-vial,
+.homepage-luxury.luxury-experience .ref-product-card:hover .compound-exhibit-vial,
+.homepage-luxury.luxury-experience .ref-product-card:hover .compound-exhibit-vial-frame {
+  transform: none !important;
+  filter: none !important;
+}
+
+.homepage-luxury.luxury-experience .ref-product-card:hover .lux-pp-volumetric,
+.homepage-luxury.luxury-experience .ref-product-card:hover .lux-pp-spotlight-beam,
+.homepage-luxury.luxury-experience .ref-product-card:hover .compound-exhibit-cone-beam,
+.homepage-luxury.luxury-experience .ref-product-card:hover .compound-exhibit-glow,
+.homepage-luxury.luxury-experience .ref-product-card:hover .compound-exhibit-halo {
+  opacity: 0.65 !important;
+}
+
+.homepage-luxury.luxury-experience .ref-product-card:hover .lux-pp-spotlight-core {
+  opacity: 0.8 !important;
+  transform: translateX(-50%) !important;
+}
+
+.homepage-luxury.luxury-experience .ref-product-card:hover .polish-product-spotlight {
+  opacity: 0.85 !important;
+  background: radial-gradient(
+    ellipse 85% 70% at 50% 100%,
+    rgba(var(--ocean-rgb), 0.2) 0%,
+    transparent 72%
+  ) !important;
+}
+
+.homepage-luxury.luxury-experience .ref-product-btn-teal,
+.homepage-luxury.luxury-experience .ref-product-btn-gold {
+  transition-duration: 0.6s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .homepage-luxury .ref-product-card:hover,
+  .homepage-luxury .testimonial-trust-card:hover {
+    transform: none;
+  }
+}

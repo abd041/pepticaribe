@@ -253,8 +253,12 @@
 @media (max-width: 1023px) {
   .homepage-luxury .ref-hero-showcase-wrap,
   .homepage-luxury .concept-hero-showcase-wrap {
-    padding-top: clamp(2.5rem, 6vw, 4rem);
-    padding-bottom: clamp(0.5rem, 2vw, 1rem);
+    padding-top: clamp(1.25rem, 3vw, 2rem);
+    padding-bottom: clamp(0.75rem, 2vw, 1.25rem);
+  }
+
+  .homepage-luxury .ref-hero-copy-col {
+    padding-top: clamp(0.75rem, 2vw, 1.25rem);
   }
 }
 
@@ -313,7 +317,7 @@
 /* ── Product grid — flagship card treatment ── */
 .homepage-luxury .ref-product-card,
 .homepage-luxury .best-seller-card {
-  min-height: clamp(400px, 42vw, 460px);
+  min-height: clamp(440px, 46vw, 520px);
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 1rem;
@@ -330,28 +334,15 @@
   background: linear-gradient(180deg, rgba(10, 18, 24, 0.9) 0%, rgba(4, 10, 14, 0.95) 100%);
 }
 
-.homepage-luxury .lux-product-presentation--card .lux-pp-stage {
-  transform: scale(1.12);
-  transform-origin: center bottom;
-}
+/* lux-pp-stage scale — final-luxury-polish.css */
 
 .homepage-luxury .lux-product-presentation--card .lux-pp-pedestal-glow {
   opacity: 0.9;
 }
 
-.homepage-luxury .ref-product-card:hover .lux-product-presentation--card .lux-pp-stage {
-  transform: scale(1.14) translateY(-4px);
-  transition: transform 0.6s var(--lux-ease);
-}
+/* Product stage hover — final-luxury-polish.css */
 
-.homepage-luxury .ref-product-card:hover,
-.homepage-luxury .polish-product-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow:
-    0 28px 56px rgba(0, 0, 0, 0.42),
-    0 0 48px rgba(var(--ocean-rgb), 0.08);
-}
+/* Product hover — final-luxury-polish.css */
 
 .homepage-luxury .ref-product-info,
 .homepage-luxury .polish-product-info {
@@ -480,14 +471,7 @@
   margin-top: clamp(2.5rem, 5vw, 3.5rem) !important;
 }
 
-.homepage-luxury .lux-stat-value {
-  font-size: clamp(3rem, 6vw, 4.5rem) !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  color: var(--ocean-blue);
-  font-variant-numeric: tabular-nums;
-}
+/* Stats typography — final-luxury-polish.css */
 
 .homepage-luxury .ref-quality-stats .ref-trust-card p:last-child {
   margin-top: 1rem;

@@ -113,15 +113,15 @@ export function Header() {
   return (
     <>
       <header className="concept-header premium-header ref-header lux-nav-shell lux-floating-nav">
-        <div className="ref-header-inner concept-header-inner mx-auto grid max-w-[90rem] grid-cols-[1fr_auto_1fr] items-center gap-3 sm:gap-4">
+        <div className="ref-header-inner concept-header-inner mx-auto grid w-full max-w-[90rem] grid-cols-[1fr_auto_1fr] items-center gap-3 sm:gap-4">
           <BrandLogo
             href="/"
-            size="lg"
+            size="md"
             priority
-            className="concept-header-logo ref-header-logo justify-self-start"
+            className="concept-header-logo ref-header-logo col-start-1 min-w-0 justify-self-start"
           />
 
-          <nav className="concept-nav ref-header-nav hidden items-center justify-center gap-6 md:gap-8 xl:gap-10 md:flex">
+          <nav className="concept-nav ref-header-nav col-start-2 hidden items-center justify-center gap-6 md:flex md:gap-8 xl:gap-10">
             {navLinks.map((link) => {
               const active = isNavActive(pathname, link.href);
               return (
@@ -139,7 +139,7 @@ export function Header() {
             })}
           </nav>
 
-          <div className="lux-nav-actions flex items-center justify-self-end">
+          <div className="lux-nav-actions col-start-3 flex items-center justify-self-end">
             <LanguageToggle className="lux-lang-toggle hidden sm:flex" />
             <Link
               href="/cart"
@@ -189,7 +189,7 @@ export function Header() {
                   ref={closeButtonRef}
                   type="button"
                   onClick={closeMenu}
-                  className="rounded-full p-2 hover:bg-white/10"
+                  className="flex min-h-[2.75rem] min-w-[2.75rem] items-center justify-center rounded-full p-2 hover:bg-white/10"
                   aria-label={t("nav.closeMenu")}
                 >
                   <X className="h-5 w-5" />
