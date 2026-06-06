@@ -51,8 +51,8 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   icons: {
-    icon: "/brand/pepticaribe-logo.png",
-    apple: "/brand/pepticaribe-logo.png",
+    icon: "/brand/pepticaribe-logo.svg",
+    apple: "/brand/pepticaribe-logo.svg",
   },
 };
 

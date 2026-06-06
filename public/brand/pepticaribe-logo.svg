@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 892 670" role="img" aria-label="PeptiCaribe">
+  <defs>
+    <linearGradient id="teal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0ea5c6"/>
+      <stop offset="100%" stop-color="#0b6e88"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e8b547"/>
+      <stop offset="100%" stop-color="#d99a1e"/>
+    </linearGradient>
+  </defs>
+  <rect width="892" height="670" fill="#07141a"/>
+  <circle cx="446" cy="280" r="120" fill="url(#teal)" opacity="0.15"/>
+  <text x="446" y="320" text-anchor="middle" font-family="Georgia, serif" font-size="72" font-weight="700" fill="url(#teal)">Pepti</text>
+  <text x="446" y="400" text-anchor="middle" font-family="Georgia, serif" font-size="72" font-weight="700" fill="url(#gold)">Caribe</text>
+  <text x="446" y="480" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" letter-spacing="0.2em" fill="#faf7f0" opacity="0.5">RESEARCH GRADE</text>
+</svg>

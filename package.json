@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "assets:check": "node scripts/check-assets.mjs",
+    "assets:placeholders": "node scripts/generate-placeholder-assets.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.40.0",

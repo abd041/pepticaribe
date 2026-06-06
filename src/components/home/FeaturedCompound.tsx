@@ -12,7 +12,7 @@ import {
   Snowflake,
   TestTube,
 } from "lucide-react";
-import { getProductBySlug } from "@/data/products";
+import type { Product } from "@/types/product";
 import { FEATURED_BPC_EXHIBIT } from "@/lib/productImagery";
 import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
 
@@ -33,9 +33,12 @@ const SPECS = [
   { label: "Use", key: "use" as const },
 ] as const;
 
-export function FeaturedCompound() {
+type FeaturedCompoundProps = {
+  product: Product;
+};
+
+export function FeaturedCompound({ product }: FeaturedCompoundProps) {
   const ref = useRef(null);
-  const product = getProductBySlug("bpc-157");
 
   if (!product) return null;
 

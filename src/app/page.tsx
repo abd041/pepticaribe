@@ -9,8 +9,11 @@ import { ReviewsFAQ } from "@/components/home/ReviewsFAQ";
 import { FDADisclaimer } from "@/components/home/FDADisclaimer";
 import { Footer } from "@/components/home/Footer";
 import { HomePageEffects, LuxuryMotion } from "@/components/home/HomePageEffects";
+import { getProductBySlug } from "@/data/products";
 
 export default function HomePage() {
+  const featuredBpc = getProductBySlug("bpc-157");
+
   return (
     <>
       <HomePageEffects />
@@ -27,7 +30,7 @@ export default function HomePage() {
             <Hero />
             <ValueProps />
             <FeaturedProducts />
-            <FeaturedCompound />
+            {featuredBpc ? <FeaturedCompound product={featuredBpc} /> : null}
             <COAPromotionBar />
             <ReviewsFAQ />
             <FDADisclaimer />

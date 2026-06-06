@@ -3,7 +3,7 @@
 import Link from "next/link";
 import type { Product } from "@/types/product";
 import { getCompoundProfile } from "@/lib/productImagery";
-import { getProductFromPrice } from "@/data/products";
+import { getProductFromPrice } from "@/lib/pricing";
 import { LuxuryProductPresentation } from "@/components/ui/LuxuryProductPresentation";
 
 interface ReferenceProductCardProps {

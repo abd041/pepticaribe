@@ -1,0 +1,25 @@
+/**
+ * Production stylesheet bundle — grouped by concern.
+ * Debug/prototype styles (atmosphere-debug, atmosphere-visibility-prototype) are excluded.
+ */
+
+/* ── Core premium UI ── */
+@import "../phase-g-premium.css";
+@import "../luxury-experience.css";
+@import "../phase2-ultra-premium.css";
+@import "../phase3-art-direction.css";
+@import "../phase6-scientific-credibility.css";
+@import "../phase6b-exhibit-cards.css";
+
+/* ── Atmosphere & particles ── */
+@import "../phase4a-atmosphere.css";
+@import "../phase5-particle-system.css";
+@import "../phase5a-atmosphere-architecture.css";
+@import "../phase5b-atmosphere-bugfix.css";
+@import "../phase5c-atmosphere-balance.css";
+@import "../phase5d-continuous-atmosphere.css";
+@import "../phase6a-atmosphere-visibility.css";
+@import "../phase7-particle-reference-visibility.css";
+
+/* ── Scroll & motion ── */
+@import "../phase7-smooth-scroll.css";

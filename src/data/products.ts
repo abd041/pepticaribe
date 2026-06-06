@@ -660,10 +660,7 @@ export function getFeaturedProducts(): Product[] {
   return products.filter((p) => p.featured && !p.isPrivate);
 }
 
-export function getProductFromPrice(product: Product): number {
-  if (product.variants.length === 0) return 0;
-  return Math.min(...product.variants.map((v) => v.price));
-}
+export { getProductFromPrice } from "@/lib/pricing";
 
 /** All image paths referenced by the catalog */
 export function getAllMappedImagePaths(): string[] {

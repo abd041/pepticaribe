@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-/** PeptiCaribe emblem — transparent PNG, natural size 892×670 */
+const LOGO_PATH = "/brand/pepticaribe-logo.svg" as const;
+
+/** PeptiCaribe emblem — SVG preferred, PNG fallback */
 const LOGO_NATURAL = { width: 892, height: 670 } as const;
 
 const SIZES = {
@@ -30,7 +32,7 @@ export function BrandLogo({
 
   const image = (
     <Image
-      src="/brand/pepticaribe-logo.png"
+      src={LOGO_PATH}
       alt="PeptiCaribe Research"
       width={LOGO_NATURAL.width}
       height={LOGO_NATURAL.height}
