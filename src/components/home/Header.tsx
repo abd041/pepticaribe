@@ -9,6 +9,7 @@ import { BrandLogo } from "@/components/ui/BrandLogo";
 import { LanguageToggle } from "@/components/ui/LanguageToggle";
 import { useLanguage } from "@/context/LanguageContext";
 import { useCart } from "@/context/CartContext";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 import { CINEMATIC_EASE, isReducedMotion } from "@/lib/gsap/motion";
 
 const mobileExtra = [{ href: "/membership", labelKey: "nav.membership" as const }];
@@ -23,7 +24,7 @@ export function Header() {
   const pathname = usePathname();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const backdropRef = useRef<HTMLDivElement>(null);
-  const drawerRef = useRef<HTMLElement>(null);
+  const drawerRef = useFocusTrap<HTMLElement>(open);
   const { t } = useLanguage();
   const { itemCount } = useCart();
 

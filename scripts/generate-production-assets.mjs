@@ -1,14 +1,33 @@
 /**
- * Generate branded PNG placeholders at production dimensions + WebP/AVIF derivatives.
- * Replace PNGs with real photography, then re-run: npm run assets:build
+ * Generate branded PNG placeholders + WebP/AVIF derivatives.
+ *
+ * Usage:
+ *   npm run assets:build           — incremental (skips unchanged PNGs)
+ *   npm run assets:build -- --force — re-optimize all
+ *   npm run assets:build -- --include-screenshots
  */
-import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "fs";
+import {
+  existsSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  renameSync,
+  statSync,
+  unlinkSync,
+} from "fs";
 import { dirname, join, relative } from "path";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const publicDir = join(__dirname, "..", "public");
+
+const args = new Set(process.argv.slice(2));
+const FORCE = args.has("--force");
+const INCLUDE_SCREENSHOTS = args.has("--include-screenshots");
+
+const MAX_PNG_EDGE = 2400;
+const MAX_PNG_BYTES = 3_500_000;
 
 const BRAND = {
   navy: "#07141a",
@@ -17,7 +36,6 @@ const BRAND = {
   ivory: "#faf7f0",
 };
 
-/** Critical assets with target dimensions and labels */
 const SPECS = [
   { rel: "brand/pepticaribe-logo.png", w: 512, h: 512, label: "PeptiCaribe", sub: "Research Grade" },
   { rel: "hero/hero-showcase-reference.png", w: 1536, h: 1024, label: "Research Peptides", sub: "Premium Exhibit" },
@@ -87,9 +105,47 @@ async function ensurePng(spec) {
   return "kept";
 }
 
+function needsOptimize(pngPath) {
+  if (FORCE) return true;
+
+  const webp = pngPath.replace(/\.png$/i, ".webp");
+  const avif = pngPath.replace(/\.png$/i, ".avif");
+  if (!existsSync(webp) || !existsSync(avif)) return true;
+
+  const pngMtime = statSync(pngPath).mtimeMs;
+  return statSync(webp).mtimeMs < pngMtime || statSync(avif).mtimeMs < pngMtime;
+}
+
+async function maybeNormalizePng(pngPath) {
+  const { size } = statSync(pngPath);
+  const meta = await sharp(pngPath).metadata();
+  const maxEdge = Math.max(meta.width ?? 0, meta.height ?? 0);
+
+  if (size <= MAX_PNG_BYTES && maxEdge <= MAX_PNG_EDGE) {
+    return false;
+  }
+
+  const tmp = `${pngPath}.tmp`;
+  await sharp(pngPath)
+    .resize({
+      width: MAX_PNG_EDGE,
+      height: MAX_PNG_EDGE,
+      fit: "inside",
+      withoutEnlargement: true,
+    })
+    .png({ compressionLevel: 9, palette: meta.hasAlpha })
+    .toFile(tmp);
+
+  unlinkSync(pngPath);
+  renameSync(tmp, pngPath);
+
+  const rel = relative(publicDir, pngPath);
+  const nextSize = statSync(pngPath).size;
+  console.log(`Normalized PNG: public/${rel} → ${(nextSize / 1024).toFixed(1)}KB`);
+  return true;
+}
+
 async function deriveFormats(pngPath) {
-  const input = sharp(readFileSync(pngPath));
-  const meta = await input.metadata();
   const base = pngPath.replace(/\.png$/i, "");
 
   await sharp(pngPath)
@@ -99,15 +155,20 @@ async function deriveFormats(pngPath) {
   await sharp(pngPath)
     .avif({ quality: 62, effort: 4 })
     .toFile(`${base}.avif`);
-
-  return { w: meta.width, h: meta.height };
 }
 
 function walkPngs(dir, acc = []) {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
     const full = join(dir, entry.name);
-    if (entry.isDirectory()) walkPngs(full, acc);
-    else if (entry.name.endsWith(".png")) acc.push(full);
+    const rel = relative(publicDir, full).replace(/\\/g, "/");
+
+    if (entry.isDirectory()) {
+      if (!INCLUDE_SCREENSHOTS && rel.startsWith("screenshots")) continue;
+      walkPngs(full, acc);
+    } else if (entry.name.endsWith(".png")) {
+      if (!INCLUDE_SCREENSHOTS && rel.startsWith("screenshots/")) continue;
+      acc.push(full);
+    }
   }
   return acc;
 }
@@ -123,11 +184,24 @@ for (const spec of SPECS) {
 
 const allPngs = walkPngs(publicDir);
 let derived = 0;
+let skipped = 0;
+let normalized = 0;
 
 for (const pngPath of allPngs) {
+  const rel = relative(publicDir, pngPath);
+
+  if (await maybeNormalizePng(pngPath)) {
+    normalized += 1;
+  }
+
+  if (!needsOptimize(pngPath)) {
+    skipped += 1;
+    continue;
+  }
+
   await deriveFormats(pngPath);
   derived += 1;
-  const rel = relative(publicDir, pngPath);
+
   const webpSize = statSync(pngPath.replace(/\.png$/i, ".webp")).size;
   const avifSize = statSync(pngPath.replace(/\.png$/i, ".avif")).size;
   const pngSize = statSync(pngPath).size;
@@ -136,4 +210,6 @@ for (const pngPath of allPngs) {
   );
 }
 
-console.log(`\nDone — ${pngCreated} PNGs generated, ${pngKept} kept, ${derived} assets optimized.`);
+console.log(
+  `\nDone — ${pngCreated} PNGs generated, ${pngKept} kept, ${normalized} normalized, ${derived} optimized, ${skipped} skipped (unchanged).`,
+);
