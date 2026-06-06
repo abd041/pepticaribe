@@ -718,13 +718,6 @@
   text-shadow: 0 2px 40px rgba(0, 0, 0, 0.35);
 }
 
-.luxury-experience .ref-hero-headline,
-.luxury-experience .concept-hero-headline {
-  font-size: clamp(2.75rem, 5.5vw + 0.5rem, 4.25rem);
-  letter-spacing: var(--heading-track-display);
-  line-height: 1.02;
-}
-
 .luxury-experience .premium-section-lg {
   padding-top: var(--lux-section-y);
   padding-bottom: var(--lux-section-y);
@@ -1000,7 +993,7 @@
 }
 
 .luxury-experience .polish-featured-vial {
-  transform: scale(1.08);
+  transform: scale(1);
   transform-origin: center bottom;
 }
 
@@ -1373,7 +1366,7 @@
 }
 
 .luxury-experience .ref-product-card:hover .compound-exhibit-vial {
-  transform: translateY(-8px) scale(1.05);
+  transform: translateY(-6px) scale(0.96);
   filter:
     drop-shadow(0 32px 56px rgba(0, 0, 0, 0.72))
     drop-shadow(0 0 40px rgba(var(--ocean-rgb), 0.28))
@@ -1818,8 +1811,8 @@
   --art-section-y: clamp(4.25rem, 7.5vw, 6.75rem);
   --art-section-y-sm: clamp(3rem, 5.5vw, 4.5rem);
   --art-header-gap: clamp(1.75rem, 3.5vw, 2.75rem);
-  --art-product-scale-hero: 1.46;
-  --art-product-scale-featured: 0.82;
+  --art-product-scale-hero: 1.33;
+  --art-product-scale-featured: 0.68;
 }
 
 /* ── Compressed vertical rhythm ── */
@@ -1871,21 +1864,8 @@
 .art-direction .polish-type-section-title,
 .art-direction .type-display-section {
   font-size: clamp(2.25rem, 3.6vw + 0.35rem, 3.35rem);
-  letter-spacing: -0.035em;
-  line-height: 1.02;
-}
-
-.art-direction .ref-hero-headline,
-.art-direction .concept-hero-headline {
-  font-size: clamp(2.625rem, 5.2vw, 4.5rem);
-  line-height: 0.98;
-}
-
-.art-direction .concept-hero-lead,
-.art-direction .ref-hero-lead {
-  font-size: 0.9375rem;
-  line-height: 1.65;
-  max-width: 21rem;
+  letter-spacing: var(--heading-track);
+  line-height: 1.08;
 }
 
 .art-direction .concept-hero-eyebrow,
@@ -1893,9 +1873,17 @@
   letter-spacing: 0.2em;
 }
 
-/* ── Hero: product-dominant composition ── */
+/* ── Hero: 50 / 50 flex split ── */
+@media (min-width: 1024px) {
+  .art-direction .ref-hero-copy-col {
+    flex: 0 0 50vw;
+    width: 50vw;
+    max-width: 50vw;
+  }
+}
+
 .art-direction .art-hero-copy {
-  max-width: 22rem;
+  max-width: min(28rem, 92%);
 }
 
 .art-direction .art-hero-copy .ref-hero-headline {
@@ -1918,38 +1906,41 @@
 @media (min-width: 1024px) {
   .art-direction .ref-hero-showcase-wrap,
   .art-direction .concept-hero-showcase-wrap {
-    left: 40%;
-    width: 60%;
-    justify-content: flex-start;
-    padding-left: 0.5rem;
+    left: auto;
+    right: auto;
+    flex: 0 0 50vw;
+    width: 50vw;
+    max-width: 50vw;
+    justify-content: center;
+    padding-left: 0;
   }
 
   .art-direction .ref-hero-showcase-reference {
-    max-width: min(98%, 610px);
-    max-height: min(82dvh, 820px);
+    max-width: min(92%, 560px);
+    max-height: min(72dvh, 700px);
     scale: var(--art-product-scale-hero);
-    transform: translateY(-6%);
-    transform-origin: left center;
-    object-position: left bottom;
+    transform: translateY(2%);
+    transform-origin: center bottom;
+    object-position: center bottom;
   }
 
   .art-direction .ref-hero-showcase-reference-frame {
-    justify-content: flex-start;
+    justify-content: center;
     align-items: flex-end;
-    padding-bottom: 7%;
+    padding-bottom: 2%;
   }
 }
 
 @media (max-width: 1023px) {
   .art-direction .ref-hero-showcase-reference {
-    max-height: min(52dvh, 470px);
-    scale: 1.3;
-    transform: translateY(-4%);
+    max-height: min(46dvh, 420px);
+    scale: 1.12;
+    transform: translateY(1%);
     transform-origin: center bottom;
   }
 
   .art-direction .ref-hero-showcase-reference-frame {
-    padding-bottom: 5%;
+    padding-bottom: 2%;
   }
 
   .art-direction .ref-hero-showcase {
@@ -1991,9 +1982,11 @@
   background: transparent;
 }
 
-/* ── Product cards: product-first ── */
+/* ── Product cards: vials sized to fit inside card frame ── */
 .art-direction .art-product-card .ref-product-image-wrap {
-  height: clamp(260px, 34vw, 340px);
+  height: clamp(220px, 28vw, 300px);
+  padding: 1.25rem 1.5rem 1rem;
+  align-items: flex-end;
 }
 
 .art-direction .art-product-card .lux-product-presentation--card {
@@ -2001,14 +1994,44 @@
 }
 
 .art-direction .art-product-card .compound-exhibit-vial-slot {
-  width: 92% !important;
-  height: 88% !important;
-  bottom: 4% !important;
+  width: 52% !important;
+  height: 44% !important;
+  bottom: 16% !important;
+}
+
+.art-direction .art-product-card .compound-exhibit-pedestal-stack {
+  bottom: 12%;
+  transform: scale(0.68);
+}
+
+.art-direction .art-product-card .compound-exhibit-contact-shadow {
+  bottom: 16% !important;
+  width: 34%;
+}
+
+.art-direction .art-product-card .compound-exhibit-platform-reflection {
+  bottom: 15% !important;
+  inset-inline: 36%;
+}
+
+.art-direction .art-product-card .compound-exhibit-vial-frame {
+  transform: translateY(calc(var(--vial-y, 0) * 1%))
+    scale(calc(var(--vial-scale, 1) * 0.78));
+  transform-origin: bottom center;
 }
 
 .art-direction .art-product-card .compound-exhibit-vial {
-  transform: scale(1.08);
+  transform: scale(0.76);
   transform-origin: center bottom;
+}
+
+.art-direction .art-product-card:hover .compound-exhibit-vial-frame {
+  transform: translateY(calc(var(--vial-y, 0) * 1% - 5px))
+    scale(calc(var(--vial-scale, 1) * 0.8));
+}
+
+.art-direction .art-product-card:hover .compound-exhibit-vial {
+  transform: scale(0.78);
 }
 
 .art-direction .art-product-card .ref-product-info {
@@ -2040,14 +2063,14 @@
 }
 
 .art-direction .art-featured-showcase .ref-featured-pedestal {
-  height: clamp(440px, 54vw, 680px);
-  max-width: 540px;
+  height: clamp(360px, 44vw, 540px);
+  max-width: 420px;
 }
 
 .art-direction .art-featured-showcase .lux-featured-vial,
 .art-direction .art-featured-showcase .ref-featured-vial {
-  max-height: 98%;
-  max-width: 92%;
+  max-height: 84%;
+  max-width: 78%;
   scale: var(--art-product-scale-featured);
   transform-origin: center bottom;
 }

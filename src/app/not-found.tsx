@@ -7,7 +7,7 @@ export default function NotFound() {
     <div className="min-h-dvh bg-[var(--background)] text-[var(--foreground)]">
       <SiteChrome />
       <main className="mx-auto flex max-w-lg flex-col items-center px-4 py-24 text-center sm:py-32">
-        <p className="premium-eyebrow-gold font-display">404</p>
+        <p className="premium-eyebrow-gold">404</p>
         <h1 className="font-display mt-4 text-3xl font-bold text-[var(--soft-ivory)]">
           Page Not Found
         </h1>

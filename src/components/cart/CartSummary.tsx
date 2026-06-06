@@ -20,11 +20,11 @@ export function CartSummary({ checkoutHref = "/checkout", showCheckout = true }:
       <p className="mt-3 font-display text-3xl font-bold text-[var(--luxury-gold)]">
         ${subtotal.toFixed(2)}
       </p>
-      <p className="mt-2 text-xs text-[var(--soft-ivory)]/45">
-        {itemCount} {itemCount === 1 ? "item" : "items"}
+      <p className="mt-2 text-xs text-[var(--text-muted)]">
+        {itemCount} {itemCount === 1 ? t("cart.item") : t("cart.items")}
       </p>
 
-      <p className="mt-5 text-xs leading-relaxed text-[var(--soft-ivory)]/45">{t("cart.researchNote")}</p>
+      <p className="mt-5 text-xs leading-relaxed text-[var(--text-muted)]">{t("cart.researchNote")}</p>
 
       {showCheckout ? (
         <Link

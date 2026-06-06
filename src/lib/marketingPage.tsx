@@ -4,7 +4,7 @@ import {
   getMarketingPage,
   type MarketingPageSlug,
 } from "@/data/translations/marketingContent";
-import { getServerLanguage } from "@/lib/i18n-server";
+import { getServerLanguage, getServerT } from "@/lib/i18n-server";
 
 export async function generateMarketingMetadata(slug: MarketingPageSlug): Promise<Metadata> {
   const language = await getServerLanguage();
@@ -19,10 +19,28 @@ export async function MarketingPageView({ slug }: { slug: MarketingPageSlug }) {
   const language = await getServerLanguage();
   const page = getMarketingPage(language, slug);
 
+  const backToHome = await getServerT("common.backToHome");
+
   return (
-    <MarketingPage eyebrow={page.eyebrow} title={page.title} description={page.description}>
-      {page.body.length ? (
-        <div className="space-y-4 text-sm leading-relaxed text-[var(--soft-ivory)]/65">
+    <MarketingPage
+      eyebrow={page.eyebrow}
+      title={page.title}
+      description={page.description}
+      backLabel={backToHome}
+    >
+      {page.sections?.length ? (
+        <div className="marketing-prose">
+          {page.sections.map((section) => (
+            <section key={section.heading}>
+              <h2>{section.heading}</h2>
+              {section.paragraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </section>
+          ))}
+        </div>
+      ) : page.body.length ? (
+        <div className="marketing-prose">
           {page.body.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}

@@ -17,7 +17,7 @@ export function LanguageToggle({ className = "" }: { className?: string }) {
           className={`rounded-full px-2.5 py-1 text-[10px] font-semibold transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400 ${
             language === lang
               ? "bg-teal-500 text-white shadow-sm shadow-teal-500/25"
-              : "text-white/45 hover:bg-white/5 hover:text-white/75"
+              : "text-white/60 hover:bg-white/5 hover:text-white/85"
           }`}
           aria-pressed={language === lang}
           aria-label={lang === "en" ? t("common.english") : t("common.spanish")}

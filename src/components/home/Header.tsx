@@ -128,7 +128,7 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`concept-nav-link nav-link-premium ref-nav-link uppercase ${
+                  className={`concept-nav-link nav-link-premium ref-nav-link ${
                     active ? "concept-nav-link-active" : ""
                   }`}
                   aria-current={active ? "page" : undefined}
@@ -182,7 +182,7 @@ export function Header() {
             className="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-gradient-to-b from-[var(--surface-dark)] to-[var(--deep-navy)] p-6 text-white lg:hidden"
           >
             <div className="flex items-center justify-between">
-              <span className="premium-eyebrow-gold font-display">{t("nav.menu")}</span>
+              <span className="premium-eyebrow-gold">{t("nav.menu")}</span>
               <div className="flex items-center gap-2">
                 <LanguageToggle />
                 <button

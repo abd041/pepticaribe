@@ -13,14 +13,14 @@ import "./globals.css";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://pepticaribe.com";
 
 const plusJakarta = Plus_Jakarta_Sans({
-  variable: "--font-dm-sans",
+  variable: "--font-plus-jakarta",
   subsets: ["latin"],
   weight: ["400", "600", "700"],
   display: "swap",
 });
 
 const cinzel = Cinzel({
-  variable: "--font-syne",
+  variable: "--font-cinzel",
   subsets: ["latin"],
   weight: ["600", "700"],
   display: "swap",

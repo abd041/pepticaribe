@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ShieldCheck } from "lucide-react";
 import { getProductBySlug, getPublicProducts } from "@/data/products";
 import { getProductFromPrice } from "@/lib/pricing";
+import { getServerT } from "@/lib/i18n-server";
 import { MarketingPage } from "@/components/pages/MarketingPage";
 import { ProductDetailActions } from "@/components/products/ProductDetailActions";
+import { ProductDetailBadges } from "@/components/products/ProductDetailBadges";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://pepticaribe.com";
 
@@ -35,6 +36,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
   if (!product || product.isPrivate) notFound();
 
   const fromPrice = getProductFromPrice(product);
+  const backToProducts = await getServerT("products.backToProducts");
 
   const productJsonLd = {
     "@context": "https://schema.org",
@@ -66,18 +68,10 @@ export default async function ProductDetailPage({ params }: PageProps) {
         title={product.displayName}
         description={product.description}
         backHref="/products"
-        backLabel="Back to Products"
+        backLabel={backToProducts}
       >
         <div className="glass-card rounded-2xl p-6 sm:p-8">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-full bg-teal-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-teal-400">
-              Research Use Only
-            </span>
-            <span className="inline-flex items-center gap-1 rounded-full bg-white/5 px-3 py-1 text-[11px] font-medium text-white/50">
-              <ShieldCheck className="h-3 w-3" aria-hidden />
-              COA Available
-            </span>
-          </div>
+          <ProductDetailBadges />
 
           <p className="font-display mt-6 text-2xl font-bold text-[var(--luxury-gold)]">
             From ${fromPrice.toFixed(2)}
@@ -87,7 +81,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
             {product.variants.map((variant) => (
               <li
                 key={variant.id}
-                className="flex items-center justify-between text-sm text-[var(--soft-ivory)]/75"
+                className="flex items-center justify-between text-sm text-[var(--text-secondary)]"
               >
                 <span>{variant.sizeLabel}</span>
                 <span className="font-display font-semibold text-[var(--soft-ivory)]">

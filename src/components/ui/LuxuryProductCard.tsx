@@ -11,6 +11,7 @@ import { getProductFromPrice } from "@/lib/pricing";
 import { CompoundExhibitStage } from "@/components/ui/CompoundExhibitStage";
 import { useInView } from "@/hooks/useInView";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface LuxuryProductCardProps {
   product: Product;
@@ -20,6 +21,7 @@ interface LuxuryProductCardProps {
 /** Luxury research-grade specimen presentation — curated display, not catalog listing */
 export function LuxuryProductCard({ product, index }: LuxuryProductCardProps) {
   const ref = useRef<HTMLElement>(null);
+  const { t } = useLanguage();
   const inView = useInView(ref, { once: true, margin: "-50px" });
   const reduceMotion = useReducedMotion();
   const fromPrice = getProductFromPrice(product);
@@ -77,13 +79,13 @@ export function LuxuryProductCard({ product, index }: LuxuryProductCardProps) {
             href={`/products/${product.slug}`}
             className="editorial-btn editorial-btn-primary product-showcase-btn"
           >
-            View More
+            {t("featured.viewDetails")}
           </Link>
           <button
             type="button"
             className="editorial-btn editorial-btn-secondary product-showcase-btn"
           >
-            Add To Cart
+            {t("featured.addToCart")}
           </button>
         </div>
       </div>

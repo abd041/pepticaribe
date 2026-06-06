@@ -43,6 +43,7 @@ export interface TranslationSchema {
     eyebrow: string;
     headlineResearch: string;
     headlinePeptides: string;
+    headlineYouCan: string;
     headlineTrust: string;
     subcopy: string;
     ctaProducts: string;
@@ -75,8 +76,20 @@ export interface TranslationSchema {
     title: string;
     viewAll: string;
     compoundEyebrow: string;
+    compoundSubtitle: string;
     viewDetails: string;
+    viewFullDetails: string;
     addToCart: string;
+    scientificSpecs: string;
+    trustPurity: string;
+    trustTested: string;
+    trustRuo: string;
+    specCompound: string;
+    specPurity: string;
+    specAmount: string;
+    specForm: string;
+    specStorage: string;
+    specUse: string;
   };
   coa: {
     eyebrow: string;
@@ -129,6 +142,10 @@ export interface TranslationSchema {
     catalogTitle: string;
     catalogDescription: string;
     viewBestSellers: string;
+    backToProducts: string;
+    coaAvailable: string;
+    sizeLabel: string;
+    viewCoaLibrary: string;
   };
   cart: {
     title: string;
@@ -145,8 +162,11 @@ export interface TranslationSchema {
     lineTotal: string;
     sku: string;
     updating: string;
+    item: string;
+    items: string;
   };
   checkout: {
+    eyebrow: string;
     title: string;
     description: string;
     billingTitle: string;
@@ -178,6 +198,8 @@ export interface TranslationSchema {
     payNow: string;
     continueShopping: string;
     paymentRedirectNote: string;
+    noOrderFound: string;
+    totalLabel: string;
   };
 }
 

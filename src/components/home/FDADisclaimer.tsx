@@ -24,9 +24,9 @@ export function FDADisclaimer() {
                 <AlertTriangle className="h-5 w-5" aria-hidden />
               </div>
               <div>
-                <h3 className="premium-eyebrow-gold polish-type-eyebrow font-display">
+                <p className="premium-eyebrow-gold polish-type-eyebrow">
                   {t("disclaimer.title")}
-                </h3>
+                </p>
                 <p className="section-caption polish-type-disclaimer mt-4 text-[14px] leading-relaxed md:text-[15px]">
                   {t("disclaimer.body")}
                 </p>

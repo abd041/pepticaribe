@@ -20,8 +20,8 @@ export function COAPromotionBar() {
           </div>
         </div>
 
-        <div className="qa-coa-copy art-coa-copy text-center lg:text-left">
-          <p className="premium-eyebrow-gold polish-type-eyebrow font-display">{t("coa.eyebrow")}</p>
+        <div className="qa-coa-copy art-coa-copy text-legibility-column text-center lg:text-left">
+          <p className="premium-eyebrow-gold polish-type-eyebrow">{t("coa.eyebrow")}</p>
           <h2 className="font-display ref-coa-promo-title polish-type-section-title mt-3 font-bold text-[var(--soft-ivory)]">
             {t("coa.title")}
           </h2>

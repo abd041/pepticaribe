@@ -57,7 +57,7 @@ export function ReferenceProductCard({ product, index, className = "" }: Referen
 
         <div className="ref-product-size-row">
           <span>{sizeLabel}</span>
-          <span className="text-white/40">{t("common.researchGrade")}</span>
+          <span className="text-[var(--text-muted)]">{t("common.researchGrade")}</span>
         </div>
 
         <div className="ref-product-actions qa-product-actions">

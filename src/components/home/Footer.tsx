@@ -108,10 +108,10 @@ export function Footer() {
 
         <div className="ref-footer-bar polish-footer-bar border-t border-white/[0.06]">
           <div className="mx-auto max-w-[90rem] px-4 py-8 text-center sm:px-6 lg:px-8">
-            <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-[var(--soft-ivory)]/40">
+            <p className="text-xs font-medium uppercase tracking-[0.1em] text-[var(--text-secondary)]">
               {t("footer.barRuo")}
             </p>
-            <p className="mt-4 text-xs text-[var(--soft-ivory)]/32">
+            <p className="mt-4 text-xs text-[var(--text-muted)]">
               {t("footer.copyright").replace("{year}", String(year))}
             </p>
           </div>

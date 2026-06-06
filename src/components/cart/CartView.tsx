@@ -49,7 +49,7 @@ export function CartView() {
         {t("cart.continueShopping")}
       </Link>
 
-      <p className="premium-eyebrow-gold font-display mt-8">{t("nav.cart")}</p>
+      <p className="premium-eyebrow-gold mt-8">{t("nav.cart")}</p>
       <h1 className="font-display mt-3 text-3xl font-bold text-[var(--soft-ivory)] sm:text-4xl">
         {t("cart.title")}
       </h1>

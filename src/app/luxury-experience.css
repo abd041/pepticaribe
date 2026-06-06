@@ -57,13 +57,6 @@
   text-shadow: 0 2px 40px rgba(0, 0, 0, 0.35);
 }
 
-.luxury-experience .ref-hero-headline,
-.luxury-experience .concept-hero-headline {
-  font-size: clamp(2.75rem, 5.5vw + 0.5rem, 4.25rem);
-  letter-spacing: var(--heading-track-display);
-  line-height: 1.02;
-}
-
 .luxury-experience .premium-section-lg {
   padding-top: var(--lux-section-y);
   padding-bottom: var(--lux-section-y);
@@ -339,7 +332,7 @@
 }
 
 .luxury-experience .polish-featured-vial {
-  transform: scale(1.08);
+  transform: scale(1);
   transform-origin: center bottom;
 }
 

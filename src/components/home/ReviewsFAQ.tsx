@@ -26,7 +26,7 @@ export function ReviewsFAQ() {
           <div className="ref-reviews-faq-grid qa-reviews-faq-grid grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
             <div className="lux-reveal art-reviews-column">
               <div className="qa-section-header qa-section-header-left">
-                <p className="premium-eyebrow-gold polish-type-eyebrow font-display">
+                <p className="premium-eyebrow-gold polish-type-eyebrow">
                   {t("reviews.eyebrow")}
                 </p>
                 <h2 className="font-display ref-reviews-title polish-type-section-title mt-3 font-bold text-[var(--soft-ivory)]">
@@ -56,7 +56,7 @@ export function ReviewsFAQ() {
                     <blockquote className="polish-review-quote art-review-quote mt-5 font-display text-[15px] italic leading-[1.7] text-[var(--soft-ivory)]/82">
                       {item.quote}
                     </blockquote>
-                    <p className="polish-review-author art-review-byline mt-6 flex items-center gap-1.5 text-xs font-medium text-[var(--soft-ivory)]/45">
+                    <p className="polish-review-author art-review-byline mt-6 flex items-center gap-1.5 text-xs font-medium text-[var(--text-muted)]">
                       <BadgeCheck className="h-3.5 w-3.5 text-[var(--ocean-blue)]/70" aria-hidden />
                       {item.author}
                     </p>
@@ -80,7 +80,7 @@ export function ReviewsFAQ() {
                 <blockquote className="polish-review-quote art-review-quote mt-6 font-display text-lg italic leading-[1.7] text-[var(--soft-ivory)]/82">
                   {reviews[reviewIndex]?.quote}
                 </blockquote>
-                <p className="polish-review-author art-review-byline mt-6 flex items-center gap-1.5 text-sm font-medium text-[var(--soft-ivory)]/45">
+                <p className="polish-review-author art-review-byline mt-6 flex items-center gap-1.5 text-sm font-medium text-[var(--text-muted)]">
                   <BadgeCheck className="h-4 w-4 text-[var(--ocean-blue)]/70" aria-hidden />
                   {reviews[reviewIndex]?.author}
                 </p>
@@ -129,7 +129,7 @@ export function ReviewsFAQ() {
 
             <div className="ref-faq-column polish-faq-column qa-faq-column lux-reveal">
               <div className="qa-section-header qa-section-header-left">
-                <p className="premium-eyebrow-gold polish-type-eyebrow font-display">{t("faq.eyebrow")}</p>
+                <p className="premium-eyebrow-gold polish-type-eyebrow">{t("faq.eyebrow")}</p>
                 <h2 className="font-display ref-faq-title polish-type-section-title mt-3 font-bold text-[var(--soft-ivory)]">
                   {t("faq.title")}
                 </h2>

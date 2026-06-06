@@ -21,8 +21,8 @@ export function ProductDetailActions({ product }: ProductDetailActionsProps) {
     <div className="mt-8 space-y-4 border-t border-white/[0.06] pt-8">
       {product.variants.length > 1 ? (
         <label className="block">
-          <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--soft-ivory)]/55">
-            Size
+          <span className="form-field-label">
+            {t("products.sizeLabel")}
           </span>
           <select
             value={selectedVariantId}
@@ -58,7 +58,7 @@ export function ProductDetailActions({ product }: ProductDetailActionsProps) {
         href="/coa"
         className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--ocean-blue)]"
       >
-        View COA Library
+        {t("products.viewCoaLibrary")}
         <ArrowRight className="h-3.5 w-3.5" aria-hidden />
       </Link>
     </div>

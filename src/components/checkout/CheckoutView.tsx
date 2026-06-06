@@ -57,7 +57,7 @@ function AddressFields({
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       <label className="block sm:col-span-1">
-        <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--soft-ivory)]/55">
+        <span className="form-field-label">
           {labels.firstName} *
         </span>
         <input
@@ -71,7 +71,7 @@ function AddressFields({
         />
       </label>
       <label className="block sm:col-span-1">
-        <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--soft-ivory)]/55">
+        <span className="form-field-label">
           {labels.lastName} *
         </span>
         <input
@@ -85,7 +85,7 @@ function AddressFields({
         />
       </label>
       <label className="block sm:col-span-2">
-        <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--soft-ivory)]/55">
+        <span className="form-field-label">
           {labels.company}
         </span>
         <input
@@ -96,10 +96,10 @@ function AddressFields({
           value={values.company ?? ""}
           onChange={(e) => set("company", e.target.value)}
         />
-        <span className="mt-1 block text-[11px] text-[var(--soft-ivory)]/35">{labels.companyHint}</span>
+        <span className="form-field-hint mt-1 block">{labels.companyHint}</span>
       </label>
       <label className="block sm:col-span-1">
-        <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--soft-ivory)]/55">
+        <span className="form-field-label">
           {labels.email} *
         </span>
         <input
@@ -114,7 +114,7 @@ function AddressFields({
         />
       </label>
       <label className="block sm:col-span-1">
-        <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--soft-ivory)]/55">
+        <span className="form-field-label">
           {labels.phone}
         </span>
         <input
@@ -128,7 +128,7 @@ function AddressFields({
         />
       </label>
       <label className="block sm:col-span-2">
-        <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--soft-ivory)]/55">
+        <span className="form-field-label">
           {labels.address1} *
         </span>
         <input
@@ -142,7 +142,7 @@ function AddressFields({
         />
       </label>
       <label className="block sm:col-span-2">
-        <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--soft-ivory)]/55">
+        <span className="form-field-label">
           {labels.address2}
         </span>
         <input
@@ -155,7 +155,7 @@ function AddressFields({
         />
       </label>
       <label className="block sm:col-span-1">
-        <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--soft-ivory)]/55">
+        <span className="form-field-label">
           {labels.city} *
         </span>
         <input
@@ -169,7 +169,7 @@ function AddressFields({
         />
       </label>
       <label className="block sm:col-span-1">
-        <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--soft-ivory)]/55">
+        <span className="form-field-label">
           {labels.state} *
         </span>
         <input
@@ -183,7 +183,7 @@ function AddressFields({
         />
       </label>
       <label className="block sm:col-span-1">
-        <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--soft-ivory)]/55">
+        <span className="form-field-label">
           {labels.postcode} *
         </span>
         <input
@@ -197,7 +197,7 @@ function AddressFields({
         />
       </label>
       <label className="block sm:col-span-1">
-        <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--soft-ivory)]/55">
+        <span className="form-field-label">
           {labels.country} *
         </span>
         <input
@@ -312,7 +312,7 @@ export function CheckoutView() {
         {t("checkout.backToCart")}
       </Link>
 
-      <p className="premium-eyebrow-gold font-display mt-8">{t("nav.cart")}</p>
+      <p className="premium-eyebrow-gold mt-8">{t("checkout.eyebrow")}</p>
       <h1 className="font-display mt-3 text-3xl font-bold text-[var(--soft-ivory)] sm:text-4xl">
         {t("checkout.title")}
       </h1>
@@ -362,7 +362,7 @@ export function CheckoutView() {
 
           <section className="glass-card rounded-xl p-6">
             <label className="block">
-              <span className="text-xs font-semibold uppercase tracking-[0.08em] text-[var(--soft-ivory)]/55">
+              <span className="form-field-label">
                 {t("checkout.orderNote")}
               </span>
               <textarea

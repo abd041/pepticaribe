@@ -83,7 +83,7 @@ export function CartLineItem({ line }: CartLineItemProps) {
         <button
           type="button"
           onClick={() => removeItem(line.variantId)}
-          className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--soft-ivory)]/45 transition-colors hover:text-red-400"
+          className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--text-muted)] transition-colors hover:text-red-400"
         >
           <Trash2 className="h-3.5 w-3.5" aria-hidden />
           {t("cart.remove")}

@@ -22,7 +22,7 @@ export async function FeaturedProducts() {
       <SectionAtmosphere variant="products" className="premium-section-lg">
         <div className="qa-client-container mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <div className="qa-section-header mx-auto max-w-2xl text-center lux-reveal">
-            <p className="premium-eyebrow-gold polish-type-eyebrow font-display">{eyebrow}</p>
+            <p className="premium-eyebrow-gold polish-type-eyebrow">{eyebrow}</p>
             <h2 className="font-display type-display-section polish-type-section-title mt-3">
               {title}
             </h2>

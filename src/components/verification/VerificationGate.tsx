@@ -186,7 +186,7 @@ export function VerificationGate({
         aria-labelledby={titleId}
         aria-describedby={descId}
         tabIndex={-1}
-        className="relative z-10 w-full max-w-[400px] outline-none"
+        className="relative z-10 w-full max-w-md outline-none"
       >
         <div className="gate-gradient-border shadow-2xl shadow-black/50">
           <div className="relative overflow-hidden rounded-2xl bg-navy-900/94 backdrop-blur-xl sm:rounded-3xl">
@@ -202,7 +202,7 @@ export function VerificationGate({
                   className={`rounded-full px-2 py-0.5 text-[10px] font-semibold transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400 ${
                     language === lang
                       ? "bg-teal-500 text-white shadow-sm shadow-teal-500/25"
-                      : "text-white/40 hover:bg-white/5 hover:text-white/70"
+                      : "text-white/60 hover:bg-white/5 hover:text-white/85"
                   }`}
                   aria-pressed={language === lang}
                   aria-label={lang === "en" ? t("common.english") : t("common.spanish")}
@@ -222,7 +222,7 @@ export function VerificationGate({
                   <BrandLogo size="xs" className="relative" />
                 </div>
 
-                <span className="gate-enter-item brand-badge-premium mt-2 inline-flex items-center gap-1 rounded-full border px-2 py-px text-[9px] font-semibold uppercase tracking-widest text-teal-400/90">
+                <span className="gate-enter-item brand-badge-premium mt-2 inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-teal-300">
                   <Shield className="h-2 w-2" aria-hidden />
                   {t("gate.badge")}
                 </span>
@@ -234,13 +234,13 @@ export function VerificationGate({
                   {t("common.brandName")}
                 </h1>
 
-                <p className="gate-enter-item font-display mt-px text-xs font-semibold text-teal-400">
+                <h2 className="gate-enter-item font-display mt-1 text-sm font-semibold text-teal-300">
                   {t("gate.title")}
-                </p>
+                </h2>
 
                 <p
                   id={descId}
-                  className="gate-enter-item mt-1.5 line-clamp-2 max-w-[18rem] text-[11px] leading-snug text-white/50"
+                  className="gate-enter-item mt-2 max-w-[20rem] text-sm leading-relaxed text-white/75"
                 >
                   {t("gate.subtitle")}
                 </p>
@@ -251,10 +251,10 @@ export function VerificationGate({
                   (badge, i) => (
                     <span
                       key={badge}
-                      className={`rounded-full px-1.5 py-px text-[9px] font-medium ${
+                      className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${
                         i === 2
-                          ? "bg-teal-500/8 text-teal-400/85"
-                          : "bg-white/4 text-white/40"
+                          ? "bg-teal-500/8 text-teal-300"
+                          : "bg-white/4 text-white/65"
                       }`}
                     >
                       {badge}
@@ -273,8 +273,8 @@ export function VerificationGate({
               >
                 <div className="flex items-center justify-end">
                   <span
-                    className={`text-[11px] font-semibold tabular-nums tracking-wide ${
-                      allChecked ? "text-teal-400" : "text-white/45"
+                    className={`text-xs font-semibold tabular-nums tracking-wide ${
+                      allChecked ? "text-teal-300" : "text-white/65"
                     }`}
                   >
                     {progressLabel}
@@ -325,8 +325,8 @@ export function VerificationGate({
                         </span>
                       </span>
                       <span
-                        className={`text-[11px] leading-snug transition-colors duration-300 ${
-                          isChecked ? "text-white/88" : "text-white/58 group-hover:text-white/72"
+                        className={`text-sm leading-relaxed transition-colors duration-300 ${
+                          isChecked ? "text-white" : "text-white/80 group-hover:text-white/90"
                         }`}
                       >
                         {item.label}
@@ -337,7 +337,7 @@ export function VerificationGate({
               </fieldset>
 
               {showError && !allChecked ? (
-                <p role="alert" className="mt-1.5 text-center text-[10px] font-medium text-amber-400">
+                <p role="alert" className="mt-1.5 text-center text-xs font-medium text-amber-300">
                   {t("gate.allRequired")}
                 </p>
               ) : null}
@@ -356,10 +356,10 @@ export function VerificationGate({
                     type="button"
                     onClick={handleEnter}
                     disabled={!allChecked}
-                    className={`group relative w-full overflow-hidden rounded-full px-4 py-2 text-[11px] font-semibold transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400 sm:text-xs ${
+                    className={`group relative w-full overflow-hidden rounded-full px-4 py-2.5 text-sm font-semibold transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400 ${
                       allChecked
                         ? "bg-linear-to-r from-teal-500 to-teal-400 text-white shadow-lg shadow-teal-500/35 hover:scale-[1.02]"
-                        : "cursor-not-allowed bg-navy-800/90 text-white/22 ring-1 ring-inset ring-white/6"
+                        : "cursor-not-allowed bg-navy-800/90 text-white/45 ring-1 ring-inset ring-white/10"
                     }`}
                   >
                     <span className="relative flex items-center justify-center gap-1.5">
@@ -376,14 +376,14 @@ export function VerificationGate({
                 <button
                   type="button"
                   onClick={handleExit}
-                  className="flex flex-1 items-center justify-center gap-1.5 rounded-full border border-white/10 px-4 py-2 text-[11px] font-semibold text-white/50 transition-all duration-300 hover:scale-[1.01] hover:border-white/18 hover:bg-white/5 hover:text-white/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/35 sm:text-xs active:scale-[0.99]"
+                  className="flex flex-1 items-center justify-center gap-1.5 rounded-full border border-white/10 px-4 py-2.5 text-sm font-semibold text-white/70 transition-all duration-300 hover:scale-[1.01] hover:border-white/18 hover:bg-white/5 hover:text-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/35 active:scale-[0.99]"
                 >
                   <LogOut className="h-3 w-3" aria-hidden />
                   {t("gate.exitButton")}
                 </button>
               </div>
 
-              <p className="gate-enter-item mt-2 text-center text-[9px] leading-snug text-white/28">
+              <p className="gate-enter-item mt-3 text-center text-xs leading-relaxed text-white/58">
                 {t("gate.footerDisclaimer")}
               </p>
             </div>

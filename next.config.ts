@@ -1,11 +1,18 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import type { NextConfig } from "next";
 import bundleAnalyzer from "@next/bundle-analyzer";
+
+const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 });
 
 const nextConfig: NextConfig = {
+  turbopack: {
+    root: projectRoot,
+  },
   poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],

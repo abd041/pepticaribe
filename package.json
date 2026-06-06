@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:clean": "node scripts/clean-dev-cache.mjs && next dev",
+    "dev:webpack": "next dev --webpack",
     "build": "npm run css:consolidate && npm run assets:build && npm run assets:check && next build",
     "build:app": "npm run css:consolidate && npm run assets:check && next build",
     "start": "next start",

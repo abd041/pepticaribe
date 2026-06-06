@@ -13,11 +13,17 @@ export type MarketingPageSlug =
   | "terms-and-conditions"
   | "research-use-only";
 
+export type MarketingPageSection = {
+  heading: string;
+  paragraphs: readonly string[];
+};
+
 export type MarketingPageContent = {
   eyebrow?: string;
   title: string;
   description: string;
   body: readonly string[];
+  sections?: readonly MarketingPageSection[];
 };
 
 export const MARKETING_PAGE_SLUGS: MarketingPageSlug[] = [
@@ -44,6 +50,20 @@ export const MARKETING_CONTENT: Record<Language, Record<MarketingPageSlug, Marke
       body: [
         "We partner with ISO 17025 accredited laboratories to validate identity and purity on every batch we release.",
         "Our catalog is designed for qualified researchers and institutions conducting in-vitro laboratory research.",
+      ],
+      sections: [
+        {
+          heading: "Laboratory Standards",
+          paragraphs: [
+            "We partner with ISO 17025 accredited laboratories to validate identity and purity on every batch we release.",
+          ],
+        },
+        {
+          heading: "Research Catalog",
+          paragraphs: [
+            "Our catalog is designed for qualified researchers and institutions conducting in-vitro laboratory research.",
+          ],
+        },
       ],
     },
     coa: {
@@ -72,6 +92,16 @@ export const MARKETING_CONTENT: Record<Language, Record<MarketingPageSlug, Marke
       body: [
         "Email: info@pepticaribe.com",
         "Orders placed before 4 PM EST ship same day with discreet packaging.",
+      ],
+      sections: [
+        {
+          heading: "Email",
+          paragraphs: ["Email: info@pepticaribe.com"],
+        },
+        {
+          heading: "Shipping",
+          paragraphs: ["Orders placed before 4 PM EST ship same day with discreet packaging."],
+        },
       ],
     },
     membership: {
@@ -146,6 +176,20 @@ export const MARKETING_CONTENT: Record<Language, Record<MarketingPageSlug, Marke
         "Colaboramos con laboratorios acreditados ISO 17025 para validar identidad y pureza en cada lote que liberamos.",
         "Nuestro catálogo está diseñado para investigadores e instituciones calificadas que realizan investigación de laboratorio in vitro.",
       ],
+      sections: [
+        {
+          heading: "Estándares de Laboratorio",
+          paragraphs: [
+            "Colaboramos con laboratorios acreditados ISO 17025 para validar identidad y pureza en cada lote que liberamos.",
+          ],
+        },
+        {
+          heading: "Catálogo de Investigación",
+          paragraphs: [
+            "Nuestro catálogo está diseñado para investigadores e instituciones calificadas que realizan investigación de laboratorio in vitro.",
+          ],
+        },
+      ],
     },
     coa: {
       eyebrow: "Transparencia",
@@ -173,6 +217,16 @@ export const MARKETING_CONTENT: Record<Language, Record<MarketingPageSlug, Marke
       body: [
         "Email: info@pepticaribe.com",
         "Pedidos antes de las 4 PM EST se envían el mismo día con empaque discreto.",
+      ],
+      sections: [
+        {
+          heading: "Correo",
+          paragraphs: ["Email: info@pepticaribe.com"],
+        },
+        {
+          heading: "Envío",
+          paragraphs: ["Pedidos antes de las 4 PM EST se envían el mismo día con empaque discreto."],
+        },
       ],
     },
     membership: {

@@ -42,7 +42,7 @@ export function CheckoutSuccessView() {
   if (!displayOrder) {
     return (
       <div className="mx-auto max-w-2xl px-4 py-16 text-center sm:px-6 lg:py-24">
-        <p className="text-sm text-[var(--soft-ivory)]/55">No order found.</p>
+        <p className="text-sm text-[var(--text-secondary)]">{t("checkout.noOrderFound")}</p>
         <Link href="/products" className="btn-primary mt-6 inline-flex rounded-full px-8 py-3.5 text-sm font-bold uppercase">
           {t("checkout.continueShopping")}
         </Link>
@@ -62,13 +62,13 @@ export function CheckoutSuccessView() {
       <p className="section-caption mx-auto mt-4 max-w-md">{t("checkout.successDescription")}</p>
 
       <div className="glass-card mx-auto mt-8 max-w-md rounded-xl p-6 text-left">
-        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--soft-ivory)]/45">
+        <p className="technical-label font-semibold">
           {t("checkout.orderNumber")}
         </p>
         <p className="font-display mt-2 text-2xl font-bold text-[var(--luxury-gold)]">#{displayOrder}</p>
         {displayTotal ? (
-          <p className="mt-3 text-sm text-[var(--soft-ivory)]/65">
-            Total: {displayCurrency} ${Number(displayTotal).toFixed(2)}
+          <p className="mt-3 text-sm text-[var(--text-secondary)]">
+            {t("checkout.totalLabel")}: {displayCurrency} ${Number(displayTotal).toFixed(2)}
           </p>
         ) : null}
       </div>
@@ -91,7 +91,7 @@ export function CheckoutSuccessView() {
         </Link>
       </div>
 
-      <p className="mx-auto mt-6 max-w-md text-xs text-[var(--soft-ivory)]/40">
+      <p className="mx-auto mt-6 max-w-md text-xs text-[var(--text-muted)]">
         {t("checkout.paymentRedirectNote")}
       </p>
     </div>
