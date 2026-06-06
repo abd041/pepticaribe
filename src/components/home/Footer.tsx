@@ -1,35 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import { Mail, Share2 } from "lucide-react";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
-
-const SHOP_LINKS = [
-  { label: "All Products", href: "/products" },
-  { label: "Best Sellers", href: "/#best-sellers" },
-  { label: "New Arrivals", href: "/products" },
-  { label: "Membership", href: "/membership" },
-];
-
-const COMPANY_LINKS = [
-  { label: "About Us", href: "/about" },
-  { label: "Our Story", href: "/about" },
-  { label: "Research Standards", href: "/coa" },
-  { label: "Contact", href: "/contact" },
-];
-
-const SUPPORT_LINKS = [
-  { label: "FAQ", href: "/faq" },
-  { label: "Shipping Info", href: "/contact" },
-  { label: "Returns", href: "/returns-refunds" },
-  { label: "Track Order", href: "/contact" },
-];
-
-const LEGAL_LINKS = [
-  { label: "Disclaimer", href: "/disclaimer" },
-  { label: "Privacy Policy", href: "/privacy-policy" },
-  { label: "Terms & Conditions", href: "/terms-and-conditions" },
-  { label: "Research Use Only", href: "/research-use-only" },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 function FooterLinkColumn({
   title,
@@ -55,6 +30,37 @@ function FooterLinkColumn({
 }
 
 export function Footer() {
+  const { t } = useLanguage();
+  const year = new Date().getFullYear();
+
+  const shopLinks = [
+    { label: t("footer.linkAllProducts"), href: "/products" },
+    { label: t("footer.linkBestSellers"), href: "/#best-sellers" },
+    { label: t("footer.linkNewArrivals"), href: "/products" },
+    { label: t("nav.membership"), href: "/membership" },
+  ];
+
+  const companyLinks = [
+    { label: t("footer.linkAboutUs"), href: "/about" },
+    { label: t("footer.linkOurStory"), href: "/about" },
+    { label: t("footer.linkResearchStandards"), href: "/coa" },
+    { label: t("nav.contact"), href: "/contact" },
+  ];
+
+  const supportLinks = [
+    { label: t("nav.faq"), href: "/faq" },
+    { label: t("footer.linkShippingInfo"), href: "/contact" },
+    { label: t("footer.linkReturns"), href: "/returns-refunds" },
+    { label: t("footer.linkTrackOrder"), href: "/contact" },
+  ];
+
+  const legalLinks = [
+    { label: t("disclaimer.title"), href: "/disclaimer" },
+    { label: t("footer.linkPrivacy"), href: "/privacy-policy" },
+    { label: t("footer.linkTerms"), href: "/terms-and-conditions" },
+    { label: t("footer.linkRuo"), href: "/research-use-only" },
+  ];
+
   return (
     <footer className="ref-footer polish-footer final8-footer qa-footer premium-footer-brand lux-footer relative overflow-hidden text-white">
       <SectionAtmosphere variant="footer" showBottomTransition={false}>
@@ -68,7 +74,7 @@ export function Footer() {
                 <a
                   href="https://instagram.com"
                   className="ref-social-btn"
-                  aria-label="Instagram"
+                  aria-label={t("footer.socialInstagram")}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -77,32 +83,36 @@ export function Footer() {
                 <a
                   href="https://x.com"
                   className="ref-social-btn"
-                  aria-label="X"
+                  aria-label={t("footer.socialX")}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <span className="text-sm font-bold">X</span>
                 </a>
-                <a href="mailto:info@pepticaribe.com" className="ref-social-btn" aria-label="Email">
+                <a
+                  href="mailto:info@pepticaribe.com"
+                  className="ref-social-btn"
+                  aria-label={t("footer.socialEmail")}
+                >
                   <Mail className="h-4 w-4" />
                 </a>
               </div>
             </div>
 
-            <FooterLinkColumn title="Shop" links={SHOP_LINKS} />
-            <FooterLinkColumn title="Company" links={COMPANY_LINKS} />
-            <FooterLinkColumn title="Support" links={SUPPORT_LINKS} />
-            <FooterLinkColumn title="Legal" links={LEGAL_LINKS} />
+            <FooterLinkColumn title={t("footer.columnShop")} links={shopLinks} />
+            <FooterLinkColumn title={t("footer.columnCompany")} links={companyLinks} />
+            <FooterLinkColumn title={t("footer.columnSupport")} links={supportLinks} />
+            <FooterLinkColumn title={t("footer.columnLegal")} links={legalLinks} />
           </div>
         </div>
 
         <div className="ref-footer-bar polish-footer-bar border-t border-white/[0.06]">
           <div className="mx-auto max-w-[90rem] px-4 py-8 text-center sm:px-6 lg:px-8">
             <p className="text-[11px] font-medium uppercase tracking-[0.12em] text-[var(--soft-ivory)]/40">
-              Research Use Only — Not for Human Consumption
+              {t("footer.barRuo")}
             </p>
             <p className="mt-4 text-xs text-[var(--soft-ivory)]/32">
-              © {new Date().getFullYear()} PeptiCaribe. All Rights Reserved.
+              {t("footer.copyright").replace("{year}", String(year))}
             </p>
           </div>
         </div>

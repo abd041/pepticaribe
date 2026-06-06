@@ -5,6 +5,7 @@ import type { Product } from "@/types/product";
 import { getCompoundProfile } from "@/lib/productImagery";
 import { getProductFromPrice } from "@/lib/pricing";
 import { LuxuryProductPresentation } from "@/components/ui/LuxuryProductPresentation";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface ReferenceProductCardProps {
   product: Product;
@@ -19,6 +20,7 @@ function getDefaultVariant(product: Product) {
 
 /** Premium best seller card — luxury product presentation system */
 export function ReferenceProductCard({ product, index, className = "" }: ReferenceProductCardProps) {
+  const { t } = useLanguage();
   const fromPrice = getProductFromPrice(product);
   const profile = getCompoundProfile(product.slug);
   const variant = getDefaultVariant(product);
@@ -53,15 +55,15 @@ export function ReferenceProductCard({ product, index, className = "" }: Referen
 
         <div className="ref-product-size-row">
           <span>{sizeLabel}</span>
-          <span className="text-white/40">Research Grade</span>
+          <span className="text-white/40">{t("common.researchGrade")}</span>
         </div>
 
         <div className="ref-product-actions qa-product-actions">
           <Link href={`/products/${product.slug}`} className="ref-product-btn-teal polish-product-cta qa-btn-card-teal">
-            View Details
+            {t("common.viewDetails")}
           </Link>
           <button type="button" className="ref-product-btn-gold polish-product-cta qa-btn-card-gold">
-            Add To Cart
+            {t("common.addToCart")}
           </button>
         </div>
       </div>

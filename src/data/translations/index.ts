@@ -1,26 +1,27 @@
 import { en } from "./en";
 import { es } from "./es";
-import type { TranslationKey, TranslationSchema } from "./types";
+import type { Language, TranslationKey, TranslationSchema } from "./types";
 
-export type Language = "en" | "es";
+export type { Language, TranslationKey, TranslationSchema };
 
 export const translations: Record<Language, TranslationSchema> = {
   en,
   es,
 };
 
-export type { TranslationKey, TranslationSchema };
+export function getTranslation(language: Language, key: TranslationKey): string {
+  const parts = key.split(".");
+  let current: unknown = translations[language];
 
-export function getTranslation(
-  language: Language,
-  key: TranslationKey
-): string {
-  const [section, field] = key.split(".") as [
-    keyof TranslationSchema,
-    string,
-  ];
-  const tree = translations[language][section] as Record<string, string>;
-  return tree[field] ?? key;
+  for (const part of parts) {
+    if (current && typeof current === "object" && part in (current as object)) {
+      current = (current as Record<string, unknown>)[part];
+    } else {
+      return key;
+    }
+  }
+
+  return typeof current === "string" ? current : key;
 }
 
 export { en, es };

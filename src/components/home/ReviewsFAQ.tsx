@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   ArrowRight,
   BadgeCheck,
@@ -9,52 +9,15 @@ import {
   ChevronRight,
   Star,
 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+import { getHomeContent } from "@/data/translations/homeContent";
 import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
-
-const REVIEWS = [
-  {
-    quote:
-      "Consistently high purity across multiple orders. COAs match every batch — exactly what our lab requires.",
-    author: "Verified Researcher",
-  },
-  {
-    quote:
-      "Fast fulfillment and discreet packaging. The documentation quality sets PeptiCaribe apart from other suppliers.",
-    author: "Verified Researcher",
-  },
-  {
-    quote:
-      "Third-party testing on every compound gives us confidence before any in-vitro protocol begins.",
-    author: "Verified Researcher",
-  },
-] as const;
-
-const FAQ_ITEMS = [
-  {
-    question: "Are these peptides for human consumption?",
-    answer:
-      "No. All PeptiCaribe products are sold strictly for Research Use Only (RUO) — for in-vitro laboratory research, educational, and scientific purposes by qualified researchers and institutions only.",
-  },
-  {
-    question: "How do I verify batch purity?",
-    answer:
-      "Every batch includes a Certificate of Analysis from an independent ISO 17025 accredited laboratory. Browse our COA Library to view HPLC purity and mass spectrometry identity results.",
-  },
-  {
-    question: "What shipping options are available?",
-    answer:
-      "Orders placed before 4 PM EST ship same day with discreet packaging. Standard delivery is 2–3 business days domestically with secure worldwide options available.",
-  },
-  {
-    question: "Do you provide technical support?",
-    answer:
-      "Yes. Our team includes researchers who understand peptide handling, reconstitution, and storage protocols. Contact us for technical assistance with your research orders.",
-  },
-] as const;
 
 export function ReviewsFAQ() {
   const [reviewIndex, setReviewIndex] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const { language, t } = useLanguage();
+  const { reviews, faqs } = useMemo(() => getHomeContent(language), [language]);
 
   return (
     <section className="ref-reviews-faq polish-reviews-faq final8-reviews-faq qa-reviews-section relative overflow-hidden">
@@ -63,15 +26,17 @@ export function ReviewsFAQ() {
           <div className="ref-reviews-faq-grid qa-reviews-faq-grid grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
             <div className="lux-reveal art-reviews-column">
               <div className="qa-section-header qa-section-header-left">
-                <p className="premium-eyebrow-gold polish-type-eyebrow font-display">What Our Customers Say</p>
+                <p className="premium-eyebrow-gold polish-type-eyebrow font-display">
+                  {t("reviews.eyebrow")}
+                </p>
                 <h2 className="font-display ref-reviews-title polish-type-section-title mt-3 font-bold text-[var(--soft-ivory)]">
-                  Researcher Testimonials
+                  {t("reviews.title")}
                 </h2>
                 <div className="gold-accent-line qa-section-divider qa-section-divider-left" aria-hidden />
               </div>
 
               <div className="ref-reviews-carousel polish-reviews-grid art-reviews-grid lux-stagger-group mt-8 hidden gap-4 lg:grid lg:grid-cols-3">
-                {REVIEWS.map((item) => (
+                {reviews.map((item) => (
                   <article
                     key={item.quote}
                     className="ref-review-card polish-review-card final8-review-card premium-card art-editorial-review lux-stagger-item p-6 xl:p-7"
@@ -113,17 +78,17 @@ export function ReviewsFAQ() {
                   ))}
                 </div>
                 <blockquote className="polish-review-quote art-review-quote mt-6 font-display text-lg italic leading-[1.7] text-[var(--soft-ivory)]/82">
-                  {REVIEWS[reviewIndex].quote}
+                  {reviews[reviewIndex]?.quote}
                 </blockquote>
                 <p className="polish-review-author art-review-byline mt-6 flex items-center gap-1.5 text-sm font-medium text-[var(--soft-ivory)]/45">
                   <BadgeCheck className="h-4 w-4 text-[var(--ocean-blue)]/70" aria-hidden />
-                  {REVIEWS[reviewIndex].author}
+                  {reviews[reviewIndex]?.author}
                 </p>
               </article>
 
               <div className="mt-6 flex items-center justify-between lg:hidden">
                 <div className="flex gap-2">
-                  {REVIEWS.map((_, i) => (
+                  {reviews.map((_, i) => (
                     <button
                       key={i}
                       type="button"
@@ -133,7 +98,7 @@ export function ReviewsFAQ() {
                           ? "bg-[var(--ocean-blue)]"
                           : "bg-white/20 hover:bg-white/35"
                       }`}
-                      aria-label={`Show review ${i + 1}`}
+                      aria-label={`${t("reviews.showReview")} ${i + 1}`}
                     />
                   ))}
                 </div>
@@ -141,20 +106,20 @@ export function ReviewsFAQ() {
                   <button
                     type="button"
                     onClick={() =>
-                      setReviewIndex((i) => (i === 0 ? REVIEWS.length - 1 : i - 1))
+                      setReviewIndex((i) => (i === 0 ? reviews.length - 1 : i - 1))
                     }
                     className="ref-carousel-btn"
-                    aria-label="Previous review"
+                    aria-label={t("reviews.prevReview")}
                   >
                     <ChevronLeft className="h-4 w-4" />
                   </button>
                   <button
                     type="button"
                     onClick={() =>
-                      setReviewIndex((i) => (i === REVIEWS.length - 1 ? 0 : i + 1))
+                      setReviewIndex((i) => (i === reviews.length - 1 ? 0 : i + 1))
                     }
                     className="ref-carousel-btn"
-                    aria-label="Next review"
+                    aria-label={t("reviews.nextReview")}
                   >
                     <ChevronRight className="h-4 w-4" />
                   </button>
@@ -164,15 +129,15 @@ export function ReviewsFAQ() {
 
             <div className="ref-faq-column polish-faq-column qa-faq-column lux-reveal">
               <div className="qa-section-header qa-section-header-left">
-                <p className="premium-eyebrow-gold polish-type-eyebrow font-display">Researcher FAQs</p>
+                <p className="premium-eyebrow-gold polish-type-eyebrow font-display">{t("faq.eyebrow")}</p>
                 <h2 className="font-display ref-faq-title polish-type-section-title mt-3 font-bold text-[var(--soft-ivory)]">
-                  Common Questions
+                  {t("faq.title")}
                 </h2>
                 <div className="gold-accent-line qa-section-divider qa-section-divider-left" aria-hidden />
               </div>
 
               <div className="ref-faq-list polish-faq-list final8-faq-list mt-8">
-                {FAQ_ITEMS.map((item, i) => {
+                {faqs.map((item, i) => {
                   const isOpen = openFaq === i;
                   const panelId = `faq-panel-${i}`;
                   const triggerId = `faq-trigger-${i}`;
@@ -212,7 +177,7 @@ export function ReviewsFAQ() {
                 href="/faq"
                 className="btn-primary polish-cta-primary qa-faq-cta group mt-8 inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold uppercase tracking-[0.08em]"
               >
-                View All FAQs
+                {t("faq.viewAll")}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
               </Link>
             </div>

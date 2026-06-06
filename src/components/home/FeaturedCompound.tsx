@@ -14,7 +14,9 @@ import {
 } from "lucide-react";
 import type { Product } from "@/types/product";
 import { FEATURED_BPC_EXHIBIT } from "@/lib/productImagery";
+import { IMAGE_BLUR_DATA_URL } from "@/lib/imagePlaceholder";
 import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
+import { useLanguage } from "@/context/LanguageContext";
 
 const TRUST_MARKS = [
   { icon: FlaskConical, label: "99%+ Purity" },
@@ -39,6 +41,7 @@ type FeaturedCompoundProps = {
 
 export function FeaturedCompound({ product }: FeaturedCompoundProps) {
   const ref = useRef(null);
+  const { t } = useLanguage();
 
   if (!product) return null;
 
@@ -61,7 +64,9 @@ export function FeaturedCompound({ product }: FeaturedCompoundProps) {
         <div className="qa-client-container mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <div className="ref-featured-grid polish-featured-grid art-featured-grid grid items-center gap-10 lg:grid-cols-[minmax(0,0.68fr)_minmax(0,1.62fr)_minmax(0,0.72fr)] lg:gap-8 xl:gap-10">
             <div className="ref-featured-copy polish-featured-copy lux-featured-copy art-featured-copy">
-              <p className="premium-eyebrow-gold polish-type-eyebrow font-display">Featured Compound</p>
+              <p className="premium-eyebrow-gold polish-type-eyebrow font-display">
+                {t("featured.compoundEyebrow")}
+              </p>
               <h2 className="font-display ref-featured-title polish-featured-title polish-type-section-title mt-3 font-bold tracking-[-0.03em] text-[var(--soft-ivory)]">
                 {product.displayName}
               </h2>
@@ -114,6 +119,8 @@ export function FeaturedCompound({ product }: FeaturedCompoundProps) {
                     width={FEATURED_BPC_EXHIBIT.width}
                     height={FEATURED_BPC_EXHIBIT.height}
                     sizes="(max-width: 1024px) 68vw, 420px"
+                    placeholder="blur"
+                    blurDataURL={IMAGE_BLUR_DATA_URL}
                     className="ref-featured-vial polish-featured-vial lux-featured-vial h-auto max-h-[98%] w-auto max-w-[92%] object-contain"
                   />
                 </div>

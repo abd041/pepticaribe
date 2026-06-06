@@ -1,5 +1,6 @@
-import { getMarketingPageExports } from "@/lib/createMarketingPage";
+import { generateMarketingMetadata, MarketingPageView } from "@/lib/marketingPage";
 
-const { metadata, Page } = getMarketingPageExports("terms-and-conditions");
-export { metadata };
-export default Page;
+export const generateMetadata = () => generateMarketingMetadata("terms-and-conditions");
+export default function TermsPage() {
+  return <MarketingPageView slug="terms-and-conditions" />;
+}

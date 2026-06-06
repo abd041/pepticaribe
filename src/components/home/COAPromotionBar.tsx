@@ -2,8 +2,11 @@
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function COAPromotionBar() {
+  const { t } = useLanguage();
+
   return (
     <section className="ref-coa-promo polish-coa-promo qa-coa-section art-coa-section lux-reveal relative overflow-hidden">
       <div className="ref-coa-promo-bg absolute inset-0" aria-hidden />
@@ -18,15 +21,12 @@ export function COAPromotionBar() {
         </div>
 
         <div className="qa-coa-copy art-coa-copy text-center lg:text-left">
-          <p className="premium-eyebrow-gold polish-type-eyebrow font-display">
-            Transparency You Can Verify
-          </p>
+          <p className="premium-eyebrow-gold polish-type-eyebrow font-display">{t("coa.eyebrow")}</p>
           <h2 className="font-display ref-coa-promo-title polish-type-section-title mt-3 font-bold text-[var(--soft-ivory)]">
-            Certificate of Analysis
+            {t("coa.title")}
           </h2>
           <p className="section-caption polish-type-lead mx-auto mt-4 max-w-2xl lg:mx-0">
-            Every peptide batch is third-party tested for purity and identity. Full lab
-            reports available for every compound we supply.
+            {t("coa.description")}
           </p>
         </div>
 
@@ -34,7 +34,7 @@ export function COAPromotionBar() {
           href="/coa"
           className="btn-platinum polish-cta-secondary qa-coa-cta group mx-auto inline-flex shrink-0 items-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold uppercase tracking-[0.08em] lg:mx-0"
         >
-          Browse COA Library
+          {t("coa.cta")}
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
         </Link>
       </div>

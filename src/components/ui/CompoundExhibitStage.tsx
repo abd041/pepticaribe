@@ -6,6 +6,7 @@ import {
   EXHIBIT_VIAL_SLOT,
   type CompoundExhibitIdentity,
 } from "@/lib/productImagery";
+import { IMAGE_BLUR_DATA_URL } from "@/lib/imagePlaceholder";
 
 type CompoundExhibitStageProps = {
   alt: string;
@@ -93,6 +94,8 @@ export function CompoundExhibitStage({
             height={exhibit.display.intrinsicH}
             priority={priority}
             sizes={sizes}
+            placeholder="blur"
+            blurDataURL={IMAGE_BLUR_DATA_URL}
             className="compound-exhibit-vial h-full w-full object-contain object-bottom"
           />
         </div>

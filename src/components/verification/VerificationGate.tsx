@@ -11,6 +11,7 @@ import {
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { useLanguage } from "@/context/LanguageContext";
 import { isVerified, setVerified } from "@/lib/storage";
+import { setVerificationCookie } from "@/app/actions/verification";
 import type { Language } from "@/data/translations";
 import { GateBackground } from "./GateBackground";
 
@@ -46,6 +47,7 @@ export function VerificationGate({
     const storedVerified = isVerified();
     if (storedVerified) {
       setVerifiedState(true);
+      void setVerificationCookie();
     } else if (initialVerified) {
       setVerified();
       setVerifiedState(true);
@@ -83,6 +85,7 @@ export function VerificationGate({
       return;
     }
     setVerified();
+    void setVerificationCookie();
     setVerifiedState(true);
   }, [allChecked]);
 

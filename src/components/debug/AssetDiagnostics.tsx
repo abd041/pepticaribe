@@ -1,11 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { products } from "@/data/products";
+import type { Product } from "@/types/product";
 import {
   IMPORTED_PRODUCT_IMAGES,
   IMPORTED_VIDEOS,
-} from "@/data/asset-report";
+} from "@/data/imported-assets";
 
 type AssetStatus = "loading" | "ok" | "broken";
 
@@ -121,13 +121,13 @@ function VideoProbe({
   );
 }
 
-export function AssetDiagnostics() {
+export function AssetDiagnostics({ catalog }: { catalog: Product[] }) {
   const [imageStatuses, setImageStatuses] = useState<Record<string, AssetStatus>>({});
   const [videoStatuses, setVideoStatuses] = useState<Record<string, AssetStatus>>({});
 
   const productRows: ProductAssetRow[] = useMemo(
     () =>
-      products.map((p) => ({
+      catalog.map((p) => ({
         slug: p.slug,
         displayName: p.displayName,
         sku: p.sku,
@@ -135,24 +135,24 @@ export function AssetDiagnostics() {
         video: p.video ?? null,
         variantImages: p.variants.map((v) => ({ sku: v.sku, path: v.image })),
       })),
-    []
+    [catalog]
   );
 
   const allMappedImagePaths = useMemo(() => {
     const paths = new Set<string>();
-    for (const p of products) {
+    for (const p of catalog) {
       paths.add(p.image);
       for (const v of p.variants) paths.add(v.image);
     }
     return [...paths].sort();
-  }, []);
+  }, [catalog]);
 
   const allMappedVideoPaths = useMemo(() => {
-    return products
+    return catalog
       .filter((p) => p.video)
       .map((p) => p.video as string)
       .sort();
-  }, []);
+  }, [catalog]);
 
   const allImportedImagePaths = useMemo(
     () => IMPORTED_PRODUCT_IMAGES.map((f) => `/products/${f}`),
@@ -221,7 +221,7 @@ export function AssetDiagnostics() {
         <section className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div className="rounded-xl bg-white p-5 shadow-sm">
             <p className="text-xs font-medium text-slate-500">Products</p>
-            <p className="mt-1 text-3xl font-bold text-slate-900">{products.length}</p>
+            <p className="mt-1 text-3xl font-bold text-slate-900">{catalog.length}</p>
           </div>
           <div className="rounded-xl bg-white p-5 shadow-sm">
             <p className="text-xs font-medium text-slate-500">Images checked</p>

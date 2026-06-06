@@ -1,43 +1,20 @@
 "use client";
 
 import { useRef } from "react";
-import {
-  FlaskConical,
-  Shield,
-  ShieldCheck,
-  Truck,
-} from "lucide-react";
+import { FlaskConical, Shield, ShieldCheck, Truck } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
-
-const VALUE_PROPS = [
-  {
-    icon: Shield,
-    title: "Quality",
-    description:
-      "Research grade peptides manufactured to the highest standards.",
-  },
-  {
-    icon: Truck,
-    title: "Shipping",
-    description:
-      "Fast, discreet, and secure worldwide delivery you can rely on.",
-  },
-  {
-    icon: FlaskConical,
-    title: "Tested",
-    description:
-      "Every batch is tested by independent third-party laboratories.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Trusted Source",
-    description:
-      "Transparent COAs and proven compounds for researchers worldwide.",
-  },
-] as const;
 
 export function ValueProps() {
   const ref = useRef(null);
+  const { t } = useLanguage();
+
+  const valueProps = [
+    { icon: Shield, title: t("valueProps.qualityTitle"), description: t("valueProps.qualityDesc") },
+    { icon: Truck, title: t("valueProps.shippingTitle"), description: t("valueProps.shippingDesc") },
+    { icon: FlaskConical, title: t("valueProps.testedTitle"), description: t("valueProps.testedDesc") },
+    { icon: ShieldCheck, title: t("valueProps.trustedTitle"), description: t("valueProps.trustedDesc") },
+  ] as const;
 
   return (
     <section
@@ -48,7 +25,7 @@ export function ValueProps() {
         <div className="qa-client-container mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <div className="ref-trust-frame qa-trust-frame lux-stagger-group">
             <div className="ref-trust-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-              {VALUE_PROPS.map((item) => (
+              {valueProps.map((item) => (
                 <article
                   key={item.title}
                   className="ref-trust-card value-prop-card polish-trust-card qa-trust-card lux-stagger-item"
@@ -59,7 +36,7 @@ export function ValueProps() {
                   <h3 className="ref-trust-title polish-type-trust-card-title font-display mt-5">
                     {item.title}
                   </h3>
-                  <p className="section-caption qa-trust-copy mx-auto mt-3 max-w-[16rem]">
+                  <p className="ref-trust-desc polish-type-trust-card-desc section-caption mt-3">
                     {item.description}
                   </p>
                 </article>

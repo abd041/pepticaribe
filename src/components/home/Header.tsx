@@ -1,22 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ShoppingBag, User } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BrandLogo } from "@/components/ui/BrandLogo";
+import { LanguageToggle } from "@/components/ui/LanguageToggle";
+import { useLanguage } from "@/context/LanguageContext";
 
-const navLinks = [
-  { href: "/", label: "Home" },
-  { href: "/products", label: "Products" },
-  { href: "/coa", label: "COA Library" },
-  { href: "/about", label: "About Us" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/contact", label: "Contact Us" },
-];
-
-const mobileExtra = [{ href: "/membership", label: "Membership" }];
+const mobileExtra = [{ href: "/membership", labelKey: "nav.membership" as const }];
 
 function isNavActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
@@ -27,6 +20,20 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const { t } = useLanguage();
+
+  const navLinks = useMemo(
+    () =>
+      [
+        { href: "/", labelKey: "nav.home" as const },
+        { href: "/products", labelKey: "nav.products" as const },
+        { href: "/coa", labelKey: "nav.coa" as const },
+        { href: "/about", labelKey: "nav.about" as const },
+        { href: "/faq", labelKey: "nav.faq" as const },
+        { href: "/contact", labelKey: "nav.contact" as const },
+      ] as const,
+    [],
+  );
 
   useEffect(() => {
     if (!open) return;
@@ -69,17 +76,18 @@ export function Header() {
                   }`}
                   aria-current={active ? "page" : undefined}
                 >
-                  {link.label}
+                  {t(link.labelKey)}
                 </Link>
               );
             })}
           </nav>
 
           <div className="flex items-center justify-self-end gap-1 sm:gap-2">
+            <LanguageToggle className="hidden sm:flex" />
             <button
               type="button"
               className="concept-cart-btn nav-icon-btn relative"
-              aria-label="Cart"
+              aria-label={t("nav.cart")}
             >
               <ShoppingBag className="h-[1.35rem] w-[1.35rem]" strokeWidth={1.5} />
               <span className="concept-cart-badge cart-badge absolute -right-1 -top-1 flex h-[1.125rem] min-w-[1.125rem] items-center justify-center rounded-full px-0.5 text-[10px] font-extrabold leading-none">
@@ -90,7 +98,7 @@ export function Header() {
               type="button"
               className="nav-icon-btn lg:hidden"
               onClick={() => setOpen(true)}
-              aria-label="Open menu"
+              aria-label={t("nav.openMenu")}
             >
               <Menu className="h-5 w-5" />
             </button>
@@ -111,7 +119,7 @@ export function Header() {
             <motion.aside
               role="dialog"
               aria-modal="true"
-              aria-label="Navigation menu"
+              aria-label={t("nav.menu")}
               className="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-gradient-to-b from-[var(--surface-dark)] to-[var(--deep-navy)] p-6 text-white lg:hidden"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
@@ -119,16 +127,19 @@ export function Header() {
               transition={{ type: "spring", damping: 28, stiffness: 300 }}
             >
               <div className="flex items-center justify-between">
-                <span className="premium-eyebrow-gold font-display">Menu</span>
-                <button
-                  ref={closeButtonRef}
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  className="rounded-full p-2 hover:bg-white/10"
-                  aria-label="Close menu"
-                >
-                  <X className="h-5 w-5" />
-                </button>
+                <span className="premium-eyebrow-gold font-display">{t("nav.menu")}</span>
+                <div className="flex items-center gap-2">
+                  <LanguageToggle />
+                  <button
+                    ref={closeButtonRef}
+                    type="button"
+                    onClick={() => setOpen(false)}
+                    className="rounded-full p-2 hover:bg-white/10"
+                    aria-label={t("nav.closeMenu")}
+                  >
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
               </div>
 
               <nav className="mt-10 flex flex-col gap-1">
@@ -144,7 +155,7 @@ export function Header() {
                       onClick={() => setOpen(false)}
                       className="block rounded-xl px-4 py-3.5 text-lg font-medium tracking-wide text-[var(--soft-ivory)]/85 transition-colors hover:bg-white/5 hover:text-[var(--soft-ivory)]"
                     >
-                      {link.label}
+                      {t(link.labelKey)}
                     </Link>
                   </motion.div>
                 ))}
@@ -159,14 +170,14 @@ export function Header() {
                   className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-lg font-medium transition-colors hover:bg-white/5"
                 >
                   <User className="h-5 w-5 text-[var(--luxury-gold)]" />
-                  My Account
+                  {t("nav.myAccount")}
                 </Link>
                 <button
                   type="button"
                   className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-lg font-medium transition-colors hover:bg-white/5"
                 >
                   <ShoppingBag className="h-5 w-5 text-[var(--luxury-gold)]" />
-                  Cart
+                  {t("nav.cart")}
                 </button>
               </div>
             </motion.aside>

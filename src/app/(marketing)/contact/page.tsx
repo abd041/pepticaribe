@@ -1,5 +1,6 @@
-import { getMarketingPageExports } from "@/lib/createMarketingPage";
+import { generateMarketingMetadata, MarketingPageView } from "@/lib/marketingPage";
 
-const { metadata, Page } = getMarketingPageExports("contact");
-export { metadata };
-export default Page;
+export const generateMetadata = () => generateMarketingMetadata("contact");
+export default function ContactPage() {
+  return <MarketingPageView slug="contact" />;
+}

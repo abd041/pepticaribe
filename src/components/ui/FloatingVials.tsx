@@ -2,9 +2,14 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { getFeaturedProducts } from "@/data/products";
 
-const floatingProducts = getFeaturedProducts().slice(0, 4);
+/** Featured exhibit images — static paths avoid pulling the full catalog into client bundles */
+const FLOATING_VIAL_IMAGES = [
+  "/products/exhibit/glp-3-rt.png",
+  "/products/exhibit/glp-2-t.png",
+  "/products/exhibit/bpc-157.png",
+  "/products/exhibit/ghk-cu.png",
+] as const;
 
 const FLOAT_CONFIG = [
   { className: "absolute -left-4 top-1/4 w-20 opacity-60 md:w-28", scale: 1, duration: 8, delay: 0 },
@@ -16,13 +21,13 @@ const FLOAT_CONFIG = [
 export function FloatingVials() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-      {floatingProducts.map((product, i) => {
+      {FLOATING_VIAL_IMAGES.map((src, i) => {
         const config = FLOAT_CONFIG[i];
         if (!config) return null;
 
         return (
           <motion.div
-            key={product.id}
+            key={src}
             className={config.className}
             style={{ scale: config.scale }}
             animate={{ y: [0, -20, 0], rotate: [-3, 3, -3] }}
@@ -34,7 +39,7 @@ export function FloatingVials() {
             }}
           >
             <Image
-              src={product.image}
+              src={src}
               alt=""
               width={200}
               height={300}

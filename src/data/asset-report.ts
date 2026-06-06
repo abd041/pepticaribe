@@ -1,18 +1,8 @@
-import { products, getAllMappedCoaPaths, getAllMappedImagePaths, getAllMappedVideoPaths, getPrivateProducts, getPublicProducts } from "./products";
-import { IMPORTED_PRODUCT_IMAGE_FILES } from "@/lib/productImageAssets";
-import { IMPORTED_VIDEO_FILES } from "@/lib/videoAssets";
+import "server-only";
+
 import type { ProductCatalogStats } from "@/types/product";
-
-export interface AssetInventory {
-  productImages: string[];
-  videos: string[];
-  coaFiles: string[];
-}
-
-/** Expected public asset filenames (imported into /public) */
-export const IMPORTED_PRODUCT_IMAGES = IMPORTED_PRODUCT_IMAGE_FILES;
-
-export const IMPORTED_VIDEOS = IMPORTED_VIDEO_FILES;
+import { products, getAllMappedCoaPaths, getAllMappedImagePaths, getAllMappedVideoPaths, getPrivateProducts, getPublicProducts } from "./catalog/queries";
+import { IMPORTED_PRODUCT_IMAGES, IMPORTED_VIDEOS } from "./imported-assets";
 
 export interface DetailedAssetReport extends ProductCatalogStats {
   productsWithVideo: string[];

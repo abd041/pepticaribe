@@ -1,5 +1,6 @@
-import { getMarketingPageExports } from "@/lib/createMarketingPage";
+import { generateMarketingMetadata, MarketingPageView } from "@/lib/marketingPage";
 
-const { metadata, Page } = getMarketingPageExports("privacy-policy");
-export { metadata };
-export default Page;
+export const generateMetadata = () => generateMarketingMetadata("privacy-policy");
+export default function PrivacyPolicyPage() {
+  return <MarketingPageView slug="privacy-policy" />;
+}

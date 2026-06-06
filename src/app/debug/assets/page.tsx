@@ -1,4 +1,5 @@
 import { AssetDiagnostics } from "@/components/debug/AssetDiagnostics";
+import { products } from "@/data/products";
 
 export const metadata = {
   title: "Asset Diagnostics | PeptiCaribe",
@@ -6,5 +7,5 @@ export const metadata = {
 };
 
 export default function DebugAssetsPage() {
-  return <AssetDiagnostics />;
+  return <AssetDiagnostics catalog={products} />;
 }

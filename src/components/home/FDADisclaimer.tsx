@@ -4,11 +4,13 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
 import { AlertTriangle } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
 
 export function FDADisclaimer() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
+  const { t } = useLanguage();
 
   return (
     <section ref={ref} className="art-chapter-trust qa-disclaimer-section bg-[var(--deep-navy)]">
@@ -26,25 +28,16 @@ export function FDADisclaimer() {
               </div>
               <div>
                 <h3 className="premium-eyebrow-gold polish-type-eyebrow font-display">
-                  FDA Disclaimer
+                  {t("disclaimer.title")}
                 </h3>
                 <p className="section-caption polish-type-disclaimer mt-4 text-[14px] leading-relaxed md:text-[15px]">
-                  These products have not been evaluated by the Food and Drug
-                  Administration. These products are not intended to diagnose,
-                  treat, cure, or prevent any disease. All products sold by
-                  PeptiCaribe are intended strictly for{" "}
-                  <strong className="font-semibold text-[var(--soft-ivory)]/90">
-                    Research Use Only (RUO)
-                  </strong>{" "}
-                  — for in-vitro laboratory research, educational, and scientific
-                  purposes by qualified researchers and institutions only. Not for
-                  human consumption, veterinary use, or therapeutic application.
+                  {t("disclaimer.body")}
                 </p>
                 <Link
                   href="/disclaimer"
                   className="qa-cta-text mt-5 inline-flex items-center gap-1 text-sm font-semibold"
                 >
-                  Read the full disclaimer
+                  {t("disclaimer.readFull")}
                   <span aria-hidden>→</span>
                 </Link>
               </div>

@@ -6,6 +6,7 @@ import {
   HERO_SHOWCASE_REFERENCE,
   isHeroShowcaseReference,
 } from "@/lib/heroAssets";
+import { IMAGE_BLUR_DATA_URL } from "@/lib/imagePlaceholder";
 import { LuxuryProductPresentation } from "@/components/ui/LuxuryProductPresentation";
 
 /** Hero right panel — always hero-showcase-reference.png (see @/lib/heroAssets) */
@@ -32,6 +33,8 @@ export function HeroShowcase() {
               height={HERO_SHOWCASE_REFERENCE.height}
               priority
               sizes="(max-width: 1023px) 100vw, 50vw"
+              placeholder="blur"
+              blurDataURL={IMAGE_BLUR_DATA_URL}
               className="ref-hero-showcase-reference h-auto w-auto max-w-full object-contain object-bottom-left"
               data-hero-image={HERO_SHOWCASE_REFERENCE.src}
             />

@@ -7,7 +7,7 @@ import {
   EXHIBIT_STAGE_HEIGHT_CLASS,
   getCompoundProfile,
 } from "@/lib/productImagery";
-import { getProductFromPrice } from "@/data/products";
+import { getProductFromPrice } from "@/lib/pricing";
 import { CompoundExhibitStage } from "@/components/ui/CompoundExhibitStage";
 
 interface LuxuryProductCardProps {

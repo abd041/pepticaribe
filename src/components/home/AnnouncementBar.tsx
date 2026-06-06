@@ -1,14 +1,17 @@
 "use client";
 
 import { FlaskConical, Shield, Truck } from "lucide-react";
-
-const announcements = [
-  { icon: Truck, text: "Fast 2-Day Shipping — Free On Orders Over $175" },
-  { icon: FlaskConical, text: "Research Use Only Peptides — ISO 17025 Tested" },
-  { icon: Shield, text: "Secure Checkout — Encrypted" },
-] as const;
+import { useLanguage } from "@/context/LanguageContext";
 
 export function AnnouncementBar() {
+  const { t } = useLanguage();
+
+  const announcements = [
+    { icon: Truck, text: t("announcements.shipping") },
+    { icon: FlaskConical, text: t("announcements.ruo") },
+    { icon: Shield, text: t("announcements.secure") },
+  ] as const;
+
   const ticker = [...announcements, ...announcements];
 
   return (
@@ -17,7 +20,7 @@ export function AnnouncementBar() {
       <div
         className="concept-announcement-marquee relative py-2.5 lg:py-3"
         role="region"
-        aria-label="Site announcements"
+        aria-label={t("announcements.regionLabel")}
       >
         <div className="concept-announcement-marquee-track flex w-max items-center">
           {ticker.map((item, index) => (

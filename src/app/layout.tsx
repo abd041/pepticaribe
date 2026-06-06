@@ -7,6 +7,7 @@ import {
   VERIFICATION_COOKIE,
   parseLanguageCookie,
 } from "@/lib/storage";
+import { SiteJsonLd } from "@/components/seo/SiteJsonLd";
 import "./globals.css";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://pepticaribe.com";
@@ -73,6 +74,7 @@ export default async function RootLayout({
       className={`${plusJakarta.variable} ${cinzel.variable} min-h-full antialiased`}
     >
       <body className="min-h-full">
+        <SiteJsonLd />
         <AppProviders
           initialVerified={initialVerified}
           initialLanguage={initialLanguage}

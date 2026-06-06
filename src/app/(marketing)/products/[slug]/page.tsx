@@ -6,6 +6,8 @@ import { getProductBySlug, getPublicProducts } from "@/data/products";
 import { getProductFromPrice } from "@/lib/pricing";
 import { MarketingPage } from "@/components/pages/MarketingPage";
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://pepticaribe.com";
+
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
@@ -33,8 +35,31 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
   const fromPrice = getProductFromPrice(product);
 
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.displayName,
+    description: product.description,
+    sku: product.sku,
+    image: `${SITE_URL}${product.image}`,
+    offers: {
+      "@type": "AggregateOffer",
+      lowPrice: fromPrice,
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+    },
+    brand: {
+      "@type": "Brand",
+      name: "PeptiCaribe",
+    },
+  };
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
       <MarketingPage
         eyebrow={product.category}
         title={product.displayName}

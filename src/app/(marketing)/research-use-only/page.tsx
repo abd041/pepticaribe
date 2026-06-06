@@ -1,5 +1,6 @@
-import { getMarketingPageExports } from "@/lib/createMarketingPage";
+import { generateMarketingMetadata, MarketingPageView } from "@/lib/marketingPage";
 
-const { metadata, Page } = getMarketingPageExports("research-use-only");
-export { metadata };
-export default Page;
+export const generateMetadata = () => generateMarketingMetadata("research-use-only");
+export default function ResearchUseOnlyPage() {
+  return <MarketingPageView slug="research-use-only" />;
+}
