@@ -1,14 +1,14 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
 import { AlertTriangle } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
+import { useInView } from "@/hooks/useInView";
 
 export function FDADisclaimer() {
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
   const { t } = useLanguage();
 
@@ -16,11 +16,8 @@ export function FDADisclaimer() {
     <section ref={ref} className="art-chapter-trust qa-disclaimer-section bg-[var(--deep-navy)]">
       <SectionAtmosphere variant="disclaimer" className="premium-section">
         <div className="qa-client-container mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="qa-disclaimer-card fda-disclaimer-card mx-auto max-w-3xl rounded-[var(--radius-premium)] p-8 sm:p-10 md:p-12"
-            initial={{ opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
+          <div
+            className={`qa-disclaimer-card fda-disclaimer-card motion-reveal mx-auto max-w-3xl rounded-[var(--radius-premium)] p-8 sm:p-10 md:p-12 ${inView ? "is-visible" : ""}`}
           >
             <div className="flex gap-5 md:gap-7">
               <div className="fda-icon-well shrink-0">
@@ -42,7 +39,7 @@ export function FDADisclaimer() {
                 </Link>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </SectionAtmosphere>
     </section>

@@ -130,6 +130,55 @@ export interface TranslationSchema {
     catalogDescription: string;
     viewBestSellers: string;
   };
+  cart: {
+    title: string;
+    description: string;
+    emptyTitle: string;
+    emptyDescription: string;
+    browseProducts: string;
+    continueShopping: string;
+    proceedCheckout: string;
+    subtotal: string;
+    researchNote: string;
+    remove: string;
+    quantity: string;
+    lineTotal: string;
+    sku: string;
+    updating: string;
+  };
+  checkout: {
+    title: string;
+    description: string;
+    billingTitle: string;
+    shippingTitle: string;
+    shipDifferent: string;
+    orderSummary: string;
+    placeOrder: string;
+    placingOrder: string;
+    orderNote: string;
+    orderNotePlaceholder: string;
+    ruoLabel: string;
+    notConfigured: string;
+    backToCart: string;
+    firstName: string;
+    lastName: string;
+    company: string;
+    companyHint: string;
+    email: string;
+    phone: string;
+    address1: string;
+    address2: string;
+    city: string;
+    state: string;
+    postcode: string;
+    country: string;
+    successTitle: string;
+    successDescription: string;
+    orderNumber: string;
+    payNow: string;
+    continueShopping: string;
+    paymentRedirectNote: string;
+  };
 }
 
 /** Dot-notation path into TranslationSchema */

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 import { getProductBySlug, getPublicProducts } from "@/data/products";
 import { getProductFromPrice } from "@/lib/pricing";
 import { MarketingPage } from "@/components/pages/MarketingPage";
+import { ProductDetailActions } from "@/components/products/ProductDetailActions";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://pepticaribe.com";
 
@@ -96,18 +97,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
             ))}
           </ul>
 
-          <p className="mt-8 text-xs leading-relaxed text-[var(--soft-ivory)]/40">
-            Full product imagery, COA downloads, and cart checkout are launching soon. Contact
-            support to place research orders in the interim.
-          </p>
-
-          <Link
-            href="/coa"
-            className="btn-outline-gold mt-6 inline-flex items-center gap-2 rounded-full px-6 py-3 text-xs font-bold uppercase tracking-[0.08em]"
-          >
-            View COA Library
-            <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-          </Link>
+          <ProductDetailActions product={product} />
         </div>
       </MarketingPage>
     </div>

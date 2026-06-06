@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import Image from "next/image";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { BrandAtmosphere, DnaHelixAccent } from "@/components/ui/BrandMotifs";
+import { CINEMATIC_EASE, isCoarsePointer, isReducedMotion } from "@/lib/gsap/motion";
 
-/** Static paths — avoids bundling the full product catalog into the gate */
 const GATE_VIALS = [
   { id: "left", src: "/products/glp-3-rt.png" },
   { id: "center", src: "/products/bpc-157.png" },
@@ -43,26 +43,64 @@ const PRODUCT_LAYERS = [
 ];
 
 export function GateBackground() {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const springX = useSpring(mouseX, { stiffness: 50, damping: 22 });
-  const springY = useSpring(mouseY, { stiffness: 50, damping: 22 });
+  const rootRef = useRef<HTMLDivElement>(null);
+  const parallaxRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const floatRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const pointerRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
-    const coarse = window.matchMedia("(pointer: coarse)").matches;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (coarse || reduced) return;
+    const reduced = isReducedMotion();
+    const coarse = isCoarsePointer();
+    const parallaxEnabled = !reduced && !coarse;
 
-    const handleMove = (e: MouseEvent) => {
-      mouseX.set((e.clientX / window.innerWidth - 0.5) * 2);
-      mouseY.set((e.clientY / window.innerHeight - 0.5) * 2);
+    floatRefs.current.forEach((el, i) => {
+      const layer = PRODUCT_LAYERS[i];
+      if (!el || !layer || reduced) return;
+
+      gsap.to(el, {
+        y: -layer.floatY,
+        rotate: layer.role === "center" ? 0.5 : 1,
+        duration: layer.floatDuration,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+    });
+
+    if (!parallaxEnabled) return;
+
+    const setParallax = () => {
+      parallaxRefs.current.forEach((el, i) => {
+        const layer = PRODUCT_LAYERS[i];
+        if (!el || !layer) return;
+        gsap.to(el, {
+          x: pointerRef.current.x * layer.parallaxFactor,
+          y: pointerRef.current.y * layer.parallaxFactor * 0.5,
+          duration: 0.85,
+          ease: CINEMATIC_EASE,
+          overwrite: "auto",
+        });
+      });
     };
-    window.addEventListener("mousemove", handleMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMove);
-  }, [mouseX, mouseY]);
+
+    const onMove = (e: MouseEvent) => {
+      pointerRef.current = {
+        x: (e.clientX / window.innerWidth - 0.5) * 2,
+        y: (e.clientY / window.innerHeight - 0.5) * 2,
+      };
+      setParallax();
+    };
+
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      gsap.killTweensOf([...parallaxRefs.current, ...floatRefs.current].filter(Boolean));
+    };
+  }, []);
 
   return (
     <div
+      ref={rootRef}
       className="pointer-events-none fixed inset-0 h-dvh overflow-hidden bg-navy-950"
       aria-hidden
     >
@@ -83,66 +121,39 @@ export function GateBackground() {
       {GATE_VIALS.map((vial, i) => {
         const layer = PRODUCT_LAYERS[i];
         if (!layer) return null;
+        const isCenter = layer.role === "center";
+
         return (
-          <ParallaxProduct
+          <div
             key={vial.id}
-            src={vial.src}
-            layer={layer}
-            springX={springX}
-            springY={springY}
-          />
+            ref={(el) => {
+              parallaxRefs.current[i] = el;
+            }}
+            className={`absolute ${layer.className}`}
+            style={{ opacity: layer.opacity, zIndex: isCenter ? 2 : 1 }}
+          >
+            <div
+              ref={(el) => {
+                floatRefs.current[i] = el;
+              }}
+              className={layer.blur || undefined}
+            >
+              <OptimizedImage
+                src={vial.src}
+                alt=""
+                width={isCenter ? 180 : 140}
+                height={isCenter ? 270 : 210}
+                priority={isCenter}
+                className={`h-auto w-full object-contain ${
+                  isCenter
+                    ? "drop-shadow-[0_12px_40px_rgba(20,184,166,0.15)]"
+                    : "drop-shadow-[0_6px_24px_rgba(0,0,0,0.35)]"
+                }`}
+              />
+            </div>
+          </div>
         );
       })}
     </div>
-  );
-}
-
-function ParallaxProduct({
-  src,
-  layer,
-  springX,
-  springY,
-}: {
-  src: string;
-  layer: (typeof PRODUCT_LAYERS)[number];
-  springX: ReturnType<typeof useSpring>;
-  springY: ReturnType<typeof useSpring>;
-}) {
-  const x = useTransform(springX, [-1, 1], [-layer.parallaxFactor, layer.parallaxFactor]);
-  const y = useTransform(
-    springY,
-    [-1, 1],
-    [-layer.parallaxFactor * 0.5, layer.parallaxFactor * 0.5]
-  );
-
-  const isCenter = layer.role === "center";
-
-  return (
-    <motion.div
-      className={`absolute ${layer.className}`}
-      style={{ x, y, opacity: layer.opacity, zIndex: isCenter ? 2 : 1 }}
-    >
-      <motion.div
-        className={layer.blur || undefined}
-        animate={{ y: [0, -layer.floatY, 0], rotate: isCenter ? [-0.5, 0.5, -0.5] : [-1, 1, -1] }}
-        transition={{
-          y: { duration: layer.floatDuration, repeat: Infinity, ease: "easeInOut" },
-          rotate: { duration: layer.floatDuration * 1.1, repeat: Infinity, ease: "easeInOut" },
-        }}
-      >
-        <Image
-          src={src}
-          alt=""
-          width={isCenter ? 180 : 140}
-          height={isCenter ? 270 : 210}
-          className={`h-auto w-full object-contain ${
-            isCenter
-              ? "drop-shadow-[0_12px_40px_rgba(20,184,166,0.15)]"
-              : "drop-shadow-[0_6px_24px_rgba(0,0,0,0.35)]"
-          }`}
-          priority={isCenter}
-        />
-      </motion.div>
-    </motion.div>
   );
 }

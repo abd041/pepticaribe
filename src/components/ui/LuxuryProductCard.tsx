@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
 import Link from "next/link";
 import type { Product } from "@/types/product";
 import {
@@ -9,6 +9,8 @@ import {
 } from "@/lib/productImagery";
 import { getProductFromPrice } from "@/lib/pricing";
 import { CompoundExhibitStage } from "@/components/ui/CompoundExhibitStage";
+import { useInView } from "@/hooks/useInView";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 interface LuxuryProductCardProps {
   product: Product;
@@ -17,24 +19,21 @@ interface LuxuryProductCardProps {
 
 /** Luxury research-grade specimen presentation — curated display, not catalog listing */
 export function LuxuryProductCard({ product, index }: LuxuryProductCardProps) {
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-50px" });
+  const reduceMotion = useReducedMotion();
   const fromPrice = getProductFromPrice(product);
   const profile = getCompoundProfile(product.slug);
 
   if (!profile) return null;
 
   return (
-    <motion.article
+    <article
+      ref={ref}
       data-slug={product.slug}
       data-tone={profile.exhibit.tone}
-      className="product-showcase-card editorial-product-card group"
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{
-        duration: 0.7,
-        delay: index * 0.08,
-        ease: [0.22, 1, 0.36, 1],
-      }}
+      className={`product-showcase-card editorial-product-card group motion-reveal ${inView || reduceMotion ? "is-visible" : ""}`}
+      style={{ transitionDelay: `${index * 0.08}s` }}
     >
       <div className="product-showcase-vitrine">
         <div className="product-showcase-frame" aria-hidden="true" />
@@ -88,6 +87,6 @@ export function LuxuryProductCard({ product, index }: LuxuryProductCardProps) {
           </button>
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 }

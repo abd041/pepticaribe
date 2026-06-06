@@ -6,6 +6,7 @@ import { getCompoundProfile } from "@/lib/productImagery";
 import { getProductFromPrice } from "@/lib/pricing";
 import { LuxuryProductPresentation } from "@/components/ui/LuxuryProductPresentation";
 import { useLanguage } from "@/context/LanguageContext";
+import { useCart } from "@/context/CartContext";
 
 interface ReferenceProductCardProps {
   product: Product;
@@ -21,6 +22,7 @@ function getDefaultVariant(product: Product) {
 /** Premium best seller card — luxury product presentation system */
 export function ReferenceProductCard({ product, index, className = "" }: ReferenceProductCardProps) {
   const { t } = useLanguage();
+  const { addItem } = useCart();
   const fromPrice = getProductFromPrice(product);
   const profile = getCompoundProfile(product.slug);
   const variant = getDefaultVariant(product);
@@ -62,7 +64,11 @@ export function ReferenceProductCard({ product, index, className = "" }: Referen
           <Link href={`/products/${product.slug}`} className="ref-product-btn-teal polish-product-cta qa-btn-card-teal">
             {t("common.viewDetails")}
           </Link>
-          <button type="button" className="ref-product-btn-gold polish-product-cta qa-btn-card-gold">
+          <button
+            type="button"
+            className="ref-product-btn-gold polish-product-cta qa-btn-card-gold"
+            onClick={() => variant && addItem(product, variant.id)}
+          >
             {t("common.addToCart")}
           </button>
         </div>

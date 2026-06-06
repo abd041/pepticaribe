@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import type { Language } from "@/data/translations";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { CartProvider } from "@/context/CartContext";
 import { VerificationGate } from "@/components/verification/VerificationGate";
 
 type AppProvidersProps = {
@@ -18,7 +19,9 @@ export function AppProviders({
 }: AppProvidersProps) {
   return (
     <LanguageProvider initialLanguage={initialLanguage}>
-      <VerificationGate initialVerified={initialVerified}>{children}</VerificationGate>
+      <CartProvider>
+        <VerificationGate initialVerified={initialVerified}>{children}</VerificationGate>
+      </CartProvider>
     </LanguageProvider>
   );
 }

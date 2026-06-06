@@ -1,12 +1,11 @@
 "use client";
 
-import Image from "next/image";
+import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import {
   HERO_ASSETS,
   HERO_SHOWCASE_REFERENCE,
   isHeroShowcaseReference,
 } from "@/lib/heroAssets";
-import { IMAGE_BLUR_DATA_URL } from "@/lib/imagePlaceholder";
 import { LuxuryProductPresentation } from "@/components/ui/LuxuryProductPresentation";
 
 /** Hero right panel — always hero-showcase-reference.png (see @/lib/heroAssets) */
@@ -26,17 +25,14 @@ export function HeroShowcase() {
       <div className="lux-hero-product">
         <LuxuryProductPresentation variant="hero" alt="Research peptide vials on luxury pedestal">
           <div className="ref-hero-showcase-reference-frame lux-hero-float flex h-full w-full items-end justify-start">
-            <Image
+            <OptimizedImage
               src={src}
               alt="GLP-2 T and GLP-5 RT research peptide vials on a luxury illuminated pedestal"
               width={HERO_SHOWCASE_REFERENCE.width}
               height={HERO_SHOWCASE_REFERENCE.height}
               priority
               sizes="(max-width: 1023px) 100vw, 50vw"
-              placeholder="blur"
-              blurDataURL={IMAGE_BLUR_DATA_URL}
               className="ref-hero-showcase-reference h-auto w-auto max-w-full object-contain object-bottom-left"
-              data-hero-image={HERO_SHOWCASE_REFERENCE.src}
             />
           </div>
         </LuxuryProductPresentation>

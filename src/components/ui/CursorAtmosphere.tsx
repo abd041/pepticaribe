@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 /** Lightweight cursor-reactive ambient glow — CSS vars + rAF throttling */
 export function CursorAtmosphere() {

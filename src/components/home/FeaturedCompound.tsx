@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import Link from "next/link";
 import { useRef } from "react";
 import {
@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import type { Product } from "@/types/product";
 import { FEATURED_BPC_EXHIBIT } from "@/lib/productImagery";
-import { IMAGE_BLUR_DATA_URL } from "@/lib/imagePlaceholder";
 import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -113,14 +112,12 @@ export function FeaturedCompound({ product }: FeaturedCompoundProps) {
                   className="lux-featured-vial-float absolute inset-x-0 bottom-[11%] top-0 z-30 flex items-end justify-center"
                   data-speed="0.9"
                 >
-                  <Image
+                  <OptimizedImage
                     src={FEATURED_BPC_EXHIBIT.src}
                     alt={product.displayName}
                     width={FEATURED_BPC_EXHIBIT.width}
                     height={FEATURED_BPC_EXHIBIT.height}
                     sizes="(max-width: 1024px) 68vw, 420px"
-                    placeholder="blur"
-                    blurDataURL={IMAGE_BLUR_DATA_URL}
                     className="ref-featured-vial polish-featured-vial lux-featured-vial h-auto max-h-[98%] w-auto max-w-[92%] object-contain"
                   />
                 </div>

@@ -4,17 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run css:consolidate && next build",
+    "build": "npm run css:consolidate && npm run assets:build && npm run assets:check && next build",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "css:consolidate": "node scripts/consolidate-css.mjs",
     "analyze": "cross-env ANALYZE=true npm run build",
     "assets:check": "node scripts/check-assets.mjs",
-    "assets:placeholders": "node scripts/generate-placeholder-assets.mjs"
+    "assets:placeholders": "node scripts/generate-placeholder-assets.mjs",
+    "assets:build": "node scripts/generate-production-assets.mjs"
   },
   "dependencies": {
-    "framer-motion": "^12.40.0",
     "gsap": "^3.15.0",
     "lucide-react": "^1.17.0",
     "next": "16.2.7",
@@ -31,6 +31,7 @@
     "cross-env": "^10.1.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.7",
+    "sharp": "^0.34.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

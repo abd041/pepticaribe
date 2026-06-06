@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
+import { OptimizedImage } from "@/components/ui/OptimizedImage";
 
 /** Featured exhibit images — static paths avoid pulling the full catalog into client bundles */
 const FLOATING_VIAL_IMAGES = [
@@ -12,10 +11,10 @@ const FLOATING_VIAL_IMAGES = [
 ] as const;
 
 const FLOAT_CONFIG = [
-  { className: "absolute -left-4 top-1/4 w-20 opacity-60 md:w-28", scale: 1, duration: 8, delay: 0 },
-  { className: "absolute right-4 top-1/3 w-24 opacity-70 md:right-12 md:w-32", scale: 1.1, duration: 10, delay: 1 },
-  { className: "absolute bottom-1/4 left-1/4 hidden w-16 opacity-40 sm:block md:w-20", scale: 0.85, duration: 12, delay: 2 },
-  { className: "absolute bottom-1/3 right-1/4 hidden w-14 opacity-35 md:block md:w-[4.5rem]", scale: 0.75, duration: 9, delay: 0.5 },
+  { className: "float-vial float-vial-1 absolute -left-4 top-1/4 w-20 opacity-60 md:w-28", scale: 1 },
+  { className: "float-vial float-vial-2 absolute right-4 top-1/3 w-24 opacity-70 md:right-12 md:w-32", scale: 1.1 },
+  { className: "float-vial float-vial-3 absolute bottom-1/4 left-1/4 hidden w-16 opacity-40 sm:block md:w-20", scale: 0.85 },
+  { className: "float-vial float-vial-4 absolute bottom-1/3 right-1/4 hidden w-14 opacity-35 md:block md:w-[4.5rem]", scale: 0.75 },
 ];
 
 export function FloatingVials() {
@@ -26,26 +25,19 @@ export function FloatingVials() {
         if (!config) return null;
 
         return (
-          <motion.div
+          <div
             key={src}
             className={config.className}
-            style={{ scale: config.scale }}
-            animate={{ y: [0, -20, 0], rotate: [-3, 3, -3] }}
-            transition={{
-              duration: config.duration,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: config.delay,
-            }}
+            style={{ transform: `scale(${config.scale})` }}
           >
-            <Image
+            <OptimizedImage
               src={src}
               alt=""
               width={200}
               height={300}
               className="h-auto w-full object-contain drop-shadow-lg"
             />
-          </motion.div>
+          </div>
         );
       })}
     </div>
