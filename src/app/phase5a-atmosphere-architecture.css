@@ -1,0 +1,133 @@
+/**
+ * Phase 5A — Atmosphere architecture fix
+ * Layering, hero deduplication, restrained visibility bump. No new effects.
+ */
+
+/* ── Correct internal z-index stack (film BELOW particles) ── */
+.bio-particle-system {
+  --bio-film-depth: 0.09;
+  --bio-film-vignette: 0.22;
+  --bio-glow-boost: 1.15;
+}
+
+.bio-atmosphere-gradient {
+  z-index: 0;
+}
+
+.bio-atmosphere-film-stack {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bio-atmosphere-film-stack .bio-atmosphere-depth {
+  z-index: 1;
+  background:
+    radial-gradient(
+      ellipse 120% 90% at 50% 50%,
+      transparent 42%,
+      rgba(0, 0, 0, calc(var(--bio-film-depth) * 1.2)) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, calc(var(--bio-film-depth) * 0.65)) 0%,
+      transparent 14%,
+      transparent 86%,
+      rgba(0, 0, 0, calc(var(--bio-film-depth) * 0.85)) 100%
+    );
+}
+
+.bio-atmosphere-film-stack .bio-atmosphere-grain {
+  z-index: 2;
+  opacity: 0.022;
+}
+
+.bio-atmosphere-film-stack .bio-atmosphere-vignette {
+  z-index: 3;
+  box-shadow:
+    inset 0 0 100px rgba(0, 0, 0, calc(var(--bio-film-vignette) * 0.55)),
+    inset 0 0 200px rgba(0, 0, 0, calc(var(--bio-film-vignette) * 0.35));
+}
+
+.bio-particle-system .bio-energy-field {
+  z-index: 2;
+}
+
+.bio-particle-system .bio-molecular-field {
+  z-index: 3;
+}
+
+.bio-particle-layer--back {
+  z-index: 4;
+}
+
+.bio-particle-layer--mid {
+  z-index: 5;
+}
+
+.bio-particle-layer--front {
+  z-index: 6;
+}
+
+/* ── Moderate glow intensity +15% ── */
+.bio-particle-system .bio-energy--teal {
+  opacity: calc(0.58 * var(--bio-glow-boost));
+}
+
+.bio-particle-system .bio-energy--cyan {
+  opacity: calc(0.42 * var(--bio-glow-boost));
+}
+
+.bio-particle-system .bio-energy--gold {
+  opacity: calc(0.4 * var(--bio-glow-boost));
+}
+
+.bio-particle-system .bio-atmosphere-glow--a {
+  opacity: calc(0.72 * var(--bio-glow-boost));
+}
+
+.bio-particle-system .bio-atmosphere-glow--b {
+  opacity: calc(0.62 * var(--bio-glow-boost));
+}
+
+.bio-particle-system .bio-atmosphere-glow--c {
+  opacity: calc(0.58 * var(--bio-glow-boost));
+}
+
+/* ── Hero: remove duplicate atmosphere — global system shows through ── */
+.bio-atmosphere-host .ref-hero-section {
+  background: transparent !important;
+}
+
+.bio-atmosphere-host .ref-hero-bg-gradient {
+  display: none !important;
+}
+
+.bio-atmosphere-host .phase-g-premium .ref-hero-section {
+  background: transparent !important;
+}
+
+/* Copy legibility only — not a full hero atmosphere duplicate */
+.bio-atmosphere-host .ref-hero-copy-legibility {
+  background: linear-gradient(
+    102deg,
+    rgba(3, 11, 16, 0.38) 0%,
+    rgba(3, 11, 16, 0.1) 26%,
+    transparent 46%
+  );
+}
+
+.bio-atmosphere-host .ref-hero-showcase-reference {
+  filter:
+    drop-shadow(0 40px 72px rgba(0, 0, 0, 0.62))
+    drop-shadow(0 0 48px rgba(var(--ocean-rgb), 0.14))
+    brightness(1.06);
+}
+
+/* Supersede phase4a/phase5 film rules that painted over particles */
+.bio-particle-system > .bio-atmosphere-depth,
+.bio-particle-system > .bio-atmosphere-grain,
+.bio-particle-system > .bio-atmosphere-vignette {
+  display: none;
+}

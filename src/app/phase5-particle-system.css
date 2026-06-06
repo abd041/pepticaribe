@@ -1,0 +1,190 @@
+/**
+ * Phase 5 — Luxury Biotech Particle System
+ * Depth-layered particles, molecular accents, energy fields, GSAP parallax.
+ * Background only — no layout or content changes.
+ */
+
+/* ── Depth-layer particle field ── */
+.bio-particle-system .bio-particle-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.bio-particle-layer--back {
+  z-index: 4;
+}
+
+.bio-particle-layer--mid {
+  z-index: 5;
+}
+
+.bio-particle-layer--front {
+  z-index: 6;
+}
+
+.bio-particle {
+  position: absolute;
+  border-radius: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform, opacity;
+}
+
+/* Background layer — faintest, slowest */
+.bio-particle--back.bio-particle--teal {
+  background: rgba(var(--ocean-rgb), 0.55);
+  box-shadow: 0 0 2px rgba(var(--ocean-rgb), 0.2);
+}
+
+.bio-particle--back.bio-particle--cyan {
+  background: rgba(11, 110, 136, 0.5);
+  box-shadow: 0 0 2px rgba(11, 110, 136, 0.16);
+}
+
+.bio-particle--back.bio-particle--gold {
+  background: rgba(var(--gold-rgb), 0.4);
+  box-shadow: 0 0 2px rgba(var(--gold-rgb), 0.1);
+}
+
+/* Midground — balanced laboratory dust */
+.bio-particle--mid.bio-particle--teal {
+  background: rgba(var(--ocean-rgb), 0.75);
+  box-shadow:
+    0 0 3px rgba(var(--ocean-rgb), 0.35),
+    0 0 7px rgba(var(--ocean-rgb), 0.12);
+}
+
+.bio-particle--mid.bio-particle--cyan {
+  background: rgba(11, 110, 136, 0.7);
+  box-shadow:
+    0 0 3px rgba(11, 110, 136, 0.3),
+    0 0 6px rgba(11, 110, 136, 0.1);
+}
+
+.bio-particle--mid.bio-particle--gold {
+  background: rgba(var(--gold-rgb), 0.55);
+  box-shadow: 0 0 3px rgba(var(--gold-rgb), 0.22);
+}
+
+/* Foreground — nearest micro-specimens, softest glow */
+.bio-particle--front.bio-particle--teal {
+  background: rgba(var(--ocean-rgb), 0.9);
+  box-shadow:
+    0 0 4px rgba(var(--ocean-rgb), 0.5),
+    0 0 12px rgba(var(--ocean-rgb), 0.15);
+}
+
+.bio-particle--front.bio-particle--cyan {
+  background: rgba(11, 110, 136, 0.85);
+  box-shadow:
+    0 0 4px rgba(11, 110, 136, 0.42),
+    0 0 10px rgba(11, 110, 136, 0.12);
+}
+
+.bio-particle--front.bio-particle--gold {
+  background: rgba(var(--gold-rgb), 0.7);
+  box-shadow:
+    0 0 4px rgba(var(--gold-rgb), 0.38),
+    0 0 10px rgba(var(--gold-rgb), 0.1);
+}
+
+/* ── Atmospheric energy fields — left-weighted to support hero products ── */
+.bio-particle-system .bio-energy-field {
+  position: absolute;
+  inset: -20%;
+  z-index: 1;
+}
+
+.bio-particle-system .bio-energy {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(84px);
+  will-change: transform, opacity;
+}
+
+.bio-particle-system .bio-energy--teal {
+  top: 6%;
+  left: 4%;
+  width: 48%;
+  height: 42%;
+  background: radial-gradient(
+    circle,
+    rgba(var(--ocean-rgb), 0.2) 0%,
+    rgba(var(--ocean-rgb), 0.07) 40%,
+    transparent 72%
+  );
+  opacity: 0.58;
+}
+
+.bio-particle-system .bio-energy--cyan {
+  top: 44%;
+  right: 8%;
+  width: 38%;
+  height: 34%;
+  background: radial-gradient(
+    circle,
+    rgba(11, 110, 136, 0.14) 0%,
+    rgba(11, 110, 136, 0.05) 42%,
+    transparent 70%
+  );
+  opacity: 0.42;
+}
+
+.bio-particle-system .bio-energy--gold {
+  bottom: 2%;
+  left: 18%;
+  width: 50%;
+  height: 30%;
+  background: radial-gradient(
+    circle,
+    rgba(var(--gold-rgb), 0.09) 0%,
+    rgba(var(--ocean-rgb), 0.05) 38%,
+    transparent 72%
+  );
+  opacity: 0.4;
+}
+
+/* ── Molecular clusters — scientific, barely visible ── */
+.bio-particle-system .bio-molecular-field {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.bio-molecular-cluster {
+  stroke: rgba(var(--ocean-rgb), 0.4);
+  fill: rgba(var(--ocean-rgb), 0.08);
+}
+
+.bio-molecular-cluster--b {
+  stroke: rgba(var(--gold-rgb), 0.28);
+  fill: rgba(var(--gold-rgb), 0.06);
+}
+
+.bio-molecular-cluster--c {
+  stroke: rgba(11, 110, 136, 0.32);
+  fill: rgba(11, 110, 136, 0.05);
+}
+
+.bio-molecular-field line,
+.bio-molecular-field circle {
+  vector-effect: non-scaling-stroke;
+}
+
+@media (max-width: 767px) {
+  .bio-particle-system .bio-energy {
+    filter: blur(56px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bio-particle,
+  .bio-energy,
+  .bio-molecular-field {
+    will-change: auto;
+  }
+}

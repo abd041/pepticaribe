@@ -1,0 +1,48 @@
+{
+  "timestamp": "2026-06-06T13:27:12.859Z",
+  "url": "http://localhost:3010",
+  "verificationBypassed": true,
+  "withVisibilityPrototype": true,
+  "results": {
+    "q1_bioAtmosphere": "<div class=\"bio-atmosphere bio-particle-system bio-atmosphere--visibility-prototype\" aria-hidden=\"true\" data-debug=\"false\" data-visibility-prototype=\"true\"><div id=\"bio-atmosphere-render-test\" style=\"...",
+    "q1_mounted": true,
+    "q2_particleCount": 213,
+    "q2_byLayer": {
+      "back": 55,
+      "mid": 60,
+      "front": 40
+    },
+    "q3_debugVisibility": true,
+    "q4_prototypeElement": "bio-atmosphere bio-particle-system bio-atmosphere--visibility-prototype",
+    "q4_prototypeMounted": true,
+    "q5_cssProof": {
+      "loaded": true,
+      "sample": ".bio-atmosphere--visibility-prototype .bio-particle-layer--back, .bio-atmosphere--visibility-prototype .bio-particle-layer--mid, .bio-atmosphere--visibility-pro",
+      "hrefMatch": "http://localhost:3010/_next/static/chunks/247e1ztihq-au.css"
+    },
+    "q6_testBoxPresent": true,
+    "q6_testBoxVisible": true,
+    "q6_testBoxRect": {
+      "x": 570,
+      "y": 300,
+      "w": 300,
+      "h": 300
+    },
+    "atmosphereStyle": {
+      "display": "block",
+      "position": "relative",
+      "zIndex": "1",
+      "opacity": "1",
+      "visibility": "visible"
+    },
+    "gateBypassed": "true",
+    "reducedMotion": false,
+    "dataVisibilityPrototype": "true"
+  },
+  "pageErrors": [],
+  "atmosphereConsoleLogs": [
+    "[startGroup] [PeptiCaribe Atmosphere Audit]",
+    "[warning] Blocking layers: [atmosphere-base: rgb(7, 20, 26)]",
+    "[info] Visibility prototype: window.DEBUG_ATMOSPHERE_VISIBILITY = true; location.reload()"
+  ]
+}

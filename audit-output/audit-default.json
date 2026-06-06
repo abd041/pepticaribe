@@ -1,0 +1,32 @@
+{
+  "timestamp": "2026-06-06T13:22:47.981Z",
+  "url": "http://localhost:3010",
+  "withVisibilityPrototype": false,
+  "audit": {
+    "atmosphereMounted": false,
+    "atmosphereTag": null,
+    "atmosphereClasses": null,
+    "particleCount": 0,
+    "debugVisibility": null,
+    "prototypeClassApplied": false,
+    "prototypeClasses": null,
+    "visibilityCssInRules": true,
+    "visibilityRuleSample": ".bio-atmosphere--visibility-prototype .bio-particle-layer--back, .bio-atmosphere--visibility-prototype .bio-particle-lay",
+    "stylesheetHrefs": [
+      "http://localhost:3010/_next/static/chunks/2a9h_4vmk9753.css",
+      "http://localhost:3010/_next/static/chunks/247e1ztihq-au.css"
+    ],
+    "testBoxPresent": false,
+    "testBoxVisible": false,
+    "testBoxRect": null,
+    "testBoxComputed": null,
+    "atmosphereComputed": null,
+    "reducedMotion": false,
+    "particlesByLayer": {
+      "back": 0,
+      "mid": 0,
+      "front": 0
+    }
+  },
+  "consoleLogs": []
+}

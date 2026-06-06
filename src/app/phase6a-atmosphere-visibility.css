@@ -1,0 +1,195 @@
+/**
+ * Phase 6A — Atmosphere visibility enhancement
+ * Tunes existing system only — no new effects, counts, or layout changes.
+ * Includes +15% visibility bump after section screenshot audit.
+ */
+
+.bio-particle-system {
+  --bio-film-depth: 0.045;
+  --bio-film-vignette: 0.12;
+}
+
+/* ── Priority 1: particle glow radius (+30–50%, +15% audit bump) ── */
+.bio-particle--back.bio-particle--teal {
+  box-shadow:
+    0 0 5px rgba(var(--ocean-rgb), 0.32),
+    0 0 10px rgba(var(--ocean-rgb), 0.12);
+}
+
+.bio-particle--back.bio-particle--cyan {
+  box-shadow:
+    0 0 5px rgba(11, 110, 136, 0.25),
+    0 0 8px rgba(11, 110, 136, 0.09);
+}
+
+.bio-particle--back.bio-particle--gold {
+  box-shadow:
+    0 0 5px rgba(var(--gold-rgb), 0.18),
+    0 0 8px rgba(var(--gold-rgb), 0.07);
+}
+
+.bio-particle--mid.bio-particle--teal {
+  box-shadow:
+    0 0 6px rgba(var(--ocean-rgb), 0.48),
+    0 0 16px rgba(var(--ocean-rgb), 0.16);
+}
+
+.bio-particle--mid.bio-particle--cyan {
+  box-shadow:
+    0 0 6px rgba(11, 110, 136, 0.41),
+    0 0 14px rgba(11, 110, 136, 0.13);
+}
+
+.bio-particle--mid.bio-particle--gold {
+  box-shadow:
+    0 0 6px rgba(var(--gold-rgb), 0.32),
+    0 0 13px rgba(var(--gold-rgb), 0.1);
+}
+
+/* ── Priority 2: foreground emphasis (primary motion cue) ── */
+.bio-particle-layer--front {
+  filter: saturate(1.12) brightness(1.06);
+}
+
+.bio-particle--front.bio-particle--teal {
+  box-shadow:
+    0 0 10px rgba(var(--ocean-rgb), 0.67),
+    0 0 27px rgba(var(--ocean-rgb), 0.23),
+    0 0 42px rgba(var(--ocean-rgb), 0.09);
+}
+
+.bio-particle--front.bio-particle--cyan {
+  box-shadow:
+    0 0 10px rgba(11, 110, 136, 0.55),
+    0 0 23px rgba(11, 110, 136, 0.18),
+    0 0 38px rgba(11, 110, 136, 0.07);
+}
+
+.bio-particle--front.bio-particle--gold {
+  box-shadow:
+    0 0 10px rgba(var(--gold-rgb), 0.51),
+    0 0 23px rgba(var(--gold-rgb), 0.16),
+    0 0 38px rgba(var(--gold-rgb), 0.06);
+}
+
+/* ── Priority 5: depth separation (layer opacity tiers) ── */
+.bio-particle-layer--back {
+  opacity: 0.75;
+}
+
+.bio-particle-layer--mid {
+  opacity: 0.92;
+}
+
+.bio-particle-layer--front {
+  opacity: 1;
+}
+
+.bio-env-mass {
+  opacity: 0.44;
+}
+
+.bio-env-mass--a {
+  opacity: 0.46;
+}
+
+.bio-particle-system .bio-energy--teal {
+  opacity: calc(0.58 * var(--bio-glow-boost, 1.15) * 1.24);
+}
+
+.bio-particle-system .bio-energy--cyan {
+  opacity: calc(0.42 * var(--bio-glow-boost, 1.15) * 1.24);
+}
+
+.bio-particle-system .bio-energy--gold {
+  opacity: calc(0.4 * var(--bio-glow-boost, 1.15) * 1.24);
+}
+
+/* ── Priority 4: lighter section veils (atmosphere shows through) ── */
+.bio-atmosphere-host .section-identity-value {
+  background: linear-gradient(
+    180deg,
+    rgba(4, 14, 20, 0.19) 0%,
+    rgba(8, 24, 32, 0.11) 55%,
+    rgba(6, 18, 26, 0.15) 100%
+  ) !important;
+}
+
+.bio-atmosphere-host .section-identity-products {
+  background: linear-gradient(
+    180deg,
+    rgba(6, 20, 28, 0.17) 0%,
+    rgba(5, 16, 24, 0.09) 45%,
+    rgba(4, 12, 18, 0.14) 100%
+  ) !important;
+}
+
+.bio-atmosphere-host .section-identity-coa {
+  background: linear-gradient(
+    165deg,
+    rgba(5, 16, 22, 0.15) 0%,
+    rgba(8, 22, 30, 0.09) 40%,
+    rgba(4, 10, 16, 0.14) 100%
+  ) !important;
+}
+
+.bio-atmosphere-host .section-identity-disclaimer {
+  background: linear-gradient(
+    180deg,
+    rgba(4, 12, 18, 0.17) 0%,
+    rgba(3, 8, 12, 0.12) 100%
+  ) !important;
+}
+
+.bio-atmosphere-host .atmosphere-teal,
+.bio-atmosphere-host .atmosphere-gold,
+.bio-atmosphere-host .atmosphere-glow-teal,
+.bio-atmosphere-host .atmosphere-glow-ocean,
+.bio-atmosphere-host .atmosphere-glow-gold,
+.bio-atmosphere-host .atmosphere-glow-warm,
+.bio-atmosphere-host .art-direction-light {
+  opacity: 0.28;
+}
+
+.bio-atmosphere-host.art-direction .ref-trust-section {
+  background: rgba(4, 14, 20, 0.13) !important;
+}
+
+.bio-atmosphere-host.art-direction .ref-best-sellers {
+  background: rgba(6, 20, 28, 0.1) !important;
+}
+
+.bio-atmosphere-host.art-direction .ref-featured-compound {
+  background: rgba(8, 26, 34, 0.15) !important;
+}
+
+.bio-atmosphere-host.art-direction .art-coa-section {
+  background: rgba(5, 16, 22, 0.11) !important;
+}
+
+.bio-atmosphere-host.art-direction .ref-reviews-faq {
+  background: rgba(7, 18, 26, 0.11) !important;
+}
+
+.bio-atmosphere-host .ref-coa-promo-bg {
+  background:
+    radial-gradient(ellipse 80% 120% at 20% 50%, rgba(var(--ocean-rgb), 0.07), transparent 55%),
+    radial-gradient(ellipse 60% 100% at 80% 50%, rgba(var(--gold-rgb), 0.04), transparent 50%),
+    rgba(6, 16, 22, 0.15);
+}
+
+body:has(.bio-atmosphere-host) .ref-footer .section-identity-footer {
+  background: linear-gradient(
+    180deg,
+    rgba(7, 20, 28, 0.15) 0%,
+    rgba(3, 10, 14, 0.1) 100%
+  ) !important;
+}
+
+body:has(.bio-atmosphere-host) .ref-footer .atmosphere-teal,
+body:has(.bio-atmosphere-host) .ref-footer .atmosphere-gold,
+body:has(.bio-atmosphere-host) .ref-footer .atmosphere-glow-footer {
+  opacity: 0.26;
+}
+
+/* Preserve product legibility veils from phase 5C/6 — do not reduce hero copy shield */

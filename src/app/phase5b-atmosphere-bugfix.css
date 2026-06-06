@@ -1,0 +1,12 @@
+/**
+ * Phase 5B — Atmosphere bug fix (audit blockers only)
+ * No visual redesign. Ensures viewport-fixed root wins over homepage layout utilities.
+ */
+
+.bio-atmosphere-host > .bio-atmosphere {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}

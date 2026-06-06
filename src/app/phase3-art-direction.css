@@ -1,0 +1,464 @@
+/**
+ * Phase 3 — Art Direction & Composition
+ * Scale, hierarchy, spacing, focal points. No new effects.
+ */
+
+.art-direction {
+  --art-section-y: clamp(4.25rem, 7.5vw, 6.75rem);
+  --art-section-y-sm: clamp(3rem, 5.5vw, 4.5rem);
+  --art-header-gap: clamp(1.75rem, 3.5vw, 2.75rem);
+  --art-product-scale-hero: 1.46;
+  --art-product-scale-featured: 0.82;
+}
+
+/* ── Compressed vertical rhythm ── */
+.art-direction .premium-section-lg {
+  padding-top: var(--art-section-y);
+  padding-bottom: var(--art-section-y);
+}
+
+.art-direction .premium-section {
+  padding-top: var(--art-section-y-sm);
+  padding-bottom: var(--art-section-y-sm);
+}
+
+.art-direction .qa-section-header {
+  margin-bottom: var(--art-header-gap);
+}
+
+.art-direction .qa-section-footer {
+  margin-top: clamp(2rem, 3.5vw, 2.75rem);
+}
+
+/* ── Section contrast & focal anchors ── */
+.art-direction .ref-hero-section {
+  background: var(--deep-navy);
+}
+
+.art-direction .ref-trust-section {
+  background: rgba(0, 0, 0, 0.14);
+}
+
+.art-direction .ref-best-sellers {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, transparent 100%);
+}
+
+.art-direction .ref-featured-compound {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.16) 0%, rgba(0, 0, 0, 0.06) 100%);
+}
+
+.art-direction .art-coa-section {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.art-direction .ref-reviews-faq {
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+}
+
+/* ── Typography hierarchy ── */
+.art-direction .polish-type-section-title,
+.art-direction .type-display-section {
+  font-size: clamp(2.25rem, 3.6vw + 0.35rem, 3.35rem);
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+
+.art-direction .ref-hero-headline,
+.art-direction .concept-hero-headline {
+  font-size: clamp(2.625rem, 5.2vw, 4.5rem);
+  line-height: 0.98;
+}
+
+.art-direction .concept-hero-lead,
+.art-direction .ref-hero-lead {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  max-width: 21rem;
+}
+
+.art-direction .concept-hero-eyebrow,
+.art-direction .premium-eyebrow-gold {
+  letter-spacing: 0.2em;
+}
+
+/* ── Hero: product-dominant composition ── */
+.art-direction .art-hero-copy {
+  max-width: 22rem;
+}
+
+.art-direction .art-hero-copy .ref-hero-headline {
+  margin-top: 1rem;
+}
+
+.art-direction .art-hero-copy .ref-hero-lead {
+  margin-top: 1.25rem;
+}
+
+.art-direction .art-hero-copy .ref-hero-ctas {
+  margin-top: 1.75rem;
+}
+
+.art-direction .art-hero-copy .ref-hero-badges {
+  margin-top: 1.5rem;
+  gap: 1.5rem 2rem;
+}
+
+@media (min-width: 1024px) {
+  .art-direction .ref-hero-showcase-wrap,
+  .art-direction .concept-hero-showcase-wrap {
+    left: 40%;
+    width: 60%;
+    justify-content: flex-start;
+    padding-left: 0.5rem;
+  }
+
+  .art-direction .ref-hero-showcase-reference {
+    max-width: min(98%, 610px);
+    max-height: min(82dvh, 820px);
+    scale: var(--art-product-scale-hero);
+    transform: translateY(-6%);
+    transform-origin: left center;
+    object-position: left bottom;
+  }
+
+  .art-direction .ref-hero-showcase-reference-frame {
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding-bottom: 7%;
+  }
+}
+
+@media (max-width: 1023px) {
+  .art-direction .ref-hero-showcase-reference {
+    max-height: min(52dvh, 470px);
+    scale: 1.3;
+    transform: translateY(-4%);
+    transform-origin: center bottom;
+  }
+
+  .art-direction .ref-hero-showcase-reference-frame {
+    padding-bottom: 5%;
+  }
+
+  .art-direction .ref-hero-showcase {
+    min-height: clamp(300px, 52dvh, 560px);
+  }
+}
+
+.art-direction .lux-product-presentation--hero {
+  min-height: clamp(300px, 50dvh, 640px);
+}
+
+.art-direction .lux-product-presentation--hero .lux-pp-stage {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+/* Hero product — no panel backdrop; vials sit on page atmosphere */
+.art-direction .lux-product-presentation--hero {
+  background: transparent;
+}
+
+.art-direction .lux-product-presentation--hero .lux-pp-atmosphere,
+.art-direction .lux-product-presentation--hero .lux-pp-rim-light,
+.art-direction .lux-product-presentation--hero .lux-pp-glass-sheen {
+  display: none;
+}
+
+.art-direction .lux-product-presentation--hero .lux-pp-volumetric,
+.art-direction .lux-product-presentation--hero .lux-pp-spotlight-beam,
+.art-direction .lux-product-presentation--hero .lux-pp-spotlight-core {
+  opacity: 0.55;
+}
+
+.art-direction .ref-hero-showcase,
+.art-direction .ref-hero-showcase-wrap,
+.art-direction .ref-hero-showcase-reference-scene,
+.art-direction .ref-hero-showcase-reference-frame {
+  background: transparent;
+}
+
+/* ── Product cards: product-first ── */
+.art-direction .art-product-card .ref-product-image-wrap {
+  height: clamp(260px, 34vw, 340px);
+}
+
+.art-direction .art-product-card .lux-product-presentation--card {
+  min-height: 100%;
+}
+
+.art-direction .art-product-card .compound-exhibit-vial-slot {
+  width: 92% !important;
+  height: 88% !important;
+  bottom: 4% !important;
+}
+
+.art-direction .art-product-card .compound-exhibit-vial {
+  transform: scale(1.08);
+  transform-origin: center bottom;
+}
+
+.art-direction .art-product-card .ref-product-info {
+  padding: 0.75rem 0.875rem 0.875rem;
+}
+
+.art-direction .art-product-card .ref-product-actions {
+  margin-top: 0.75rem;
+}
+
+.art-direction .art-products-section .ref-product-grid {
+  gap: clamp(0.875rem, 2vw, 1.25rem);
+}
+
+.art-direction .art-products-section .qa-section-header {
+  max-width: 36rem;
+}
+
+/* ── BPC-157: centerpiece scale ── */
+.art-direction .art-featured-grid {
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+@media (min-width: 1024px) {
+  .art-direction .art-featured-grid {
+    grid-template-columns: minmax(0, 0.68fr) minmax(0, 1.62fr) minmax(0, 0.72fr);
+    align-items: center;
+  }
+}
+
+.art-direction .art-featured-showcase .ref-featured-pedestal {
+  height: clamp(440px, 54vw, 680px);
+  max-width: 540px;
+}
+
+.art-direction .art-featured-showcase .lux-featured-vial,
+.art-direction .art-featured-showcase .ref-featured-vial {
+  max-height: 98%;
+  max-width: 92%;
+  scale: var(--art-product-scale-featured);
+  transform-origin: center bottom;
+}
+
+.art-direction .art-featured-copy {
+  max-width: 22rem;
+}
+
+.art-direction .art-featured-copy .section-caption {
+  margin-top: 1rem;
+}
+
+.art-direction .art-featured-copy .ref-featured-trust-list {
+  margin-top: 1.5rem;
+}
+
+.art-direction .art-featured-copy .polish-featured-cta {
+  margin-top: 1.75rem;
+}
+
+.art-direction .art-featured-copy .ref-featured-title {
+  font-size: clamp(2rem, 3vw, 2.75rem);
+}
+
+/* ── COA: document-first vault ── */
+.art-direction .art-coa-vault {
+  padding: clamp(1.5rem, 3vw, 2.25rem) !important;
+}
+
+@media (min-width: 1024px) {
+  .art-direction .art-coa-vault {
+    grid-template-columns: minmax(200px, 0.85fr) minmax(0, 1.25fr) auto;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+}
+
+.art-direction .art-coa-document-anchor {
+  position: relative;
+  width: 100%;
+  max-width: 220px;
+  aspect-ratio: 4 / 5;
+  margin-inline: auto;
+}
+
+@media (min-width: 1024px) {
+  .art-direction .art-coa-document-anchor {
+    margin-inline: 0;
+    max-width: none;
+  }
+}
+
+.art-direction .art-coa-document-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.art-direction .art-coa-document {
+  position: relative !important;
+  width: 78% !important;
+  height: 88% !important;
+  transform: rotate(-4deg) !important;
+  opacity: 1;
+  border-width: 1px;
+  border-color: rgba(var(--gold-rgb), 0.32);
+}
+
+.art-direction .art-coa-seal {
+  position: absolute !important;
+  bottom: 14% !important;
+  right: 10% !important;
+  width: clamp(44px, 5vw, 56px) !important;
+  height: clamp(44px, 5vw, 56px) !important;
+  transform: rotate(8deg);
+}
+
+.art-direction .art-coa-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.art-direction .art-coa-copy .ref-coa-promo-title {
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+}
+
+.art-direction .art-coa-copy .section-caption {
+  margin-top: 0.875rem;
+  max-width: 34rem;
+}
+
+/* ── Testimonials: editorial credibility ── */
+.art-direction .art-editorial-review {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 240px;
+  padding: 1.75rem 1.5rem 1.5rem !important;
+  border-left: 2px solid rgba(var(--gold-rgb), 0.35);
+  border-radius: 0 1rem 1rem 0 !important;
+}
+
+@media (min-width: 1280px) {
+  .art-direction .art-editorial-review {
+    padding: 2rem 1.75rem 1.625rem !important;
+  }
+}
+
+.art-direction .art-review-mark {
+  display: block;
+  font-family: var(--font-display, Georgia, serif);
+  font-size: 3.5rem;
+  line-height: 0.75;
+  color: rgba(var(--gold-rgb), 0.28);
+  margin-bottom: 0.25rem;
+  user-select: none;
+}
+
+.art-direction .art-editorial-review .polish-review-stars {
+  margin-top: 0.25rem;
+}
+
+.art-direction .art-review-quote {
+  flex: 1;
+  margin-top: 1rem !important;
+  font-size: 1rem !important;
+  line-height: 1.75 !important;
+  font-style: normal !important;
+  font-weight: 400;
+  color: rgba(250, 247, 240, 0.88) !important;
+  letter-spacing: 0.01em;
+}
+
+.art-direction .art-review-quote::before {
+  content: none;
+}
+
+.art-direction .art-review-byline {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(250, 247, 240, 0.48);
+}
+
+.art-direction .art-reviews-grid {
+  gap: 1rem;
+  margin-top: 1.75rem !important;
+}
+
+.art-direction .ref-reviews-faq-grid {
+  gap: clamp(2rem, 4vw, 3rem);
+  align-items: start;
+}
+
+.art-direction .art-reviews-column .qa-section-header {
+  margin-bottom: 0;
+}
+
+/* ── Value props: tighter supporting band ── */
+.art-direction .ref-trust-frame {
+  padding: 0.25rem;
+}
+
+.art-direction .ref-trust-card {
+  padding: 1.25rem 1rem;
+}
+
+.art-direction .ref-trust-card .ref-trust-title {
+  margin-top: 1rem;
+}
+
+.art-direction .ref-trust-card .section-caption {
+  margin-top: 0.5rem;
+}
+
+/* ── Remove template noise: hide redundant effect layers in art pass ── */
+.art-direction .lux-section-transition {
+  display: none;
+}
+
+.art-direction .phase-g-coa-scanline,
+.art-direction .phase-g-coa-trust-glow,
+.art-direction .lux-coa-vault-spotlight {
+  display: none;
+}
+
+.art-direction .art-hero-showcase .lux-hero-glow,
+.art-direction .art-hero-showcase .lux-hero-spotlight,
+.art-direction .art-hero-showcase .lux-hero-particles,
+.art-direction .art-hero-showcase .lux-hero-volumetric-layer,
+.art-direction .art-hero-showcase .lux-hero-env-story,
+.art-direction .art-hero-showcase .lux-hero-cinematic-rim {
+  display: none;
+}
+
+/* Featured: reduce decorative ring dominance — product reads first */
+.art-direction .lux-featured-halo-ring--outer {
+  opacity: 0.22;
+}
+
+.art-direction .lux-featured-halo-ring--mid {
+  opacity: 0.35;
+}
+
+.art-direction .lux-featured-halo-ring--inner {
+  opacity: 0.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .art-direction .ref-hero-showcase-reference,
+  .art-direction .art-featured-showcase .lux-featured-vial {
+    scale: 1 !important;
+    transform: none !important;
+  }
+}

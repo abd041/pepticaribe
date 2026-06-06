@@ -1,0 +1,352 @@
+/**
+ * Phase 4A — Luxury Biotech Atmosphere System
+ * Global homepage background only. No layout/content changes.
+ */
+
+.bio-atmosphere-host {
+  position: relative;
+  isolation: isolate;
+  background: transparent;
+}
+
+.bio-atmosphere-host > section,
+.bio-atmosphere-host > *:not(.bio-atmosphere) {
+  position: relative;
+  z-index: 1;
+}
+
+.bio-atmosphere {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* ── Layer 1: Deep luxury gradient ── */
+.bio-atmosphere-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 78% 62% at 14% 12%, rgba(var(--ocean-rgb), 0.14) 0%, transparent 54%),
+    radial-gradient(ellipse 62% 52% at 88% 78%, rgba(var(--gold-rgb), 0.08) 0%, transparent 52%),
+    radial-gradient(ellipse 95% 70% at 52% 108%, rgba(11, 110, 136, 0.2) 0%, transparent 58%),
+    radial-gradient(ellipse 50% 42% at 72% 28%, rgba(6, 24, 32, 0.45) 0%, transparent 62%),
+    linear-gradient(
+      172deg,
+      #02080c 0%,
+      #07141a 22%,
+      #061820 48%,
+      #0a2230 72%,
+      #071018 100%
+    );
+}
+
+/* ── Layer 3: Large drifting light masses (GSAP-driven) ── */
+.bio-atmosphere-glows {
+  position: absolute;
+  inset: -22%;
+}
+
+.bio-atmosphere-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  will-change: transform, opacity;
+}
+
+.bio-atmosphere-glow--teal {
+  top: 4%;
+  left: 6%;
+  width: 52%;
+  height: 46%;
+  background: radial-gradient(
+    circle,
+    rgba(var(--ocean-rgb), 0.22) 0%,
+    rgba(var(--ocean-rgb), 0.08) 38%,
+    transparent 72%
+  );
+  opacity: 0.72;
+}
+
+.bio-atmosphere-glow--cyan {
+  top: 38%;
+  right: 2%;
+  width: 46%;
+  height: 40%;
+  background: radial-gradient(
+    circle,
+    rgba(11, 110, 136, 0.2) 0%,
+    rgba(11, 110, 136, 0.07) 42%,
+    transparent 70%
+  );
+  opacity: 0.62;
+}
+
+.bio-atmosphere-glow--gold {
+  bottom: 0;
+  left: 22%;
+  width: 56%;
+  height: 34%;
+  background: radial-gradient(
+    circle,
+    rgba(var(--gold-rgb), 0.1) 0%,
+    rgba(var(--ocean-rgb), 0.06) 40%,
+    transparent 72%
+  );
+  opacity: 0.58;
+}
+
+.bio-atmosphere-glow--a {
+  top: 4%;
+  left: 6%;
+  width: 52%;
+  height: 46%;
+  background: radial-gradient(
+    circle,
+    rgba(var(--ocean-rgb), 0.22) 0%,
+    rgba(var(--ocean-rgb), 0.08) 38%,
+    transparent 72%
+  );
+  opacity: 0.72;
+}
+
+.bio-atmosphere-glow--b {
+  top: 38%;
+  right: 2%;
+  width: 46%;
+  height: 40%;
+  background: radial-gradient(
+    circle,
+    rgba(11, 110, 136, 0.2) 0%,
+    rgba(11, 110, 136, 0.07) 42%,
+    transparent 70%
+  );
+  opacity: 0.62;
+}
+
+.bio-atmosphere-glow--c {
+  bottom: 0;
+  left: 22%;
+  width: 56%;
+  height: 34%;
+  background: radial-gradient(
+    circle,
+    rgba(var(--gold-rgb), 0.1) 0%,
+    rgba(var(--ocean-rgb), 0.06) 40%,
+    transparent 72%
+  );
+  opacity: 0.58;
+}
+
+/* ── Layer 2: Scientific particle field ── */
+.bio-atmosphere-particles {
+  position: absolute;
+  inset: 0;
+}
+
+.bio-atmosphere-particle {
+  position: absolute;
+  border-radius: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform, opacity;
+}
+
+.bio-atmosphere-particle--teal {
+  background: rgba(var(--ocean-rgb), 0.85);
+  box-shadow:
+    0 0 4px rgba(var(--ocean-rgb), 0.45),
+    0 0 10px rgba(var(--ocean-rgb), 0.18);
+}
+
+.bio-atmosphere-particle--cyan {
+  background: rgba(11, 110, 136, 0.8);
+  box-shadow:
+    0 0 3px rgba(11, 110, 136, 0.4),
+    0 0 8px rgba(11, 110, 136, 0.15);
+}
+
+.bio-atmosphere-particle--gold {
+  background: rgba(var(--gold-rgb), 0.65);
+  box-shadow:
+    0 0 3px rgba(var(--gold-rgb), 0.35),
+    0 0 8px rgba(var(--gold-rgb), 0.12);
+}
+
+/* ── Layer 4: Molecular network accents ── */
+.bio-atmosphere-molecular {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.05;
+}
+
+.bio-atmosphere-molecular line,
+.bio-atmosphere-molecular circle {
+  vector-effect: non-scaling-stroke;
+}
+
+.bio-atmosphere-molecular-group--a {
+  stroke: rgba(var(--ocean-rgb), 0.45);
+  fill: rgba(var(--ocean-rgb), 0.1);
+}
+
+.bio-atmosphere-molecular-group--b {
+  stroke: rgba(var(--gold-rgb), 0.32);
+  fill: rgba(var(--gold-rgb), 0.07);
+}
+
+/* ── Layer 5: Depth & film texture ── */
+.bio-atmosphere-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.034;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+.bio-atmosphere-depth {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 120% 90% at 50% 50%, transparent 38%, rgba(0, 0, 0, 0.18) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, transparent 16%, transparent 84%, rgba(0, 0, 0, 0.12) 100%);
+}
+
+.bio-atmosphere-vignette {
+  position: absolute;
+  inset: 0;
+  box-shadow:
+    inset 0 0 120px rgba(0, 0, 0, 0.38),
+    inset 0 0 240px rgba(0, 0, 0, 0.14);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   VISIBILITY FIX — transparent sections, atmosphere bleeds through
+   ═══════════════════════════════════════════════════════════════ */
+
+.bio-atmosphere-host .ref-hero-section,
+.bio-atmosphere-host .art-chapter-trust.qa-disclaimer-section {
+  background: transparent !important;
+}
+
+.bio-atmosphere-host .ref-hero-bg-gradient {
+  opacity: 0.28;
+}
+
+.bio-atmosphere-host .atmosphere-base {
+  background: transparent !important;
+}
+
+.bio-atmosphere-host .section-identity-value,
+.bio-atmosphere-host .section-identity-products,
+.bio-atmosphere-host .section-identity-coa,
+.bio-atmosphere-host .section-identity-disclaimer,
+.bio-atmosphere-host .section-identity-footer {
+  opacity: 1 !important;
+}
+
+.bio-atmosphere-host .section-identity-value {
+  background: linear-gradient(
+    180deg,
+    rgba(4, 14, 20, 0.52) 0%,
+    rgba(8, 24, 32, 0.38) 55%,
+    rgba(6, 18, 26, 0.44) 100%
+  );
+}
+
+.bio-atmosphere-host .section-identity-products {
+  background: linear-gradient(
+    180deg,
+    rgba(6, 20, 28, 0.48) 0%,
+    rgba(5, 16, 24, 0.36) 45%,
+    rgba(4, 12, 18, 0.42) 100%
+  );
+}
+
+.bio-atmosphere-host .section-identity-coa {
+  background: linear-gradient(
+    165deg,
+    rgba(5, 16, 22, 0.46) 0%,
+    rgba(8, 22, 30, 0.38) 40%,
+    rgba(4, 10, 16, 0.44) 100%
+  );
+}
+
+.bio-atmosphere-host .section-identity-disclaimer {
+  background: linear-gradient(180deg, rgba(4, 12, 18, 0.5) 0%, rgba(3, 8, 12, 0.42) 100%);
+}
+
+.bio-atmosphere-host .atmosphere-teal,
+.bio-atmosphere-host .atmosphere-gold,
+.bio-atmosphere-host .atmosphere-glow-teal,
+.bio-atmosphere-host .atmosphere-glow-ocean,
+.bio-atmosphere-host .atmosphere-glow-gold,
+.bio-atmosphere-host .atmosphere-glow-warm,
+.bio-atmosphere-host .art-direction-light {
+  opacity: 0.55;
+}
+
+/* Hide deprecated section-level motion layers — global atmosphere owns the field */
+.bio-atmosphere-host .ocean-wave-layer,
+.bio-atmosphere-host .caribe-current-layer,
+.bio-atmosphere-host section .bio-particle,
+.bio-atmosphere-host section .lab-particle {
+  display: none !important;
+}
+
+.bio-atmosphere-host .brand-dna-drift {
+  opacity: 0.12;
+}
+
+/* Section contrast tints (semi-transparent — atmosphere visible) */
+.bio-atmosphere-host.art-direction .ref-trust-section {
+  background: rgba(4, 14, 20, 0.42) !important;
+}
+
+.bio-atmosphere-host.art-direction .ref-best-sellers {
+  background: rgba(6, 20, 28, 0.34) !important;
+}
+
+.bio-atmosphere-host.art-direction .ref-featured-compound {
+  background: rgba(8, 26, 34, 0.46) !important;
+}
+
+.bio-atmosphere-host.art-direction .art-coa-section {
+  background: rgba(5, 16, 22, 0.4) !important;
+}
+
+.bio-atmosphere-host.art-direction .ref-reviews-faq {
+  background: rgba(7, 18, 26, 0.38) !important;
+}
+
+.bio-atmosphere-host .ref-coa-promo-bg {
+  background:
+    radial-gradient(ellipse 80% 120% at 20% 50%, rgba(var(--ocean-rgb), 0.1), transparent 55%),
+    radial-gradient(ellipse 60% 100% at 80% 50%, rgba(var(--gold-rgb), 0.06), transparent 50%),
+    rgba(6, 16, 22, 0.55);
+}
+
+.bio-atmosphere-host .phase-g-premium.ref-hero-section,
+.bio-atmosphere-host .phase-g-premium .ref-hero-section {
+  background: transparent !important;
+}
+
+@media (max-width: 767px) {
+  .bio-atmosphere-glow {
+    filter: blur(56px);
+  }
+
+  .bio-atmosphere-molecular {
+    opacity: 0.04;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bio-atmosphere-particle,
+  .bio-atmosphere-glow,
+  .bio-atmosphere-molecular {
+    will-change: auto;
+  }
+}

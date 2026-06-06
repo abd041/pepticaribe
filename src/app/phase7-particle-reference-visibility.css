@@ -1,0 +1,149 @@
+/**
+ * Phase 7 — Reference-style particle visibility (PURIDIA-like cyan field)
+ * Background only — no layout or content changes.
+ */
+
+.bio-particle-system {
+  --bio-film-depth: 0.032;
+  --bio-film-vignette: 0.09;
+  --bio-glow-boost: 1.22;
+}
+
+/* ── Brighter particle cores (cyan/teal dominant) ── */
+.bio-particle--back.bio-particle--teal {
+  background: rgba(var(--ocean-rgb), 0.72);
+}
+
+.bio-particle--back.bio-particle--cyan {
+  background: rgba(180, 235, 255, 0.68);
+}
+
+.bio-particle--mid.bio-particle--teal {
+  background: rgba(var(--ocean-rgb), 0.88);
+}
+
+.bio-particle--mid.bio-particle--cyan {
+  background: rgba(196, 242, 255, 0.84);
+}
+
+.bio-particle--front.bio-particle--teal {
+  background: rgba(var(--ocean-rgb), 0.96);
+}
+
+.bio-particle--front.bio-particle--cyan {
+  background: rgba(210, 248, 255, 0.94);
+}
+
+/* ── Reference glow halos — override phase 5C softening ── */
+.bio-particle--back.bio-particle--teal {
+  box-shadow:
+    0 0 6px rgba(var(--ocean-rgb), 0.42),
+    0 0 14px rgba(var(--ocean-rgb), 0.16);
+}
+
+.bio-particle--back.bio-particle--cyan {
+  box-shadow:
+    0 0 6px rgba(180, 235, 255, 0.38),
+    0 0 12px rgba(14, 165, 198, 0.14);
+}
+
+.bio-particle--mid.bio-particle--teal {
+  box-shadow:
+    0 0 8px rgba(var(--ocean-rgb), 0.58),
+    0 0 20px rgba(var(--ocean-rgb), 0.2);
+}
+
+.bio-particle--mid.bio-particle--cyan {
+  box-shadow:
+    0 0 8px rgba(196, 242, 255, 0.52),
+    0 0 18px rgba(14, 165, 198, 0.18);
+}
+
+.bio-particle--front.bio-particle--teal {
+  box-shadow:
+    0 0 12px rgba(var(--ocean-rgb), 0.78),
+    0 0 32px rgba(var(--ocean-rgb), 0.28),
+    0 0 48px rgba(var(--ocean-rgb), 0.1);
+}
+
+.bio-particle--front.bio-particle--cyan {
+  box-shadow:
+    0 0 12px rgba(210, 248, 255, 0.72),
+    0 0 28px rgba(14, 165, 198, 0.24),
+    0 0 44px rgba(14, 165, 198, 0.08);
+}
+
+/* ── Soft bokeh specimens (reference depth-of-field) ── */
+.bio-particle--bokeh {
+  filter: blur(1.1px);
+  opacity: 0.92 !important;
+}
+
+.bio-particle--bokeh.bio-particle--cyan {
+  box-shadow:
+    0 0 16px rgba(196, 242, 255, 0.55),
+    0 0 36px rgba(14, 165, 198, 0.22),
+    0 0 56px rgba(14, 165, 198, 0.08);
+}
+
+.bio-particle--bokeh.bio-particle--teal {
+  box-shadow:
+    0 0 16px rgba(var(--ocean-rgb), 0.58),
+    0 0 36px rgba(var(--ocean-rgb), 0.2),
+    0 0 56px rgba(var(--ocean-rgb), 0.07);
+}
+
+/* ── Layer tiers — lift back/mid so field reads across full page ── */
+.bio-particle-layer--back {
+  opacity: 0.8;
+}
+
+.bio-particle-layer--mid {
+  opacity: 1;
+}
+
+.bio-particle-layer--front {
+  filter: saturate(1.18) brightness(1.1);
+}
+
+/* ── Let particles show through section veils ── */
+.bio-atmosphere-host .section-identity-value {
+  background: linear-gradient(
+    180deg,
+    rgba(4, 14, 20, 0.12) 0%,
+    rgba(8, 24, 32, 0.06) 55%,
+    rgba(6, 18, 26, 0.1) 100%
+  ) !important;
+}
+
+.bio-atmosphere-host .section-identity-products {
+  background: linear-gradient(
+    180deg,
+    rgba(6, 20, 28, 0.1) 0%,
+    rgba(5, 16, 24, 0.05) 45%,
+    rgba(4, 12, 18, 0.09) 100%
+  ) !important;
+}
+
+.bio-atmosphere-host .section-identity-coa {
+  background: linear-gradient(
+    165deg,
+    rgba(5, 16, 22, 0.09) 0%,
+    rgba(8, 22, 30, 0.05) 40%,
+    rgba(4, 10, 16, 0.09) 100%
+  ) !important;
+}
+
+.bio-atmosphere-host.art-direction .ref-trust-section,
+.bio-atmosphere-host.art-direction .ref-best-sellers,
+.bio-atmosphere-host.art-direction .ref-featured-compound,
+.bio-atmosphere-host.art-direction .art-coa-section,
+.bio-atmosphere-host.art-direction .ref-reviews-faq {
+  background: rgba(6, 20, 28, 0.07) !important;
+}
+
+@media (max-width: 767px) {
+  .bio-particle--bokeh {
+    filter: blur(0.8px);
+  }
+}

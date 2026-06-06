@@ -1,0 +1,102 @@
+/**
+ * Visibility prototype — TEMPORARY testing only.
+ * Active when .bio-atmosphere--visibility-prototype (window.DEBUG_ATMOSPHERE_VISIBILITY = true)
+ */
+
+.bio-atmosphere--visibility-prototype {
+  --bio-vis-size: 3;
+  --bio-vis-opacity: 5;
+  --bio-vis-glow: 5;
+}
+
+.bio-atmosphere--visibility-prototype::after {
+  content: "VISIBILITY PROTOTYPE";
+  position: fixed;
+  top: 4.5rem;
+  right: 0.75rem;
+  z-index: 99999;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0.25rem;
+  background: rgba(255, 140, 0, 0.95);
+  color: #1a0a00;
+  font:
+    800 10px/1 ui-monospace,
+    monospace;
+  letter-spacing: 0.1em;
+  pointer-events: none;
+  box-shadow: 0 4px 24px rgba(255, 140, 0, 0.45);
+}
+
+.bio-atmosphere--visibility-prototype .bio-atmosphere-film-stack {
+  opacity: 0.12;
+}
+
+.bio-atmosphere--visibility-prototype .bio-particle--teal,
+.bio-atmosphere--visibility-prototype .bio-particle--cyan {
+  box-shadow:
+    0 0 12px rgba(var(--ocean-rgb), 0.95),
+    0 0 28px rgba(var(--ocean-rgb), 0.55),
+    0 0 48px rgba(var(--ocean-rgb), 0.25) !important;
+}
+
+.bio-atmosphere--visibility-prototype .bio-particle--gold {
+  box-shadow:
+    0 0 12px rgba(var(--gold-rgb), 0.9),
+    0 0 28px rgba(var(--gold-rgb), 0.5),
+    0 0 48px rgba(var(--gold-rgb), 0.22) !important;
+}
+
+.bio-atmosphere--visibility-prototype .bio-energy--teal,
+.bio-atmosphere--visibility-prototype .bio-energy--cyan,
+.bio-atmosphere--visibility-prototype .bio-energy--gold {
+  opacity: 0.95 !important;
+  filter: blur(64px) !important;
+}
+
+.bio-prototype-glow-field {
+  position: absolute;
+  inset: -30%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.bio-prototype-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+  will-change: transform, opacity;
+}
+
+.bio-prototype-glow--mass-a {
+  top: 10%;
+  left: -5%;
+  width: 65%;
+  height: 55%;
+  background: radial-gradient(
+    circle,
+    rgba(var(--ocean-rgb), 0.55) 0%,
+    rgba(var(--ocean-rgb), 0.22) 35%,
+    transparent 68%
+  );
+  opacity: 0.85;
+}
+
+.bio-prototype-glow--mass-b {
+  bottom: 5%;
+  right: -8%;
+  width: 58%;
+  height: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(var(--gold-rgb), 0.42) 0%,
+    rgba(11, 110, 136, 0.2) 38%,
+    transparent 70%
+  );
+  opacity: 0.78;
+}
+
+.bio-atmosphere--visibility-prototype .bio-particle-layer--back,
+.bio-atmosphere--visibility-prototype .bio-particle-layer--mid,
+.bio-atmosphere--visibility-prototype .bio-particle-layer--front {
+  outline: 1px dashed rgba(255, 200, 80, 0.35);
+}

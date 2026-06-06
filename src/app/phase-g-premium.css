@@ -1,0 +1,655 @@
+/**
+ * PHASE G — Premium Homepage Polish
+ * Visual refinement only: lighting, depth, spacing, motion.
+ * Does not alter copy, section order, or navigation.
+ */
+
+.phase-g-premium {
+  --phase-g-section-y: clamp(6.25rem, 11.5vw, 10.75rem);
+  --phase-g-section-y-sm: clamp(5rem, 9vw, 8.5rem);
+  --phase-g-header-gap: clamp(2.25rem, 4.5vw, 3.5rem);
+  --phase-g-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --phase-g-glass: rgba(255, 255, 255, 0.045);
+  --phase-g-glass-border: rgba(var(--gold-rgb), 0.14);
+  --phase-g-glass-highlight: rgba(255, 255, 255, 0.08);
+  position: relative;
+  isolation: isolate;
+}
+
+/* ── Ambient depth field (extremely subtle) ── */
+.phase-g-ambient-field {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.phase-g-ambient-field::before,
+.phase-g-ambient-field::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  opacity: 0.55;
+}
+
+.phase-g-ambient-field::before {
+  background:
+    radial-gradient(
+      ellipse 55% 45% at 18% 22%,
+      rgba(var(--ocean-rgb), 0.045) 0%,
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 48% 40% at 82% 68%,
+      rgba(var(--gold-rgb), 0.035) 0%,
+      transparent 58%
+    );
+  animation: phase-g-ambient-drift 48s var(--phase-g-ease) infinite alternate;
+}
+
+.phase-g-ambient-field::after {
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px),
+    radial-gradient(circle at 78% 42%, rgba(255, 255, 255, 0.014) 0 1px, transparent 1px),
+    radial-gradient(circle at 34% 76%, rgba(255, 255, 255, 0.012) 0 1px, transparent 1px),
+    radial-gradient(circle at 62% 28%, rgba(255, 255, 255, 0.01) 0 1px, transparent 1px);
+  background-size:
+    420px 420px,
+    520px 520px,
+    380px 380px,
+    460px 460px;
+  animation: phase-g-particle-drift 64s linear infinite;
+}
+
+@keyframes phase-g-ambient-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-1.5%, 1.25%, 0) scale(1.02);
+  }
+}
+
+@keyframes phase-g-particle-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-2%, -1.5%, 0);
+  }
+}
+
+.phase-g-premium > section,
+.phase-g-premium > *:not(.phase-g-ambient-field):not(.bio-atmosphere) {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Section spacing & header hierarchy ── */
+.phase-g-premium .premium-section-lg {
+  padding-top: var(--phase-g-section-y);
+  padding-bottom: var(--phase-g-section-y);
+}
+
+.phase-g-premium .premium-section {
+  padding-top: var(--phase-g-section-y-sm);
+  padding-bottom: var(--phase-g-section-y-sm);
+}
+
+.phase-g-premium .qa-section-header {
+  margin-bottom: var(--phase-g-header-gap);
+}
+
+.phase-g-premium .qa-section-header .premium-eyebrow-gold,
+.phase-g-premium .polish-featured-copy .premium-eyebrow-gold,
+.phase-g-premium .qa-coa-copy .premium-eyebrow-gold {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.625rem;
+  letter-spacing: 0.22em;
+  color: rgba(var(--gold-rgb), 0.92);
+}
+
+.phase-g-premium .qa-section-header .premium-eyebrow-gold::after,
+.phase-g-premium .polish-featured-copy .premium-eyebrow-gold::after,
+.phase-g-premium .qa-coa-copy .premium-eyebrow-gold::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 2.5rem;
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--gold-rgb), 0.55),
+    transparent
+  );
+}
+
+.phase-g-premium .polish-featured-copy .premium-eyebrow-gold::after,
+.phase-g-premium .qa-coa-copy .premium-eyebrow-gold::after {
+  left: 0;
+  transform: none;
+}
+
+@media (min-width: 1024px) {
+  .phase-g-premium .qa-coa-copy .premium-eyebrow-gold::after {
+    left: 0;
+  }
+}
+
+.phase-g-premium .qa-section-header .type-display-section,
+.phase-g-premium .polish-type-section-title {
+  margin-top: 0.875rem;
+  color: rgba(250, 247, 240, 0.96);
+  text-shadow: 0 1px 24px rgba(0, 0, 0, 0.25);
+}
+
+.phase-g-premium .gold-accent-line,
+.phase-g-premium .qa-section-divider {
+  margin-top: 1.25rem;
+  opacity: 0.85;
+}
+
+.phase-g-premium .qa-section-footer {
+  margin-top: clamp(3rem, 5vw, 4rem);
+}
+
+/* ── Hero — product-first cinematic staging ── */
+.phase-g-premium .ref-hero-section {
+  background:
+    radial-gradient(
+      ellipse 70% 55% at 72% 48%,
+      rgba(var(--ocean-rgb), 0.1) 0%,
+      transparent 58%
+    ),
+    var(--deep-navy);
+}
+
+.ref-hero-bg-gradient {
+  background:
+    radial-gradient(
+      ellipse 65% 55% at 75% 45%,
+      rgba(var(--ocean-rgb), 0.14) 0%,
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 45% 40% at 18% 65%,
+      rgba(var(--gold-rgb), 0.05) 0%,
+      transparent 52%
+    ),
+    linear-gradient(
+      168deg,
+      #050f14 0%,
+      var(--deep-navy) 38%,
+      #0a2230 72%,
+      var(--surface-dark) 100%
+    );
+}
+
+.phase-g-premium .phase-g-hero-wave-light {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      115deg,
+      transparent 38%,
+      rgba(255, 255, 255, 0.04) 48%,
+      rgba(var(--ocean-rgb), 0.12) 52%,
+      transparent 62%
+    );
+  mix-blend-mode: soft-light;
+  opacity: 0.85;
+}
+
+.phase-g-premium .phase-g-hero-wave-specular {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 90% 40% at 68% 72%,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(var(--ocean-rgb), 0.06) 28%,
+      transparent 62%
+    );
+  animation: phase-g-wave-shimmer 14s var(--phase-g-ease) infinite alternate;
+}
+
+.phase-g-premium .phase-g-hero-particles {
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  background-image:
+    radial-gradient(circle at 70% 40%, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px),
+    radial-gradient(circle at 55% 65%, rgba(var(--ocean-rgb), 0.04) 0 1px, transparent 1px);
+  background-size: 280px 280px, 360px 360px;
+  animation: phase-g-particle-drift 52s linear infinite;
+}
+
+@keyframes phase-g-wave-shimmer {
+  from {
+    opacity: 0.55;
+    transform: translateX(-1%);
+  }
+  to {
+    opacity: 0.95;
+    transform: translateX(1.5%);
+  }
+}
+
+.phase-g-premium .ref-hero-text-veil {
+  background: linear-gradient(
+    90deg,
+    rgba(3, 11, 16, 0.88) 0%,
+    rgba(3, 11, 16, 0.58) 20%,
+    rgba(3, 11, 16, 0.18) 34%,
+    transparent 48%
+  );
+}
+
+@media (min-width: 1024px) {
+  .phase-g-premium .ref-hero-copy-col {
+    opacity: 0.9;
+  }
+
+  .phase-g-premium .ref-hero-showcase-wrap {
+    z-index: 3;
+  }
+}
+
+.phase-g-premium .phase-g-hero-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.phase-g-premium .phase-g-hero-volumetric {
+  position: absolute;
+  inset: 8% 0 12% 10%;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      ellipse 58% 62% at 50% 58%,
+      rgba(var(--ocean-rgb), 0.28) 0%,
+      rgba(var(--ocean-rgb), 0.08) 38%,
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 42% 38% at 48% 62%,
+      rgba(var(--gold-rgb), 0.1) 0%,
+      transparent 68%
+    );
+  filter: blur(18px);
+  animation: phase-g-volumetric-pulse 10s var(--phase-g-ease) infinite alternate;
+}
+
+@keyframes phase-g-volumetric-pulse {
+  from {
+    opacity: 0.72;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+}
+
+.phase-g-premium .phase-g-hero-platform-reflection {
+  position: absolute;
+  left: 8%;
+  right: 18%;
+  bottom: 8%;
+  height: clamp(28px, 5vw, 52px);
+  border-radius: 100%;
+  background:
+    radial-gradient(
+      ellipse 80% 100% at 50% 0%,
+      rgba(var(--gold-rgb), 0.22) 0%,
+      rgba(var(--ocean-rgb), 0.12) 35%,
+      transparent 72%
+    );
+  filter: blur(6px);
+  opacity: 0.75;
+}
+
+.phase-g-premium .phase-g-hero-rimlight {
+  pointer-events: none;
+  position: absolute;
+  inset: 6% 4% 10%;
+  z-index: 2;
+  border-radius: 42% 42% 12% 12%;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.22) 0%,
+      rgba(255, 255, 255, 0.06) 18%,
+      transparent 42%
+    ),
+    linear-gradient(
+      320deg,
+      rgba(var(--ocean-rgb), 0.14) 0%,
+      transparent 38%
+    );
+  mix-blend-mode: screen;
+}
+
+.phase-g-premium .ref-hero-showcase-reference {
+  position: relative;
+  z-index: 1;
+  scale: 1.46;
+  filter:
+    drop-shadow(0 48px 80px rgba(0, 0, 0, 0.72))
+    drop-shadow(0 0 72px rgba(var(--ocean-rgb), 0.22))
+    drop-shadow(-8px -4px 32px rgba(255, 255, 255, 0.08));
+}
+
+@media (min-width: 1024px) {
+  .phase-g-premium .ref-hero-showcase-reference {
+    scale: 1.15;
+    max-width: min(96%, 560px);
+    max-height: min(78dvh, 800px);
+  }
+}
+
+@media (min-width: 1280px) {
+  .phase-g-premium .ref-hero-showcase-reference {
+    max-width: min(98%, 610px);
+  }
+}
+
+/* ── Product cards — glassmorphism & collectible depth ── */
+.phase-g-premium .polish-product-card {
+  border: 1px solid var(--phase-g-glass-border);
+  background:
+    linear-gradient(
+      165deg,
+      var(--phase-g-glass-highlight) 0%,
+      var(--phase-g-glass) 42%,
+      rgba(0, 0, 0, 0.18) 100%
+    );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 20px 48px rgba(0, 0, 0, 0.38),
+    0 0 0 1px rgba(255, 255, 255, 0.03);
+  transition:
+    transform 0.65s var(--phase-g-ease),
+    box-shadow 0.65s var(--phase-g-ease),
+    border-color 0.65s var(--phase-g-ease);
+}
+
+.phase-g-premium .polish-product-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(var(--gold-rgb), 0.28);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 28px 64px rgba(0, 0, 0, 0.48),
+    0 0 48px rgba(var(--ocean-rgb), 0.08),
+    0 0 0 1px rgba(var(--gold-rgb), 0.12);
+}
+
+.phase-g-premium .polish-product-stage {
+  background:
+    radial-gradient(
+      ellipse 85% 70% at 50% 100%,
+      rgba(var(--ocean-rgb), 0.16) 0%,
+      rgba(0, 0, 0, 0.08) 55%,
+      transparent 72%
+    ),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, transparent 100%);
+}
+
+.phase-g-premium .phase-g-product-halo {
+  pointer-events: none;
+  position: absolute;
+  inset: 18% 14% 22%;
+  border-radius: 100%;
+  background: radial-gradient(
+    ellipse 70% 65% at 50% 72%,
+    rgba(var(--ocean-rgb), 0.32) 0%,
+    rgba(var(--gold-rgb), 0.08) 42%,
+    transparent 72%
+  );
+  filter: blur(10px);
+  opacity: 0.65;
+  transition: opacity 0.65s var(--phase-g-ease);
+}
+
+.phase-g-premium .polish-product-card:hover .phase-g-product-halo {
+  opacity: 1;
+}
+
+.phase-g-premium .polish-product-vial {
+  max-width: 56%;
+  transition:
+    transform 0.65s var(--phase-g-ease),
+    filter 0.65s var(--phase-g-ease);
+}
+
+.phase-g-premium .polish-product-card:hover .polish-product-vial {
+  transform: translateY(-7px);
+  filter:
+    drop-shadow(0 36px 56px rgba(0, 0, 0, 0.78))
+    drop-shadow(0 0 44px rgba(var(--ocean-rgb), 0.22));
+}
+
+.phase-g-premium .polish-product-info {
+  background: rgba(0, 0, 0, 0.22);
+  border-top: 1px solid rgba(var(--gold-rgb), 0.08);
+}
+
+/* ── Featured compound — flagship laboratory staging ── */
+.phase-g-premium .polish-featured-masterpiece {
+  background:
+    radial-gradient(
+      ellipse 75% 55% at 50% 45%,
+      rgba(var(--gold-rgb), 0.06) 0%,
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 60% 50% at 50% 100%,
+      rgba(var(--ocean-rgb), 0.05) 0%,
+      transparent 55%
+    ),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.04) 0%, rgba(var(--ocean-rgb), 0.03) 50%, rgba(0, 0, 0, 0.06) 100%);
+}
+
+.phase-g-premium .phase-g-lab-energy-ring {
+  pointer-events: none;
+  position: absolute;
+  inset: 6% 8% 14%;
+  border-radius: 100%;
+  border: 1px solid rgba(var(--gold-rgb), 0.18);
+  box-shadow:
+    0 0 48px rgba(var(--ocean-rgb), 0.12),
+    inset 0 0 32px rgba(var(--gold-rgb), 0.06);
+  animation: phase-g-lab-ring 18s linear infinite;
+}
+
+.phase-g-premium .phase-g-lab-energy-ring::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  border: 1px solid transparent;
+  border-top-color: rgba(var(--ocean-rgb), 0.45);
+  border-right-color: rgba(var(--gold-rgb), 0.25);
+  animation: phase-g-lab-ring 12s linear infinite reverse;
+}
+
+@keyframes phase-g-lab-ring {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.phase-g-premium .polish-featured-halo::after {
+  inset: 0;
+  opacity: 1;
+  box-shadow:
+    0 0 120px rgba(var(--gold-rgb), 0.28),
+    0 0 64px rgba(var(--ocean-rgb), 0.14),
+    inset 0 0 56px rgba(var(--gold-rgb), 0.1);
+}
+
+.phase-g-premium .polish-featured-vial {
+  max-width: 82%;
+  max-height: 92%;
+  transform: scale(1.14);
+  transform-origin: center bottom;
+}
+
+.phase-g-premium .polish-spec-panel {
+  border: 1px solid rgba(var(--gold-rgb), 0.16);
+  background:
+    linear-gradient(
+      165deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(0, 0, 0, 0.28) 100%
+    );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 24px 56px rgba(0, 0, 0, 0.42);
+}
+
+.phase-g-premium .polish-spec-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.phase-g-premium .polish-spec-value {
+  color: rgba(250, 247, 240, 0.94);
+}
+
+/* ── COA — premium trust banner ── */
+.phase-g-premium .ref-coa-promo {
+  border-top: 1px solid rgba(var(--gold-rgb), 0.18);
+  border-bottom: 1px solid rgba(var(--ocean-rgb), 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 -24px 64px rgba(0, 0, 0, 0.18);
+}
+
+.phase-g-premium .ref-coa-promo-bg {
+  background:
+    radial-gradient(ellipse 90% 140% at 15% 50%, rgba(var(--ocean-rgb), 0.16), transparent 58%),
+    radial-gradient(ellipse 70% 120% at 85% 50%, rgba(var(--gold-rgb), 0.08), transparent 52%),
+    linear-gradient(90deg, #060e14 0%, #0c1822 50%, #060e14 100%);
+}
+
+.phase-g-premium .phase-g-coa-trust-glow {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 55% 80% at 50% 50%,
+    rgba(var(--ocean-rgb), 0.08) 0%,
+    transparent 68%
+  );
+}
+
+.phase-g-premium .phase-g-coa-scanline {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.35;
+}
+
+.phase-g-premium .phase-g-coa-scanline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--ocean-rgb), 0.55),
+    rgba(255, 255, 255, 0.35),
+    rgba(var(--ocean-rgb), 0.55),
+    transparent
+  );
+  box-shadow: 0 0 24px rgba(var(--ocean-rgb), 0.35);
+  animation: phase-g-coa-scan 8s var(--phase-g-ease) infinite;
+}
+
+@keyframes phase-g-coa-scan {
+  0% {
+    top: -4%;
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.85;
+  }
+  92% {
+    opacity: 0.85;
+  }
+  100% {
+    top: 104%;
+    opacity: 0;
+  }
+}
+
+.phase-g-premium .polish-coa-icon {
+  box-shadow:
+    0 0 40px rgba(var(--gold-rgb), 0.2),
+    inset 0 0 24px rgba(var(--gold-rgb), 0.08);
+}
+
+.phase-g-premium .ref-coa-promo-title {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  letter-spacing: var(--heading-track);
+}
+
+.phase-g-premium .polish-coa-cta,
+.phase-g-premium .btn-platinum.qa-coa-cta {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 16px 40px rgba(0, 0, 0, 0.32),
+    0 0 32px rgba(var(--ocean-rgb), 0.1);
+}
+
+/* ── Trust & reviews depth ── */
+.phase-g-premium .ref-trust-frame {
+  border: 1px solid rgba(var(--gold-rgb), 0.1);
+  background: rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.phase-g-premium .polish-review-card {
+  border: 1px solid rgba(var(--gold-rgb), 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .phase-g-ambient-field::before,
+  .phase-g-ambient-field::after,
+  .phase-g-premium .phase-g-hero-wave-specular,
+  .phase-g-premium .phase-g-hero-particles,
+  .phase-g-premium .phase-g-hero-volumetric,
+  .phase-g-premium .phase-g-lab-energy-ring,
+  .phase-g-premium .phase-g-lab-energy-ring::before,
+  .phase-g-premium .phase-g-coa-scanline::after {
+    animation: none;
+  }
+
+  .phase-g-premium .polish-product-card:hover,
+  .phase-g-premium .polish-product-card:hover .polish-product-vial {
+    transform: none;
+  }
+}

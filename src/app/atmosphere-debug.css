@@ -1,0 +1,123 @@
+/**
+ * Atmosphere diagnostic mode — active only when .bio-atmosphere--debug
+ * Set window.DEBUG_ATMOSPHERE = true and reload, or call enableAtmosphereDebug()
+ */
+
+.bio-atmosphere--debug {
+  outline: 2px solid rgba(255, 60, 120, 0.65);
+  outline-offset: -2px;
+}
+
+.bio-atmosphere--debug::before {
+  content: "ATMOSPHERE DEBUG";
+  position: fixed;
+  top: 4.5rem;
+  left: 0.75rem;
+  z-index: 99999;
+  padding: 0.35rem 0.65rem;
+  border-radius: 0.25rem;
+  background: rgba(255, 60, 120, 0.92);
+  color: #fff;
+  font:
+    700 10px/1 ui-monospace,
+    monospace;
+  letter-spacing: 0.12em;
+  pointer-events: none;
+}
+
+.bio-atmosphere--debug .bio-atmosphere-gradient {
+  outline: 1px dashed rgba(100, 180, 255, 0.45);
+  outline-offset: -1px;
+}
+
+.bio-atmosphere--debug .bio-energy-field {
+  outline: 1px dashed rgba(80, 220, 200, 0.55);
+}
+
+.bio-atmosphere--debug .bio-energy--teal {
+  outline: 1px solid rgba(14, 165, 198, 0.7);
+  opacity: calc(0.58 * var(--bio-debug-glow, 3)) !important;
+  filter: blur(56px) !important;
+}
+
+.bio-atmosphere--debug .bio-energy--cyan {
+  outline: 1px solid rgba(11, 110, 136, 0.7);
+  opacity: calc(0.42 * var(--bio-debug-glow, 3)) !important;
+}
+
+.bio-atmosphere--debug .bio-energy--gold {
+  outline: 1px solid rgba(232, 181, 71, 0.7);
+  opacity: calc(0.4 * var(--bio-debug-glow, 3)) !important;
+}
+
+.bio-atmosphere--debug .bio-particle-layer--back {
+  outline: 1px dashed rgba(120, 200, 255, 0.35);
+}
+
+.bio-atmosphere--debug .bio-particle-layer--mid {
+  outline: 1px dashed rgba(14, 165, 198, 0.45);
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+}
+
+.bio-atmosphere--debug .bio-particle-layer--front {
+  outline: 1px dashed rgba(232, 181, 71, 0.45);
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+}
+
+.bio-atmosphere--debug .bio-particle {
+  outline: 1px solid rgba(255, 100, 180, 0.75) !important;
+  box-shadow:
+    0 0 8px rgba(14, 165, 198, 0.8),
+    0 0 16px rgba(14, 165, 198, 0.35) !important;
+  opacity: 1 !important;
+}
+
+.bio-atmosphere--debug .bio-molecular-field {
+  outline: 1px dashed rgba(180, 140, 255, 0.4);
+  opacity: 0.25 !important;
+}
+
+.bio-atmosphere--debug .bio-atmosphere-film-stack {
+  outline: 1px solid rgba(255, 80, 80, 0.5);
+}
+
+.bio-atmosphere--debug .bio-atmosphere-depth,
+.bio-atmosphere--debug .bio-atmosphere-vignette,
+.bio-atmosphere--debug .bio-atmosphere-grain {
+  outline: 1px dotted rgba(255, 180, 80, 0.45);
+}
+
+.bio-atmosphere--debug .bio-debug-layer-label {
+  position: absolute;
+  z-index: 9999;
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.2rem;
+  background: rgba(0, 0, 0, 0.72);
+  color: rgba(255, 255, 255, 0.9);
+  font:
+    600 9px/1.2 ui-monospace,
+    monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.bio-atmosphere--debug .bio-debug-layer-label--energy {
+  top: 12%;
+  left: 2%;
+  color: #6ee7ff;
+}
+
+.bio-atmosphere--debug .bio-debug-layer-label--particles {
+  top: 22%;
+  left: 2%;
+  color: #fcd34d;
+}
+
+.bio-atmosphere--debug .bio-debug-layer-label--film {
+  bottom: 8%;
+  left: 2%;
+  color: #f87171;
+}

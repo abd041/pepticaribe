@@ -1,0 +1,274 @@
+/**
+ * Phase 5C — Atmosphere balancing & environmental depth
+ * Balance only — no new systems, no layout/content changes.
+ */
+
+/* ── Priority 1: large environmental glow masses ── */
+.bio-env-glow-field {
+  position: absolute;
+  inset: -35%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bio-env-mass {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(128px);
+  will-change: transform, opacity;
+  opacity: 0.38;
+}
+
+/* Mass A — top-right, behind hero products (deep teal / cyan) */
+.bio-env-mass--a {
+  top: -8%;
+  right: -6%;
+  width: 72%;
+  height: 58%;
+  background: radial-gradient(
+    circle,
+    rgba(var(--ocean-rgb), 0.14) 0%,
+    rgba(11, 110, 136, 0.07) 32%,
+    transparent 68%
+  );
+}
+
+/* Mass B — center-left, content flow (cyan / deep teal) */
+.bio-env-mass--b {
+  top: 28%;
+  left: -12%;
+  width: 58%;
+  height: 52%;
+  background: radial-gradient(
+    circle,
+    rgba(11, 110, 136, 0.11) 0%,
+    rgba(var(--ocean-rgb), 0.05) 38%,
+    transparent 70%
+  );
+  opacity: 0.32;
+}
+
+/* Mass C — lower-right, testimonials zone (subtle gold / teal) */
+.bio-env-mass--c {
+  bottom: -10%;
+  right: -4%;
+  width: 64%;
+  height: 48%;
+  background: radial-gradient(
+    circle,
+    rgba(var(--gold-rgb), 0.06) 0%,
+    rgba(11, 110, 136, 0.04) 36%,
+    transparent 72%
+  );
+  opacity: 0.28;
+}
+
+@media (max-width: 767px) {
+  .bio-env-mass {
+    filter: blur(88px);
+  }
+}
+
+/* Softer legacy energy accents — env masses carry primary movement */
+.bio-particle-system .bio-energy--teal,
+.bio-particle-system .bio-energy--cyan,
+.bio-particle-system .bio-energy--gold {
+  filter: blur(96px);
+  opacity: calc(var(--bio-energy-opacity, 1) * 0.82);
+}
+
+/* ── Priority 2 support: slightly softer particles (felt, not seen) ── */
+.bio-particle--mid.bio-particle--teal {
+  box-shadow:
+    0 0 2px rgba(var(--ocean-rgb), 0.28),
+    0 0 5px rgba(var(--ocean-rgb), 0.08);
+}
+
+.bio-particle--mid.bio-particle--cyan {
+  box-shadow:
+    0 0 2px rgba(11, 110, 136, 0.24),
+    0 0 5px rgba(11, 110, 136, 0.07);
+}
+
+.bio-particle--front.bio-particle--teal {
+  box-shadow:
+    0 0 3px rgba(var(--ocean-rgb), 0.38),
+    0 0 8px rgba(var(--ocean-rgb), 0.1);
+}
+
+.bio-particle--front.bio-particle--cyan {
+  box-shadow:
+    0 0 3px rgba(11, 110, 136, 0.32),
+    0 0 7px rgba(11, 110, 136, 0.08);
+}
+
+.bio-particle--front.bio-particle--gold {
+  box-shadow:
+    0 0 3px rgba(var(--gold-rgb), 0.28),
+    0 0 7px rgba(var(--gold-rgb), 0.07);
+}
+
+/* ── Priority 3: molecular — hidden scientific detail ── */
+.bio-particle-system .bio-molecular-field {
+  opacity: 0.22;
+}
+
+.bio-molecular-cluster {
+  stroke: rgba(var(--ocean-rgb), 0.16);
+  fill: rgba(var(--ocean-rgb), 0.03);
+}
+
+.bio-molecular-cluster--b {
+  stroke: rgba(var(--gold-rgb), 0.12);
+  fill: rgba(var(--gold-rgb), 0.025);
+}
+
+.bio-molecular-cluster--c {
+  stroke: rgba(11, 110, 136, 0.14);
+  fill: rgba(11, 110, 136, 0.025);
+}
+
+/* ── Priority 4: atmosphere supports products (local hierarchy) ── */
+
+/* Hero — products remain brightest focal point */
+.bio-atmosphere-host .ref-hero-showcase-reference {
+  filter:
+    drop-shadow(0 40px 72px rgba(0, 0, 0, 0.62))
+    drop-shadow(0 0 56px rgba(var(--ocean-rgb), 0.18))
+    brightness(1.1)
+    contrast(1.04);
+}
+
+.bio-atmosphere-host .ref-hero-copy-legibility {
+  background: linear-gradient(
+    102deg,
+    rgba(3, 11, 16, 0.44) 0%,
+    rgba(3, 11, 16, 0.14) 28%,
+    transparent 48%
+  );
+}
+
+/* BPC showcase — bottle primary */
+.bio-atmosphere-host .art-featured-showcase .lux-featured-vial,
+.bio-atmosphere-host .art-featured-showcase .ref-featured-vial,
+.bio-atmosphere-host .art-featured-showcase .compound-exhibit-vial {
+  filter:
+    drop-shadow(0 48px 80px rgba(0, 0, 0, 0.72))
+    drop-shadow(0 0 52px rgba(var(--ocean-rgb), 0.16))
+    brightness(1.08);
+}
+
+/* COA — certificate primary */
+.bio-atmosphere-host .art-coa-document-frame,
+.bio-atmosphere-host .art-coa-document {
+  filter: brightness(1.06) contrast(1.03);
+}
+
+.bio-atmosphere-host .art-coa-document-anchor {
+  box-shadow:
+    0 32px 64px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/* Testimonials — quotes over atmosphere */
+.bio-atmosphere-host .ref-reviews-faq .ref-review-card,
+.bio-atmosphere-host .ref-reviews-faq .polish-review-card {
+  background: rgba(6, 18, 26, 0.72);
+  backdrop-filter: blur(12px);
+}
+
+/* Slightly denser section veils where products/content lead */
+.bio-atmosphere-host .section-identity-products {
+  background: linear-gradient(
+    180deg,
+    rgba(6, 20, 28, 0.58) 0%,
+    rgba(5, 16, 24, 0.46) 45%,
+    rgba(4, 12, 18, 0.52) 100%
+  );
+}
+
+.bio-atmosphere-host.art-direction .ref-featured-compound {
+  background: rgba(4, 14, 20, 0.5) !important;
+}
+
+.bio-atmosphere-host.art-direction .art-coa-section {
+  background: rgba(4, 12, 18, 0.48) !important;
+}
+
+/* ── Priority 5: Best Sellers contrast recovery ── */
+.bio-atmosphere-host .ref-best-sellers .best-seller-card,
+.bio-atmosphere-host .ref-best-sellers .polish-product-card {
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.085) 0%,
+    rgba(255, 255, 255, 0.028) 38%,
+    rgba(8, 22, 30, 0.72) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 20px 52px rgba(0, 0, 0, 0.42),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.bio-atmosphere-host .ref-best-sellers .best-seller-card:hover,
+.bio-atmosphere-host .ref-best-sellers .polish-product-card:hover {
+  border-color: rgba(var(--ocean-rgb), 0.32);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 28px 68px rgba(0, 0, 0, 0.48),
+    0 0 56px rgba(var(--ocean-rgb), 0.12),
+    0 0 0 1px rgba(var(--gold-rgb), 0.1);
+}
+
+.bio-atmosphere-host .ref-best-sellers .polish-product-stage {
+  background:
+    radial-gradient(
+      ellipse 88% 72% at 50% 100%,
+      rgba(var(--ocean-rgb), 0.22) 0%,
+      rgba(0, 0, 0, 0.06) 52%,
+      transparent 74%
+    ),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+}
+
+.bio-atmosphere-host .ref-best-sellers .lux-pp-volumetric {
+  opacity: 0.95;
+}
+
+.bio-atmosphere-host .ref-best-sellers .lux-pp-spotlight-beam {
+  opacity: 0.88;
+}
+
+.bio-atmosphere-host .ref-best-sellers .lux-pp-spotlight-core {
+  opacity: 1;
+  background: radial-gradient(
+    circle at 50% 40%,
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(var(--ocean-rgb), 0.24) 35%,
+    transparent 72%
+  );
+}
+
+.bio-atmosphere-host .ref-best-sellers .compound-exhibit-vial {
+  filter:
+    drop-shadow(0 28px 48px rgba(0, 0, 0, 0.65))
+    drop-shadow(0 0 36px rgba(var(--ocean-rgb), 0.14))
+    brightness(1.06);
+}
+
+.bio-atmosphere-host .ref-best-sellers .ref-product-info {
+  background: rgba(0, 0, 0, 0.28);
+  border-top-color: rgba(var(--gold-rgb), 0.12);
+}
+
+.bio-atmosphere-host.art-direction .ref-best-sellers {
+  background: rgba(4, 14, 20, 0.44) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bio-env-mass {
+    will-change: auto;
+  }
+}
