@@ -20,7 +20,7 @@
 }
 
 .lux-product-presentation--card {
-  min-height: clamp(220px, 32vw, 280px);
+  min-height: clamp(280px, 36vw, 400px);
   border-radius: 0.75rem 0.75rem 0 0;
   overflow: hidden;
 }

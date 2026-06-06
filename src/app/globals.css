@@ -4783,7 +4783,7 @@ header.text-center .editorial-header-accent {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  height: clamp(168px, 22vw, 210px);
+  height: clamp(200px, 26vw, 280px);
   overflow: hidden;
   background: linear-gradient(180deg, #0a1218 0%, #060d13 100%);
 }
@@ -5280,7 +5280,7 @@ header.text-center .editorial-header-accent {
 }
 
 .polish-product-stage {
-  height: clamp(176px, 23vw, 218px);
+  height: clamp(200px, 26vw, 280px);
   text-decoration: none;
   transition: background 0.4s var(--ease-premium);
 }

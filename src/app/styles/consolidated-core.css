@@ -1180,7 +1180,7 @@
 }
 
 .lux-product-presentation--card {
-  min-height: clamp(220px, 32vw, 280px);
+  min-height: clamp(280px, 36vw, 400px);
   border-radius: 0.75rem 0.75rem 0 0;
   overflow: hidden;
 }
@@ -1811,7 +1811,7 @@
   --art-section-y-sm: clamp(3rem, 5.5vw, 4.5rem);
   --art-header-gap: clamp(1.75rem, 3.5vw, 2.75rem);
   --art-product-scale-hero: 1.33;
-  --art-product-scale-featured: 0.68;
+  --art-product-scale-featured: 1;
 }
 
 /* ── Compressed vertical rhythm ── */
@@ -1922,7 +1922,7 @@
     max-width: min(92%, 560px);
     max-height: min(72dvh, 700px);
     scale: var(--art-product-scale-hero);
-    transform: translateY(2%);
+    transform: translateY(6%);
     transform-origin: center bottom;
     object-position: center bottom;
   }
@@ -1930,7 +1930,7 @@
   .art-direction .ref-hero-showcase-reference-frame {
     justify-content: center;
     align-items: flex-end;
-    padding-bottom: 2%;
+    padding-bottom: 5%;
   }
 }
 
@@ -1938,12 +1938,12 @@
   .art-direction .ref-hero-showcase-reference {
     max-height: min(46dvh, 420px);
     scale: 1.12;
-    transform: translateY(1%);
+    transform: translateY(4%);
     transform-origin: center bottom;
   }
 
   .art-direction .ref-hero-showcase-reference-frame {
-    padding-bottom: 2%;
+    padding-bottom: 4%;
   }
 
   .art-direction .ref-hero-showcase {
@@ -1985,21 +1985,24 @@
   background: transparent;
 }
 
-/* ── Product cards: vials sized to fit inside card frame ── */
-.art-direction .art-product-card .ref-product-image-wrap {
-  height: clamp(220px, 28vw, 300px);
-  padding: 1.25rem 1.5rem 1rem;
+/* ── Product cards: taller image stage, vials centered in frame ── */
+.art-direction .art-product-card .ref-product-image-wrap,
+.art-direction .art-product-card .polish-product-stage {
+  height: clamp(280px, 36vw, 400px);
+  min-height: clamp(280px, 36vw, 400px);
+  padding: 1.5rem 1.25rem 1.25rem;
   align-items: flex-end;
 }
 
 .art-direction .art-product-card .lux-product-presentation--card {
   min-height: 100%;
+  height: 100%;
 }
 
 .art-direction .art-product-card .compound-exhibit-vial-slot {
-  width: 52% !important;
-  height: 44% !important;
-  bottom: 16% !important;
+  width: 54% !important;
+  height: 52% !important;
+  bottom: 14% !important;
 }
 
 .art-direction .art-product-card .compound-exhibit-pedestal-stack {
@@ -2070,8 +2073,8 @@
 }
 
 .art-direction .art-featured-showcase .ref-featured-vial-stage {
-  height: clamp(360px, 44vw, 540px);
-  max-width: 420px;
+  height: clamp(380px, 46vw, 560px);
+  max-width: 440px;
   background: transparent;
 }
 
@@ -2090,10 +2093,10 @@
 
 .art-direction .art-featured-showcase .lux-featured-vial,
 .art-direction .art-featured-showcase .ref-featured-vial {
-  max-height: 84%;
-  max-width: 78%;
+  max-height: 94%;
+  max-width: 92%;
   scale: var(--art-product-scale-featured);
-  transform-origin: center bottom;
+  transform-origin: center center;
 }
 
 .art-direction .art-featured-copy {

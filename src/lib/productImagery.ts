@@ -88,12 +88,14 @@ export const COMPOUND_EXHIBIT_IMAGES: Record<string, string> = {
   "cjc-1295-ipamorelin": "/products/exhibit/cjc-1295-ipamorelin.png",
 };
 
-/** Featured BPC-157 centerpiece render (normalized exhibit canvas) */
-export const FEATURED_BPC_EXHIBIT = {
-  src: COMPOUND_EXHIBIT_IMAGES["bpc-157"],
-  width: EXHIBIT_CANVAS.width,
-  height: EXHIBIT_CANVAS.height,
+/** Featured BPC-157 centerpiece — vial + illuminated pedestal (homepage only) */
+export const FEATURED_BPC_SHOWCASE = {
+  src: "/products/featured/bpc-157-showcase.png",
+  width: 716,
+  height: 954,
 } as const;
+
+export const FEATURED_BPC_EXHIBIT = FEATURED_BPC_SHOWCASE;
 
 /** @deprecated Use HERO_SHOWCASE_REFERENCE from @/lib/heroAssets */
 export const HERO_FLAGSHIP_IMAGE = HERO_SHOWCASE_REFERENCE.src;
