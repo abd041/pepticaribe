@@ -1883,7 +1883,11 @@
 }
 
 .art-direction .art-hero-copy {
-  max-width: min(28rem, 92%);
+  max-width: min(32rem, 96%);
+}
+
+.art-direction .hero-headline-primary {
+  white-space: nowrap;
 }
 
 .art-direction .art-hero-copy .ref-hero-headline {
@@ -2001,7 +2005,7 @@
 
 .art-direction .art-product-card .compound-exhibit-pedestal-stack {
   bottom: 12%;
-  transform: scale(0.68);
+  transform: scale(0.88);
 }
 
 .art-direction .art-product-card .compound-exhibit-contact-shadow {
@@ -2016,22 +2020,22 @@
 
 .art-direction .art-product-card .compound-exhibit-vial-frame {
   transform: translateY(calc(var(--vial-y, 0) * 1%))
-    scale(calc(var(--vial-scale, 1) * 0.78));
+    scale(calc(var(--vial-scale, 1) * 0.88));
   transform-origin: bottom center;
 }
 
 .art-direction .art-product-card .compound-exhibit-vial {
-  transform: scale(0.76);
+  transform: scale(0.86);
   transform-origin: center bottom;
 }
 
 .art-direction .art-product-card:hover .compound-exhibit-vial-frame {
   transform: translateY(calc(var(--vial-y, 0) * 1% - 5px))
-    scale(calc(var(--vial-scale, 1) * 0.8));
+    scale(calc(var(--vial-scale, 1) * 0.9));
 }
 
 .art-direction .art-product-card:hover .compound-exhibit-vial {
-  transform: scale(0.78);
+  transform: scale(0.88);
 }
 
 .art-direction .art-product-card .ref-product-info {
@@ -2062,9 +2066,27 @@
   }
 }
 
-.art-direction .art-featured-showcase .ref-featured-pedestal {
+.art-direction .art-featured-showcase {
+  background: transparent;
+}
+
+.art-direction .art-featured-showcase .ref-featured-vial-stage {
   height: clamp(360px, 44vw, 540px);
   max-width: 420px;
+  background: transparent;
+}
+
+.art-direction .art-featured-showcase .ref-featured-halo,
+.art-direction .art-featured-showcase .lux-featured-halo-ring,
+.art-direction .art-featured-showcase .lux-featured-lab-spotlight,
+.art-direction .art-featured-showcase .lux-featured-lab-beam,
+.art-direction .art-featured-showcase .polish-featured-spotlight,
+.art-direction .art-featured-showcase .ref-featured-pedestal-base,
+.art-direction .art-featured-showcase .ref-featured-pedestal-glass,
+.art-direction .art-featured-showcase .ref-featured-pedestal-ring,
+.art-direction .art-featured-showcase .final8-featured-reflection,
+.art-direction .art-featured-showcase .final8-featured-contact-shadow {
+  display: none;
 }
 
 .art-direction .art-featured-showcase .lux-featured-vial,
@@ -2276,17 +2298,11 @@
   display: none;
 }
 
-/* Featured: reduce decorative ring dominance — product reads first */
-.art-direction .lux-featured-halo-ring--outer {
-  opacity: 0.22;
-}
-
-.art-direction .lux-featured-halo-ring--mid {
-  opacity: 0.35;
-}
-
+/* Featured: no decorative rings — transparent vial only */
+.art-direction .lux-featured-halo-ring--outer,
+.art-direction .lux-featured-halo-ring--mid,
 .art-direction .lux-featured-halo-ring--inner {
-  opacity: 0.5;
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -40,7 +40,7 @@ export function Hero() {
               </p>
 
               <h1 className="hero-headline font-display lux-hero-animate lux-hero-animate-headline mt-5 max-w-none">
-                <span className="block">
+                <span className="hero-headline-primary block whitespace-nowrap">
                   {t("hero.headlineResearch")}{" "}
                   <span className="concept-hero-headline-accent text-[var(--ocean-blue)]">
                     {t("hero.headlinePeptides")}

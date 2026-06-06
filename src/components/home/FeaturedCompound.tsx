@@ -95,32 +95,15 @@ export function FeaturedCompound({ product }: FeaturedCompoundProps) {
             </div>
 
             <div className="ref-featured-showcase polish-featured-showcase art-featured-showcase relative mx-auto w-full">
-              <div className="ref-featured-halo polish-featured-halo pointer-events-none absolute inset-0" aria-hidden />
-              <div className="lux-featured-halo-ring lux-featured-halo-ring--outer lux-featured-halo-ring" aria-hidden />
-              <div className="lux-featured-halo-ring lux-featured-halo-ring--mid" aria-hidden />
-              <div className="lux-featured-halo-ring lux-featured-halo-ring--inner" aria-hidden />
-              <div className="lux-featured-lab-spotlight pointer-events-none absolute inset-0" aria-hidden />
-              <div className="lux-featured-lab-beam pointer-events-none absolute inset-0" aria-hidden />
-              <div className="polish-featured-spotlight pointer-events-none absolute inset-0" aria-hidden />
-              <div className="ref-featured-pedestal polish-featured-pedestal final8-featured-pedestal relative mx-auto h-[clamp(360px,44vw,540px)] w-full max-w-[420px]">
-                <div className="ref-featured-pedestal-base absolute inset-x-[5%] bottom-[5%] z-10" aria-hidden />
-                <div className="ref-featured-pedestal-glass absolute inset-x-[10%] bottom-[7%] z-[15] h-[clamp(32px,5.5vw,48px)] rounded-[100%]" aria-hidden />
-                <div className="ref-featured-pedestal-ring final8-featured-ring absolute inset-x-[14%] bottom-[8.5%] z-20 h-[clamp(12px,2.2vw,16px)] rounded-[100%]" aria-hidden />
-                <div className="final8-featured-reflection pointer-events-none absolute inset-x-[22%] bottom-[9%] z-[18] h-[clamp(24px,4vw,40px)] overflow-hidden" aria-hidden />
-                <div className="final8-featured-contact-shadow pointer-events-none absolute inset-x-[18%] bottom-[10%] z-[19] h-3 rounded-[100%] blur-sm" aria-hidden />
-                <div
-                  className="lux-featured-vial-float absolute inset-x-0 bottom-[11%] top-0 z-30 flex items-end justify-center"
-                  data-speed="0.9"
-                >
-                  <OptimizedImage
-                    src={FEATURED_BPC_EXHIBIT.src}
-                    alt={product.displayName}
-                    width={FEATURED_BPC_EXHIBIT.width}
-                    height={FEATURED_BPC_EXHIBIT.height}
-                    sizes="(max-width: 1024px) 68vw, 420px"
-                    className="ref-featured-vial polish-featured-vial lux-featured-vial h-auto max-h-[84%] w-auto max-w-[78%] object-contain"
-                  />
-                </div>
+              <div className="ref-featured-vial-stage relative mx-auto flex h-[clamp(360px,44vw,540px)] w-full max-w-[420px] items-end justify-center">
+                <OptimizedImage
+                  src={FEATURED_BPC_EXHIBIT.src}
+                  alt={product.displayName}
+                  width={FEATURED_BPC_EXHIBIT.width}
+                  height={FEATURED_BPC_EXHIBIT.height}
+                  sizes="(max-width: 1024px) 68vw, 420px"
+                  className="ref-featured-vial polish-featured-vial lux-featured-vial h-auto max-h-[84%] w-auto max-w-[78%] object-contain"
+                />
               </div>
             </div>
 
