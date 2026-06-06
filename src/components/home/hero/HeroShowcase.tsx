@@ -20,7 +20,6 @@ export function HeroShowcase() {
     <div
       className="ref-hero-showcase concept-hero-showcase ref-hero-showcase-reference-scene art-hero-showcase"
       data-hero-asset="hero-showcase-reference"
-      data-speed="0.95"
     >
       <div className="lux-hero-product">
         <LuxuryProductPresentation variant="hero" alt="Research peptide vials on luxury pedestal">

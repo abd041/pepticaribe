@@ -31,8 +31,8 @@ type LayerConfig = {
 
 const LAYER_CONFIG: Record<DepthLayer, LayerConfig> = {
   back: {
-    count: 12,
-    countMobile: 6,
+    count: 8,
+    countMobile: 4,
     sizeMin: 1.5,
     sizeMax: 2.75,
     opacityMin: 0.22,
@@ -43,8 +43,8 @@ const LAYER_CONFIG: Record<DepthLayer, LayerConfig> = {
     durationMax: 52,
   },
   mid: {
-    count: 16,
-    countMobile: 8,
+    count: 10,
+    countMobile: 5,
     sizeMin: 2,
     sizeMax: 4.25,
     opacityMin: 0.34,
@@ -55,8 +55,8 @@ const LAYER_CONFIG: Record<DepthLayer, LayerConfig> = {
     durationMax: 34,
   },
   front: {
-    count: 10,
-    countMobile: 5,
+    count: 6,
+    countMobile: 3,
     sizeMin: 2.75,
     sizeMax: 6,
     opacityMin: 0.46,
@@ -381,70 +381,53 @@ export function BiotechAtmosphere() {
       }
 
       if (host) {
-        const scrubEnv = visProto ? 0.45 : 3.6;
-        const scrubEnergy = visProto ? 0.45 : 2.6;
-        const scrubBack = visProto ? 0.55 : 3.4;
-        const scrubMid = visProto ? 0.35 : 1.35;
-        const scrubFront = visProto ? 0.2 : 0.55;
+        const scrubEnv = visProto ? 0.45 : 1;
+        const scrubEnergy = visProto ? 0.45 : 0.9;
+        const scrubBack = visProto ? 0.55 : 0.95;
+        const scrubMid = visProto ? 0.35 : 0.85;
+        const scrubFront = visProto ? 0.2 : 0.75;
+        const scrollParallax = {
+          trigger: host,
+          start: "top top",
+          end: "bottom bottom",
+        } as const;
 
         gsap.to(".bio-env-glow-field", {
-          yPercent: 20 * parallax * 1.08,
+          yPercent: 12 * parallax,
           ease: "none",
-          scrollTrigger: { trigger: host, start: "top top", end: "bottom bottom", scrub: scrubEnv },
+          scrollTrigger: { ...scrollParallax, scrub: scrubEnv },
         });
 
         gsap.to(".bio-energy-field", {
-          yPercent: 14 * parallax,
-          ease: "none",
-          scrollTrigger: { trigger: host, start: "top top", end: "bottom bottom", scrub: scrubEnergy },
-        });
-
-        gsap.to(".bio-prototype-glow-field", {
-          yPercent: 10 * parallax,
-          ease: "none",
-          scrollTrigger: { trigger: host, start: "top top", end: "bottom bottom", scrub: scrubEnergy * 0.9 },
-        });
-
-        gsap.to(".bio-energy--teal", {
-          yPercent: 4 * parallax,
-          ease: "none",
-          scrollTrigger: { trigger: host, start: "top top", end: "bottom bottom", scrub: scrubEnergy * 1.15 },
-        });
-
-        gsap.to(".bio-energy--cyan", {
           yPercent: 8 * parallax,
           ease: "none",
-          scrollTrigger: { trigger: host, start: "top top", end: "bottom bottom", scrub: scrubEnergy * 0.9 },
+          scrollTrigger: { ...scrollParallax, scrub: scrubEnergy },
         });
 
-        gsap.to(".bio-energy--gold", {
-          yPercent: 6 * parallax,
-          ease: "none",
-          scrollTrigger: { trigger: host, start: "top top", end: "bottom bottom", scrub: scrubEnergy },
-        });
-
-        gsap.to(".bio-molecular-field", {
-          yPercent: 5 * parallax,
-          ease: "none",
-          scrollTrigger: { trigger: host, start: "top top", end: "bottom bottom", scrub: scrubEnergy * 1.05 },
-        });
+        if (visProto && document.querySelector(".bio-prototype-glow-field")) {
+          gsap.to(".bio-prototype-glow-field", {
+            yPercent: 8 * parallax,
+            ease: "none",
+            scrollTrigger: { ...scrollParallax, scrub: scrubEnergy * 0.9 },
+          });
+        }
 
         gsap.to(".bio-particle-layer--back", {
-          yPercent: 9 * parallax,
+          yPercent: 6 * parallax,
           ease: "none",
-          scrollTrigger: { trigger: host, start: "top top", end: "bottom bottom", scrub: scrubBack },
+          scrollTrigger: { ...scrollParallax, scrub: scrubBack },
         });
 
         gsap.to(".bio-particle-layer--mid", {
-          yPercent: 24 * parallax,
+          yPercent: 10 * parallax,
           ease: "none",
-          scrollTrigger: { trigger: host, start: "top top", end: "bottom bottom", scrub: scrubMid },
+          scrollTrigger: { ...scrollParallax, scrub: scrubMid },
         });
 
         gsap.to(".bio-particle-layer--front", {
-          yPercent: 36 * parallax,
+          yPercent: 12 * parallax,
           ease: "none",
-          scrollTrigger: { trigger: host, start: "top top", end: "bottom bottom", scrub: scrubFront },
+          scrollTrigger: { ...scrollParallax, scrub: scrubFront },
         });
       }
     }, rootRef);
@@ -495,7 +478,7 @@ export function BiotechAtmosphere() {
           <div className="bio-prototype-glow bio-prototype-glow--mass-b" />
         </div>
       ) : (
-        <div className="bio-env-glow-field" data-speed="1.08" aria-hidden>
+        <div className="bio-env-glow-field" aria-hidden>
           <div className="bio-env-mass bio-env-mass--a" />
           <div className="bio-env-mass bio-env-mass--b" />
           <div className="bio-env-mass bio-env-mass--c" />

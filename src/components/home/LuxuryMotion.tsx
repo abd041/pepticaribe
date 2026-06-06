@@ -4,6 +4,13 @@ import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useSmoothScrollReady } from "@/components/home/SmoothScrollProvider";
+import {
+  bindLuxReveal,
+  bindLuxStaggerGroups,
+  CINEMATIC_EASE,
+  MOTION,
+  scheduleScrollTriggerRefresh,
+} from "@/lib/gsap/motion";
 
 /** GSAP luxury motion — homepage only, respects reduced motion */
 export function LuxuryMotion() {
@@ -14,7 +21,7 @@ export function LuxuryMotion() {
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) {
-      gsap.set(".lux-hero-animate, .lux-hero-product, .lux-hero-glow", {
+      gsap.set(".lux-hero-animate, .lux-hero-product", {
         opacity: 1,
         y: 0,
         scale: 1,
@@ -25,75 +32,72 @@ export function LuxuryMotion() {
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      /* Hero — transform-first; copy stays visible for LCP */
+      const heroTl = gsap.timeline({
+        defaults: { ease: CINEMATIC_EASE },
+        delay: 0.05,
+      });
+
       heroTl
-        .from(".lux-hero-glow", {
-          opacity: 0,
-          scale: 0.88,
-          duration: 1.5,
+        .from(".lux-pp-volumetric", {
+          opacity: 0.72,
+          scale: 0.96,
+          duration: 1.1,
           immediateRender: false,
         })
         .from(
-          ".lux-pp-volumetric",
-          { opacity: 0.6, scale: 0.94, duration: 1.35, immediateRender: false },
-          "-=1.35",
-        )
-        .from(
           ".lux-hero-animate-eyebrow",
-          { opacity: 0, y: 32, duration: 0.85, immediateRender: false },
-          "-=1.1",
+          { y: 20, duration: 0.65, immediateRender: false },
+          "-=0.85",
         )
         .from(
           ".lux-hero-animate-headline",
-          { opacity: 0, y: 32, duration: 1.05, immediateRender: false },
-          "-=0.65",
+          { y: 24, duration: 0.8, immediateRender: false },
+          "-=0.5",
         )
         .from(
           ".lux-hero-animate-lead",
-          { opacity: 0, y: 32, duration: 0.75, immediateRender: false },
-          "-=0.55",
-        )
-        .from(
-          ".lux-hero-animate-cta",
-          { opacity: 0, y: 32, duration: 0.7, stagger: 0.1, immediateRender: false },
+          { y: 18, duration: 0.6, immediateRender: false },
           "-=0.45",
         )
         .from(
-          ".lux-hero-animate-badges",
-          { opacity: 0, y: 32, duration: 0.65, immediateRender: false },
+          ".lux-hero-animate-cta",
+          { y: 16, duration: 0.55, stagger: 0.08, immediateRender: false },
           "-=0.35",
         )
         .from(
+          ".lux-hero-animate-badges",
+          { y: 16, duration: 0.55, immediateRender: false },
+          "-=0.3",
+        )
+        .from(
           ".lux-hero-product",
-          { opacity: 0, y: 24, scale: 0.96, duration: 1.15, immediateRender: false },
-          "-=1",
+          { y: 20, scale: 0.97, duration: 0.95, immediateRender: false },
+          "-=0.75",
         );
 
-      gsap.to(".lux-hero-float", {
-        y: -10,
-        duration: 4.5,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-      });
+      const floatTarget = document.querySelector(".lux-hero-float");
+      if (floatTarget) {
+        gsap.to(floatTarget, {
+          y: -8,
+          duration: 5,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+        });
+      }
 
-      gsap.to(".lux-hero-glow", {
-        scale: 1.04,
-        opacity: 0.92,
-        duration: 5,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-      });
-
-      gsap.to(".lux-pp-spotlight-core", {
-        scale: 1.06,
-        opacity: 0.95,
-        duration: 6,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-      });
+      const spotlight = document.querySelector(".lux-pp-spotlight-core");
+      if (spotlight) {
+        gsap.to(spotlight, {
+          scale: 1.04,
+          opacity: 0.95,
+          duration: 6,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+        });
+      }
 
       ScrollTrigger.create({
         start: 0,
@@ -106,171 +110,111 @@ export function LuxuryMotion() {
         },
       });
 
-      /* BPC-157 Apple-style showcase */
-      const featuredTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".ref-featured-compound",
-          start: "top 68%",
-          toggleActions: "play none none none",
-        },
-        defaults: { ease: "power3.out" },
-      });
-
-      featuredTl
-        .from(".lux-featured-vial", {
-          y: 56,
-          opacity: 0,
-          scale: 0.92,
-          duration: 1.35,
-        })
-        .from(
-          ".lux-featured-halo-ring--outer",
-          { scale: 0.78, opacity: 0, duration: 1.2 },
-          "-=1.1",
-        )
-        .from(
-          ".lux-featured-halo-ring--mid",
-          { scale: 0.82, opacity: 0, duration: 1.15 },
-          "-=1",
-        )
-        .from(
-          ".lux-featured-halo-ring--inner",
-          { scale: 0.86, opacity: 0, duration: 1.1 },
-          "-=0.95",
-        )
-        .from(
-          ".lux-featured-lab-spotlight",
-          { opacity: 0, duration: 1.25 },
-          "-=1.2",
-        )
-        .from(
-          ".lux-featured-spec",
-          { x: 40, opacity: 0, duration: 1.05 },
-          "-=0.85",
-        )
-        .from(
-          ".lux-featured-copy > *",
-          { y: 28, opacity: 0, duration: 0.85, stagger: 0.07 },
-          "-=0.95",
-        );
-
-      gsap.to(".lux-featured-halo-ring--outer", {
-        rotation: 360,
-        duration: 48,
-        ease: "none",
-        repeat: -1,
-      });
-
-      gsap.to(".lux-featured-halo-ring--mid", {
-        rotation: -360,
-        duration: 36,
-        ease: "none",
-        repeat: -1,
-      });
-
-      gsap.to(".lux-featured-halo-ring--inner", {
-        scale: 1.03,
-        opacity: 0.85,
-        duration: 4,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-      });
-
-      gsap.to(".lux-featured-vial-float", {
-        y: -12,
-        duration: 5,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-      });
-
-      gsap.to(".lux-featured-lab-beam", {
-        opacity: 0.95,
-        duration: 3.5,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-      });
-
-      /* Purity counter — animates to existing 99%+ copy */
-      const purityEl = document.querySelector(".lux-purity-counter-value");
-      if (purityEl) {
-        const counter = { val: 0 };
-        gsap.to(counter, {
-          val: 99,
-          duration: 1.8,
-          ease: "power2.out",
-          snap: { val: 1 },
+      /* Featured compound — matches simplified transparent vial layout */
+      const featuredSection = document.querySelector(".ref-featured-compound");
+      if (featuredSection) {
+        const featuredTl = gsap.timeline({
           scrollTrigger: {
-            trigger: ".lux-featured-spec",
-            start: "top 78%",
+            trigger: featuredSection,
+            start: MOTION.featuredStart,
             toggleActions: "play none none none",
           },
-          onUpdate: () => {
-            purityEl.textContent = String(Math.round(counter.val));
+          defaults: { ease: CINEMATIC_EASE },
+        });
+
+        featuredTl
+          .from(".lux-featured-vial", {
+            y: 36,
+            opacity: 0,
+            scale: 0.94,
+            duration: 0.9,
+          })
+          .from(
+            ".lux-featured-spec",
+            { x: 20, opacity: 0, duration: 0.75 },
+            "-=0.55",
+          )
+          .from(
+            ".lux-featured-copy .premium-eyebrow-gold, .lux-featured-copy .ref-featured-title, .lux-featured-copy .section-caption, .lux-featured-copy .ref-featured-trust-list, .lux-featured-copy .polish-featured-cta",
+            { y: 18, opacity: 0, duration: 0.7, stagger: 0.06 },
+            "-=0.6",
+          );
+
+        const purityEl = document.querySelector(".lux-purity-counter-value");
+        if (purityEl) {
+          const counter = { val: 0 };
+          gsap.to(counter, {
+            val: 99,
+            duration: 1.4,
+            ease: "power2.out",
+            snap: { val: 1 },
+            scrollTrigger: {
+              trigger: ".lux-featured-spec",
+              start: MOTION.revealStart,
+              toggleActions: "play none none none",
+            },
+            onUpdate: () => {
+              purityEl.textContent = String(Math.round(counter.val));
+            },
+          });
+        }
+      }
+
+      /* COA — single vault reveal (no section-level lux-reveal overlap) */
+      const coaVault = document.querySelector(".art-coa-vault");
+      if (coaVault) {
+        gsap.from(".art-coa-copy", {
+          scrollTrigger: {
+            trigger: coaVault,
+            start: MOTION.revealStart,
+            toggleActions: "play none none none",
           },
+          y: MOTION.revealY,
+          opacity: 0,
+          duration: MOTION.reveal,
+          ease: CINEMATIC_EASE,
+        });
+
+        gsap.from(".art-coa-document", {
+          scrollTrigger: {
+            trigger: coaVault,
+            start: MOTION.revealStart,
+            toggleActions: "play none none none",
+          },
+          rotation: -8,
+          y: 16,
+          opacity: 0,
+          duration: 0.85,
+          ease: CINEMATIC_EASE,
+        });
+
+        gsap.from(".art-coa-seal", {
+          scrollTrigger: {
+            trigger: coaVault,
+            start: MOTION.revealStart,
+            toggleActions: "play none none none",
+          },
+          scale: 0.88,
+          opacity: 0,
+          duration: 0.65,
+          delay: 0.1,
+          ease: CINEMATIC_EASE,
         });
       }
 
-      /* COA document vault reveal */
-      gsap.from(".art-coa-document", {
-        scrollTrigger: {
-          trigger: ".art-coa-vault",
-          start: "top 82%",
-          toggleActions: "play none none none",
-        },
-        rotation: -12,
-        y: 20,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
+      gsap.utils.toArray<Element>(".lux-reveal").forEach((el) => {
+        bindLuxReveal(el);
       });
 
-      gsap.from(".art-coa-seal", {
-        scrollTrigger: {
-          trigger: ".art-coa-vault",
-          start: "top 82%",
-          toggleActions: "play none none none",
-        },
-        scale: 0.65,
-        opacity: 0,
-        duration: 0.9,
-        delay: 0.12,
-        ease: "back.out(1.35)",
-      });
-
-      gsap.utils.toArray<HTMLElement>(".lux-reveal").forEach((el) => {
-        gsap.from(el, {
-          scrollTrigger: {
-            trigger: el,
-            start: "top 88%",
-            toggleActions: "play none none none",
-          },
-          y: 36,
-          opacity: 0,
-          duration: 0.95,
-          ease: "power3.out",
-        });
-      });
-
-      gsap.utils.toArray<HTMLElement>(".lux-stagger-item").forEach((el, i) => {
-        gsap.from(el, {
-          scrollTrigger: {
-            trigger: el.closest(".lux-stagger-group") ?? el,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
-          y: 28,
-          opacity: 0,
-          duration: 0.8,
-          delay: i * 0.06,
-          ease: "power3.out",
-        });
-      });
+      bindLuxStaggerGroups();
     });
 
-    return () => ctx.revert();
+    const unbindRefresh = scheduleScrollTriggerRefresh();
+
+    return () => {
+      unbindRefresh();
+      ctx.revert();
+    };
   }, [scrollReady]);
 
   return null;

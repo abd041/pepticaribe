@@ -490,8 +490,7 @@
   }
 
   .lux-hero-animate,
-  .lux-hero-product,
-  .lux-hero-glow {
+  .lux-hero-product {
     opacity: 1 !important;
     transform: none !important;
   }
