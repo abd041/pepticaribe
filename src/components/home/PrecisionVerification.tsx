@@ -30,11 +30,11 @@ export function PrecisionVerification() {
             <div className="gold-accent-line qa-section-divider mx-auto" aria-hidden />
           </div>
 
-          <div className="ref-precision-grid mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:gap-8 lux-stagger-group">
+          <div className="ref-precision-grid mt-10 grid grid-cols-2 gap-2 sm:gap-4 lg:gap-6 xl:gap-8 lux-stagger-group">
             {items.map((item) => (
               <article
                 key={item.title}
-                className="ref-trust-card polish-trust-card qa-trust-card lux-stagger-item rounded-[var(--radius-premium)] p-6"
+                className="ref-trust-card polish-trust-card qa-trust-card lux-stagger-item rounded-[var(--radius-premium)] p-4 text-center sm:p-6"
               >
                 <div className="ref-trust-icon-well">
                   <item.icon className="h-6 w-6" strokeWidth={1.35} aria-hidden />

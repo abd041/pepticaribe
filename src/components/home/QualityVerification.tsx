@@ -29,16 +29,16 @@ export function QualityVerification() {
             <div className="gold-accent-line qa-section-divider mx-auto mt-6" aria-hidden />
           </div>
 
-          <div className="mt-10 grid gap-6 sm:grid-cols-3 lux-stagger-group">
+          <div className="ref-quality-stats-grid mt-10 grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6 lux-stagger-group">
             {stats.map((stat) => (
               <article
                 key={stat.label}
-                className="ref-trust-card polish-trust-card lux-stat-authority-card lux-stagger-item rounded-[var(--radius-premium)] p-8 text-center"
+                className="ref-trust-card polish-trust-card lux-stat-authority-card lux-stagger-item rounded-[var(--radius-premium)] p-3 text-center sm:p-6 lg:p-8"
               >
                 <p className="font-display lux-stat-value lux-stat-metric">
                   <LuxuryStatValue value={stat.value} />
                 </p>
-                <p className="lux-stat-label mt-3 text-sm font-semibold uppercase tracking-[0.12em] text-[var(--soft-ivory)]">
+                <p className="lux-stat-label mt-1.5 text-sm font-semibold uppercase tracking-[0.12em] text-[var(--soft-ivory)] sm:mt-3">
                   {stat.label}
                 </p>
               </article>

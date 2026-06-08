@@ -21,8 +21,7 @@ export function ReviewsFAQ() {
         <div className="qa-client-container relative z-[2] mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <div className="faq-premium-section ref-faq-column polish-faq-column qa-faq-column lux-reveal">
             <div className="faq-premium-header qa-section-header qa-section-header-left mx-auto max-w-3xl text-center lg:mx-0 lg:max-w-none lg:text-left">
-              <p className="premium-eyebrow-gold polish-type-eyebrow">{t("faq.eyebrow")}</p>
-              <h2 className="font-display ref-faq-title polish-type-section-title mt-3 font-bold text-[var(--soft-ivory)]">
+              <h2 className="font-display ref-faq-title polish-type-section-title font-bold text-[var(--soft-ivory)]">
                 {t("faq.title")}
               </h2>
               <div

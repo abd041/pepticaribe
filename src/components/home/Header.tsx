@@ -160,7 +160,7 @@ export function Header() {
           </nav>
 
           <div className="lux-nav-actions col-start-3 flex items-center justify-self-end">
-            <LanguageToggle className="lux-lang-toggle hidden sm:flex" />
+            <LanguageToggle className="lux-lang-toggle-header shrink-0" />
             <Link
               ref={cartBtnRef}
               href="/cart"

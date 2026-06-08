@@ -475,6 +475,15 @@
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
 }
 
+.homepage-luxury .ref-precision-section .ref-trust-icon-well {
+  margin-inline: auto;
+}
+
+.homepage-luxury .ref-precision-section .ref-trust-title,
+.homepage-luxury .ref-precision-section .ref-trust-desc {
+  text-align: center;
+}
+
 /* ── Product grid — flagship card treatment ── */
 .homepage-luxury .ref-product-card,
 .homepage-luxury .best-seller-card {
