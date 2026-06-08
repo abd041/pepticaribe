@@ -7,6 +7,11 @@ import {
   CaribeCurrentLayer,
   OceanWaveLayer,
 } from "@/components/ui/BrandMotifs";
+import {
+  CaribeParticleField,
+  type CaribeParticleVariant,
+} from "@/components/ui/CaribeParticleField";
+import { useMarketingCanvasBackdrop } from "@/context/MarketingCanvasContext";
 
 export type AtmosphereVariant =
   | "hero"
@@ -78,12 +83,21 @@ const VARIANT_CONFIG: Record<
   },
 };
 
+function particleVariantForAtmosphere(variant: AtmosphereVariant): CaribeParticleVariant {
+  if (variant === "coa") return "coa";
+  return "products";
+}
+
 interface SectionAtmosphereProps {
   variant: AtmosphereVariant;
   children: ReactNode;
   className?: string;
   showTopTransition?: boolean;
   showBottomTransition?: boolean;
+  /** Slow ivory/teal motes — section-scoped */
+  showParticles?: boolean;
+  /** Skip opaque foundation layers when a parent page backdrop is active */
+  embedInPageBackdrop?: boolean;
 }
 
 /** Five-layer ambient environment — navy, teal, glow, waves, particles */
@@ -93,41 +107,48 @@ export function SectionAtmosphere({
   className = "",
   showTopTransition = true,
   showBottomTransition = true,
+  showParticles = false,
+  embedInPageBackdrop = false,
 }: SectionAtmosphereProps) {
   const config = VARIANT_CONFIG[variant];
+  const pageBackdrop = useMarketingCanvasBackdrop();
+  const inPageBackdrop = embedInPageBackdrop || pageBackdrop;
+  const showOpaqueFoundation = !inPageBackdrop;
 
   return (
     <div className={`relative overflow-hidden ${className}`}>
-      {/* Layer 1 — deep navy foundation */}
-      <div className="atmosphere-base pointer-events-none absolute inset-0" aria-hidden />
+      {/* Layer 1 — deep navy foundation (opaque; skipped when page backdrop is active) */}
+      {showOpaqueFoundation ? (
+        <div className="atmosphere-base pointer-events-none absolute inset-0" aria-hidden />
+      ) : null}
 
       {/* Layer 2 — subtle teal gradients */}
       <div
-        className={`atmosphere-teal pointer-events-none absolute inset-0 atmosphere-teal-${variant}`}
+        className={`atmosphere-teal pointer-events-none absolute inset-0 atmosphere-teal-${variant}${inPageBackdrop ? " atmosphere-teal--page-backdrop" : ""}`}
         aria-hidden
       />
 
       {/* Layer 3 — soft ambient glows */}
       <div
-        className={`pointer-events-none absolute inset-0 ${config.glowIntensity}`}
+        className={`pointer-events-none absolute inset-0 ${config.glowIntensity}${inPageBackdrop ? " atmosphere-glow--page-backdrop" : ""}`}
         aria-hidden
       />
 
       {/* Layer 3b — soft gold highlights */}
-      {variant !== "hero" && (
+      {variant !== "hero" ? (
         <div
-          className={`atmosphere-gold pointer-events-none absolute inset-0 atmosphere-gold-${variant}`}
+          className={`atmosphere-gold pointer-events-none absolute inset-0 atmosphere-gold-${variant}${inPageBackdrop ? " atmosphere-gold--page-backdrop" : ""}`}
           aria-hidden
         />
-      )}
+      ) : null}
 
       {/* Section identity foundation tint */}
-      {variant !== "hero" && (
+      {showOpaqueFoundation && variant !== "hero" ? (
         <div
           className={`section-identity-${variant} pointer-events-none absolute inset-0 opacity-80`}
           aria-hidden
         />
-      )}
+      ) : null}
 
       {/* Signature Caribbean current flows */}
       <CaribeCurrentLayer variant={variant} />
@@ -140,6 +161,10 @@ export function SectionAtmosphere({
 
       {/* DNA + wave accents */}
       <BrandAtmosphere dnaPositions={config.dna} showWaves />
+
+      {showParticles ? (
+        <CaribeParticleField variant={particleVariantForAtmosphere(variant)} />
+      ) : null}
 
       {showTopTransition && (
         <div className="section-transition-top pointer-events-none absolute inset-x-0 top-0 z-[1]" aria-hidden />

@@ -13,6 +13,7 @@ import { HomeContact } from "@/components/home/HomeContact";
 import { FDADisclaimer } from "@/components/home/FDADisclaimer";
 import { Footer } from "@/components/home/Footer";
 import { HomePageEffects, LuxuryMotion } from "@/components/home/HomePageEffects";
+import { MarketingCanvasBackdrop } from "@/components/ui/MarketingCanvasBackdrop";
 import { getProductBySlug } from "@/data/products";
 
 export default function HomePage() {
@@ -22,23 +23,27 @@ export default function HomePage() {
     <>
       <HomePageEffects />
       <SiteChrome />
-      <div className="homepage-narrative homepage-luxury luxury-experience art-direction site-chrome-offset">
-        <SmoothScrollProvider chrome={<LuxuryMotion />}>
-          <main>
-            <Hero />
-            <ValueProps />
-            <QualityVerification />
-            <COAPromotionBar />
-            <FeaturedProducts />
-            {featuredBpc ? <FeaturedCompound product={featuredBpc} /> : null}
-            <PrecisionVerification />
-            <ReviewsFAQ />
-            <ProductExploreCta />
-            <HomeContact />
-            <FDADisclaimer />
-          </main>
-          <Footer />
-        </SmoothScrollProvider>
+      <div className="homepage-narrative homepage-luxury luxury-experience art-direction site-chrome-offset relative isolate min-h-dvh">
+        <MarketingCanvasBackdrop>
+          <SmoothScrollProvider chrome={<LuxuryMotion />}>
+            <div className="homepage-canvas-content">
+              <main>
+                <Hero />
+                <ValueProps />
+                <QualityVerification />
+                <COAPromotionBar />
+                <FeaturedProducts />
+                {featuredBpc ? <FeaturedCompound product={featuredBpc} /> : null}
+                <PrecisionVerification />
+                <ReviewsFAQ />
+                <ProductExploreCta />
+                <HomeContact />
+                <FDADisclaimer />
+              </main>
+              <Footer />
+            </div>
+          </SmoothScrollProvider>
+        </MarketingCanvasBackdrop>
       </div>
     </>
   );

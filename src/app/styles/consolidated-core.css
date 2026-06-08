@@ -2104,7 +2104,6 @@
 
 .art-direction .art-featured-copy {
   max-width: 34rem;
-  justify-content: center;
 }
 
 .art-direction .art-featured-copy .section-caption {
@@ -2115,7 +2114,7 @@
   margin-top: 1.5rem;
 }
 
-.art-direction .art-featured-copy .ref-featured-actions {
+.art-direction .art-featured-copy .polish-featured-cta {
   margin-top: 1.75rem;
 }
 

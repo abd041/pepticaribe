@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import type { Product } from "@/types/product";
-import { getCompoundProfile } from "@/lib/productImagery";
+import { resolveCompoundProfile } from "@/lib/productImagery";
 import { ProductCardPrice } from "@/components/products/ProductCardPrice";
 import { ProductVariantChips } from "@/components/products/ProductVariantChips";
 import { hasMultipleVariants } from "@/lib/pricing";
@@ -14,7 +14,16 @@ interface ReferenceProductCardProps {
   product: Product;
   index: number;
   className?: string;
+  /** Show research category label (catalog page) */
+  showCategoryLabel?: boolean;
 }
+
+const CATEGORY_I18N_KEY: Record<Product["category"], string> = {
+  peptide: "products.categoryPeptide",
+  blend: "products.categoryBlend",
+  accessory: "products.categoryAccessory",
+  "small-molecule": "products.categorySmallMolecule",
+};
 
 function getDefaultVariant(product: Product) {
   if (product.variants.length === 0) return null;
@@ -22,14 +31,17 @@ function getDefaultVariant(product: Product) {
 }
 
 /** Premium best seller card — luxury product presentation system */
-export function ReferenceProductCard({ product, index, className = "" }: ReferenceProductCardProps) {
+export function ReferenceProductCard({
+  product,
+  index,
+  className = "",
+  showCategoryLabel = false,
+}: ReferenceProductCardProps) {
   const { t } = useLanguage();
-  const profile = getCompoundProfile(product.slug);
+  const profile = resolveCompoundProfile(product.slug, product.image, product.category);
   const variant = getDefaultVariant(product);
   const sizeLabel = variant?.sizeLabel ?? "—";
   const multipleSizes = hasMultipleVariants(product);
-
-  if (!profile) return null;
 
   return (
     <article
@@ -59,6 +71,12 @@ export function ReferenceProductCard({ product, index, className = "" }: Referen
             priceClassName="font-display"
           />
         </div>
+
+        {showCategoryLabel ? (
+          <p className="ref-product-tagline">
+            {product.shortDescription?.trim() || t(CATEGORY_I18N_KEY[product.category])}
+          </p>
+        ) : null}
 
         {multipleSizes ? (
           <ProductVariantChips product={product} className="ref-product-variant-chips" />

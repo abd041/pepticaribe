@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProductBySlug, getPublicProducts } from "@/data/products";
-import { formatUsd, getProductFromPrice, hasMultipleVariants } from "@/lib/pricing";
-import { getServerT } from "@/lib/i18n-server";
-import { MarketingPage } from "@/components/pages/MarketingPage";
-import { ProductDetailActions } from "@/components/products/ProductDetailActions";
-import { ProductDetailBadges } from "@/components/products/ProductDetailBadges";
-import { ProductDetailMedia } from "@/components/products/ProductDetailMedia";
+import { getCatalogProducts, getProductBySlug } from "@/data/products";
+import { getProductFromPrice } from "@/lib/pricing";
+import { getRelatedProducts } from "@/lib/productDetail";
+import { ProductDetailPage } from "@/components/products/ProductDetailPage";
+import "@/app/products-catalog.css";
+import "@/app/products-detail.css";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://pepticaribe.com";
 
@@ -16,7 +14,7 @@ type PageProps = {
 };
 
 export async function generateStaticParams() {
-  return getPublicProducts().map((product) => ({ slug: product.slug }));
+  return getCatalogProducts().map((product) => ({ slug: product.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -30,15 +28,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function ProductDetailPage({ params }: PageProps) {
+export default async function ProductDetailRoute({ params }: PageProps) {
   const { slug } = await params;
   const product = getProductBySlug(slug);
 
-  if (!product || product.isPrivate) notFound();
+  if (!product) notFound();
 
+  const catalog = getCatalogProducts();
+  const relatedProducts = getRelatedProducts(product, catalog);
   const fromPrice = getProductFromPrice(product);
-  const multipleSizes = hasMultipleVariants(product);
-  const backToProducts = await getServerT("products.backToProducts");
 
   const productJsonLd = {
     "@context": "https://schema.org",
@@ -60,35 +58,12 @@ export default async function ProductDetailPage({ params }: PageProps) {
   };
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+    <div className="homepage-luxury luxury-experience art-direction product-detail-page relative isolate min-h-dvh">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
       />
-      <MarketingPage
-        eyebrow={product.category}
-        title={product.displayName}
-        description={product.description}
-        backHref="/products"
-        backLabel={backToProducts}
-      >
-        <ProductDetailMedia product={product} />
-
-        <div className="glass-card mt-8 rounded-2xl p-6 sm:p-8">
-          <ProductDetailBadges />
-
-          <p className="font-display mt-6 text-2xl font-bold text-[var(--luxury-gold)]">
-            {multipleSizes ? "From " : null}
-            {formatUsd(fromPrice)}
-          </p>
-
-          {!multipleSizes && product.variants[0] ? (
-            <p className="mt-2 text-sm text-[var(--text-secondary)]">{product.variants[0].sizeLabel}</p>
-          ) : null}
-
-          <ProductDetailActions product={product} />
-        </div>
-      </MarketingPage>
+      <ProductDetailPage product={product} relatedProducts={relatedProducts} />
     </div>
   );
 }

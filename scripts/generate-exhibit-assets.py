@@ -21,14 +21,27 @@ BOTTOM_GAP = 24
 
 # slug -> (source relative to public, output filename)
 ASSETS: dict[str, tuple[str, str]] = {
+    "bacteriostatic-water": ("products/bac-water.png", "bacteriostatic-water.png"),
     "glp-3-rt": ("products/glp-3-rt-30mg.png", "glp-3-rt.png"),
     "glp-2-t": ("products/glp-2-t-40mg.png", "glp-2-t.png"),
     "ghk-cu": ("products/ghk-cu-100mg.png", "ghk-cu.png"),
     "bpc-157-tb-500": ("products/bpc-157-tb-500.png", "wolverine.png"),
     "bpc-157": ("products/bpc-157.png", "bpc-157.png"),
     "mots-c": ("products/mots-c.png", "mots-c.png"),
-    "nad-plus": ("products/nad-plus.png", "nad-plus.png"),
     "cjc-1295-ipamorelin": ("products/cjc-1295-ipamorelin.png", "cjc-1295-ipamorelin.png"),
+    "ss-31": ("products/ss-31.png", "ss-31.png"),
+    "kpv": ("products/kpv.png", "kpv.png"),
+    "nad-plus": ("products/nad-plus.png", "nad-plus.png"),
+    "glutathione": ("products/glutathione.png", "glutathione.png"),
+    "5-amino-1mq": ("products/5-amino-1mq.png", "5-amino-1mq.png"),
+    "tesamorelin": ("products/tesamorelin.png", "tesamorelin.png"),
+    "klow": ("products/klow.png", "klow.png"),
+    "adamax": ("products/adamax.png", "adamax.png"),
+    "semax": ("products/semax.png", "semax.png"),
+    "selank": ("products/selank.png", "selank.png"),
+    "melanotan-ii": ("products/melanotan-ii.png", "melanotan-ii.png"),
+    "dsip": ("products/dsip.png", "dsip.png"),
+    "pt-141": ("products/pt-141.png", "pt-141.png"),
 }
 
 
@@ -79,7 +92,14 @@ def process(slug: str, src_rel: str, out_name: str) -> None:
 
 
 def main() -> None:
+    import sys
+
+    force = "--force" in sys.argv
     for slug, (src_rel, out_name) in ASSETS.items():
+        dest = OUT / out_name
+        if dest.exists() and not force:
+            print(f"skip products/exhibit/{out_name}")
+            continue
         process(slug, src_rel, out_name)
 
 

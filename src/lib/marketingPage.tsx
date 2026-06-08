@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { COAPageContent } from "@/components/coa/COAPageContent";
 import { FAQPageContent } from "@/components/faq/FAQPageContent";
 import { MarketingPage } from "@/components/pages/MarketingPage";
 import {
@@ -30,9 +29,7 @@ export async function MarketingPageView({ slug }: { slug: MarketingPageSlug }) {
       description={page.description}
       backLabel={backToHome}
     >
-      {slug === "coa" ? (
-        <COAPageContent body={page.body} />
-      ) : slug === "faq" ? (
+      {slug === "faq" ? (
         <FAQPageContent />
       ) : page.sections?.length ? (
         <div className="marketing-prose">

@@ -15,7 +15,8 @@
     "analyze": "cross-env ANALYZE=true npm run build",
     "assets:check": "node scripts/check-assets.mjs",
     "assets:placeholders": "node scripts/generate-placeholder-assets.mjs",
-    "assets:build": "node scripts/generate-production-assets.mjs"
+    "assets:build": "node scripts/generate-production-assets.mjs",
+    "assets:exhibit": "python scripts/generate-exhibit-assets.py"
   },
   "dependencies": {
     "gsap": "^3.15.0",

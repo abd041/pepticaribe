@@ -6,6 +6,7 @@ export {
   products,
   getProductBySlug,
   getPublicProducts,
+  getCatalogProducts,
   getPrivateProducts,
   getFeaturedProducts,
   getAllMappedImagePaths,

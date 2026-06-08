@@ -76,17 +76,36 @@ export type CompoundProfile = {
   exhibit: CompoundExhibitIdentity;
 };
 
+const EXHIBIT_IMAGE_BASE = "/products/exhibit";
+
 /** Transparent exhibit PNGs — normalized to identical canvas dimensions */
 export const COMPOUND_EXHIBIT_IMAGES: Record<string, string> = {
-  "glp-3-rt": "/products/exhibit/glp-3-rt.png",
-  "glp-2-t": "/products/exhibit/glp-2-t.png",
-  "ghk-cu": "/products/exhibit/ghk-cu.png",
-  "bpc-157-tb-500": "/products/exhibit/wolverine.png",
-  "bpc-157": "/products/exhibit/bpc-157.png",
-  "mots-c": "/products/exhibit/mots-c.png",
-  "nad-plus": "/products/exhibit/nad-plus.png",
-  "cjc-1295-ipamorelin": "/products/exhibit/cjc-1295-ipamorelin.png",
+  "bacteriostatic-water": `${EXHIBIT_IMAGE_BASE}/bacteriostatic-water.png`,
+  "glp-3-rt": `${EXHIBIT_IMAGE_BASE}/glp-3-rt.png`,
+  "glp-2-t": `${EXHIBIT_IMAGE_BASE}/glp-2-t.png`,
+  "ghk-cu": `${EXHIBIT_IMAGE_BASE}/ghk-cu.png`,
+  "bpc-157-tb-500": `${EXHIBIT_IMAGE_BASE}/wolverine.png`,
+  "bpc-157": `${EXHIBIT_IMAGE_BASE}/bpc-157.png`,
+  "mots-c": `${EXHIBIT_IMAGE_BASE}/mots-c.png`,
+  "cjc-1295-ipamorelin": `${EXHIBIT_IMAGE_BASE}/cjc-1295-ipamorelin.png`,
+  "ss-31": `${EXHIBIT_IMAGE_BASE}/ss-31.png`,
+  "kpv": `${EXHIBIT_IMAGE_BASE}/kpv.png`,
+  "nad-plus": `${EXHIBIT_IMAGE_BASE}/nad-plus.png`,
+  "glutathione": `${EXHIBIT_IMAGE_BASE}/glutathione.png`,
+  "5-amino-1mq": `${EXHIBIT_IMAGE_BASE}/5-amino-1mq.png`,
+  "tesamorelin": `${EXHIBIT_IMAGE_BASE}/tesamorelin.png`,
+  "klow": `${EXHIBIT_IMAGE_BASE}/klow.png`,
+  "adamax": `${EXHIBIT_IMAGE_BASE}/adamax.png`,
+  "semax": `${EXHIBIT_IMAGE_BASE}/semax.png`,
+  "selank": `${EXHIBIT_IMAGE_BASE}/selank.png`,
+  "melanotan-ii": `${EXHIBIT_IMAGE_BASE}/melanotan-ii.png`,
+  "dsip": `${EXHIBIT_IMAGE_BASE}/dsip.png`,
+  "pt-141": `${EXHIBIT_IMAGE_BASE}/pt-141.png`,
 };
+
+export function getExhibitImagePath(slug: string): string | undefined {
+  return COMPOUND_EXHIBIT_IMAGES[slug];
+}
 
 /** Featured BPC-157 centerpiece — single vial on illuminated pedestal (homepage only) */
 export const FEATURED_BPC_SHOWCASE = {
@@ -218,4 +237,40 @@ export const FEATURED_COMPOUND_PROFILES: Record<string, CompoundProfile> = {
 
 export function getCompoundProfile(slug: string): CompoundProfile | undefined {
   return FEATURED_COMPOUND_PROFILES[slug];
+}
+
+function exhibitToneForSlug(
+  slug: string,
+  category?: "peptide" | "blend" | "accessory" | "small-molecule",
+): CompoundExhibitTone {
+  const featured = FEATURED_COMPOUND_PROFILES[slug];
+  if (featured) return featured.exhibit.tone;
+  if (category === "blend") return "dual";
+  if (category === "accessory") return "emerald";
+  return "cyan";
+}
+
+/** Featured profile when mapped; otherwise catalog image on the luxury stage */
+export function resolveCompoundProfile(
+  slug: string,
+  image: string,
+  category?: "peptide" | "blend" | "accessory" | "small-molecule",
+): CompoundProfile {
+  const featured = FEATURED_COMPOUND_PROFILES[slug];
+  if (featured) return featured;
+
+  const exhibitSrc = getExhibitImagePath(slug) ?? image;
+
+  return {
+    verificationLevel: "Research Verified",
+    researchField: "Laboratory Research",
+    positioning: "",
+    snapshot: { purity: "99%+", verification: "Independent", coa: "Available" },
+    exhibit: {
+      slug,
+      src: exhibitSrc,
+      tone: exhibitToneForSlug(slug, category),
+      display: DEFAULT_PRODUCT_DISPLAY,
+    },
+  };
 }

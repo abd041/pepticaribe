@@ -12,9 +12,9 @@ export function COAPromotionBar() {
   return (
     <section className="ref-coa-showcase ref-coa-promo polish-coa-promo qa-coa-section art-coa-section relative overflow-x-clip">
       <div className="ref-coa-promo-bg absolute inset-0" aria-hidden />
-      <div className="polish-coa-accent-line absolute inset-x-0 top-0 h-px" aria-hidden />
+      <div className="polish-coa-accent-line absolute inset-x-0 top-0 z-[2] h-px" aria-hidden />
 
-      <div className="ref-coa-showcase-inner ref-coa-promo-inner polish-coa-inner qa-client-container relative mx-auto max-w-[90rem] px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
+      <div className="ref-coa-showcase-inner ref-coa-promo-inner polish-coa-inner qa-client-container relative z-10 mx-auto max-w-[90rem] px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
         <div className="art-coa-copy qa-coa-copy text-legibility-column mx-auto max-w-3xl text-center">
           <p className="premium-eyebrow-gold polish-type-eyebrow">{t("coa.eyebrow")}</p>
           <h2 className="font-display ref-coa-promo-title polish-type-section-title mt-3 font-bold text-[var(--soft-ivory)]">

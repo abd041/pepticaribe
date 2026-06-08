@@ -10,6 +10,7 @@ const REQUIRED_PNG = [
   "brand/pepticaribe-logo.png",
   "hero/hero-showcase-reference.png",
   "hero/hero-background.png",
+  "products/exhibit/bacteriostatic-water.png",
   "products/exhibit/glp-3-rt.png",
   "products/exhibit/glp-2-t.png",
   "products/exhibit/ghk-cu.png",
@@ -18,6 +19,18 @@ const REQUIRED_PNG = [
   "products/exhibit/mots-c.png",
   "products/exhibit/nad-plus.png",
   "products/exhibit/cjc-1295-ipamorelin.png",
+  "products/exhibit/ss-31.png",
+  "products/exhibit/kpv.png",
+  "products/exhibit/glutathione.png",
+  "products/exhibit/5-amino-1mq.png",
+  "products/exhibit/tesamorelin.png",
+  "products/exhibit/klow.png",
+  "products/exhibit/adamax.png",
+  "products/exhibit/semax.png",
+  "products/exhibit/selank.png",
+  "products/exhibit/melanotan-ii.png",
+  "products/exhibit/dsip.png",
+  "products/exhibit/pt-141.png",
 ];
 
 function checkDerivatives(pngRel) {

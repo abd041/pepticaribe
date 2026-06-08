@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getPublicProducts } from "@/data/products";
+import { getCatalogProducts } from "@/data/products";
 import { MARKETING_PAGE_SLUGS } from "@/data/translations/marketingContent";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://pepticaribe.com";
@@ -18,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 
-  const productPages: MetadataRoute.Sitemap = getPublicProducts().map((product) => ({
+  const productPages: MetadataRoute.Sitemap = getCatalogProducts().map((product) => ({
     url: `${SITE_URL}/products/${product.slug}`,
     lastModified: now,
     changeFrequency: "weekly" as const,

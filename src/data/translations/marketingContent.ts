@@ -72,7 +72,7 @@ export const MARKETING_CONTENT: Record<Language, Record<MarketingPageSlug, Marke
       description:
         "Every PeptiCaribe batch includes a Certificate of Analysis with HPLC purity and mass spectrometry identity results from independent testing.",
       body: [
-        "The full COA library with searchable batch records is launching shortly. Contact our team for batch-specific documentation in the interim.",
+        "Browse searchable batch records for every catalog compound and download third-party lab reports directly from our COA library.",
       ],
     },
     faq: {
@@ -195,7 +195,7 @@ export const MARKETING_CONTENT: Record<Language, Record<MarketingPageSlug, Marke
       description:
         "Cada lote PeptiCaribe incluye un Certificado de Análisis con pureza HPLC e identidad por espectrometría de masas de pruebas independientes.",
       body: [
-        "La biblioteca COA completa con registros de lotes buscables se lanzará pronto. Contacte a nuestro equipo para documentación específica por lote.",
+        "Explore registros de lotes buscables para cada compuesto del catálogo y descargue informes de laboratorio de terceros desde nuestra biblioteca COA.",
       ],
     },
     faq: {

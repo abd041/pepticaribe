@@ -13,6 +13,11 @@ export function getPublicProducts(): Product[] {
   return products.filter((p) => !p.isPrivate);
 }
 
+/** Full storefront catalog — every product in the catalog */
+export function getCatalogProducts(): Product[] {
+  return products;
+}
+
 export function getPrivateProducts(): Product[] {
   return products.filter((p) => p.isPrivate);
 }

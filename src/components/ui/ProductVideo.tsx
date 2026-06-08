@@ -5,6 +5,7 @@ interface ProductVideoProps {
   poster?: string;
   className?: string;
   ariaLabel?: string;
+  onError?: () => void;
 }
 
 export function ProductVideo({
@@ -12,6 +13,7 @@ export function ProductVideo({
   poster,
   className = "",
   ariaLabel = "Product video",
+  onError,
 }: ProductVideoProps) {
   return (
     <video
@@ -22,8 +24,9 @@ export function ProductVideo({
       muted
       loop
       playsInline
-      preload="metadata"
+      preload="auto"
       aria-label={ariaLabel}
+      onError={onError}
     />
   );
 }
