@@ -10,7 +10,6 @@ import { QualityVerification } from "@/components/home/QualityVerification";
 import { COAPromotionBar } from "@/components/home/COAPromotionBar";
 import { ProductExploreCta } from "@/components/home/ProductExploreCta";
 import { HomeContact } from "@/components/home/HomeContact";
-import { HomeNewsletter } from "@/components/home/HomeNewsletter";
 import { FDADisclaimer } from "@/components/home/FDADisclaimer";
 import { Footer } from "@/components/home/Footer";
 import { HomePageEffects, LuxuryMotion } from "@/components/home/HomePageEffects";
@@ -28,15 +27,14 @@ export default function HomePage() {
           <main>
             <Hero />
             <ValueProps />
+            <QualityVerification />
+            <COAPromotionBar />
             <FeaturedProducts />
             {featuredBpc ? <FeaturedCompound product={featuredBpc} /> : null}
             <PrecisionVerification />
             <ReviewsFAQ />
-            <QualityVerification />
-            <COAPromotionBar />
             <ProductExploreCta />
             <HomeContact />
-            <HomeNewsletter />
             <FDADisclaimer />
           </main>
           <Footer />

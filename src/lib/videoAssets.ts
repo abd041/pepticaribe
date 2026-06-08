@@ -1,6 +1,9 @@
 /**
  * Canonical product vial videos — public/videos/
- * Source: AI vial video renders (mapped to catalog slugs).
+ * Source: AI - Vial Videos/ (Drive filenames → slug paths):
+ *   5-Amino → 5-amino-1mq | BAC → bac-water | CJC → cjc-1295-ipamorelin
+ *   GHK → ghk-cu | GLP2 → glp-2-t | Glutothione → glutathione
+ *   Mots-C → mots-c | NAD+ → nad-plus | Reta30 → glp-3-rt | Wolverine → bpc-157-tb-500
  */
 export const PRODUCT_VIDEO_PATHS = {
   "5-amino-1mq": "/videos/5-amino-1mq.mp4",

@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CheckCircle2, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { formatUsd } from "@/lib/pricing";
 
 type StoredOrder = {
   orderNumber: string;
@@ -68,7 +69,7 @@ export function CheckoutSuccessView() {
         <p className="font-display mt-2 text-2xl font-bold text-[var(--luxury-gold)]">#{displayOrder}</p>
         {displayTotal ? (
           <p className="mt-3 text-sm text-[var(--text-secondary)]">
-            {t("checkout.totalLabel")}: {displayCurrency} ${Number(displayTotal).toFixed(2)}
+            {t("checkout.totalLabel")}: {displayCurrency} {formatUsd(Number(displayTotal))}
           </p>
         ) : null}
       </div>

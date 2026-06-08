@@ -2066,7 +2066,7 @@
 
 @media (min-width: 1024px) {
   .art-direction .art-featured-grid {
-    grid-template-columns: minmax(0, 0.68fr) minmax(0, 1.62fr) minmax(0, 0.72fr);
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.2fr) minmax(0, 0.75fr);
     align-items: center;
   }
 }
@@ -2103,7 +2103,8 @@
 }
 
 .art-direction .art-featured-copy {
-  max-width: 22rem;
+  max-width: 34rem;
+  justify-content: center;
 }
 
 .art-direction .art-featured-copy .section-caption {
@@ -2114,7 +2115,7 @@
   margin-top: 1.5rem;
 }
 
-.art-direction .art-featured-copy .polish-featured-cta {
+.art-direction .art-featured-copy .ref-featured-actions {
   margin-top: 1.75rem;
 }
 

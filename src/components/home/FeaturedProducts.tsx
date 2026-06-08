@@ -24,8 +24,8 @@ export async function FeaturedProducts() {
         <div className="qa-client-container mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
           <div className="qa-section-header mx-auto max-w-2xl text-center lux-reveal">
             <h2 className="font-display type-display-section polish-type-section-title">
-              <span className="block text-[var(--soft-ivory)]">{titleLine1}</span>
-              <span className="mt-1 block text-[var(--ocean-blue)]">{titleLine2}</span>
+              <span className="text-[var(--soft-ivory)]">{titleLine1}</span>{" "}
+              <span className="text-[var(--ocean-blue)]">{titleLine2}</span>
             </h2>
             <p className="section-caption mx-auto mt-5 max-w-xl text-[15px] leading-relaxed">
               {description}

@@ -7,15 +7,19 @@ export interface TranslationSchema {
     spanish: string;
     viewDetails: string;
     addToCart: string;
-    researchGrade: string;
+    coaIncluded: string;
     backToHome: string;
+    fromPrice: string;
   };
   gate: {
+    eyebrow: string;
     title: string;
     subtitle: string;
     checkboxAge: string;
-    checkboxResearcher: string;
     enterButton: string;
+    trustIso: string;
+    trustCoa: string;
+    trustRuo: string;
     exitPrompt: string;
     exitButton: string;
     exitConfirm: string;
@@ -37,18 +41,15 @@ export interface TranslationSchema {
     closeMenu: string;
   };
   hero: {
-    headlinePremium: string;
-    headlinePeptides: string;
-    headlineElevated: string;
+    headlineLine1: string;
+    headlineLine2: string;
     subcopy: string;
+    ctaCoa: string;
     ctaProducts: string;
-    badgePurity: string;
-    badgeLabTested: string;
-    badgeControlled: string;
-    mobileTrustIso: string;
-    mobileTrustCoa: string;
-    mobileTrustRuo: string;
-    mobileTrustLabel: string;
+    trustIso: string;
+    trustShipping: string;
+    trustRuo: string;
+    trustLabel: string;
   };
   announcements: {
     shipping: string;
@@ -59,16 +60,16 @@ export interface TranslationSchema {
   valueProps: {
     shippingTitle: string;
     shippingDesc: string;
-    paymentsTitle: string;
-    paymentsDesc: string;
-    pharmaTitle: string;
-    pharmaDesc: string;
-    labsTitle: string;
-    labsDesc: string;
-    supportTitle: string;
-    supportDesc: string;
+    coaTitle: string;
+    coaDesc: string;
     guaranteeTitle: string;
     guaranteeDesc: string;
+    checkoutTitle: string;
+    checkoutDesc: string;
+    purityTitle: string;
+    purityDesc: string;
+    supportTitle: string;
+    supportDesc: string;
   };
   precision: {
     titleLine1: string;
@@ -152,6 +153,23 @@ export interface TranslationSchema {
     title: string;
     description: string;
     cta: string;
+    marqueeLabel: string;
+    cardEyebrow: string;
+    lotLabel: string;
+    purityLabel: string;
+    isoBadge: string;
+    openCertificate: string;
+    trustStripLabel: string;
+    trustHplc: string;
+    trustMassSpec: string;
+    trustIso: string;
+    previewEyebrow: string;
+    previewTitle: string;
+    previewMethodHplc: string;
+    previewMethodIdentity: string;
+    previewLaboratory: string;
+    previewVerified: string;
+    previewOpen: string;
   };
   disclaimer: {
     title: string;
@@ -204,6 +222,7 @@ export interface TranslationSchema {
     backToProducts: string;
     coaAvailable: string;
     sizeLabel: string;
+    chooseSize: string;
     viewCoaLibrary: string;
   };
   cart: {
@@ -223,6 +242,10 @@ export interface TranslationSchema {
     updating: string;
     item: string;
     items: string;
+    addedTitle: string;
+    addedShort: string;
+    viewCart: string;
+    dismissToast: string;
   };
   checkout: {
     eyebrow: string;

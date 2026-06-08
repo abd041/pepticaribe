@@ -78,15 +78,6 @@ export function Footer() {
                   <Share2 className="h-4 w-4" />
                 </a>
                 <a
-                  href="https://x.com"
-                  className="ref-social-btn"
-                  aria-label={t("footer.socialX")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="text-sm font-bold">X</span>
-                </a>
-                <a
                   href="mailto:info@pepticaribe.com"
                   className="ref-social-btn"
                   aria-label={t("footer.socialEmail")}

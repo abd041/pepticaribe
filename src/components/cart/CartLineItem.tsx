@@ -4,6 +4,7 @@ import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import Link from "next/link";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import type { CartLine } from "@/types/cart";
+import { formatUsd } from "@/lib/pricing";
 import { useLanguage } from "@/context/LanguageContext";
 import { useCart } from "@/context/CartContext";
 
@@ -43,7 +44,7 @@ export function CartLineItem({ line }: CartLineItemProps) {
           {line.sizeLabel} · {t("cart.sku")} {line.sku}
         </p>
         <p className="mt-2 font-display text-base text-[var(--luxury-gold)]">
-          ${line.price.toFixed(2)}
+          {formatUsd(line.price)}
         </p>
       </div>
 
@@ -76,7 +77,7 @@ export function CartLineItem({ line }: CartLineItemProps) {
             {t("cart.lineTotal")}
           </p>
           <p className="font-display text-lg font-semibold text-[var(--soft-ivory)]">
-            ${lineTotal.toFixed(2)}
+            {formatUsd(lineTotal)}
           </p>
         </div>
 

@@ -8,6 +8,9 @@ export type HomeContent = {
   faqs: FaqItem[];
 };
 
+/** Homepage FAQ accordion — full list lives on /faq */
+export const HOME_FAQ_PREVIEW_COUNT = 4;
+
 export const HOME_CONTENT: Record<Language, HomeContent> = {
   en: {
     reviews: [
@@ -51,12 +54,22 @@ export const HOME_CONTENT: Record<Language, HomeContent> = {
       {
         question: "What shipping options are available?",
         answer:
-          "Orders placed before 4 PM EST ship same day with discreet packaging. Standard delivery is 2–3 business days domestically with secure worldwide options available.",
+          "Products are shipped out the same day if placed before 4PM EST and are expected to arrive at your doorstep within 2-3 business days as 2-day shipping is included in every order.",
       },
       {
-        question: "Do you provide technical support?",
+        question: "Is a COA included with every order?",
         answer:
-          "Yes. Our team includes researchers who understand peptide handling, reconstitution, and storage protocols. Contact us for technical assistance with your research orders.",
+          "Yes. Every order includes batch-specific Certificate of Analysis documentation with third-party lab results (HPLC + mass spec). Browse our COA Library anytime to review testing standards before you buy.",
+      },
+      {
+        question: "How should I store lyophilized peptides?",
+        answer:
+          "Store unopened lyophilized vials refrigerated at 2–8°C, protected from light. After reconstitution, follow your laboratory protocol; most researchers refrigerate reconstituted material and use it within the stability window noted in your batch documentation.",
+      },
+      {
+        question: "What payment methods do you accept?",
+        answer:
+          "We accept major credit cards, Apple Pay, select third-party payment options, and cryptocurrency for added privacy. All checkout is encrypted and processed through our secure payment gateway.",
       },
     ],
   },
@@ -102,12 +115,22 @@ export const HOME_CONTENT: Record<Language, HomeContent> = {
       {
         question: "¿Qué opciones de envío están disponibles?",
         answer:
-          "Los pedidos antes de las 4 PM EST se envían el mismo día con empaque discreto. La entrega estándar es de 2–3 días hábiles a nivel nacional con opciones seguras a nivel mundial.",
+          "Los productos se envían el mismo día si el pedido se realiza antes de las 4 PM EST y se espera que lleguen a su puerta en 2-3 días hábiles, ya que el envío de 2 días está incluido en cada pedido.",
       },
       {
-        question: "¿Ofrecen soporte técnico?",
+        question: "¿Se incluye un COA con cada pedido?",
         answer:
-          "Sí. Nuestro equipo incluye investigadores que comprenden el manejo, reconstitución y almacenamiento de péptidos. Contáctenos para asistencia técnica con sus pedidos de investigación.",
+          "Sí. Cada pedido incluye documentación de Certificado de Análisis específica del lote con resultados de laboratorio de terceros (HPLC + espectrometría de masas). Consulte nuestra Biblioteca COA en cualquier momento para revisar los estándares de prueba antes de comprar.",
+      },
+      {
+        question: "¿Cómo debo almacenar los péptidos liofilizados?",
+        answer:
+          "Guarde los viales liofilizados sin abrir refrigerados a 2–8°C, protegidos de la luz. Después de la reconstitución, siga el protocolo de su laboratorio; la mayoría de los investigadores refrigeran el material reconstituido y lo usan dentro del período de estabilidad indicado en la documentación del lote.",
+      },
+      {
+        question: "¿Qué métodos de pago aceptan?",
+        answer:
+          "Aceptamos tarjetas de crédito principales, Apple Pay, opciones de pago de terceros seleccionadas y criptomonedas para mayor privacidad. Todo el pago está encriptado y se procesa a través de nuestra pasarela segura.",
       },
     ],
   },

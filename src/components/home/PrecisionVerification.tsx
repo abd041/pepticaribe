@@ -1,6 +1,7 @@
 "use client";
 
-import { Beaker, ClipboardCheck, FileCheck2, Package, ShieldCheck, TestTube } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, Beaker, FileCheck2, ShieldCheck, TestTube } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
 
@@ -11,7 +12,6 @@ export function PrecisionVerification() {
     { icon: TestTube, title: t("precision.synthesisTitle"), description: t("precision.synthesisDesc") },
     { icon: Beaker, title: t("precision.testingTitle"), description: t("precision.testingDesc") },
     { icon: FileCheck2, title: t("precision.coaTitle"), description: t("precision.coaDesc") },
-    { icon: Package, title: t("precision.storageTitle"), description: t("precision.storageDesc") },
     { icon: ShieldCheck, title: t("precision.complianceTitle"), description: t("precision.complianceDesc") },
   ] as const;
 
@@ -30,7 +30,7 @@ export function PrecisionVerification() {
             <div className="gold-accent-line qa-section-divider mx-auto" aria-hidden />
           </div>
 
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8 lux-stagger-group">
+          <div className="ref-precision-grid mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-2 xl:gap-8 lux-stagger-group">
             {items.map((item) => (
               <article
                 key={item.title}
@@ -49,11 +49,14 @@ export function PrecisionVerification() {
             ))}
           </div>
 
-          <div className="mt-8 flex justify-center lux-reveal">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-[var(--text-muted)]">
-              <ClipboardCheck className="h-4 w-4 text-[var(--luxury-gold)]" aria-hidden />
-              {t("precision.coaTitle")}
-            </div>
+          <div className="mt-10 flex justify-center lux-reveal">
+            <Link
+              href="/coa"
+              className="btn-outline-gold group inline-flex items-center gap-2 rounded-full px-6 py-3 text-xs font-bold uppercase tracking-[0.08em]"
+            >
+              {t("coa.cta")}
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
+            </Link>
           </div>
         </div>
       </SectionAtmosphere>

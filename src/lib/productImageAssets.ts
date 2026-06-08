@@ -1,6 +1,8 @@
 /**
  * Canonical product vial images — public/products/
- * Source: Peptide Vials (Products) client renders (mapped to catalog filenames).
+ * Source: Peptide Vials (Products)/ (Drive filenames → slug paths), e.g.:
+ *   GLP-3 RT - 20MG.png → glp-3-rt-20mg.png | NAD+ - 500MG.png → nad-plus.png
+ *   Glutothion - 1500MG.png → glutathione.png | ORIGINAL.png → original.png
  */
 export const PRODUCT_IMAGE_DIR = "/products" as const;
 

@@ -2,11 +2,11 @@
 
 import { useRef } from "react";
 import {
-  CreditCard,
+  FileText,
   FlaskConical,
   Headphones,
+  Lock,
   ShieldCheck,
-  ThumbsUp,
   Truck,
 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
@@ -18,16 +18,15 @@ export function ValueProps() {
 
   const valueProps = [
     { icon: Truck, title: t("valueProps.shippingTitle"), description: t("valueProps.shippingDesc") },
-    { icon: CreditCard, title: t("valueProps.paymentsTitle"), description: t("valueProps.paymentsDesc") },
-    { icon: FlaskConical, title: t("valueProps.pharmaTitle"), description: t("valueProps.pharmaDesc") },
+    { icon: FileText, title: t("valueProps.coaTitle"), description: t("valueProps.coaDesc") },
     {
       icon: ShieldCheck,
-      title: t("valueProps.labsTitle"),
-      description: t("valueProps.labsDesc"),
-      featured: true,
+      title: t("valueProps.guaranteeTitle"),
+      description: t("valueProps.guaranteeDesc"),
     },
+    { icon: Lock, title: t("valueProps.checkoutTitle"), description: t("valueProps.checkoutDesc") },
+    { icon: FlaskConical, title: t("valueProps.purityTitle"), description: t("valueProps.purityDesc") },
     { icon: Headphones, title: t("valueProps.supportTitle"), description: t("valueProps.supportDesc") },
-    { icon: ThumbsUp, title: t("valueProps.guaranteeTitle"), description: t("valueProps.guaranteeDesc") },
   ] as const;
 
   return (
@@ -43,9 +42,7 @@ export function ValueProps() {
               {valueProps.map((item) => (
                 <article
                   key={item.title}
-                  className={`trust-authority-card ref-trust-card value-prop-card polish-trust-card qa-trust-card lux-stagger-item${
-                    "featured" in item && item.featured ? " trust-authority-card--featured" : ""
-                  }`}
+                  className="trust-authority-card ref-trust-card value-prop-card polish-trust-card qa-trust-card lux-stagger-item"
                 >
                   <div className="trust-authority-icon">
                     <span className="trust-authority-icon-ring trust-authority-icon-ring--outer" aria-hidden />

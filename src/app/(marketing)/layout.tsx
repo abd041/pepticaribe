@@ -1,5 +1,6 @@
 import { SiteChrome } from "@/components/home/SiteChrome";
 import { Footer } from "@/components/home/Footer";
+import { FloatingMiniCart } from "@/components/cart/FloatingMiniCart";
 
 export default function MarketingLayout({
   children,
@@ -9,6 +10,7 @@ export default function MarketingLayout({
       <SiteChrome />
       <main>{children}</main>
       <Footer />
+      <FloatingMiniCart />
     </div>
   );
 }

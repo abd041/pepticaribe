@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Check, FlaskConical, Microscope, ShieldCheck } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { HeroBackground } from "./hero/HeroBackground";
 import { HeroShowcase } from "./hero/HeroShowcase";
@@ -9,16 +9,10 @@ import { HeroShowcase } from "./hero/HeroShowcase";
 export function Hero() {
   const { t } = useLanguage();
 
-  const trustBadges = [
-    { icon: FlaskConical, label: t("hero.badgePurity") },
-    { icon: Microscope, label: t("hero.badgeLabTested") },
-    { icon: ShieldCheck, label: t("hero.badgeControlled") },
-  ] as const;
-
-  const mobileTrustItems = [
-    t("hero.mobileTrustIso"),
-    t("hero.mobileTrustCoa"),
-    t("hero.mobileTrustRuo"),
+  const trustItems = [
+    t("hero.trustIso"),
+    t("hero.trustShipping"),
+    t("hero.trustRuo"),
   ] as const;
 
   return (
@@ -28,16 +22,13 @@ export function Hero() {
 
         <div className="ref-hero-layout concept-hero-grid ref-hero-grid relative z-[2] flex w-full min-h-0 flex-1 flex-col lg:flex-row lg:items-center">
           <div className="ref-hero-copy-col order-2 flex w-full min-w-0 justify-center px-4 py-4 sm:px-6 sm:py-5 lg:order-1 lg:w-[50vw] lg:max-w-[50vw] lg:flex-[0_0_50vw] lg:justify-start lg:pl-8 lg:pr-6 lg:py-3 xl:pl-12">
-            <div className="ref-hero-copy concept-hero-copy art-hero-copy relative flex w-full max-w-[24rem] flex-col items-center text-center lg:max-w-[28rem] lg:items-start lg:text-left">
+            <div className="ref-hero-copy concept-hero-copy art-hero-copy relative flex w-full max-w-[24rem] flex-col items-center text-center lg:max-w-[32rem] lg:items-start lg:text-left">
               <h1 className="hero-headline font-display lux-hero-animate lux-hero-animate-headline mt-0 max-w-none">
                 <span className="hero-headline-primary block text-[var(--soft-ivory)]">
-                  {t("hero.headlinePremium")}
+                  {t("hero.headlineLine1")}
                 </span>
                 <span className="mt-1 block font-semibold text-[var(--ocean-blue)]">
-                  {t("hero.headlinePeptides")}
-                </span>
-                <span className="block font-semibold text-[var(--soft-ivory)]">
-                  {t("hero.headlineElevated")}
+                  {t("hero.headlineLine2")}
                 </span>
               </h1>
 
@@ -45,10 +36,10 @@ export function Hero() {
                 {t("hero.subcopy")}
               </p>
 
-              <div className="ref-hero-ctas concept-hero-ctas lux-hero-animate lux-hero-animate-cta mt-6 flex w-full flex-col gap-3 sm:mt-8 sm:flex-row sm:justify-center lg:mt-11 lg:justify-start">
+              <div className="ref-hero-ctas concept-hero-ctas lux-hero-animate lux-hero-animate-cta mt-6 flex w-full flex-row flex-wrap items-center justify-center gap-2.5 sm:mt-8 sm:gap-3 lg:mt-11 lg:justify-start">
                 <Link
                   href="/products"
-                  className="ref-hero-cta-primary concept-hero-cta-primary btn-primary interaction-lift group inline-flex min-h-[2.875rem] flex-1 items-center justify-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold uppercase tracking-[0.1em] sm:flex-none"
+                  className="ref-hero-cta-flagship btn-gold interaction-lift group inline-flex w-auto shrink-0 items-center justify-center gap-2 rounded-full px-6 py-3.5 text-[0.8125rem] font-bold uppercase tracking-[0.1em] sm:px-7 sm:py-3.5 sm:text-sm"
                 >
                   {t("hero.ctaProducts")}
                   <ArrowRight
@@ -56,13 +47,23 @@ export function Hero() {
                     aria-hidden
                   />
                 </Link>
+                <Link
+                  href="/coa"
+                  className="ref-hero-cta-coa btn-platinum polish-cta-secondary group inline-flex w-auto shrink-0 items-center justify-center gap-2 rounded-full px-5 py-3 text-xs font-bold uppercase tracking-[0.08em]"
+                >
+                  {t("hero.ctaCoa")}
+                  <ArrowRight
+                    className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
+                    aria-hidden
+                  />
+                </Link>
               </div>
 
               <ul
-                className="lux-mobile-trust-bar lux-hero-animate lux-hero-animate-badges lg:hidden"
-                aria-label={t("hero.mobileTrustLabel")}
+                className="lux-mobile-trust-bar lux-hero-animate lux-hero-animate-badges mt-8 lg:mt-9"
+                aria-label={t("hero.trustLabel")}
               >
-                {mobileTrustItems.map((label) => (
+                {trustItems.map((label) => (
                   <li key={label} className="lux-mobile-trust-item">
                     <span className="lux-mobile-trust-check" aria-hidden>
                       <Check className="h-3 w-3" strokeWidth={2.5} />
@@ -71,26 +72,10 @@ export function Hero() {
                   </li>
                 ))}
               </ul>
-
-              <div className="ref-hero-badges concept-hero-badges ref-hero-badges lux-hero-animate lux-hero-animate-badges mt-8 hidden flex-col items-center gap-4 lg:flex lg:flex-nowrap lg:items-start lg:justify-start lg:gap-x-10 lg:gap-y-0 lg:mt-9">
-                {trustBadges.map((badge) => (
-                  <div
-                    key={badge.label}
-                    className="ref-hero-trust-badge concept-trust-badge ref-hero-badge flex shrink-0 items-center gap-2.5"
-                  >
-                    <div className="concept-trust-badge-icon ref-hero-trust-icon">
-                      <badge.icon className="h-4 w-4" strokeWidth={1.5} aria-hidden />
-                    </div>
-                    <span className="concept-trust-badge-label text-sm font-semibold text-[var(--soft-ivory)]">
-                      {badge.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
 
-          <div className="ref-hero-showcase-wrap concept-hero-showcase-wrap order-1 flex w-full min-w-0 shrink-0 items-center justify-center max-lg:max-h-[min(52dvh,480px)] lg:order-2 lg:z-[1] lg:h-full lg:w-[50vw] lg:max-w-[50vw] lg:flex-[0_0_50vw]">
+          <div className="ref-hero-showcase-wrap concept-hero-showcase-wrap order-1 flex w-full min-w-0 shrink-0 items-center justify-center lg:order-2 lg:z-[1] lg:h-full lg:w-[50vw] lg:max-w-[50vw] lg:flex-[0_0_50vw]">
             <HeroShowcase />
           </div>
         </div>

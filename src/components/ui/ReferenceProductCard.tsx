@@ -3,10 +3,12 @@
 import Link from "next/link";
 import type { Product } from "@/types/product";
 import { getCompoundProfile } from "@/lib/productImagery";
-import { getProductFromPrice } from "@/lib/pricing";
+import { ProductCardPrice } from "@/components/products/ProductCardPrice";
+import { ProductVariantChips } from "@/components/products/ProductVariantChips";
+import { hasMultipleVariants } from "@/lib/pricing";
 import { LuxuryProductPresentation } from "@/components/ui/LuxuryProductPresentation";
 import { useLanguage } from "@/context/LanguageContext";
-import { useCart } from "@/context/CartContext";
+import { AddToCartButton } from "@/components/cart/AddToCartButton";
 
 interface ReferenceProductCardProps {
   product: Product;
@@ -22,11 +24,10 @@ function getDefaultVariant(product: Product) {
 /** Premium best seller card — luxury product presentation system */
 export function ReferenceProductCard({ product, index, className = "" }: ReferenceProductCardProps) {
   const { t } = useLanguage();
-  const { addItem } = useCart();
-  const fromPrice = getProductFromPrice(product);
   const profile = getCompoundProfile(product.slug);
   const variant = getDefaultVariant(product);
   const sizeLabel = variant?.sizeLabel ?? "—";
+  const multipleSizes = hasMultipleVariants(product);
 
   if (!profile) return null;
 
@@ -52,25 +53,32 @@ export function ReferenceProductCard({ product, index, className = "" }: Referen
       <div className="ref-product-info polish-product-info qa-product-info">
         <div className="ref-product-info-row">
           <h3 className="ref-product-name polish-type-product-name font-display">{product.displayName}</h3>
-          <span className="ref-product-price polish-type-product-price font-display">${fromPrice.toFixed(2)}</span>
+          <ProductCardPrice
+            product={product}
+            className="ref-product-price polish-type-product-price"
+            priceClassName="font-display"
+          />
         </div>
 
-        <div className="ref-product-size-row">
-          <span>{sizeLabel}</span>
-          <span className="text-[var(--text-muted)]">{t("common.researchGrade")}</span>
-        </div>
+        {multipleSizes ? (
+          <ProductVariantChips product={product} className="ref-product-variant-chips" />
+        ) : (
+          <div className="ref-product-size-row">
+            <span>{sizeLabel}</span>
+            <span className="text-[var(--text-muted)]">{t("common.coaIncluded")}</span>
+          </div>
+        )}
 
         <div className="ref-product-actions qa-product-actions">
           <Link href={`/products/${product.slug}`} className="ref-product-btn-teal polish-product-cta qa-btn-card-teal">
             {t("common.viewDetails")}
           </Link>
-          <button
-            type="button"
+          <AddToCartButton
+            product={product}
+            variantId={variant?.id}
+            disabled={!variant}
             className="ref-product-btn-gold polish-product-cta qa-btn-card-gold"
-            onClick={() => variant && addItem(product, variant.id)}
-          >
-            {t("common.addToCart")}
-          </button>
+          />
         </div>
       </div>
     </article>

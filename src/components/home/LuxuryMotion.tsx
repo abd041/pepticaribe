@@ -21,11 +21,15 @@ export function LuxuryMotion() {
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) {
-      gsap.set(".lux-hero-animate, .lux-hero-product", {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-      });
+      gsap.set(
+        ".lux-hero-animate, .lux-hero-product, .ref-coa-showcase .art-coa-copy, .coa-showcase-document-frame, .coa-showcase-document-seal",
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          rotation: 0,
+        },
+      );
       return;
     }
 
@@ -164,46 +168,56 @@ export function LuxuryMotion() {
         }
       }
 
-      /* COA — single vault reveal (no section-level lux-reveal overlap) */
-      const coaVault = document.querySelector(".art-coa-vault");
-      if (coaVault) {
-        gsap.from(".art-coa-copy", {
-          scrollTrigger: {
-            trigger: coaVault,
-            start: MOTION.revealStart,
-            toggleActions: "play none none none",
-          },
-          y: MOTION.revealY,
-          opacity: 0,
-          duration: MOTION.reveal,
-          ease: CINEMATIC_EASE,
-        });
+      /* COA showcase — trigger on section so headline is visible with the preview */
+      const coaShowcase = document.querySelector(".ref-coa-showcase");
+      if (coaShowcase) {
+        const coaCopy = coaShowcase.querySelector(".art-coa-copy");
+        const coaFrame = coaShowcase.querySelector(".coa-showcase-document-frame");
+        const coaSeal = coaShowcase.querySelector(".coa-showcase-document-seal");
 
-        gsap.from(".art-coa-document", {
-          scrollTrigger: {
-            trigger: coaVault,
-            start: MOTION.revealStart,
-            toggleActions: "play none none none",
-          },
-          rotation: -8,
-          y: 16,
-          opacity: 0,
-          duration: 0.85,
-          ease: CINEMATIC_EASE,
-        });
+        if (coaCopy) {
+          gsap.from(coaCopy, {
+            scrollTrigger: {
+              trigger: coaShowcase,
+              start: MOTION.revealStart,
+              toggleActions: "play none none none",
+            },
+            y: 20,
+            opacity: 0,
+            duration: MOTION.reveal,
+            ease: CINEMATIC_EASE,
+          });
+        }
 
-        gsap.from(".art-coa-seal", {
-          scrollTrigger: {
-            trigger: coaVault,
-            start: MOTION.revealStart,
-            toggleActions: "play none none none",
-          },
-          scale: 0.88,
-          opacity: 0,
-          duration: 0.65,
-          delay: 0.1,
-          ease: CINEMATIC_EASE,
-        });
+        if (coaFrame) {
+          gsap.from(coaFrame, {
+            scrollTrigger: {
+              trigger: coaShowcase,
+              start: MOTION.revealStart,
+              toggleActions: "play none none none",
+            },
+            rotation: -3,
+            y: 14,
+            opacity: 0,
+            duration: 0.85,
+            ease: CINEMATIC_EASE,
+          });
+        }
+
+        if (coaSeal) {
+          gsap.from(coaSeal, {
+            scrollTrigger: {
+              trigger: coaShowcase,
+              start: MOTION.revealStart,
+              toggleActions: "play none none none",
+            },
+            scale: 0.9,
+            opacity: 0,
+            duration: 0.65,
+            delay: 0.12,
+            ease: CINEMATIC_EASE,
+          });
+        }
       }
 
       /* Quality stats — subtle count-up on scroll */

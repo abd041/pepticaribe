@@ -76,13 +76,11 @@ export const MARKETING_CONTENT: Record<Language, Record<MarketingPageSlug, Marke
       ],
     },
     faq: {
-      eyebrow: "Support",
+      eyebrow: "Common Questions",
       title: "Frequently Asked Questions",
       description:
-        "Answers to common questions about research use, purity verification, shipping, and product handling.",
-      body: [
-        "Browse the Researcher FAQs on our homepage for immediate answers, or reach out to our team for technical support.",
-      ],
+        "Answers on research use, COA verification, shipping, storage, payments, and order handling.",
+      body: [],
     },
     contact: {
       eyebrow: "Get in Touch",
@@ -201,13 +199,11 @@ export const MARKETING_CONTENT: Record<Language, Record<MarketingPageSlug, Marke
       ],
     },
     faq: {
-      eyebrow: "Soporte",
+      eyebrow: "Preguntas Comunes",
       title: "Preguntas Frecuentes",
       description:
-        "Respuestas a preguntas comunes sobre uso en investigación, verificación de pureza, envío y manejo de productos.",
-      body: [
-        "Consulte las FAQ para investigadores en nuestra página de inicio para respuestas inmediatas, o contacte a nuestro equipo para soporte técnico.",
-      ],
+        "Respuestas sobre uso en investigación, verificación COA, envío, almacenamiento, pagos y pedidos.",
+      body: [],
     },
     contact: {
       eyebrow: "Contáctenos",

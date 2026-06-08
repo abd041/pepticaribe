@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, ShoppingBag } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useCart } from "@/context/CartContext";
+import { formatUsd } from "@/lib/pricing";
 
 type CartSummaryProps = {
   checkoutHref?: string;
@@ -18,7 +19,7 @@ export function CartSummary({ checkoutHref = "/checkout", showCheckout = true }:
     <aside className="glass-card rounded-xl p-6 lg:sticky lg:top-24">
       <h2 className="font-display text-lg font-bold text-[var(--soft-ivory)]">{t("cart.subtotal")}</h2>
       <p className="mt-3 font-display text-3xl font-bold text-[var(--luxury-gold)]">
-        ${subtotal.toFixed(2)}
+        {formatUsd(subtotal)}
       </p>
       <p className="mt-2 text-xs text-[var(--text-muted)]">
         {itemCount} {itemCount === 1 ? t("cart.item") : t("cart.items")}

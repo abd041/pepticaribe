@@ -7,10 +7,13 @@ import {
   EXHIBIT_STAGE_HEIGHT_CLASS,
   getCompoundProfile,
 } from "@/lib/productImagery";
-import { getProductFromPrice } from "@/lib/pricing";
+import { ProductCardPrice } from "@/components/products/ProductCardPrice";
+import { ProductVariantChips } from "@/components/products/ProductVariantChips";
+import { hasMultipleVariants } from "@/lib/pricing";
 import { CompoundExhibitStage } from "@/components/ui/CompoundExhibitStage";
 import { useInView } from "@/hooks/useInView";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { AddToCartButton } from "@/components/cart/AddToCartButton";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface LuxuryProductCardProps {
@@ -24,8 +27,12 @@ export function LuxuryProductCard({ product, index }: LuxuryProductCardProps) {
   const { t } = useLanguage();
   const inView = useInView(ref, { once: true, margin: "-50px" });
   const reduceMotion = useReducedMotion();
-  const fromPrice = getProductFromPrice(product);
   const profile = getCompoundProfile(product.slug);
+  const multipleSizes = hasMultipleVariants(product);
+  const defaultVariant =
+    product.variants.length > 0
+      ? product.variants.reduce((a, b) => (a.price <= b.price ? a : b))
+      : null;
 
   if (!profile) return null;
 
@@ -67,10 +74,13 @@ export function LuxuryProductCard({ product, index }: LuxuryProductCardProps) {
               {product.displayName}
             </h3>
             <div className="product-showcase-precision-divider" aria-hidden="true" />
-            <p className="product-showcase-price type-editorial-price">
-              From{" "}
-              <span className="font-display">${fromPrice}</span>
-            </p>
+            <ProductCardPrice
+              product={product}
+              className="product-showcase-price type-editorial-price"
+            />
+            {multipleSizes ? (
+              <ProductVariantChips product={product} className="product-showcase-variant-chips" size="md" />
+            ) : null}
           </div>
         </div>
 
@@ -81,12 +91,14 @@ export function LuxuryProductCard({ product, index }: LuxuryProductCardProps) {
           >
             {t("featured.viewDetails")}
           </Link>
-          <button
-            type="button"
+          <AddToCartButton
+            product={product}
+            variantId={defaultVariant?.id}
+            disabled={!defaultVariant}
             className="editorial-btn editorial-btn-secondary product-showcase-btn"
           >
             {t("featured.addToCart")}
-          </button>
+          </AddToCartButton>
         </div>
       </div>
     </article>

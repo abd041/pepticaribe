@@ -18,12 +18,21 @@ import {
   writeCart,
 } from "@/lib/cart-storage";
 
+export type CartAddedNotice = {
+  id: string;
+  displayName: string;
+  sizeLabel: string;
+  image: string;
+};
+
 type CartContextValue = {
   items: CartLine[];
   itemCount: number;
   subtotal: number;
   hydrated: boolean;
+  lastAdded: CartAddedNotice | null;
   addItem: (product: Product, variantId?: string) => void;
+  dismissLastAdded: () => void;
   removeItem: (variantId: string) => void;
   updateQuantity: (variantId: string, quantity: number) => void;
   clearCart: () => void;
@@ -49,6 +58,7 @@ function normalizeLine(line: CartLine): CartLine {
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartLine[]>([]);
   const [hydrated, setHydrated] = useState(false);
+  const [lastAdded, setLastAdded] = useState<CartAddedNotice | null>(null);
 
   useEffect(() => {
     setItems(readCart().map(normalizeLine));
@@ -60,9 +70,20 @@ export function CartProvider({ children }: { children: ReactNode }) {
     writeCart(items);
   }, [items, hydrated]);
 
+  const dismissLastAdded = useCallback(() => {
+    setLastAdded(null);
+  }, []);
+
   const addItem = useCallback((product: Product, variantId?: string) => {
     const variant = resolveVariant(product, variantId);
     if (!variant) return;
+
+    setLastAdded({
+      id: `${variant.id}-${Date.now()}`,
+      displayName: product.displayName,
+      sizeLabel: variant.sizeLabel,
+      image: variant.image || product.image,
+    });
 
     setItems((prev) => {
       const existing = prev.find((line) => line.variantId === variant.id);
@@ -115,12 +136,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
       itemCount: getCartItemCount(items),
       subtotal: getCartSubtotal(items),
       hydrated,
+      lastAdded,
       addItem,
+      dismissLastAdded,
       removeItem,
       updateQuantity,
       clearCart,
     }),
-    [items, hydrated, addItem, removeItem, updateQuantity, clearCart],
+    [items, hydrated, lastAdded, addItem, dismissLastAdded, removeItem, updateQuantity, clearCart],
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

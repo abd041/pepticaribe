@@ -27,6 +27,9 @@ export function Header() {
   const drawerRef = useFocusTrap<HTMLElement>(open);
   const { t } = useLanguage();
   const { itemCount } = useCart();
+  const [badgePulse, setBadgePulse] = useState(false);
+  const prevItemCountRef = useRef(itemCount);
+  const cartBtnRef = useRef<HTMLAnchorElement>(null);
 
   const navLinks = useMemo(
     () =>
@@ -40,6 +43,23 @@ export function Header() {
       ] as const,
     [],
   );
+
+  useEffect(() => {
+    if (itemCount > prevItemCountRef.current) {
+      setBadgePulse(true);
+      const pulseTimer = window.setTimeout(() => setBadgePulse(false), 650);
+      if (!isReducedMotion() && cartBtnRef.current) {
+        gsap.fromTo(
+          cartBtnRef.current,
+          { scale: 1 },
+          { scale: 1.08, duration: 0.18, yoyo: true, repeat: 1, ease: "power2.out" },
+        );
+      }
+      prevItemCountRef.current = itemCount;
+      return () => window.clearTimeout(pulseTimer);
+    }
+    prevItemCountRef.current = itemCount;
+  }, [itemCount]);
 
   const closeMenu = useCallback(() => {
     const drawer = drawerRef.current;
@@ -142,13 +162,14 @@ export function Header() {
           <div className="lux-nav-actions col-start-3 flex items-center justify-self-end">
             <LanguageToggle className="lux-lang-toggle hidden sm:flex" />
             <Link
+              ref={cartBtnRef}
               href="/cart"
               className="lux-nav-cart-btn concept-cart-btn relative"
               aria-label={t("nav.cart")}
             >
               <ShoppingBag className="h-[1.125rem] w-[1.125rem]" strokeWidth={1.5} />
               <span
-                className="concept-cart-badge cart-badge absolute flex items-center justify-center rounded-full leading-none"
+                className={`concept-cart-badge cart-badge absolute flex items-center justify-center rounded-full leading-none${badgePulse ? " cart-badge-pulse" : ""}`}
                 aria-hidden={itemCount === 0}
               >
                 {itemCount}

@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProductBySlug, getPublicProducts } from "@/data/products";
-import { getProductFromPrice } from "@/lib/pricing";
+import { formatUsd, getProductFromPrice, hasMultipleVariants } from "@/lib/pricing";
 import { getServerT } from "@/lib/i18n-server";
 import { MarketingPage } from "@/components/pages/MarketingPage";
 import { ProductDetailActions } from "@/components/products/ProductDetailActions";
 import { ProductDetailBadges } from "@/components/products/ProductDetailBadges";
+import { ProductDetailMedia } from "@/components/products/ProductDetailMedia";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://pepticaribe.com";
 
@@ -36,6 +37,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
   if (!product || product.isPrivate) notFound();
 
   const fromPrice = getProductFromPrice(product);
+  const multipleSizes = hasMultipleVariants(product);
   const backToProducts = await getServerT("products.backToProducts");
 
   const productJsonLd = {
@@ -70,26 +72,19 @@ export default async function ProductDetailPage({ params }: PageProps) {
         backHref="/products"
         backLabel={backToProducts}
       >
-        <div className="glass-card rounded-2xl p-6 sm:p-8">
+        <ProductDetailMedia product={product} />
+
+        <div className="glass-card mt-8 rounded-2xl p-6 sm:p-8">
           <ProductDetailBadges />
 
           <p className="font-display mt-6 text-2xl font-bold text-[var(--luxury-gold)]">
-            From ${fromPrice.toFixed(2)}
+            {multipleSizes ? "From " : null}
+            {formatUsd(fromPrice)}
           </p>
 
-          <ul className="mt-6 space-y-3 border-t border-white/[0.06] pt-6">
-            {product.variants.map((variant) => (
-              <li
-                key={variant.id}
-                className="flex items-center justify-between text-sm text-[var(--text-secondary)]"
-              >
-                <span>{variant.sizeLabel}</span>
-                <span className="font-display font-semibold text-[var(--soft-ivory)]">
-                  ${variant.price.toFixed(2)}
-                </span>
-              </li>
-            ))}
-          </ul>
+          {!multipleSizes && product.variants[0] ? (
+            <p className="mt-2 text-sm text-[var(--text-secondary)]">{product.variants[0].sizeLabel}</p>
+          ) : null}
 
           <ProductDetailActions product={product} />
         </div>

@@ -88,11 +88,11 @@ export const COMPOUND_EXHIBIT_IMAGES: Record<string, string> = {
   "cjc-1295-ipamorelin": "/products/exhibit/cjc-1295-ipamorelin.png",
 };
 
-/** Featured BPC-157 centerpiece — vial + illuminated pedestal (homepage only) */
+/** Featured BPC-157 centerpiece — single vial on illuminated pedestal (homepage only) */
 export const FEATURED_BPC_SHOWCASE = {
   src: "/products/featured/bpc-157-showcase.png",
-  width: 716,
-  height: 954,
+  width: 910,
+  height: 1024,
 } as const;
 
 export const FEATURED_BPC_EXHIBIT = FEATURED_BPC_SHOWCASE;

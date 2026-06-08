@@ -9,6 +9,7 @@ import { useCart } from "@/context/CartContext";
 import { CartSummary } from "@/components/cart/CartSummary";
 import { getCheckoutStatus, submitCheckout } from "@/app/actions/checkout";
 import type { CheckoutAddress } from "@/types/checkout";
+import { formatUsd } from "@/lib/pricing";
 
 const EMPTY_ADDRESS: CheckoutAddress = {
   firstName: "",
@@ -423,7 +424,7 @@ export function CheckoutView() {
                 <span>
                   {item.displayName} × {item.quantity}
                 </span>
-                <span className="font-display">${(item.price * item.quantity).toFixed(2)}</span>
+                <span className="font-display">{formatUsd(item.price * item.quantity)}</span>
               </li>
             ))}
           </ul>

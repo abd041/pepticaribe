@@ -1,22 +1,34 @@
-/**
- * Canonical hero imagery — single source of truth.
- * Right-side hero showcase MUST use public/hero/hero-showcase-reference.png only.
- */
-export const HERO_SHOWCASE_REFERENCE_PATH = "/hero/hero-showcase-reference.png" as const;
+import { BRAND_HERO_VIDEO } from "@/lib/brandAssets";
 
-export const HERO_SHOWCASE_REFERENCE = {
-  src: HERO_SHOWCASE_REFERENCE_PATH,
-  width: 1536,
+/** Canonical hero right image — public/hero/hero-showcase-reference.png */
+export const HERO_SHOWCASE_PATH = "/hero/hero-showcase-reference.png" as const;
+
+export const HERO_SHOWCASE_FILE = "hero-showcase-reference.png" as const;
+
+/** @deprecated Use HERO_SHOWCASE_PATH */
+export const HERO_SHOWCASE_REFERENCE_PATH = HERO_SHOWCASE_PATH;
+
+export const HERO_SHOWCASE = {
+  src: HERO_SHOWCASE_PATH,
+  width: 1024,
   height: 1024,
+  alt: "GLP-3 RT and GHK-Cu research peptide vials on luxury pedestal",
+} as const;
+
+/** @deprecated Use HERO_SHOWCASE */
+export const HERO_SHOWCASE_REFERENCE = {
+  src: HERO_SHOWCASE.src,
+  width: HERO_SHOWCASE.width,
+  height: HERO_SHOWCASE.height,
 } as const;
 
 export const HERO_ASSETS = {
   background: "/hero/hero-background.png",
-  /** Hero right panel — vial + pedestal composite (hero-showcase-reference.png) */
-  showcaseReference: HERO_SHOWCASE_REFERENCE_PATH,
+  showcaseReference: HERO_SHOWCASE_PATH,
+  showcaseVideo: BRAND_HERO_VIDEO,
 } as const;
 
-/** Runtime guard — hero showcase components should only render this asset */
-export function isHeroShowcaseReference(src: string): boolean {
-  return src === HERO_SHOWCASE_REFERENCE_PATH;
+/** Guard — hero showcase must only use the canonical PNG */
+export function assertHeroShowcasePath(src: string): boolean {
+  return src === HERO_SHOWCASE_PATH;
 }
