@@ -1,23 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ShieldCheck, Truck } from "lucide-react";
-import type { Product, ProductCategory } from "@/types/product";
-import { ReferenceProductCard } from "@/components/ui/ReferenceProductCard";
+import type { Product } from "@/types/product";
+import { ProductCatalogRow } from "@/components/products/ProductCatalogRow";
 import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
 import { MarketingCanvasBackdrop } from "@/components/ui/MarketingCanvasBackdrop";
 import { useLanguage } from "@/context/LanguageContext";
-
-type CategoryFilter = ProductCategory | "all";
-
-const CATEGORY_ORDER: CategoryFilter[] = [
-  "all",
-  "peptide",
-  "blend",
-  "small-molecule",
-  "accessory",
-];
 
 interface ProductCatalogPageProps {
   products: Product[];
@@ -25,23 +14,6 @@ interface ProductCatalogPageProps {
 
 export function ProductCatalogPage({ products }: ProductCatalogPageProps) {
   const { t } = useLanguage();
-  const [category, setCategory] = useState<CategoryFilter>("all");
-
-  const categoryLabel = (key: CategoryFilter) => {
-    if (key === "all") return t("products.categoryAll");
-    const map: Record<ProductCategory, string> = {
-      peptide: t("products.categoryPeptide"),
-      blend: t("products.categoryBlend"),
-      accessory: t("products.categoryAccessory"),
-      "small-molecule": t("products.categorySmallMolecule"),
-    };
-    return map[key];
-  };
-
-  const filtered = useMemo(() => {
-    if (category === "all") return products;
-    return products.filter((product) => product.category === category);
-  }, [products, category]);
 
   return (
     <div className="products-catalog relative min-h-dvh">
@@ -84,56 +56,11 @@ export function ProductCatalogPage({ products }: ProductCatalogPageProps) {
 
           <section className="products-catalog-main" aria-label={t("products.catalogTitle")}>
             <div className="qa-client-container mx-auto max-w-[90rem] px-4 pb-10 sm:px-6 sm:pb-14 lg:px-8 lg:pb-16">
-              <div
-                className="products-catalog-categories products-catalog-categories--bar"
-                role="tablist"
-                aria-label={t("products.filterByCategory")}
-              >
-                {CATEGORY_ORDER.map((key) => {
-                  const active = category === key;
-                  return (
-                    <button
-                      key={key}
-                      type="button"
-                      role="tab"
-                      aria-selected={active}
-                      className={`products-catalog-chip${active ? " is-active" : ""}`}
-                      onClick={() => setCategory(key)}
-                    >
-                      {categoryLabel(key)}
-                    </button>
-                  );
-                })}
+              <div className="products-catalog-rows">
+                {products.map((product, index) => (
+                  <ProductCatalogRow key={product.id} product={product} index={index} />
+                ))}
               </div>
-
-              {filtered.length > 0 ? (
-                <div className="ref-product-grid qa-product-grid products-catalog-grid">
-                  {filtered.map((product, index) => (
-                    <ReferenceProductCard
-                      key={product.id}
-                      product={product}
-                      index={index}
-                      showCategoryLabel={false}
-                    />
-                  ))}
-                </div>
-              ) : (
-                <div className="products-catalog-empty">
-                  <p className="font-display text-lg text-[var(--soft-ivory)]">
-                    {t("products.noResultsTitle")}
-                  </p>
-                  <p className="mt-2 max-w-md text-sm text-[var(--text-muted)]">
-                    {t("products.noResultsDescription")}
-                  </p>
-                  <button
-                    type="button"
-                    className="products-catalog-reset mt-5"
-                    onClick={() => setCategory("all")}
-                  >
-                    {t("products.clearFilters")}
-                  </button>
-                </div>
-              )}
 
               <div className="products-catalog-footer">
                 <Link

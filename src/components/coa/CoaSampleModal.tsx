@@ -3,31 +3,24 @@
 import { useCallback, useEffect, useId, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Download, X } from "lucide-react";
-import type { COABatch } from "@/types/product";
-import { resolveCoaPdfUrl } from "@/lib/coaLibrary";
-import { getCoaDownloadFilename } from "@/lib/coaPreview";
 import { useLanguage } from "@/context/LanguageContext";
-import { ProductCoaDocumentPreview } from "@/components/products/ProductCoaDocumentPreview";
+import { BRAND_SAMPLE_COA_PDF } from "@/lib/brandAssets";
 import "@/app/coa-modal.css";
 
-type CoaDownloadModalProps = {
+type CoaSampleModalProps = {
   open: boolean;
   onClose: () => void;
-  productName: string;
-  batch: COABatch;
+  title?: string;
 };
 
-export function CoaDownloadModal({
+export function CoaSampleModal({
   open,
   onClose,
-  productName,
-  batch,
-}: CoaDownloadModalProps) {
+  title = "Sample Certificate of Analysis",
+}: CoaSampleModalProps) {
   const { t } = useLanguage();
   const titleId = useId();
   const panelRef = useRef<HTMLDivElement>(null);
-  const pdfUrl = resolveCoaPdfUrl(batch);
-  const downloadFilename = getCoaDownloadFilename(productName, batch);
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
@@ -66,13 +59,13 @@ export function CoaDownloadModal({
         aria-modal="true"
         aria-labelledby={titleId}
         tabIndex={-1}
-        className="coa-download-modal-panel coa-download-modal-panel--document"
+        className="coa-download-modal-panel coa-download-modal-panel--pdf"
       >
         <header className="coa-download-modal-header">
           <div>
             <p className="coa-download-modal-eyebrow">{t("coa.previewEyebrow")}</p>
             <h2 id={titleId} className="coa-download-modal-title font-display">
-              {productName}
+              {title}
             </h2>
           </div>
           <button
@@ -85,37 +78,18 @@ export function CoaDownloadModal({
           </button>
         </header>
 
-        <div className="coa-download-modal-preview coa-download-modal-preview--document">
-          <ProductCoaDocumentPreview
-            productName={productName}
-            batch={batch}
-            variant="modal"
+        <div className="coa-download-modal-preview coa-download-modal-preview--pdf">
+          <iframe
+            src={BRAND_SAMPLE_COA_PDF}
+            title={title}
+            loading="lazy"
           />
         </div>
 
-        <dl className="coa-download-modal-meta">
-          <div>
-            <dt>{t("products.detailLot")}</dt>
-            <dd>{batch.lotNumber}</dd>
-          </div>
-          <div>
-            <dt>{t("featured.specPurity")}</dt>
-            <dd>{batch.purityPercent}%+</dd>
-          </div>
-          <div>
-            <dt>{t("products.detailLab")}</dt>
-            <dd>{batch.labName}</dd>
-          </div>
-          <div>
-            <dt>{t("coa.testedLabel")}</dt>
-            <dd>{batch.testedDate}</dd>
-          </div>
-        </dl>
-
         <div className="coa-download-modal-actions">
           <a
-            href={pdfUrl}
-            download={downloadFilename}
+            href={BRAND_SAMPLE_COA_PDF}
+            download="pepticaribe-sample-coa.pdf"
             className="coa-download-modal-download"
           >
             <Download className="h-4 w-4" aria-hidden />

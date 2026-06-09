@@ -1,0 +1,240 @@
+/* Shared COA preview / download modal */
+
+.coa-download-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.coa-download-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(2, 8, 14, 0.82);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+}
+
+.coa-download-modal-panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 28rem);
+  max-height: min(92dvh, 44rem);
+  overflow: auto;
+  padding: 1.35rem 1.25rem 1.5rem;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(var(--gold-rgb), 0.22);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(var(--ocean-rgb), 0.12), transparent 60%),
+    linear-gradient(180deg, rgba(10, 22, 32, 0.98) 0%, rgba(5, 12, 18, 0.99) 100%);
+  box-shadow: 0 28px 72px rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+
+.coa-download-modal-panel--document {
+  width: min(100%, 40rem);
+  max-height: min(94dvh, 52rem);
+}
+
+.coa-download-modal-panel--pdf {
+  width: min(100%, 48rem);
+  max-height: min(94dvh, 56rem);
+}
+
+@media (min-width: 640px) {
+  .coa-download-modal-panel {
+    padding: 1.5rem 1.5rem 1.65rem;
+  }
+
+  .coa-download-modal-panel--document {
+    width: min(100%, 42rem);
+  }
+
+  .coa-download-modal-panel--pdf {
+    width: min(100%, 52rem);
+  }
+}
+
+.coa-download-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.coa-download-modal-eyebrow {
+  margin: 0;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--caribbean-gold);
+}
+
+.coa-download-modal-title {
+  margin: 0.35rem 0 0;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--soft-ivory);
+}
+
+.coa-download-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.coa-download-modal-close:hover {
+  border-color: rgba(var(--ocean-rgb), 0.4);
+  color: var(--soft-ivory);
+  background: rgba(var(--ocean-rgb), 0.12);
+}
+
+.coa-download-modal-preview {
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: center;
+}
+
+.coa-download-modal-preview--document {
+  width: 100%;
+}
+
+.coa-download-modal-preview--document .product-coa-document-preview--modal {
+  width: 100%;
+  max-height: min(58dvh, 32rem);
+}
+
+.coa-download-modal-preview--pdf {
+  width: 100%;
+  min-height: min(58dvh, 36rem);
+  border-radius: 0.85rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.coa-download-modal-preview--pdf iframe {
+  display: block;
+  width: 100%;
+  height: min(58dvh, 36rem);
+  border: 0;
+}
+
+.coa-download-modal-meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 1rem;
+  margin: 1.25rem 0 0;
+}
+
+.coa-download-modal-meta dt {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.coa-download-modal-meta dd {
+  margin: 0.2rem 0 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--soft-ivory);
+  overflow-wrap: anywhere;
+}
+
+.coa-download-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: 1.35rem;
+}
+
+@media (min-width: 480px) {
+  .coa-download-modal-actions {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.coa-download-modal-download {
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.7rem 1.15rem;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--gold-rgb), 0.4);
+  background: rgba(var(--gold-rgb), 0.14);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--luxury-gold);
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.coa-download-modal-download:hover {
+  background: rgba(var(--gold-rgb), 0.22);
+  border-color: rgba(var(--gold-rgb), 0.55);
+  transform: translateY(-1px);
+}
+
+.coa-download-modal-dismiss {
+  min-height: 2.75rem;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: transparent;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: inherit;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.coa-download-modal-dismiss:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  color: var(--soft-ivory);
+}
+
+.coa-showcase-preview-trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: inherit;
+  font: inherit;
+  color: inherit;
+}

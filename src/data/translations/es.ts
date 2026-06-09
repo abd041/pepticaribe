@@ -273,6 +273,7 @@ export const es: TranslationSchema = {
     catalogTitle: "Productos de Investigación",
     catalogDescription:
       "Compuestos premium de grado investigación con verificación de pureza independiente y documentación completa por lote.",
+    catalogVideoBadge: "Video del Producto",
     viewBestSellers: "Ver Más Vendidos",
     backToProducts: "Volver a Productos",
     coaAvailable: "COA Disponible",
@@ -415,6 +416,16 @@ export const es: TranslationSchema = {
     paymentRedirectNote: "Será redirigido a la página de pago segura de WooCommerce.",
     noOrderFound: "No se encontró ningún pedido.",
     totalLabel: "Total",
+  },
+  comingSoon: {
+    badge: "Próximamente",
+    contactCta: "Contactar al Equipo",
+  },
+  about: {
+    eyebrow: "Nuestra Misión",
+    title: "Acerca de PeptiCaribe",
+    pageDescription:
+      "Péptidos de grado de investigación con verificación independiente, documentación COA transparente y compromiso con estándares de laboratorio.",
   },
   legal: {
     lastUpdated: "Última actualización",

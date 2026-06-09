@@ -114,6 +114,166 @@
   box-shadow: 0 8px 24px rgba(56, 189, 248, 0.25);
 }
 
+/* ── Alternating catalog rows (client p.3) ── */
+.products-catalog-rows {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2.5vw, 1.35rem);
+}
+
+.catalog-row {
+  display: grid;
+  gap: clamp(0.875rem, 2.5vw, 1.25rem);
+  align-items: center;
+  padding: clamp(1rem, 2.5vw, 1.35rem);
+  border-radius: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(8, 20, 28, 0.78);
+  backdrop-filter: blur(14px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 16px 40px rgba(0, 0, 0, 0.26);
+}
+
+@media (min-width: 768px) {
+  .catalog-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(1.25rem, 3vw, 2rem);
+    padding: clamp(1.15rem, 2.5vw, 1.5rem);
+  }
+}
+
+.catalog-row-media {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: clamp(11rem, 34vw, 16rem);
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(10, 18, 24, 0.55) 0%, rgba(5, 10, 16, 0.88) 100%);
+  text-decoration: none;
+}
+
+.catalog-row-media--image .lux-product-presentation--card {
+  width: 100%;
+  min-height: clamp(11rem, 34vw, 16rem) !important;
+  height: clamp(11rem, 34vw, 16rem) !important;
+  padding: clamp(1rem, 3vw, 1.5rem) !important;
+}
+
+.catalog-row-media-badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--gold-rgb), 0.28);
+  background: rgba(0, 0, 0, 0.45);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--luxury-gold);
+}
+
+.catalog-row-video-shell {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+}
+
+.catalog-row-video {
+  width: 100%;
+  max-height: clamp(11rem, 34vw, 16rem);
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.catalog-row-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.catalog-row-index {
+  margin: 0;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--caribbean-gold);
+}
+
+.catalog-row-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.catalog-row-title a {
+  color: var(--soft-ivory);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.catalog-row-title a:hover {
+  color: var(--ocean-blue);
+}
+
+.catalog-row-desc {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.catalog-row-price-row {
+  margin-top: 0.15rem;
+}
+
+.catalog-row-size {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.catalog-row-chips {
+  margin-top: 0.1rem;
+}
+
+.catalog-row-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+}
+
+.catalog-row-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  padding: 0.55rem 0.75rem !important;
+  font-size: 0.6rem !important;
+  text-decoration: none;
+}
+
 .products-catalog-grid {
   margin-top: 0;
   gap: clamp(0.75rem, 2.5vw, 1rem);

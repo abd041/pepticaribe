@@ -8,7 +8,9 @@
 .checkout-page-shell,
 .faq-page-shell,
 .contact-page-shell,
-.legal-page-shell {
+.legal-page-shell,
+.about-page-shell,
+.coming-soon-page-shell {
   isolation: isolate;
   background: var(--deep-navy);
 }
@@ -28,7 +30,11 @@ html.has-marketing-canvas .faq-page,
 html.has-marketing-canvas .contact-page-shell,
 html.has-marketing-canvas .contact-page,
 html.has-marketing-canvas .legal-page-shell,
-html.has-marketing-canvas .legal-page {
+html.has-marketing-canvas .legal-page,
+html.has-marketing-canvas .about-page-shell,
+html.has-marketing-canvas .about-page,
+html.has-marketing-canvas .coming-soon-page-shell,
+html.has-marketing-canvas .coming-soon-page {
   position: relative;
   background: transparent;
 }

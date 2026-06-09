@@ -245,6 +245,7 @@ export interface TranslationSchema {
     catalogEyebrow: string;
     catalogTitle: string;
     catalogDescription: string;
+    catalogVideoBadge: string;
     viewBestSellers: string;
     backToProducts: string;
     coaAvailable: string;
@@ -381,6 +382,15 @@ export interface TranslationSchema {
     paymentRedirectNote: string;
     noOrderFound: string;
     totalLabel: string;
+  };
+  comingSoon: {
+    badge: string;
+    contactCta: string;
+  };
+  about: {
+    eyebrow: string;
+    title: string;
+    pageDescription: string;
   };
   legal: {
     lastUpdated: string;

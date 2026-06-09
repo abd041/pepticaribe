@@ -113,7 +113,7 @@ export function ProductDetailPage({ product, relatedProducts }: ProductDetailPag
 
   const trustItems = [
     { icon: ShieldCheck, label: t("hero.trustIso") },
-    { icon: FileCheck, label: t("common.coaIncluded") },
+    { icon: FileCheck, label: t("featured.trustTested") },
     { icon: Truck, label: t("hero.trustShipping") },
   ] as const;
 
