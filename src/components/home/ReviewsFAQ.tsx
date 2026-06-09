@@ -5,15 +5,12 @@ import { useMemo } from "react";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { FaqAccordion } from "@/components/faq/FaqAccordion";
-import { getHomeContent, HOME_FAQ_PREVIEW_COUNT } from "@/data/translations/homeContent";
+import { getHomeFaqs } from "@/data/translations/homeContent";
 import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
 
 export function ReviewsFAQ() {
   const { language, t } = useLanguage();
-  const previewFaqs = useMemo(
-    () => getHomeContent(language).faqs.slice(0, HOME_FAQ_PREVIEW_COUNT),
-    [language],
-  );
+  const previewFaqs = useMemo(() => getHomeFaqs(language), [language]);
 
   return (
     <section className="ref-reviews-faq polish-reviews-faq final8-reviews-faq qa-reviews-section relative overflow-hidden">

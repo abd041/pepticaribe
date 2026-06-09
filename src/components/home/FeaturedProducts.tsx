@@ -44,11 +44,14 @@ export async function FeaturedProducts() {
             ))}
           </div>
 
-          <div className="qa-section-footer mt-10 text-center sm:mt-12 lux-reveal">
-            <Link href="/products" className="qa-cta-text group inline-flex items-center gap-2">
+          <div className="qa-section-footer ref-featured-view-all-wrap mt-10 text-center sm:mt-12 lux-reveal">
+            <Link
+              href="/products"
+              className="ref-featured-view-all btn-gold interaction-lift group inline-flex w-full max-w-md items-center justify-center gap-2.5 rounded-full px-8 py-4 text-sm font-bold uppercase tracking-[0.08em] sm:w-auto sm:min-w-[18rem] sm:text-base"
+            >
               {viewAll}
               <ArrowRight
-                className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                className="h-5 w-5 transition-transform group-hover:translate-x-0.5"
                 aria-hidden
               />
             </Link>

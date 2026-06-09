@@ -2,18 +2,34 @@ import type { BundleDiscount, COABatch, Product } from "@/types/product";
 
 const RUO = "Research Use Only." as const;
 
-/** Standard RETA bundle tiers from client document (page 20) */
+/** Volume bundle tiers — client reference (dose + pack pricing) */
 const RETA_BUNDLES: BundleDiscount[] = [
-  { quantity: 2, discountPercent: 5, label: "BUNDLE & SAVE - FIRST RESEARCH" },
-  { quantity: 3, discountPercent: 8, label: "MOST POPULAR" },
-  { quantity: 4, discountPercent: 10, label: "MAX SAVINGS" },
+  {
+    quantity: 2,
+    discountPercent: 5,
+    label: "5% off",
+    perkKeys: ["bundle.perkDiscount", "bundle.perkBacWater"],
+  },
+  {
+    quantity: 3,
+    discountPercent: 12,
+    label: "most popular",
+    popular: true,
+    perkKeys: ["bundle.perkDiscount", "bundle.perkBacWater"],
+  },
+  {
+    quantity: 4,
+    discountPercent: 15,
+    label: "15% off",
+    perkKeys: ["bundle.perkDiscount", "bundle.perkFreeVial", "bundle.perkBacWater"],
+  },
 ];
 
 function coaPlaceholder(slug: string): string {
   return `/coa/placeholders/${slug}.pdf`;
 }
 
-function coaBatch(slug: string, displayName: string): COABatch[] {
+function coaBatch(slug: string, _displayName: string): COABatch[] {
   return [
     {
       lotNumber: "PENDING",

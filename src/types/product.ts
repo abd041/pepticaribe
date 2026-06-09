@@ -8,8 +8,12 @@ export interface BundleDiscount {
   quantity: number;
   /** Percentage off (e.g. 5 = 5%) */
   discountPercent: number;
-  /** Display label e.g. "BUNDLE & SAVE" */
+  /** Badge label e.g. "5% off", "MOST POPULAR" */
   label?: string;
+  /** i18n keys for perk lines (see bundle.perk* translations) */
+  perkKeys?: string[];
+  /** Highlights this tier as the recommended default */
+  popular?: boolean;
 }
 
 export interface COABatch {

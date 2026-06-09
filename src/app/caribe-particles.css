@@ -2,7 +2,13 @@
 
 .homepage-narrative.homepage-luxury,
 .products-catalog-page,
-.product-detail-page {
+.product-detail-page,
+.cart-page-shell,
+.coa-library-page,
+.checkout-page-shell,
+.faq-page-shell,
+.contact-page-shell,
+.legal-page-shell {
   isolation: isolate;
   background: var(--deep-navy);
 }
@@ -11,7 +17,18 @@
 html.has-marketing-canvas .homepage-narrative.homepage-luxury,
 html.has-marketing-canvas .products-catalog-page,
 html.has-marketing-canvas .products-catalog,
-html.has-marketing-canvas .product-detail-page {
+html.has-marketing-canvas .product-detail-page,
+html.has-marketing-canvas .cart-page-shell,
+html.has-marketing-canvas .cart-page,
+html.has-marketing-canvas .coa-library-page,
+html.has-marketing-canvas .checkout-page-shell,
+html.has-marketing-canvas .checkout-page,
+html.has-marketing-canvas .faq-page-shell,
+html.has-marketing-canvas .faq-page,
+html.has-marketing-canvas .contact-page-shell,
+html.has-marketing-canvas .contact-page,
+html.has-marketing-canvas .legal-page-shell,
+html.has-marketing-canvas .legal-page {
   position: relative;
   background: transparent;
 }

@@ -10,9 +10,9 @@ export const HERO_SHOWCASE_REFERENCE_PATH = HERO_SHOWCASE_PATH;
 
 export const HERO_SHOWCASE = {
   src: HERO_SHOWCASE_PATH,
-  width: 1024,
-  height: 1024,
-  alt: "GLP-3 RT and GHK-Cu research peptide vials on luxury pedestal",
+  width: 735,
+  height: 585,
+  alt: "Three PeptiCaribe research peptide vials on a gold-rimmed pedestal",
 } as const;
 
 /** @deprecated Use HERO_SHOWCASE */

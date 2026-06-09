@@ -243,23 +243,10 @@
   }
 
   .homepage-luxury .ref-featured-vial-stage {
-    min-height: clamp(340px, 92vw, 480px) !important;
+    min-height: clamp(260px, 68vw, 360px) !important;
     height: auto !important;
-    padding-bottom: clamp(1.25rem, 3vw, 2rem);
+    padding-bottom: 0;
     overflow: visible;
-  }
-
-  .homepage-luxury .lux-featured-float {
-    animation: none;
-    min-height: inherit;
-  }
-
-  .homepage-luxury .lux-featured-vial,
-  .homepage-luxury .ref-featured-vial {
-    max-height: min(72vw, 420px) !important;
-    transform: none !important;
-    scale: 1 !important;
-    object-position: bottom center;
   }
 
   .homepage-luxury .ref-featured-copy {
@@ -276,13 +263,7 @@
 
 @media (max-width: 639px) {
   .homepage-luxury .ref-featured-vial-stage {
-    min-height: clamp(320px, 95vw, 440px) !important;
-  }
-
-  .homepage-luxury .lux-featured-vial,
-  .homepage-luxury .ref-featured-vial {
-    max-height: min(78vw, 380px) !important;
-    max-width: 84% !important;
+    min-height: clamp(240px, 72vw, 320px) !important;
   }
 
   .homepage-luxury .ref-featured-copy .polish-featured-cta {
@@ -293,13 +274,9 @@
 
 @media (min-width: 1024px) {
   .homepage-luxury .ref-featured-vial-stage {
-    height: clamp(420px, 50vw, 620px) !important;
-    min-height: clamp(420px, 50vw, 620px) !important;
-    align-items: center;
-  }
-
-  .homepage-luxury .lux-featured-float {
-    align-items: center;
+    height: auto !important;
+    min-height: clamp(300px, 34vw, 400px) !important;
+    align-items: flex-end;
   }
 }
 
@@ -401,23 +378,17 @@
    FOOTER
    ═══════════════════════════════════════════════════════════════ */
 
-.homepage-luxury .ref-footer-link {
-  display: inline-block;
-  padding-block: 0.375rem;
-  min-height: 2.75rem;
-  line-height: 1.75;
-}
+@media (min-width: 1024px) {
+  .homepage-luxury .ref-footer-link {
+    display: inline-block;
+    padding-block: 0.375rem;
+    min-height: 2.75rem;
+    line-height: 1.75;
+  }
 
-.homepage-luxury .ref-social-btn {
-  min-width: 2.75rem;
-  min-height: 2.75rem;
-}
-
-@media (max-width: 639px) {
-  .homepage-luxury .polish-footer-top,
-  .homepage-luxury .qa-footer-top {
-    padding-top: clamp(3.5rem, 8vw, 4.5rem) !important;
-    padding-bottom: clamp(3rem, 7vw, 4rem) !important;
+  .homepage-luxury .ref-social-btn {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
   }
 }
 

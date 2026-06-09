@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import { FileCheck2 } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
 import { LuxuryStatValue } from "@/components/ui/LuxuryStatValue";
@@ -43,16 +41,6 @@ export function QualityVerification() {
                 </p>
               </article>
             ))}
-          </div>
-
-          <div className="mx-auto mt-10 flex justify-center lux-reveal">
-            <Link
-              href="/coa"
-              className="lux-stat-support-coa inline-flex items-center gap-2 rounded-full border border-[rgba(var(--gold-rgb),0.28)] bg-[rgba(var(--gold-rgb),0.06)] px-5 py-2.5 text-sm font-semibold text-[var(--luxury-gold)] transition-colors hover:border-[rgba(var(--gold-rgb),0.45)] hover:bg-[rgba(var(--gold-rgb),0.1)]"
-            >
-              <FileCheck2 className="h-4 w-4" aria-hidden />
-              {t("qualityStats.freeCoa")}
-            </Link>
           </div>
         </div>
       </SectionAtmosphere>

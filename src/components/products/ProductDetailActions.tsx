@@ -8,12 +8,31 @@ import { AddToCartButton } from "@/components/cart/AddToCartButton";
 type ProductDetailActionsProps = {
   product: Product;
   selectedVariantId: string;
+  packQuantity?: number;
+  packUnitPrice?: number;
 };
 
-export function ProductDetailActions({ product, selectedVariantId }: ProductDetailActionsProps) {
+export function ProductDetailActions({
+  product,
+  selectedVariantId,
+  packQuantity = 1,
+  packUnitPrice,
+}: ProductDetailActionsProps) {
   const { t } = useLanguage();
   const selectedVariant =
     product.variants.find((v) => v.id === selectedVariantId) ?? product.variants[0];
+
+  const basePrice = selectedVariant?.price;
+  const hasPackPricing =
+    packQuantity > 1 ||
+    (packUnitPrice != null && basePrice != null && packUnitPrice !== basePrice);
+
+  const cartOptions = hasPackPricing
+    ? {
+        quantity: packQuantity,
+        unitPrice: packUnitPrice ?? basePrice,
+      }
+    : undefined;
 
   return (
     <div className="product-detail-actions">
@@ -22,6 +41,7 @@ export function ProductDetailActions({ product, selectedVariantId }: ProductDeta
           product={product}
           variantId={selectedVariant?.id}
           disabled={!selectedVariant}
+          cartOptions={cartOptions}
           className="ref-product-btn-gold polish-product-cta qa-btn-card-gold product-detail-add-btn"
         />
         <Link

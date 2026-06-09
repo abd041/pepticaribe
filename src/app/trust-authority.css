@@ -49,60 +49,105 @@
   overflow: visible;
 }
 
-/* 3 × 2 grid — 2 col mobile, 2 tablet, 3 desktop */
+/* 3 × 2 grid — dense 3-col mobile/tablet, full cards desktop */
 .trust-authority-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(0.75rem, 2vw, 1.25rem);
-}
-
-@media (min-width: 640px) {
-  .trust-authority-grid {
-    gap: clamp(1.25rem, 2.2vw, 1.75rem);
-  }
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.375rem, 1.5vw, 0.625rem);
 }
 
 @media (min-width: 1024px) {
   .trust-authority-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: clamp(1.35rem, 2vw, 1.875rem);
   }
 }
 
-@media (max-width: 639px) {
+/* Compact scan grid — titles first, minimal vertical footprint */
+@media (max-width: 1023px) {
   .trust-authority-card {
     min-height: auto;
-    padding: clamp(1rem, 3vw, 1.25rem);
+    padding: clamp(0.5rem, 2vw, 0.75rem);
+    border-radius: 14px;
+    align-items: center;
+    text-align: center;
   }
 
-  .trust-authority-icon-well {
-    width: 2.25rem;
-    height: 2.25rem;
-  }
-
-  .trust-authority-icon-svg {
-    width: 1.125rem;
-    height: 1.125rem;
-  }
-
-  .trust-authority-icon-ring--outer {
-    inset: 0;
+  .trust-authority-icon {
+    width: clamp(2rem, 8vw, 2.5rem);
+    height: clamp(2rem, 8vw, 2.5rem);
+    margin-bottom: 0.375rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .trust-authority-icon-ring--inner {
-    inset: 6px;
+    inset: 4px;
+  }
+
+  .trust-authority-icon-well {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .trust-authority-icon-svg {
+    width: 0.8125rem;
+    height: 0.8125rem;
   }
 
   .trust-authority-title {
-    font-size: 0.875rem;
-    line-height: 1.25;
+    font-size: clamp(0.5625rem, 2.1vw, 0.6875rem);
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
   }
 
   .trust-authority-desc {
-    margin-top: 0.5rem;
-    font-size: 0.6875rem;
-    line-height: 1.55;
+    display: none;
+    margin-top: 0.25rem;
     max-width: none;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .trust-authority-grid {
+    gap: clamp(0.5rem, 1.8vw, 0.75rem);
+  }
+
+  .trust-authority-card {
+    padding: clamp(0.625rem, 2.2vw, 0.875rem);
+  }
+
+  .trust-authority-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .trust-authority-icon-well {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .trust-authority-icon-svg {
+    width: 0.9375rem;
+    height: 0.9375rem;
+  }
+
+  .trust-authority-title {
+    font-size: clamp(0.625rem, 1.8vw, 0.75rem);
+    -webkit-line-clamp: 2;
+  }
+
+  .trust-authority-desc {
+    display: -webkit-box;
+    font-size: clamp(0.5625rem, 1.6vw, 0.625rem);
+    line-height: 1.35;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
   }
 }
 
@@ -111,7 +156,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   min-height: clamp(240px, 28vw, 280px);
   padding: clamp(2rem, 3.5vw, 2.5rem);
   border-radius: 24px;
@@ -119,7 +164,7 @@
   background: rgba(255, 255, 255, 0.025);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  text-align: left;
+  text-align: center;
   overflow: hidden;
   transition:
     transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
@@ -215,6 +260,8 @@
   width: 72px;
   height: 72px;
   margin-bottom: clamp(1.25rem, 2.5vw, 1.625rem);
+  margin-left: auto;
+  margin-right: auto;
   flex-shrink: 0;
 }
 
@@ -278,6 +325,7 @@
 .trust-authority-title {
   position: relative;
   z-index: 1;
+  width: 100%;
   margin: 0;
   font-family: var(--font-cinzel), serif;
   font-size: clamp(1.0625rem, 0.5vw + 0.95rem, 1.25rem);
@@ -294,7 +342,8 @@
 .trust-authority-desc {
   position: relative;
   z-index: 1;
-  margin: clamp(0.75rem, 1.5vw, 1rem) 0 0;
+  width: 100%;
+  margin: clamp(0.75rem, 1.5vw, 1rem) auto 0;
   max-width: 28ch;
   font-size: clamp(0.875rem, 0.25vw + 0.8rem, 0.9375rem);
   font-weight: 400;
@@ -311,7 +360,7 @@
 .trust-authority-section .trust-authority-card.ref-trust-card {
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   border-right: none;
-  text-align: left;
+  text-align: center;
 }
 
 @media (min-width: 640px) {

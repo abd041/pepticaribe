@@ -1,0 +1,476 @@
+/* Premium FAQ page — Amino-style categories, matches /cart luxury system */
+
+.faq-page {
+  --faq-panel-bg: rgba(8, 20, 28, 0.82);
+  --faq-panel-border: rgba(255, 255, 255, 0.1);
+  isolation: isolate;
+}
+
+.faq-page-content {
+  position: relative;
+  z-index: 1;
+}
+
+.faq-page-hero-atmosphere {
+  padding-top: clamp(1.25rem, 4vw, 2rem);
+  padding-bottom: clamp(0.75rem, 2.5vw, 1.25rem);
+}
+
+.faq-page-hero-copy {
+  text-align: center;
+}
+
+.faq-page-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--caribbean-gold);
+}
+
+.faq-page-trust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: clamp(0.875rem, 2.5vw, 1.125rem);
+  list-style: none;
+  padding: 0;
+}
+
+.faq-page-trust li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.faq-page-trust svg {
+  color: var(--ocean-blue);
+  flex-shrink: 0;
+}
+
+.faq-page-main {
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+
+/* ── Credibility stats ── */
+.faq-page-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
+  list-style: none;
+  padding: 0;
+}
+
+@media (max-width: 540px) {
+  .faq-page-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+.faq-page-stat-card {
+  padding: 1.1rem 0.875rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(
+    160deg,
+    rgba(12, 28, 38, 0.85) 0%,
+    rgba(6, 14, 22, 0.92) 100%
+  );
+  text-align: center;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 12px 32px rgba(0, 0, 0, 0.22);
+}
+
+.faq-page-stat-value {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--caribbean-gold);
+}
+
+.faq-page-stat-label {
+  margin: 0.35rem 0 0;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Search + category jump ── */
+.faq-page-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: clamp(1rem, 2.5vw, 1.25rem);
+}
+
+.faq-page-search {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 2.85rem;
+  padding: 0 1rem;
+  border-radius: 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(10px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+.faq-page-search:focus-within {
+  border-color: rgba(var(--gold-rgb), 0.38);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 0 0 1px rgba(var(--gold-rgb), 0.12),
+    0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+.faq-page-search-input {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--soft-ivory);
+  font-size: 0.92rem;
+  outline: none;
+}
+
+.faq-page-search-input::placeholder {
+  color: var(--text-muted);
+}
+
+.faq-page-jump-nav {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.15rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.faq-page-jump-nav::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .faq-page-jump-nav {
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+}
+
+.faq-page-jump-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.faq-page-jump-link:hover {
+  border-color: rgba(var(--ocean-rgb), 0.3);
+  background: rgba(var(--ocean-rgb), 0.08);
+  color: var(--soft-ivory);
+}
+
+.faq-page-jump-link svg {
+  color: var(--ocean-blue);
+}
+
+.faq-page-results {
+  margin: 0 0 0.875rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.faq-page-layout {
+  align-items: start;
+}
+
+.faq-page-accordion-col {
+  gap: clamp(1rem, 2.5vw, 1.35rem);
+}
+
+/* ── Category glass panels ── */
+.faq-page-category-panel {
+  padding: clamp(1rem, 2.5vw, 1.35rem);
+  border-radius: 1.25rem;
+  border: 1px solid var(--faq-panel-border);
+  background: var(--faq-panel-bg);
+  backdrop-filter: blur(16px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 16px 40px rgba(0, 0, 0, 0.26);
+}
+
+.faq-page-category-panel--search {
+  padding: clamp(0.875rem, 2vw, 1.125rem);
+}
+
+.faq-page-category-head {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.875rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.faq-page-category-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex-shrink: 0;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(var(--gold-rgb), 0.22);
+  background: linear-gradient(
+    145deg,
+    rgba(var(--gold-rgb), 0.12) 0%,
+    rgba(var(--ocean-rgb), 0.08) 100%
+  );
+  color: var(--luxury-gold);
+  box-shadow: 0 0 24px rgba(var(--gold-rgb), 0.08);
+}
+
+.faq-page-category-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.05rem, 0.5vw + 0.95rem, 1.25rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--soft-ivory);
+}
+
+.faq-page-category-count {
+  margin: 0.2rem 0 0;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.faq-page-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .faq-page-sidebar {
+    position: sticky;
+    top: calc(var(--site-header-height, 72px) + 1rem);
+  }
+}
+
+.faq-page-excellence {
+  margin: 0;
+}
+
+.faq-page-quick-panel {
+  padding: 1.15rem 1.25rem;
+  border-radius: 1.15rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.025);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.faq-page-quick-title {
+  margin: 0 0 0.75rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--caribbean-gold);
+}
+
+.faq-page-quick-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.faq-page-quick-link {
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.65rem;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+/* ── Support band (gold gradient) ── */
+.faq-page-support {
+  margin-top: clamp(2rem, 5vw, 3rem);
+}
+
+.faq-page-support-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.15rem;
+  padding: 1.75rem 1.5rem;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(var(--gold-rgb), 0.22);
+  background: linear-gradient(
+    155deg,
+    rgba(var(--gold-rgb), 0.08) 0%,
+    rgba(6, 14, 22, 0.95) 55%
+  );
+  text-align: center;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.28);
+}
+
+@media (min-width: 640px) {
+  .faq-page-support-inner {
+    flex-direction: row;
+    text-align: left;
+    padding: 1.5rem 1.75rem;
+    gap: 1.25rem;
+  }
+}
+
+.faq-page-support-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--gold-rgb), 0.3);
+  background: rgba(var(--gold-rgb), 0.1);
+  color: var(--caribbean-gold);
+}
+
+.faq-page-support-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.faq-page-support-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--soft-ivory);
+}
+
+.faq-page-support-body {
+  margin: 0.4rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.faq-page-support-cta {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+  padding: 0.65rem 1.15rem !important;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* ── Empty state ── */
+.faq-page-empty {
+  padding: 2rem 1.5rem;
+  border-radius: 1.15rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.025);
+  text-align: center;
+}
+
+.faq-page-reset {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.25rem;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--ocean-rgb), 0.28);
+  background: rgba(var(--ocean-rgb), 0.08);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--soft-ivory);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.faq-page-reset:hover {
+  background: rgba(var(--ocean-rgb), 0.14);
+}
+
+/* Dedicated page accordion polish */
+.faq-page .faq-premium-card {
+  border-radius: 1.1rem;
+}
+
+.faq-page .faq-premium-trigger {
+  padding: clamp(1.05rem, 2vw, 1.3rem) clamp(1.05rem, 2vw, 1.4rem);
+}
+
+.faq-page .faq-premium-answer {
+  max-width: none;
+  padding-bottom: clamp(1.1rem, 2vw, 1.35rem);
+}
+
+.faq-page .faq-premium-card--open {
+  border-color: rgba(var(--gold-rgb), 0.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 14px 40px rgba(0, 0, 0, 0.22),
+    0 0 32px rgba(var(--gold-rgb), 0.06);
+}
+
+.faq-page .faq-premium-card--open .faq-premium-expand {
+  border-color: rgba(var(--gold-rgb), 0.35);
+  background: rgba(var(--gold-rgb), 0.1);
+  color: var(--luxury-gold);
+}

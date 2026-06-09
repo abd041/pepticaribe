@@ -1,7 +1,12 @@
 import "server-only";
 
 import type { Product, ProductCatalogStats } from "@/types/product";
+import { compareCatalogOrder } from "./order";
 import { products } from "./data";
+
+function sortByClientCatalogOrder(list: Product[]): Product[] {
+  return [...list].sort((a, b) => compareCatalogOrder(a.slug, b.slug));
+}
 
 export { products };
 
@@ -13,9 +18,9 @@ export function getPublicProducts(): Product[] {
   return products.filter((p) => !p.isPrivate);
 }
 
-/** Full storefront catalog — every product in the catalog */
+/** Storefront catalog — public products in client document order */
 export function getCatalogProducts(): Product[] {
-  return products;
+  return sortByClientCatalogOrder(products.filter((p) => !p.isPrivate));
 }
 
 export function getPrivateProducts(): Product[] {
@@ -23,7 +28,9 @@ export function getPrivateProducts(): Product[] {
 }
 
 export function getFeaturedProducts(): Product[] {
-  return products.filter((p) => p.featured && !p.isPrivate);
+  return sortByClientCatalogOrder(
+    products.filter((p) => p.featured && !p.isPrivate),
+  );
 }
 
 /** All image paths referenced by the catalog */

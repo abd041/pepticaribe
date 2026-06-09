@@ -46,20 +46,22 @@ export function FloatingMiniCart() {
       className={`floating-mini-cart interaction-lift${hasItems ? " floating-mini-cart-has-items" : ""}${pulse ? " floating-mini-cart-pulse" : ""}`}
       aria-label={ariaLabel}
     >
-      <span className="floating-mini-cart-icon-wrap">
-        <ShoppingBag className="floating-mini-cart-icon" strokeWidth={1.75} aria-hidden />
+      <span className="floating-mini-cart-inner">
+        <span className="floating-mini-cart-icon-wrap">
+          <ShoppingBag className="floating-mini-cart-icon" strokeWidth={1.75} aria-hidden />
+          {hasItems ? (
+            <span className="floating-mini-cart-badge cart-badge" aria-hidden>
+              {itemCount}
+            </span>
+          ) : null}
+        </span>
         {hasItems ? (
-          <span className="floating-mini-cart-badge cart-badge" aria-hidden>
-            {itemCount}
+          <span className="floating-mini-cart-meta" aria-hidden>
+            <span className="floating-mini-cart-label">{t("nav.cart")}</span>
+            <span className="floating-mini-cart-total">{formatUsd(subtotal)}</span>
           </span>
         ) : null}
       </span>
-      {hasItems ? (
-        <span className="floating-mini-cart-meta" aria-hidden>
-          <span className="floating-mini-cart-label">{t("nav.cart")}</span>
-          <span className="floating-mini-cart-total">{formatUsd(subtotal)}</span>
-        </span>
-      ) : null}
     </Link>
   );
 }

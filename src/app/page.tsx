@@ -12,6 +12,7 @@ import { ProductExploreCta } from "@/components/home/ProductExploreCta";
 import { HomeContact } from "@/components/home/HomeContact";
 import { FDADisclaimer } from "@/components/home/FDADisclaimer";
 import { Footer } from "@/components/home/Footer";
+import { FloatingMiniCart } from "@/components/cart/FloatingMiniCart";
 import { HomePageEffects, LuxuryMotion } from "@/components/home/HomePageEffects";
 import { MarketingCanvasBackdrop } from "@/components/ui/MarketingCanvasBackdrop";
 import { getProductBySlug } from "@/data/products";
@@ -30,9 +31,9 @@ export default function HomePage() {
               <main>
                 <Hero />
                 <ValueProps />
+                <FeaturedProducts />
                 <QualityVerification />
                 <COAPromotionBar />
-                <FeaturedProducts />
                 {featuredBpc ? <FeaturedCompound product={featuredBpc} /> : null}
                 <PrecisionVerification />
                 <ReviewsFAQ />
@@ -45,6 +46,7 @@ export default function HomePage() {
           </SmoothScrollProvider>
         </MarketingCanvasBackdrop>
       </div>
+      <FloatingMiniCart />
     </>
   );
 }

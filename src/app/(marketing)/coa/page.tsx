@@ -4,6 +4,7 @@ import { getCoaLibraryEntries } from "@/lib/coaLibrary";
 import { getTranslation } from "@/data/translations";
 import { getServerLanguage } from "@/lib/i18n-server";
 import "@/app/coa-library.css";
+import "@/app/products-detail.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   const language = await getServerLanguage();

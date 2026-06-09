@@ -21,8 +21,12 @@ export function ProductVariantPicker({
 
   return (
     <fieldset className="product-variant-picker">
-      <legend className="form-field-label">{t("products.chooseSize")}</legend>
-      <div className="product-variant-picker-options" role="radiogroup" aria-label={t("products.chooseSize")}>
+      <legend className="form-field-label">{t("products.selectDose")}</legend>
+      <div
+        className="product-variant-picker-options"
+        role="radiogroup"
+        aria-label={t("products.selectDose")}
+      >
         {product.variants.map((variant) => {
           const selected = variant.id === selectedId;
           return (

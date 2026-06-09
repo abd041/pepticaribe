@@ -16,7 +16,7 @@ function FooterLinkColumn({
   return (
     <div className="ref-footer-column">
       <h4 className="footer-column-title polish-type-footer-label font-display">{title}</h4>
-      <ul className="ref-footer-links final8-footer-links mt-4 space-y-2.5">
+      <ul className="ref-footer-links final8-footer-links mt-2 space-y-1.5 lg:mt-4 lg:space-y-2.5">
         {links.map((link) => (
           <li key={link.href + link.label}>
             <Link href={link.href} className="ref-footer-link">
@@ -61,13 +61,13 @@ export function Footer() {
   return (
     <footer className="ref-footer polish-footer final8-footer qa-footer premium-footer-brand lux-footer relative overflow-hidden text-white">
       <SectionAtmosphere variant="footer" showBottomTransition={false}>
-        <div className="polish-footer-top qa-footer-top mx-auto max-w-[90rem] px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-          <div className="ref-footer-grid polish-footer-grid grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_repeat(4,minmax(0,1fr))] lg:gap-10 xl:gap-12">
-            <div className="ref-footer-brand polish-footer-brand final8-footer-brand">
+        <div className="polish-footer-top qa-footer-top mx-auto max-w-[90rem] px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-20">
+          <div className="ref-footer-grid polish-footer-grid grid gap-6 sm:gap-8 lg:grid-cols-[minmax(0,1.15fr)_repeat(4,minmax(0,1fr))] lg:gap-10 xl:gap-12">
+            <div className="ref-footer-brand polish-footer-brand final8-footer-brand ref-footer-brand-row">
               <div className="final8-footer-logo-well">
                 <BrandLogo size="lg" />
               </div>
-              <div className="ref-footer-social mt-8 flex gap-3">
+              <div className="ref-footer-social mt-0 flex gap-2.5 lg:mt-8 lg:gap-3">
                 <a
                   href="https://instagram.com"
                   className="ref-social-btn"
@@ -95,11 +95,11 @@ export function Footer() {
         </div>
 
         <div className="ref-footer-bar polish-footer-bar border-t border-white/[0.06]">
-          <div className="mx-auto max-w-[90rem] px-4 py-8 text-center sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-[90rem] px-4 py-5 text-center sm:px-6 sm:py-6 lg:px-8 lg:py-8">
             <p className="text-xs font-medium uppercase tracking-[0.1em] text-[var(--text-secondary)]">
               {t("footer.barRuo")}
             </p>
-            <p className="mt-4 text-xs text-[var(--text-muted)]">
+            <p className="mt-2 text-xs text-[var(--text-muted)] sm:mt-3 lg:mt-4">
               {t("footer.copyright").replace("{year}", String(year))}
             </p>
           </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -20,17 +20,25 @@ import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
 import { MarketingCanvasBackdrop } from "@/components/ui/MarketingCanvasBackdrop";
 import { ProductDetailActions } from "@/components/products/ProductDetailActions";
 import { ProductDetailBadges } from "@/components/products/ProductDetailBadges";
+import { CoaDownloadModal } from "@/components/products/CoaDownloadModal";
 import { ProductDetailMedia } from "@/components/products/ProductDetailMedia";
+import { ProductDetailPriceBlock } from "@/components/products/ProductDetailPriceBlock";
+import { ProductPackSelector } from "@/components/products/ProductPackSelector";
 import { ProductVariantPicker } from "@/components/products/ProductVariantPicker";
 import { useLanguage } from "@/context/LanguageContext";
-import { resolveCoaPdfUrl } from "@/lib/coaLibrary";
+import {
+  buildPackTiers,
+  calculatePackQuote,
+  findPackTier,
+  productSupportsPacks,
+} from "@/lib/packPricing";
 import {
   getProductFormLabel,
   getProductStorageLabel,
   stripRuoSuffix,
 } from "@/lib/productDetail";
 import { resolveCompoundProfile } from "@/lib/productImagery";
-import { formatUsd, hasMultipleVariants } from "@/lib/pricing";
+import { hasMultipleVariants } from "@/lib/pricing";
 
 const CATEGORY_I18N_KEY: Record<ProductCategory, string> = {
   peptide: "products.categoryPeptide",
@@ -48,7 +56,15 @@ type ProductDetailPageProps = {
 
 export function ProductDetailPage({ product, relatedProducts }: ProductDetailPageProps) {
   const { t } = useLanguage();
+  const packConfig = useMemo(() => buildPackTiers(product), [product]);
+  const supportsPacks = productSupportsPacks(product);
+
   const [selectedVariantId, setSelectedVariantId] = useState(product.variants[0]?.id ?? "");
+  const [selectedPackQuantity, setSelectedPackQuantity] = useState(packConfig.defaultQuantity);
+  const [coaModalOpen, setCoaModalOpen] = useState(false);
+
+  const openCoaModal = useCallback(() => setCoaModalOpen(true), []);
+  const closeCoaModal = useCallback(() => setCoaModalOpen(false), []);
 
   const selectedVariant = useMemo(
     () => product.variants.find((v) => v.id === selectedVariantId) ?? product.variants[0],
@@ -57,7 +73,22 @@ export function ProductDetailPage({ product, relatedProducts }: ProductDetailPag
 
   const profile = resolveCompoundProfile(product.slug, product.image, product.category);
   const multipleSizes = hasMultipleVariants(product);
-  const displayPrice = selectedVariant?.price ?? 0;
+  const unitPrice = selectedVariant?.price ?? 0;
+
+  const activePackTier = useMemo(
+    () => findPackTier(packConfig.tiers, packConfig.bulkTier, selectedPackQuantity),
+    [packConfig, selectedPackQuantity],
+  );
+
+  const packQuote = useMemo(
+    () =>
+      calculatePackQuote(
+        unitPrice,
+        selectedPackQuantity,
+        activePackTier?.discountPercent ?? 0,
+      ),
+    [unitPrice, selectedPackQuantity, activePackTier],
+  );
   const latestBatch = product.coaBatches.find((b) => b.isLatest) ?? product.coaBatches[0];
   const panelSummary =
     product.shortDescription?.trim() ||
@@ -126,6 +157,8 @@ export function ProductDetailPage({ product, relatedProducts }: ProductDetailPag
                     product={product}
                     profile={profile}
                     selectedVariant={selectedVariant}
+                    coaBatch={latestBatch}
+                    onCoaExpand={latestBatch ? openCoaModal : undefined}
                   />
 
                   <div className="product-detail-panel">
@@ -145,19 +178,6 @@ export function ProductDetailPage({ product, relatedProducts }: ProductDetailPag
 
                     <ProductDetailBadges featured={product.featured} />
 
-                    <div className="product-detail-price-block mt-8">
-                      <p className="font-display text-3xl font-bold text-[var(--luxury-gold)] sm:text-4xl">
-                        {formatUsd(displayPrice)}
-                      </p>
-                      {selectedVariant ? (
-                        <p className="mt-2 text-sm text-[var(--text-secondary)]">
-                          {multipleSizes
-                            ? `${t("products.sizeLabel")}: ${selectedVariant.sizeLabel}`
-                            : selectedVariant.sizeLabel}
-                        </p>
-                      ) : null}
-                    </div>
-
                     {multipleSizes ? (
                       <ProductVariantPicker
                         product={product}
@@ -167,13 +187,32 @@ export function ProductDetailPage({ product, relatedProducts }: ProductDetailPag
                     ) : (
                       <p className="product-detail-single-size mt-6 text-sm text-[var(--text-muted)]">
                         <span className="font-semibold uppercase tracking-[0.08em] text-[var(--text-secondary)]">
-                          {t("products.sizeLabel")}:{" "}
+                          {t("products.selectDose")}:{" "}
                         </span>
                         {selectedVariant?.sizeLabel ?? "—"}
                       </p>
                     )}
 
-                    <ProductDetailActions product={product} selectedVariantId={selectedVariantId} />
+                    {supportsPacks ? (
+                      <ProductPackSelector
+                        tiers={packConfig.tiers}
+                        bulkTier={packConfig.bulkTier}
+                        unitPrice={unitPrice}
+                        selectedQuantity={selectedPackQuantity}
+                        onSelect={setSelectedPackQuantity}
+                      />
+                    ) : null}
+
+                    <div className="mt-8">
+                      <ProductDetailPriceBlock quote={packQuote} />
+                    </div>
+
+                    <ProductDetailActions
+                      product={product}
+                      selectedVariantId={selectedVariantId}
+                      packQuantity={selectedPackQuantity}
+                      packUnitPrice={packQuote.perUnit}
+                    />
                   </div>
                 </div>
               </div>
@@ -246,15 +285,14 @@ export function ProductDetailPage({ product, relatedProducts }: ProductDetailPag
                     </dl>
 
                     <div className="product-detail-coa-actions">
-                      <a
-                        href={resolveCoaPdfUrl(latestBatch)}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <button
+                        type="button"
                         className="product-detail-coa-download"
+                        onClick={openCoaModal}
                       >
                         <Download className="h-4 w-4" aria-hidden />
                         {t("products.detailDownloadCoa")}
-                      </a>
+                      </button>
                       <Link href="/coa" className="qa-cta-text group inline-flex items-center gap-2">
                         {t("products.viewCoaLibrary")}
                         <ArrowRight
@@ -275,31 +313,6 @@ export function ProductDetailPage({ product, relatedProducts }: ProductDetailPag
                     <p className="product-detail-coa-seal-sub">{t("products.coaAvailable")}</p>
                   </div>
                 </div>
-              </div>
-            </section>
-          ) : null}
-
-          {product.bundles.length > 0 ? (
-            <section className="product-detail-bundles">
-              <div className="qa-client-container mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
-                <p className="products-catalog-eyebrow">{t("products.detailBundleEyebrow")}</p>
-                <h2 className="font-display mt-2 text-2xl font-bold text-[var(--soft-ivory)]">
-                  {t("products.detailBundleTitle")}
-                </h2>
-                <div className="gold-accent-line product-detail-divider mt-5" aria-hidden />
-                <ul className="product-detail-bundle-grid">
-                  {product.bundles.map((bundle) => (
-                    <li key={bundle.quantity} className="product-detail-bundle-card">
-                      <span className="product-detail-bundle-qty">{bundle.quantity}+</span>
-                      <span className="product-detail-bundle-save">
-                        {bundle.discountPercent}% {t("products.detailBundleOff")}
-                      </span>
-                      {bundle.label ? (
-                        <span className="product-detail-bundle-label">{bundle.label}</span>
-                      ) : null}
-                    </li>
-                  ))}
-                </ul>
               </div>
             </section>
           ) : null}
@@ -330,6 +343,15 @@ export function ProductDetailPage({ product, relatedProducts }: ProductDetailPag
           ) : null}
         </div>
       </MarketingCanvasBackdrop>
+
+      {latestBatch ? (
+        <CoaDownloadModal
+          open={coaModalOpen}
+          onClose={closeCoaModal}
+          productName={product.displayName}
+          batch={latestBatch}
+        />
+      ) : null}
     </div>
   );
 }

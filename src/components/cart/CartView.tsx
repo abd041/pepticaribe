@@ -1,68 +1,162 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ShoppingBag } from "lucide-react";
+import { ArrowLeft, ArrowRight, Lock, ShieldCheck, ShoppingBag, Truck } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
 import { useCart } from "@/context/CartContext";
 import { CartLineItem } from "@/components/cart/CartLineItem";
 import { CartSummary } from "@/components/cart/CartSummary";
+import { MarketingCanvasBackdrop } from "@/components/ui/MarketingCanvasBackdrop";
+import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
+
+function CartLoading() {
+  const { t } = useLanguage();
+
+  return (
+    <div className="cart-loading">
+      <div className="qa-client-container mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+        <p className="cart-eyebrow text-center">{t("nav.cart")}</p>
+        <div className="cart-layout mt-8">
+          <div className="cart-lines-list">
+            <div className="cart-skeleton-line" />
+            <div className="cart-skeleton-line" />
+          </div>
+          <div className="cart-skeleton-summary" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CartEmpty() {
+  const { t } = useLanguage();
+
+  return (
+    <section className="cart-empty" aria-label={t("cart.emptyTitle")}>
+      <div className="cart-empty-icon">
+        <ShoppingBag className="h-8 w-8" strokeWidth={1.5} aria-hidden />
+      </div>
+      <h1 className="cart-empty-title">{t("cart.emptyTitle")}</h1>
+      <p className="section-caption mx-auto mt-4 max-w-md text-[14px] sm:text-[15px]">
+        {t("cart.emptyDescription")}
+      </p>
+      <Link href="/products" className="btn-primary cart-empty-cta">
+        {t("cart.browseProducts")}
+        <ArrowRight className="h-4 w-4" aria-hidden />
+      </Link>
+    </section>
+  );
+}
 
 export function CartView() {
   const { t } = useLanguage();
-  const { items, hydrated } = useCart();
+  const { items, hydrated, itemCount } = useCart();
 
   if (!hydrated) {
     return (
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-sm text-[var(--soft-ivory)]/50">{t("cart.updating")}</p>
+      <div className="cart-page relative min-h-dvh">
+        <MarketingCanvasBackdrop>
+          <div className="cart-page-content">
+            <CartLoading />
+          </div>
+        </MarketingCanvasBackdrop>
       </div>
     );
   }
 
   if (items.length === 0) {
     return (
-      <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:px-6 lg:py-24 lg:px-8">
-        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white/[0.04]">
-          <ShoppingBag className="h-7 w-7 text-[var(--ocean-blue)]" aria-hidden />
-        </div>
-        <h1 className="font-display mt-8 text-3xl font-bold text-[var(--soft-ivory)]">
-          {t("cart.emptyTitle")}
-        </h1>
-        <p className="section-caption mx-auto mt-4 max-w-md">{t("cart.emptyDescription")}</p>
-        <Link
-          href="/products"
-          className="btn-primary mt-8 inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold uppercase tracking-[0.08em]"
-        >
-          {t("cart.browseProducts")}
-        </Link>
+      <div className="cart-page relative min-h-dvh">
+        <MarketingCanvasBackdrop>
+          <div className="cart-page-content">
+            <section className="cart-hero relative overflow-hidden">
+              <SectionAtmosphere
+                variant="products"
+                showTopTransition={false}
+                showBottomTransition={false}
+                className="cart-hero-atmosphere bg-transparent"
+              >
+                <div className="qa-client-container mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+                  <CartEmpty />
+                </div>
+              </SectionAtmosphere>
+            </section>
+          </div>
+        </MarketingCanvasBackdrop>
       </div>
     );
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-      <Link
-        href="/products"
-        className="group inline-flex items-center gap-2 text-sm font-medium text-[var(--soft-ivory)]/55 transition-colors hover:text-[var(--ocean-blue)]"
-      >
-        <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" aria-hidden />
-        {t("cart.continueShopping")}
-      </Link>
+    <div className="cart-page relative min-h-dvh">
+      <MarketingCanvasBackdrop>
+        <div className="cart-page-content">
+          <section className="cart-hero relative overflow-hidden">
+            <SectionAtmosphere
+              variant="products"
+              showTopTransition={false}
+              showBottomTransition={false}
+              className="cart-hero-atmosphere bg-transparent"
+            >
+              <div className="qa-client-container mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+                <div className="cart-hero-copy mx-auto max-w-2xl">
+                  <p className="cart-eyebrow">{t("cart.eyebrow")}</p>
+                  <h1 className="font-display type-display-section polish-type-section-title mt-2">
+                    <span className="text-[var(--soft-ivory)]">{t("cart.title")}</span>
+                  </h1>
+                  <p className="section-caption mx-auto mt-3 max-w-xl text-[14px] leading-relaxed sm:text-[15px]">
+                    {t("cart.description")}
+                  </p>
+                </div>
 
-      <p className="premium-eyebrow-gold mt-8">{t("nav.cart")}</p>
-      <h1 className="font-display mt-3 text-3xl font-bold text-[var(--soft-ivory)] sm:text-4xl">
-        {t("cart.title")}
-      </h1>
-      <p className="section-caption mt-4 max-w-2xl">{t("cart.description")}</p>
+                <ul className="cart-trust" aria-label={t("hero.trustLabel")}>
+                  <li>
+                    <Truck className="h-3.5 w-3.5" aria-hidden />
+                    <span>{t("hero.trustShipping")}</span>
+                  </li>
+                  <li>
+                    <Lock className="h-3.5 w-3.5" aria-hidden />
+                    <span>{t("cart.trustSecure")}</span>
+                  </li>
+                  <li>
+                    <ShieldCheck className="h-3.5 w-3.5" aria-hidden />
+                    <span>{t("hero.trustIso")}</span>
+                  </li>
+                </ul>
+              </div>
+            </SectionAtmosphere>
+          </section>
 
-      <div className="mt-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-10">
-        <div className="space-y-4">
-          {items.map((line) => (
-            <CartLineItem key={line.variantId} line={line} />
-          ))}
+          <section className="cart-main" aria-label={t("cart.title")}>
+            <div className="qa-client-container mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+              <Link href="/products" className="cart-back group">
+                <ArrowLeft
+                  className="h-4 w-4 transition-transform group-hover:-translate-x-0.5"
+                  aria-hidden
+                />
+                {t("cart.continueShopping")}
+              </Link>
+
+              <div className="cart-layout">
+                <div className="cart-lines">
+                  <div className="cart-lines-header">
+                    <p className="cart-lines-count">
+                      {itemCount} {itemCount === 1 ? t("cart.item") : t("cart.items")}
+                    </p>
+                  </div>
+                  <div className="cart-lines-list">
+                    {items.map((line) => (
+                      <CartLineItem key={line.variantId} line={line} />
+                    ))}
+                  </div>
+                </div>
+
+                <CartSummary />
+              </div>
+            </div>
+          </section>
         </div>
-        <CartSummary />
-      </div>
+      </MarketingCanvasBackdrop>
     </div>
   );
 }

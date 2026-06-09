@@ -1,6 +1,5 @@
 "use client";
 
-import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import Link from "next/link";
 import { useRef } from "react";
 import {
@@ -13,7 +12,8 @@ import {
   TestTube,
 } from "lucide-react";
 import type { Product } from "@/types/product";
-import { FEATURED_BPC_EXHIBIT } from "@/lib/productImagery";
+import { resolveCompoundProfile } from "@/lib/productImagery";
+import { LuxuryProductPresentation } from "@/components/ui/LuxuryProductPresentation";
 import { SectionAtmosphere } from "@/components/ui/SectionAtmosphere";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -34,6 +34,8 @@ export function FeaturedCompound({ product }: FeaturedCompoundProps) {
     { icon: ShieldCheck, label: t("featured.trustTested") },
     { icon: Beaker, label: t("featured.trustRuo") },
   ] as const;
+
+  const profile = resolveCompoundProfile(product.slug, product.image, product.category);
 
   const specs = [
     { label: t("featured.specCompound"), key: "compound" as const },
@@ -58,8 +60,8 @@ export function FeaturedCompound({ product }: FeaturedCompoundProps) {
     >
       <SectionAtmosphere variant="products" className="premium-section-lg">
         <div className="qa-client-container mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
-          <div className="ref-featured-grid polish-featured-grid art-featured-grid grid items-center gap-8 sm:gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1.2fr)_minmax(0,0.75fr)] lg:gap-8 xl:gap-10">
-            <div className="ref-featured-copy polish-featured-copy lux-featured-copy art-featured-copy text-legibility-column mx-auto flex w-full max-w-2xl flex-col justify-center text-center lg:mx-0 lg:max-w-[34rem] lg:text-left">
+          <div className="ref-featured-grid polish-featured-grid art-featured-grid grid items-center justify-items-center gap-6 sm:gap-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-6 xl:gap-8">
+            <div className="ref-featured-copy polish-featured-copy lux-featured-copy art-featured-copy text-legibility-column mx-auto flex w-full max-w-xl flex-col items-center justify-center text-center lg:max-w-[22rem]">
               <p className="premium-eyebrow-gold polish-type-eyebrow">
                 {t("featured.compoundEyebrow")}
               </p>
@@ -69,11 +71,11 @@ export function FeaturedCompound({ product }: FeaturedCompoundProps) {
               <p className="mt-2 font-display text-lg font-medium text-[var(--ocean-blue)]">
                 {t("featured.compoundSubtitle")}
               </p>
-              <p className="section-caption mx-auto mt-5 max-w-2xl text-[15px] leading-relaxed lg:mx-0 lg:max-w-none">
+              <p className="section-caption mx-auto mt-4 max-w-md text-[15px] leading-relaxed">
                 {product.description.replace(/\s*Research Use Only\.?\s*$/i, "").trim()}
               </p>
 
-              <ul className="ref-featured-trust-list mt-8 justify-center lg:justify-start">
+              <ul className="ref-featured-trust-list mt-6 justify-center">
                 {trustMarks.map(({ icon: Icon, label }) => (
                   <li key={label} className="ref-featured-trust-mark polish-featured-trust-mark">
                     <Icon className="h-4 w-4 text-[var(--luxury-gold)]" strokeWidth={1.5} aria-hidden />
@@ -82,7 +84,7 @@ export function FeaturedCompound({ product }: FeaturedCompoundProps) {
                 ))}
               </ul>
 
-              <div className="ref-featured-actions mt-10">
+              <div className="ref-featured-actions mt-8 w-full max-w-md">
                 <div className="ref-featured-cta-row">
                   <Link
                     href="/coa"
@@ -110,26 +112,23 @@ export function FeaturedCompound({ product }: FeaturedCompoundProps) {
               </div>
             </div>
 
-            <div className="ref-featured-showcase polish-featured-showcase art-featured-showcase relative mx-auto w-full">
-              <div className="ref-featured-vial-stage relative mx-auto flex w-full max-w-[440px] items-end justify-center">
-                <div className="lux-featured-float flex h-full w-full items-end justify-center">
-                  <OptimizedImage
-                    src={FEATURED_BPC_EXHIBIT.src}
-                    alt={`${product.displayName} research vial on illuminated pedestal`}
-                    width={FEATURED_BPC_EXHIBIT.width}
-                    height={FEATURED_BPC_EXHIBIT.height}
-                    sizes="(max-width: 1024px) 72vw, 440px"
-                    className="ref-featured-vial polish-featured-vial lux-featured-vial h-auto w-auto max-w-[88%] object-contain object-bottom sm:max-w-[92%]"
-                  />
-                </div>
+            <div className="ref-featured-showcase polish-featured-showcase art-featured-showcase relative mx-auto w-full max-w-[min(100%,20rem)] sm:max-w-[22rem] lg:max-w-[19rem]">
+              <div className="ref-featured-vial-stage relative mx-auto flex w-full items-end justify-center">
+                <LuxuryProductPresentation
+                  variant="featured"
+                  alt={`${product.displayName} research vial`}
+                  exhibit={profile.exhibit}
+                  sizes="(max-width: 1024px) 68vw, 300px"
+                  className="ref-featured-presentation w-full"
+                />
               </div>
             </div>
 
-            <div className="ref-spec-panel polish-spec-panel lux-featured-spec text-legibility-column mx-auto w-full max-w-sm self-center lg:mx-0 lg:max-w-none">
-              <p className="premium-eyebrow-gold polish-type-eyebrow text-center lg:text-left">
+            <div className="ref-spec-panel polish-spec-panel lux-featured-spec text-legibility-column mx-auto w-full max-w-[17.5rem] self-center text-center sm:max-w-xs">
+              <p className="premium-eyebrow-gold polish-type-eyebrow text-center">
                 {t("featured.scientificSpecs")}
               </p>
-              <div className="polish-spec-divider" aria-hidden />
+              <div className="polish-spec-divider mx-auto" aria-hidden />
               <dl className="ref-spec-list polish-spec-list mt-5">
                 {specs.map(({ label, key }, i) => {
                   const Icon = SPEC_ICONS[i] ?? FlaskConical;

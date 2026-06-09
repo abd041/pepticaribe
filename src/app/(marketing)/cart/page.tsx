@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CartView } from "@/components/cart/CartView";
+import "@/app/cart-page.css";
 
 export const metadata: Metadata = {
   title: "Cart",
@@ -8,5 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function CartPage() {
-  return <CartView />;
+  return (
+    <div className="homepage-luxury luxury-experience art-direction cart-page-shell relative isolate min-h-dvh">
+      <CartView />
+    </div>
+  );
 }

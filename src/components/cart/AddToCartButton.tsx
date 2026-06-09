@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Check } from "lucide-react";
 import type { Product } from "@/types/product";
+import type { AddToCartOptions } from "@/context/CartContext";
 import { useLanguage } from "@/context/LanguageContext";
 import { useCart } from "@/context/CartContext";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
@@ -13,6 +14,7 @@ type AddToCartButtonProps = {
   className?: string;
   children?: ReactNode;
   disabled?: boolean;
+  cartOptions?: AddToCartOptions;
 };
 
 const ADDED_FEEDBACK_MS = 2200;
@@ -23,6 +25,7 @@ export function AddToCartButton({
   className = "",
   children,
   disabled = false,
+  cartOptions,
 }: AddToCartButtonProps) {
   const { t } = useLanguage();
   const { addItem } = useCart();
@@ -34,7 +37,7 @@ export function AddToCartButton({
 
   const handleClick = () => {
     if (disabled) return;
-    addItem(product, variantId);
+    addItem(product, variantId, cartOptions);
     setAdded(true);
     clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => setAdded(false), ADDED_FEEDBACK_MS);

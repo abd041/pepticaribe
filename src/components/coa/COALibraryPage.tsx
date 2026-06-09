@@ -50,31 +50,30 @@ export function COALibraryPage({ entries }: COALibraryPageProps) {
               variant="products"
               showTopTransition={false}
               showBottomTransition={false}
-              className="premium-section-lg bg-transparent pb-8 pt-10 sm:pb-10 sm:pt-14"
+              className="coa-library-hero-atmosphere bg-transparent"
             >
               <div className="qa-client-container mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
-                <div className="mx-auto max-w-3xl text-center">
+                <div className="coa-library-hero-copy mx-auto max-w-2xl text-center">
                   <p className="coa-library-eyebrow">{t("coa.libraryEyebrow")}</p>
-                  <h1 className="font-display type-display-section polish-type-section-title mt-3">
+                  <h1 className="font-display type-display-section polish-type-section-title mt-2">
                     <span className="text-[var(--soft-ivory)]">{t("coa.libraryTitle")}</span>
                   </h1>
-                  <p className="section-caption mx-auto mt-5 max-w-2xl text-[15px] leading-relaxed">
+                  <p className="section-caption mx-auto mt-3 max-w-xl text-[14px] leading-relaxed sm:text-[15px]">
                     {t("coa.libraryDescription")}
                   </p>
-                  <div className="gold-accent-line qa-section-divider mx-auto mt-6" aria-hidden />
                 </div>
 
-                <ul className="coa-library-trust mt-8 sm:mt-10" aria-label={t("coa.trustStripLabel")}>
+                <ul className="coa-library-trust coa-library-trust--compact" aria-label={t("coa.trustStripLabel")}>
                   <li>
-                    <FlaskConical className="h-4 w-4 shrink-0" aria-hidden />
+                    <FlaskConical className="h-3.5 w-3.5 shrink-0" aria-hidden />
                     <span>{t("coa.trustHplc")}</span>
                   </li>
                   <li>
-                    <FileCheck className="h-4 w-4 shrink-0" aria-hidden />
+                    <FileCheck className="h-3.5 w-3.5 shrink-0" aria-hidden />
                     <span>{t("coa.trustMassSpec")}</span>
                   </li>
                   <li>
-                    <ShieldCheck className="h-4 w-4 shrink-0" aria-hidden />
+                    <ShieldCheck className="h-3.5 w-3.5 shrink-0" aria-hidden />
                     <span>{t("coa.trustIso")}</span>
                   </li>
                 </ul>
@@ -82,19 +81,13 @@ export function COALibraryPage({ entries }: COALibraryPageProps) {
             </SectionAtmosphere>
           </section>
 
-          <div className="qa-client-container mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
-            <COALibraryStats />
-            <COALibraryTransparency />
-            <COALibraryMethods />
-          </div>
-
           <section
             id="coa-library-grid"
             className="coa-library-main scroll-mt-28"
             aria-label={t("coa.libraryTitle")}
           >
-            <div className="qa-client-container mx-auto max-w-[90rem] px-4 pb-8 sm:px-6 lg:px-8">
-              <div className="coa-library-toolbar">
+            <div className="qa-client-container mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+              <div className="coa-library-search-bar">
                 <label className="coa-library-search">
                   <Search className="h-4 w-4 shrink-0 text-[var(--text-muted)]" aria-hidden />
                   <span className="sr-only">{t("coa.searchLabel")}</span>
@@ -114,7 +107,7 @@ export function COALibraryPage({ entries }: COALibraryPageProps) {
               </p>
 
               {filtered.length > 0 ? (
-                <div className="coa-library-grid mt-6 sm:mt-8">
+                <div className="coa-library-grid">
                   {filtered.map((entry, index) => (
                     <COALibraryCard key={entry.id} entry={entry} index={index} />
                   ))}
@@ -139,10 +132,13 @@ export function COALibraryPage({ entries }: COALibraryPageProps) {
             </div>
           </section>
 
-          <div className="qa-client-container mx-auto max-w-[90rem] px-4 pb-16 sm:px-6 lg:px-8 lg:pb-24">
+          <div className="coa-library-editorial qa-client-container mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+            <COALibraryStats />
+            <COALibraryTransparency />
+            <COALibraryMethods />
             <COALibrarySteps />
 
-            <section className="coa-library-sample mt-14 sm:mt-16" aria-labelledby="coa-sample-heading">
+            <section className="coa-library-sample" aria-labelledby="coa-sample-heading">
               <div className="coa-library-sample-inner">
                 <div className="coa-library-sample-copy">
                   <p className="coa-library-eyebrow">{t("coa.previewEyebrow")}</p>
@@ -163,7 +159,7 @@ export function COALibraryPage({ entries }: COALibraryPageProps) {
             <COALibraryFaq />
             <COALibrarySupport />
 
-            <div className="coa-library-footer mt-12 flex flex-col items-center gap-6 text-center sm:mt-14">
+            <div className="coa-library-footer">
               <Link href="/products" className="qa-cta-text group inline-flex items-center gap-2">
                 {t("hero.ctaProducts")}
                 <ArrowRight

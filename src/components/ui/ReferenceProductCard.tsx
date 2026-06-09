@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import type { Product } from "@/types/product";
 import { resolveCompoundProfile } from "@/lib/productImagery";
@@ -39,8 +40,11 @@ export function ReferenceProductCard({
 }: ReferenceProductCardProps) {
   const { t } = useLanguage();
   const profile = resolveCompoundProfile(product.slug, product.image, product.category);
-  const variant = getDefaultVariant(product);
-  const sizeLabel = variant?.sizeLabel ?? "—";
+  const defaultVariant = getDefaultVariant(product);
+  const [selectedVariantId, setSelectedVariantId] = useState(defaultVariant?.id ?? "");
+  const selectedVariant =
+    product.variants.find((v) => v.id === selectedVariantId) ?? defaultVariant;
+  const sizeLabel = selectedVariant?.sizeLabel ?? "—";
   const multipleSizes = hasMultipleVariants(product);
 
   return (
@@ -67,6 +71,7 @@ export function ReferenceProductCard({
           <h3 className="ref-product-name polish-type-product-name font-display">{product.displayName}</h3>
           <ProductCardPrice
             product={product}
+            selectedVariantId={multipleSizes ? selectedVariantId : undefined}
             className="ref-product-price polish-type-product-price"
             priceClassName="font-display"
           />
@@ -79,11 +84,15 @@ export function ReferenceProductCard({
         ) : null}
 
         {multipleSizes ? (
-          <ProductVariantChips product={product} className="ref-product-variant-chips" />
+          <ProductVariantChips
+            product={product}
+            className="ref-product-variant-chips"
+            selectedId={selectedVariantId}
+            onSelect={setSelectedVariantId}
+          />
         ) : (
           <div className="ref-product-size-row">
             <span>{sizeLabel}</span>
-            <span className="text-[var(--text-muted)]">{t("common.coaIncluded")}</span>
           </div>
         )}
 
@@ -93,8 +102,8 @@ export function ReferenceProductCard({
           </Link>
           <AddToCartButton
             product={product}
-            variantId={variant?.id}
-            disabled={!variant}
+            variantId={selectedVariant?.id}
+            disabled={!selectedVariant}
             className="ref-product-btn-gold polish-product-cta qa-btn-card-gold"
           />
         </div>

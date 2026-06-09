@@ -1,12 +1,14 @@
 "use client";
 
-import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import Link from "next/link";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import type { CartLine } from "@/types/cart";
+import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { formatUsd } from "@/lib/pricing";
+import { resolveCompoundProfile } from "@/lib/productImagery";
 import { useLanguage } from "@/context/LanguageContext";
 import { useCart } from "@/context/CartContext";
+import { formatTranslation } from "@/lib/i18n-format";
 
 type CartLineItemProps = {
   line: CartLine;
@@ -15,79 +17,83 @@ type CartLineItemProps = {
 export function CartLineItem({ line }: CartLineItemProps) {
   const { t } = useLanguage();
   const { updateQuantity, removeItem } = useCart();
+  const profile = resolveCompoundProfile(line.slug, line.image);
+  const thumbSrc = profile.exhibit?.src ?? line.image;
   const lineTotal = line.price * line.quantity;
 
   return (
-    <article className="glass-card flex flex-col gap-4 rounded-xl p-4 sm:flex-row sm:items-center sm:gap-6 sm:p-5">
+    <article className="cart-line-item">
       <Link
         href={`/products/${line.slug}`}
-        className="relative mx-auto flex h-28 w-24 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-white/[0.03] sm:mx-0"
+        className="cart-line-thumb"
+        aria-label={line.displayName}
       >
+        <span className="cart-line-thumb-glow" aria-hidden />
         <OptimizedImage
-          src={line.image}
+          src={thumbSrc}
           alt=""
           width={96}
           height={112}
           sizes="96px"
-          className="h-full w-full object-contain p-2"
+          className="cart-line-thumb-img"
         />
       </Link>
 
-      <div className="min-w-0 flex-1">
-        <Link
-          href={`/products/${line.slug}`}
-          className="font-display text-lg font-semibold text-[var(--soft-ivory)] hover:text-[var(--ocean-blue)]"
-        >
+      <div className="cart-line-body">
+        <Link href={`/products/${line.slug}`} className="cart-line-name">
           {line.displayName}
         </Link>
-        <p className="mt-1 text-sm text-[var(--soft-ivory)]/50">
+        <p className="cart-line-meta">
           {line.sizeLabel} · {t("cart.sku")} {line.sku}
         </p>
-        <p className="mt-2 font-display text-base text-[var(--luxury-gold)]">
-          {formatUsd(line.price)}
-        </p>
+        <div className="cart-line-unit-row">
+          <span className="cart-line-unit-price">{formatUsd(line.price)}</span>
+          {line.quantity > 1 ? (
+            <span className="cart-line-unit-breakdown">
+              {formatTranslation(t, "cart.perUnitLine", {
+                qty: String(line.quantity),
+                price: formatUsd(line.price),
+              })}
+            </span>
+          ) : null}
+        </div>
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-4 sm:flex-col sm:items-end">
-        <div className="flex items-center gap-2">
-          <span className="sr-only">{t("cart.quantity")}</span>
+      <div className="cart-line-actions">
+        <div className="cart-line-qty" role="group" aria-label={t("cart.quantity")}>
           <button
             type="button"
             onClick={() => updateQuantity(line.variantId, line.quantity - 1)}
-            className="nav-icon-btn h-9 w-9 rounded-full"
+            className="cart-line-qty-btn"
             aria-label={`Decrease quantity for ${line.displayName}`}
           >
-            <Minus className="h-4 w-4" />
+            <Minus className="h-3.5 w-3.5" aria-hidden />
           </button>
-          <span className="min-w-[2rem] text-center text-sm font-semibold tabular-nums">
+          <span className="cart-line-qty-value" aria-live="polite">
             {line.quantity}
           </span>
           <button
             type="button"
             onClick={() => updateQuantity(line.variantId, line.quantity + 1)}
-            className="nav-icon-btn h-9 w-9 rounded-full"
+            className="cart-line-qty-btn"
             aria-label={`Increase quantity for ${line.displayName}`}
           >
-            <Plus className="h-4 w-4" />
+            <Plus className="h-3.5 w-3.5" aria-hidden />
           </button>
         </div>
 
-        <div className="text-right">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--soft-ivory)]/40">
-            {t("cart.lineTotal")}
-          </p>
-          <p className="font-display text-lg font-semibold text-[var(--soft-ivory)]">
-            {formatUsd(lineTotal)}
-          </p>
+        <div className="cart-line-total-block">
+          <p className="cart-line-total-label">{t("cart.lineTotal")}</p>
+          <p className="cart-line-total-value">{formatUsd(lineTotal)}</p>
         </div>
 
         <button
           type="button"
           onClick={() => removeItem(line.variantId)}
-          className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--text-muted)] transition-colors hover:text-red-400"
+          className="cart-line-remove"
         >
           <Trash2 className="h-3.5 w-3.5" aria-hidden />
-          {t("cart.remove")}
+          <span>{t("cart.remove")}</span>
         </button>
       </div>
     </article>

@@ -308,14 +308,16 @@
   border-top: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-.homepage-luxury .polish-footer-top,
-.homepage-luxury .qa-footer-top {
-  padding-top: clamp(5rem, 9vw, 6.5rem) !important;
-  padding-bottom: clamp(4rem, 7vw, 5.5rem) !important;
-}
+@media (min-width: 1024px) {
+  .homepage-luxury .polish-footer-top,
+  .homepage-luxury .qa-footer-top {
+    padding-top: clamp(5rem, 9vw, 6.5rem) !important;
+    padding-bottom: clamp(4rem, 7vw, 5.5rem) !important;
+  }
 
-.homepage-luxury .ref-footer-grid {
-  gap: clamp(3rem, 5vw, 4rem) !important;
+  .homepage-luxury .ref-footer-grid {
+    gap: clamp(3rem, 5vw, 4rem) !important;
+  }
 }
 
 .homepage-luxury .footer-column-title,

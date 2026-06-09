@@ -16,6 +16,7 @@ export interface TranslationSchema {
     title: string;
     subtitle: string;
     checkboxAge: string;
+    checkboxResearch: string;
     enterButton: string;
     trustIso: string;
     trustCoa: string;
@@ -25,6 +26,8 @@ export interface TranslationSchema {
     exitConfirm: string;
     footerDisclaimer: string;
     allRequired: string;
+    progressCount: string;
+    progressReady: string;
   };
   nav: {
     home: string;
@@ -98,7 +101,6 @@ export interface TranslationSchema {
     potencyTitle: string;
     potencyDesc: string;
     whyMatters: string;
-    freeCoa: string;
   };
   productCta: {
     titleLine1: string;
@@ -201,6 +203,16 @@ export interface TranslationSchema {
   faq: {
     eyebrow: string;
     title: string;
+    pageDescription: string;
+    searchLabel: string;
+    searchPlaceholder: string;
+    resultsCount: string;
+    jumpNavLabel: string;
+    noResultsTitle: string;
+    noResultsDescription: string;
+    clearSearch: string;
+    questionCount: string;
+    quickResources: string;
     viewAll: string;
     excellenceTitle: string;
     excellenceIso17025: string;
@@ -269,12 +281,47 @@ export interface TranslationSchema {
     detailBundleEyebrow: string;
     detailBundleTitle: string;
     detailBundleOff: string;
+    selectDose: string;
+    selectBundle: string;
+    packSize: string;
+    vial: string;
+    vials: string;
+    standard: string;
+    mostPopular: string;
+    fullPrice: string;
+    saveAmount: string;
+    discountOffAndSave: string;
+    perKit: string;
+    perVial: string;
+    bulkTitle: string;
+    bulkSubtitle: string;
+    bulkContactPrefix: string;
+    bulkContactLink: string;
     detailRelatedEyebrow: string;
     detailRelatedTitle: string;
+    mediaCarouselLabel: string;
+    mediaSlideVial: string;
+    mediaSlideCoa: string;
+    mediaSlideVideo: string;
+    mediaPrev: string;
+    mediaNext: string;
+    coaExpand: string;
+    coaModalClose: string;
+  };
+  bundle: {
+    /** {percent} and {amount} — shown with dollar savings in perk list */
+    perkDiscount: string;
+    perkBacWater: string;
+    perkFreeVial: string;
+    perkHospiraBac: string;
+    perkPriority: string;
   };
   cart: {
+    eyebrow: string;
     title: string;
     description: string;
+    orderSummary: string;
+    emptyEyebrow: string;
     emptyTitle: string;
     emptyDescription: string;
     browseProducts: string;
@@ -285,10 +332,15 @@ export interface TranslationSchema {
     remove: string;
     quantity: string;
     lineTotal: string;
+    perUnitLine: string;
     sku: string;
     updating: string;
     item: string;
     items: string;
+    freeShippingUnlocked: string;
+    freeShippingAway: string;
+    freeShippingProgress: string;
+    trustSecure: string;
     addedTitle: string;
     addedShort: string;
     viewCart: string;
@@ -329,6 +381,27 @@ export interface TranslationSchema {
     paymentRedirectNote: string;
     noOrderFound: string;
     totalLabel: string;
+  };
+  legal: {
+    lastUpdated: string;
+    documentLabel: string;
+    relatedPolicies: string;
+    questionsTitle: string;
+    questionsBody: string;
+  };
+  contact: {
+    eyebrow: string;
+    title: string;
+    pageDescription: string;
+    topicsEyebrow: string;
+    topicCta: string;
+    responseLabel: string;
+    shippingLabel: string;
+    resourcesTitle: string;
+    emailUsTitle: string;
+    sendEmail: string;
+    copyEmail: string;
+    copiedEmail: string;
   };
 }
 

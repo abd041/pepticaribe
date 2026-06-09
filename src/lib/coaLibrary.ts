@@ -1,4 +1,5 @@
 import { products } from "@/data/catalog/data";
+import { compareCatalogOrder } from "@/data/catalog/order";
 import { BRAND_SAMPLE_COA_PDF } from "@/lib/brandAssets";
 import { getExhibitImagePath } from "@/lib/productImagery";
 import type { COABatch, Product, ProductCategory } from "@/types/product";
@@ -41,11 +42,25 @@ function toLibraryEntry(product: Product): CoaLibraryEntry | null {
   };
 }
 
-/** Searchable COA library rows — one latest batch per catalog compound */
+/** Map a library row to batch shape for the COA download modal */
+export function coaEntryToBatch(entry: CoaLibraryEntry): COABatch {
+  return {
+    lotNumber: entry.lotNumber,
+    purityPercent: entry.purityPercent,
+    labeledWeight: "—",
+    actualWeight: "—",
+    testedDate: entry.testedDate,
+    pdfUrl: entry.pdfUrl,
+    labName: entry.labName,
+    isLatest: true,
+  };
+}
+
+/** Searchable COA library rows — one latest batch per compound, client catalog order */
 export function getCoaLibraryEntries(): CoaLibraryEntry[] {
   return products
     .filter((p) => !p.isPrivate)
     .map(toLibraryEntry)
     .filter((entry): entry is CoaLibraryEntry => entry !== null)
-    .sort((a, b) => a.displayName.localeCompare(b.displayName));
+    .sort((a, b) => compareCatalogOrder(a.slug, b.slug));
 }

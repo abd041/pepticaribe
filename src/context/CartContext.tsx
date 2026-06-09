@@ -25,13 +25,20 @@ export type CartAddedNotice = {
   image: string;
 };
 
+export type AddToCartOptions = {
+  /** Pack quantity — defaults to 1 */
+  quantity?: number;
+  /** Discounted per-unit price when a bundle tier is selected */
+  unitPrice?: number;
+};
+
 type CartContextValue = {
   items: CartLine[];
   itemCount: number;
   subtotal: number;
   hydrated: boolean;
   lastAdded: CartAddedNotice | null;
-  addItem: (product: Product, variantId?: string) => void;
+  addItem: (product: Product, variantId?: string, options?: AddToCartOptions) => void;
   dismissLastAdded: () => void;
   removeItem: (variantId: string) => void;
   updateQuantity: (variantId: string, quantity: number) => void;
@@ -74,42 +81,52 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setLastAdded(null);
   }, []);
 
-  const addItem = useCallback((product: Product, variantId?: string) => {
-    const variant = resolveVariant(product, variantId);
-    if (!variant) return;
+  const addItem = useCallback(
+    (product: Product, variantId?: string, options?: AddToCartOptions) => {
+      const variant = resolveVariant(product, variantId);
+      if (!variant) return;
 
-    setLastAdded({
-      id: `${variant.id}-${Date.now()}`,
-      displayName: product.displayName,
-      sizeLabel: variant.sizeLabel,
-      image: variant.image || product.image,
-    });
+      const quantity = Math.max(1, options?.quantity ?? 1);
+      const unitPrice = options?.unitPrice ?? variant.price;
 
-    setItems((prev) => {
-      const existing = prev.find((line) => line.variantId === variant.id);
-      if (existing) {
-        return prev.map((line) =>
-          line.variantId === variant.id
-            ? { ...line, quantity: line.quantity + 1 }
-            : line,
-        );
-      }
-
-      const next: CartLine = {
-        productId: product.id,
-        variantId: variant.id,
-        sku: variant.sku,
-        slug: product.slug,
+      setLastAdded({
+        id: `${variant.id}-${Date.now()}`,
         displayName: product.displayName,
         sizeLabel: variant.sizeLabel,
-        price: variant.price,
-        quantity: 1,
         image: variant.image || product.image,
-      };
+      });
 
-      return [...prev, next];
-    });
-  }, []);
+      setItems((prev) => {
+        const existing = prev.find((line) => line.variantId === variant.id);
+        if (existing) {
+          return prev.map((line) =>
+            line.variantId === variant.id
+              ? {
+                  ...line,
+                  quantity: line.quantity + quantity,
+                  price: unitPrice,
+                }
+              : line,
+          );
+        }
+
+        const next: CartLine = {
+          productId: product.id,
+          variantId: variant.id,
+          sku: variant.sku,
+          slug: product.slug,
+          displayName: product.displayName,
+          sizeLabel: variant.sizeLabel,
+          price: unitPrice,
+          quantity,
+          image: variant.image || product.image,
+        };
+
+        return [...prev, next];
+      });
+    },
+    [],
+  );
 
   const removeItem = useCallback((variantId: string) => {
     setItems((prev) => prev.filter((line) => line.variantId !== variantId));

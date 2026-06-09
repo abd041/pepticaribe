@@ -10,7 +10,7 @@ import { CINEMATIC_EASE, isCoarsePointer, isReducedMotion } from "@/lib/gsap/mot
 const PRODUCT_LAYERS = [
   {
     role: "left" as const,
-    className: "left-[2%] top-[18%] w-[88px] sm:w-[108px]",
+    className: "left-[2%] top-[20%] w-[80px] sm:top-[18%] sm:w-[100px]",
     blur: "blur-[6px]",
     opacity: 0.2,
     floatY: 14,
@@ -21,18 +21,19 @@ const PRODUCT_LAYERS = [
   },
   {
     role: "center" as const,
-    className: "left-1/2 top-[6%] w-[128px] -translate-x-1/2 sm:w-[156px]",
+    className:
+      "gate-vial-center left-1/2 top-[14%] w-[100px] -translate-x-1/2 sm:top-[12%] sm:w-[132px] lg:w-[148px]",
     blur: "",
-    opacity: 0.42,
-    floatY: 18,
-    floatX: 12,
+    opacity: 0.36,
+    floatY: 14,
+    floatX: 10,
     floatDuration: 13,
-    parallaxFactor: 20,
-    rotate: 1.2,
+    parallaxFactor: 18,
+    rotate: 1,
   },
   {
     role: "right" as const,
-    className: "right-[2%] top-[22%] w-[88px] sm:w-[108px]",
+    className: "right-[2%] top-[24%] w-[80px] sm:top-[20%] sm:w-[100px]",
     blur: "blur-[6px]",
     opacity: 0.2,
     floatY: 15,
