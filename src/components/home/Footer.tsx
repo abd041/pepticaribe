@@ -33,29 +33,22 @@ export function Footer() {
   const { t } = useLanguage();
   const year = new Date().getFullYear();
 
-  const shopLinks = [
-    { label: t("footer.linkAllProducts"), href: "/products" },
-    { label: t("footer.linkBestSellers"), href: "/#best-sellers" },
-    { label: t("nav.membership"), href: "/membership" },
-  ];
+  const shopLinks = [{ label: t("footer.linkAllProducts"), href: "/products" }];
 
-  const resourcesLinks = [
-    { label: t("footer.linkCoa"), href: "/coa" },
-    { label: t("footer.linkAboutUs"), href: "/about" },
-  ];
+  const resourcesLinks = [{ label: t("footer.linkCoa"), href: "/coa" }];
 
   const supportLinks = [
     { label: t("nav.faq"), href: "/faq" },
-    { label: t("footer.linkShippingInfo"), href: "/contact" },
+    { label: t("nav.contact"), href: "/contact" },
     { label: t("footer.linkReturns"), href: "/returns-refunds" },
-    { label: t("footer.linkTrackOrder"), href: "/contact" },
   ];
 
   const legalLinks = [
     { label: t("disclaimer.title"), href: "/disclaimer" },
     { label: t("footer.linkPrivacy"), href: "/privacy-policy" },
-    { label: t("footer.linkTerms"), href: "/terms-and-conditions" },
     { label: t("footer.linkRuo"), href: "/research-use-only" },
+    { label: t("footer.linkTerms"), href: "/terms-and-conditions" },
+    { label: t("footer.linkReturnsPolicy"), href: "/returns-refunds" },
   ];
 
   return (

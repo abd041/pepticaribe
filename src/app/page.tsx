@@ -16,6 +16,7 @@ import { FloatingMiniCart } from "@/components/cart/FloatingMiniCart";
 import { HomePageEffects, LuxuryMotion } from "@/components/home/HomePageEffects";
 import { MarketingCanvasBackdrop } from "@/components/ui/MarketingCanvasBackdrop";
 import { getProductBySlug } from "@/data/products";
+import "@/app/homepage-parity.css";
 
 export default function HomePage() {
   const featuredBpc = getProductBySlug("bpc-157");
@@ -32,9 +33,9 @@ export default function HomePage() {
                 <Hero />
                 <ValueProps />
                 <FeaturedProducts />
-                <QualityVerification />
-                <COAPromotionBar />
                 {featuredBpc ? <FeaturedCompound product={featuredBpc} /> : null}
+                <COAPromotionBar />
+                <QualityVerification />
                 <PrecisionVerification />
                 <ReviewsFAQ />
                 <ProductExploreCta />

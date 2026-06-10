@@ -231,6 +231,7 @@ export interface TranslationSchema {
     linkAboutUs: string;
     linkShippingInfo: string;
     linkReturns: string;
+    linkReturnsPolicy: string;
     linkTrackOrder: string;
     linkPrivacy: string;
     linkTerms: string;

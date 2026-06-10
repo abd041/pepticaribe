@@ -258,6 +258,7 @@ export const es: TranslationSchema = {
     linkAboutUs: "Nosotros",
     linkShippingInfo: "Info de Envío",
     linkReturns: "Devoluciones y Reembolsos",
+    linkReturnsPolicy: "Política de Devoluciones y Reembolsos",
     linkTrackOrder: "Rastrear Pedido",
     linkPrivacy: "Política de Privacidad",
     linkTerms: "Términos y Condiciones",

@@ -257,6 +257,7 @@ export const en: TranslationSchema = {
     linkAboutUs: "About Us",
     linkShippingInfo: "Shipping Info",
     linkReturns: "Returns & Refunds",
+    linkReturnsPolicy: "Return & Refund Policy",
     linkTrackOrder: "Track Order",
     linkPrivacy: "Privacy Policy",
     linkTerms: "Terms & Conditions",

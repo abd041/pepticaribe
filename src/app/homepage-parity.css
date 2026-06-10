@@ -1,0 +1,81 @@
+/* Homepage mockup parity — first scroll + hero showcase */
+
+.homepage-luxury .ref-hero-showcase-video {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(78%, 280px);
+  max-height: min(36dvh, 300px);
+  margin-inline: auto;
+  object-fit: contain;
+  object-position: center bottom;
+  transform-origin: center bottom;
+  border-radius: 0.5rem;
+}
+
+@media (min-width: 1024px) {
+  .homepage-luxury .ref-hero-showcase-video {
+    max-width: min(72%, 340px);
+    max-height: min(52dvh, 480px);
+    margin-inline: 0;
+    object-position: center center;
+    transform-origin: center center;
+  }
+}
+
+@media (min-width: 1280px) {
+  .homepage-luxury .ref-hero-showcase-video {
+    max-width: min(75%, 380px);
+    max-height: min(54dvh, 520px);
+  }
+}
+
+/* Tighter first-scroll on mobile — showcase + headline in one viewport */
+@media (max-width: 1023px) {
+  .homepage-luxury .ref-hero-copy-col {
+    padding-top: 0.25rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .homepage-luxury .hero-lead {
+    margin-top: 0.65rem;
+    font-size: 0.8125rem;
+    line-height: 1.55;
+  }
+
+  .homepage-luxury .ref-hero-ctas {
+    margin-top: 0.75rem;
+  }
+
+  .homepage-luxury .lux-mobile-trust-bar {
+    margin-top: 0.65rem;
+  }
+
+  .homepage-luxury .ref-hero-showcase-wrap,
+  .homepage-luxury .concept-hero-showcase-wrap {
+    max-height: min(38dvh, 320px);
+  }
+
+  .homepage-luxury .ref-hero-showcase,
+  .homepage-luxury .concept-hero-showcase {
+    min-height: clamp(200px, 34dvh, 320px);
+  }
+
+  .homepage-luxury .ref-hero-showcase-reference,
+  .homepage-luxury .ref-hero-showcase-video {
+    max-width: min(78%, 280px);
+    max-height: min(34dvh, 280px);
+  }
+}
+
+/* Desktop: copy vertically centered in first scroll */
+@media (min-width: 1024px) {
+  .homepage-luxury .ref-hero-copy {
+    justify-content: center;
+    min-height: 100%;
+  }
+
+  .homepage-luxury .ref-hero-showcase-reference-frame {
+    filter: drop-shadow(0 28px 64px rgba(0, 0, 0, 0.45));
+  }
+}
